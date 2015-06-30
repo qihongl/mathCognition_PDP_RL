@@ -13,7 +13,6 @@ h.stepsToReward = zeros(p.trials,1);
 
 for i = 1:p.trials
     setupState;
-   
     while abs(w.curs) < 5
         chooseAction();
         getNextState();
