@@ -1,7 +1,5 @@
 % written by Professor Jay McClelland
-function [ ] = setupState( )
-global w a p;
-
+function [w] = initState( )
 % preallocation 
 w.nexts = 0;    % next state
 w.curs = 0;     % current state

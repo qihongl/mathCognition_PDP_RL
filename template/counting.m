@@ -4,30 +4,19 @@ function rundata = counting()
 % clear; clc; rng(0);
 
 %% modeing parameters
-p.range = 5;        %
-p.gamma = .5;       % discount factor
-p.alpha = 0.1;      % learning rate
-p.nactions = 2;     % number of possible actions
-p.trials = 100;    % training epochs
-
+p = setupParameters();
 % preallocate and initilize Q to small values
-a.q = .01 + zeros(2*p.range+1,p.nactions);
+a.q = .02 + zeros(2*p.range+1,p.nactions);
 h.stepsToReward = zeros(p.trials,1);
 
 
 %% start training
 for i = 1:p.trials
-    % set up for the current state 
-    w.nexts = 0;    % next state
-    w.curs = 0;     % current state
-    w.cura = 0;     % current action
-    w.nexta = 0;    % next action
-    w.R = 0;        % reward
-    w.steps = 0;    % steps used
-    p.qscale = 3;       % softmax scale factor
+    % set up for the current state
+    w = initState();
     
     while abs(w.curs) < 5
-        %% choose action 
+        %% choose action
         denom = sum(a.q(w.curs+p.range+1,:).^p.qscale);
         prob = (a.q(w.curs+p.range+1,:).^p.qscale)/denom;
         w.cura = sample(prob);
@@ -43,20 +32,30 @@ for i = 1:p.trials
         else
             w.R = 0;
         end
+        
+        fprintf('current: (%d,%d) ---> ', w.curs, w.cura)
+        fprintf('next: (%d,%d)\n', w.nexts, w.R)
+        
+        
         %% updateQandS
+        % update the Q value for current state given current action
         a.q(w.curs+p.range+1,w.cura) = (1-p.alpha)*a.q(w.curs+p.range+1,w.cura)...
             + p.alpha * (w.R + p.gamma * max(a.q(w.nexts+p.range+1,:)));
         
+        % update state, action, and steps used
         w.curs = w.nexts;
         w.cura = 0;
-        
         w.steps = w.steps+1;
     end
+    fprintf('Iteration %d completed in %d steps!\n\n', i, w.steps)
     h.stepsToReward(i) = w.steps;
     %     qhist(i,:,:) = a.q;
 end
 
+% save the history
 rundata = struct('h',h,'a',a,'p',p);
+% plot the performance
+plot(rundata.h.stepsToReward)
 
 end
 
