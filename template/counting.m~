@@ -1,4 +1,5 @@
 %% a RL based model for counting
+function counting()
 % initialization
 clear; clc; rng(0);
 
@@ -26,7 +27,7 @@ for i = 1:p.trials
     while abs(w.curs) < p.range
         denom = sum(a.q(w.curs+p.range+1,:).^p.qscale);
         prob = (a.q(w.curs+p.range+1,:).^p.qscale)/denom;
-        w.cura = sample(prob)
+        w.cura = sample(prob);
         
         
         getNextState();
@@ -37,3 +38,14 @@ for i = 1:p.trials
     %     qhist(i,:,:) = a.q;
 end
 
+end
+function [c] = sample(pr)
+rv = rand(1);
+cp = cumsum(pr);
+for i = 1:length(pr)
+    if rv < cp(i)
+        c = i;
+        return;
+    end
+end
+end
