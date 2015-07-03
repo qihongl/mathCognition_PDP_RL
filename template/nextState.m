@@ -1,4 +1,4 @@
-function [ w ] = transition( w, p )
+function [ w ] = nextState( w, p )
 %TRANSITION Summary of this function goes here
 %   Detailed explanation goes here
 if w.cura == 1

@@ -14,23 +14,17 @@ h.stepsToReward = zeros(p.trials,1);
 
 
 %% start training
-% textprogressbar('Start training: ');
+textprogressbar('Start training: ');
 for i = 1:p.trials
-%     textprogressbar(i);
+    textprogressbar(i);
     % set up for the current state
     w = initState();
     
     while abs(w.curs) < p.range
         %% choose action
-        if w.curs == 0  
-            w.cura = 2; % 0 is the left end point
-        else
-            prob = softmax(a.q(w.curs+1,:), p.qscale);
-            w.cura = chooseAction(prob);
-        end
-        
+        w = chooseAction(w,p,a);
         %% go to the next state
-        w = transition(w, p);
+        w = nextState(w, p);
 %         fprintf('current: (%d,%d) ---> ', w.curs, w.cura)
 %         fprintf('next: (%d,%d)\n', w.nexts, w.R)
         
@@ -49,7 +43,7 @@ for i = 1:p.trials
     h.stepsToReward(i) = w.steps;
     %     qhist(i,:,:) = a.q;
 end
-% textprogressbar(' Done!');
+textprogressbar(' Done!');
 
 % save the history
 rundata = struct('h',h,'a',a,'p',p);

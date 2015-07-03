@@ -1,0 +1,6 @@
+set up the template for the counting model
+
+this is essential a revised version of the simpleStepper written by professor jay McClelland. but it is a walker on int[0,n], where n is defined by p.range
+
+
+it behaves similarly to the original model. but it reaches the end point more quickly, since it has less space to move.
