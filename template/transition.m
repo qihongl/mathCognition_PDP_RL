@@ -7,8 +7,8 @@ else
     w.nexts = w.curs +1;
 end
 
-if w.nexts == p.range + 1
-    w.R = 2;
+if w.nexts == p.range
+    w.R = 1;
 else
     w.R = 0;
 end

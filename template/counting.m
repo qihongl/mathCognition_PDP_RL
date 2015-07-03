@@ -9,35 +9,30 @@ rng(seed);
 %% modeing parameters
 p = setupParameters();
 % preallocate and initilize Q to small values
-a.q = .02 + zeros(p.range+1,p.nactions);
+a.q = .01 + zeros(p.range+1,p.nactions);
 h.stepsToReward = zeros(p.trials,1);
 
 
 %% start training
-textprogressbar('Start training: ');
+% textprogressbar('Start training: ');
 for i = 1:p.trials
-    textprogressbar(i);
+%     textprogressbar(i);
     % set up for the current state
     w = initState();
     
     while abs(w.curs) < p.range
         %% choose action
-        
-        if w.curs == 0
-            w.cura = 2;
+        if w.curs == 0  
+            w.cura = 2; % 0 is the left end point
         else
-            denom = sum(a.q(w.curs+1,:).^p.qscale);
-            prob = (a.q(w.curs+1,:).^p.qscale)/denom;
-            w.cura = sample(prob);
+            prob = softmax(a.q(w.curs+1,:), p.qscale);
+            w.cura = chooseAction(prob);
         end
-        
         
         %% go to the next state
         w = transition(w, p);
-        
-%                 fprintf('current: (%d,%d) ---> ', w.curs, w.cura)
-%                 fprintf('next: (%d,%d)\n', w.nexts, w.R)
-        
+%         fprintf('current: (%d,%d) ---> ', w.curs, w.cura)
+%         fprintf('next: (%d,%d)\n', w.nexts, w.R)
         
         %% updateQandS
         % update the Q value for current state given current action
@@ -48,12 +43,13 @@ for i = 1:p.trials
         w.curs = w.nexts;
         w.cura = 0;
         w.steps = w.steps+1;
+
     end
-%         fprintf('Iteration %d completed in %d steps!\n\n', i, w.steps)
+%     fprintf('Iteration %d completed in %d steps!\n\n', i, w.steps)
     h.stepsToReward(i) = w.steps;
     %     qhist(i,:,:) = a.q;
 end
-textprogressbar('All trials completed');
+% textprogressbar(' Done!');
 
 % save the history
 rundata = struct('h',h,'a',a,'p',p);
@@ -65,13 +61,3 @@ end
 end
 
 
-function [c] = sample(pr)
-rv = rand(1);
-cp = cumsum(pr);
-for i = 1:length(pr)
-    if rv < cp(i)
-        c = i;
-        return;
-    end
-end
-end
