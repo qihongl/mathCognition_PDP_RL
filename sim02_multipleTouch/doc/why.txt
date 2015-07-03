@@ -1,0 +1,6 @@
+OVERALL GOAL: a simplified model for counting.
+build a model that touches every items in the environment (professor McClelland's suggestion)
+
+WHAT I DID: 
+
+SOME OBSERVATIONS: 

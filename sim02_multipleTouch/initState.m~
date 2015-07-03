@@ -1,0 +1,16 @@
+% INITSTATE initialize the state, or the wro
+% written by Professor Jay McClelland
+function [w] = initState( )
+% preallocation 
+w.curs = 0;     % current state
+w.cura = 0;     % current action 
+w.nexts = 0;    % next state
+w.nexta = 0;    % next action 
+
+w.R = 0;        % reward
+w.steps = 0;    % steps used
+
+
+
+end
+
