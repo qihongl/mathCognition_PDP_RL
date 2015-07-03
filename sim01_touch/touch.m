@@ -1,5 +1,5 @@
 %% a RL based model for counting
-function rundata = counting(seed, doPlotting)
+function rundata = touch(seed, doPlotting)
 if nargin == 0
     seed = randi(99); doPlotting = true;
 end
@@ -15,9 +15,9 @@ h.spotsTouched = cell(p.trials,1);
 
 
 %% start training
-% textprogressbar('Start training: ');
+textprogressbar('Start training: ');
 for i = 1:p.trials
-%     textprogressbar(i);
+    textprogressbar(i);
     % set up for the current state
     w = initState(p.range);
     
@@ -25,7 +25,7 @@ for i = 1:p.trials
         %% choose action and go to the next state
         w = chooseAction(w,p,a);
         w = nextState(w, p);
-        fprintf('%d ', w.nexts)
+%         fprintf('%d ', w.nexts)
         
         %% update Q values 
         % update the Q value for current state given current action
@@ -39,12 +39,12 @@ for i = 1:p.trials
         w.spotsTouched(w.steps) = w.nexts;
 
     end
-    fprintf('\nFound target %d in %d steps!\n\n', w.targets, w.steps)
+%     fprintf('\nFound target %d in %d steps!\n\n', w.targets, w.steps)
     h.stepsToReward(i) = w.steps;   % save the performance metric
     h.spotsTouched{i} = w.spotsTouched;
     %     qhist(i,:,:) = a.q;
 end
-% textprogressbar(' Done!');
+textprogressbar(' Done!');
 
 % save the history
 rundata = struct('h',h,'a',a,'p',p);
