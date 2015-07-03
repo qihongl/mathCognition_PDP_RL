@@ -1,0 +1,10 @@
+OVERALL GOAL: a simplified model for counting.
+build a model that touches every items in the environment (professor McClelland's suggestion)
+
+WHAT I DID: a model that “touches” an object in the world
+
+SOME OBSERVATIONS: 
+Every time, an object was initialized in a random position. The model gets reward if the model finds it. But the model don’t know where is the object, so a rational strategy is to visit every place once. 
+
+And this is exact what the model learnt. Moreover, it tend to visit the spots in the same order after some training, which is interesting. The understanding of why it occurs will give me insights on how to train the model count from left to right. 
+

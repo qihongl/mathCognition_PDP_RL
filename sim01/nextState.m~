@@ -1,0 +1,20 @@
+function [ w ] = nextState( w, p )
+%NEXTSTATE the trainsition function
+% This is a function maps action to the next state
+
+
+s
+if w.cura == 1
+    w.nexts = w.curs - 1;
+else
+    w.nexts = w.curs +1;
+end
+
+if w.nexts == p.range
+    w.R = 1;
+else
+    w.R = 0;
+end
+
+end
+
