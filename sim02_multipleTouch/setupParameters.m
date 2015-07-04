@@ -7,6 +7,7 @@ p.qscale = 3;       % softmax scale factor
 
 % other parameters
 p.range = 5;            % the size of the state space
+p.numItems = 3;         % number of items in the word
 p.nactions = p.range;   % number of possible actions
 
 % number of training epochs 

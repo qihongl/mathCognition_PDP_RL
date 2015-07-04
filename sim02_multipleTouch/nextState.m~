@@ -2,15 +2,13 @@ function [ w ] = nextState( w, p )
 %NEXTSTATE the trainsition function
 % This is a function maps action to the next state
 
+% transit to the target state with probability 1
+w.nexts = w.cura;
 
-s
-if w.cura == 1
-    w.nexts = w.curs - 1;
-else
-    w.nexts = w.curs +1;
-end
-
-if w.nexts == p.range
+% give reward
+if sum(w.spotsTouched(w.targets) & w.targets(w.targets)) == p.numItems
+    w.R = 1
+if w.targets(w.nexts) == true
     w.R = 1;
 else
     w.R = 0;

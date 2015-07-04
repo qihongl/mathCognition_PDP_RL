@@ -10,8 +10,7 @@ rng(seed);
 p = setupParameters();
 % preallocate and initilize Q to small values
 a.q = .01 + zeros(p.range+1,p.nactions);
-h.stepsToReward = zeros(p.trials,1);
-h.spotsTouched = cell(p.trials,1);
+h.stepsUsed = zeros(p.trials,1);
 
 
 %% start training
@@ -19,9 +18,9 @@ textprogressbar('Start training: ');
 for i = 1:p.trials
     textprogressbar(i);
     % set up for the current state
-    w = initState(p.range);
+    w = initState(p);
     
-    while w.curs ~= w.targets     % TODO: stop when touched all objs 
+    while ~w.done
         %% choose action and go to the next state
         w = chooseAction(w,p,a);
         w = nextState(w, p);
@@ -40,7 +39,7 @@ for i = 1:p.trials
 
     end
 %     fprintf('\nFound target %d in %d steps!\n\n', w.targets, w.steps)
-    h.stepsToReward(i) = w.steps;   % save the performance metric
+    h.stepsUsed(i) = w.steps;   % save the performance metric
     h.spotsTouched{i} = w.spotsTouched;
     %     qhist(i,:,:) = a.q;
 end

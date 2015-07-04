@@ -6,8 +6,11 @@ function [ w ] = nextState( w, p )
 w.nexts = w.cura;
 
 % give reward
-if w.nexts == w.targets
+if sum(w.spotsTouched(w.targets) & w.targets(w.targets)) == p.numItems
     w.R = 1;
+    w.done = true; 
+elseif w.targets(w.nexts) == true
+    w.R = 0.1;
 else
     w.R = 0;
 end
