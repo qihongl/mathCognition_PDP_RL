@@ -7,12 +7,12 @@ w.cura = sample(prob);
 
 end
 
-function [c] = sample(pr)
+function [action] = sample(pr)
 rv = rand(1);       % sample from a unifrom[0,1]
 cp = cumsum(pr);
 for i = 1:length(pr)    % choose an action 
     if rv < cp(i)
-        c = i;
+        action = i;
         return;
     end
 end

@@ -12,11 +12,12 @@ w.steps = 0;    % steps used
 w.done = false;
 
 % generate a target randomly in the range
-w.spotsTouched = false(1,p.range);
 w.targets = false(1,p.range);
-while sum(w.targets) < p.numItems
+while sum(w.targets) < p.numItems   % generate items in space
     w.targets(randi(p.range)) = true;
 end 
+% indicate the progress of the task
+w.targetsRemain = w.targets;
 
 end
 
