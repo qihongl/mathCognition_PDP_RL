@@ -1,5 +1,5 @@
-% x is expected to be a vector of q values for a state: Q(s,:)
-
+% SOFTMAX assign probabilities to options
+% in my case, x is expected to be a vector of q values for a state: Q(s,:)
 function [prob] = softmax(x, scale)
 % if there is no input scaling factor, just don't scale it
 if nargin == 1 
@@ -7,7 +7,7 @@ if nargin == 1
 end
 
 % transform when there is negative values
-% 
+% TODO: this transformation is not perfect
 if any(x < 0)
     x = x - min(x);
 end
