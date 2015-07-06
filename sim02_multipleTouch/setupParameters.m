@@ -6,11 +6,11 @@ p.alpha = 0.2;      % learning rate
 p.qscale = 3;       % softmax scale factor
 
 % other parameters
-p.range = 6;            % the size of the state space
+p.range = 7;            % the size of the state space
 p.numItems = 3;         % number of items in the world
 p.nactions = p.range;   % number of possible actions
 
 % number of training epochs 
-p.trials = 100;    % training epochs
+p.trials = 1000;    % training epochs
 end
 

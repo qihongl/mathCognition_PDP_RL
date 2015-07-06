@@ -9,15 +9,17 @@ w.nexta = 0;    % next action
 
 w.R = 0;        % reward
 w.steps = 0;    % steps used
-w.done = false;
 
+%% counting specific
 % generate a target randomly in the range
 w.targets = false(1,p.range);
 while sum(w.targets) < p.numItems   % generate items in space
     w.targets(randi(p.range)) = true;
 end 
-% indicate the progress of the task
-w.targetsRemain = w.targets;
+
+w.targetsRemain = w.targets;    % indicate the progress of the task
+w.memory = zeros(1,p.range);    % "working memory"
+w.done = false;                 % flag for stop the counting process
 
 end
 

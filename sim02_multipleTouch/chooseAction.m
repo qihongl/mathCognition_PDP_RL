@@ -17,4 +17,3 @@ for i = 1:length(pr)    % choose an action
     end
 end
 end
-

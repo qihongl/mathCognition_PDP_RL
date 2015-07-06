@@ -8,7 +8,7 @@ w.nexts = w.cura;
 % give the reward for the next state
 if w.targetsRemain(w.nexts)
     w.targetsRemain(w.nexts) = false;
-    w.R = 0.1;
+    w.R = 0;
     
     % give reward if all items were touched
     if all(w.targetsRemain == false)
@@ -17,7 +17,7 @@ if w.targetsRemain(w.nexts)
     end
     
 else
-    w.R = - 0.1;    % 
+    w.R = 0;    % 
 end
 
 end
