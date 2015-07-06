@@ -1,0 +1,13 @@
+OVERALL GOAL: built in VISION component
+build a model that touches every items in the environment (professor McClelland's suggestion)
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: 
+
+
+PROBLEM: 
+
+
+TRY: 
