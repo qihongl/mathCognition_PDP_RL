@@ -12,9 +12,13 @@ w.R = 0;        % reward
 w.steps = 0;    % steps used
 
 %% counting specific
+% specifiy the number of items in the world
+w.numItems = randi(p.range);
+% w.numItems = p.numItems;
+
 % generate a target randomly in the range
 w.targets = false(1,p.range);
-while sum(w.targets) < p.numItems   % generate items in space
+while sum(w.targets) < w.numItems   % generate items in space
     w.targets(randi(p.range)) = true;
 end 
 

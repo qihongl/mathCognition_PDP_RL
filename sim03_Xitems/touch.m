@@ -16,7 +16,7 @@ h.stepsUsed = zeros(p.trials,1);
 
 %% training
 if showProgress
-    textprogressbar('Start training: ');
+    textprogressbar('Training: ');
 end
 for i = 1:p.trials
     if showProgress

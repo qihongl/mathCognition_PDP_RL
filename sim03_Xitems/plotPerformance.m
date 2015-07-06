@@ -11,7 +11,8 @@ plot(ones(NUM_TRIALS,1) * out.p.range)
 hold off
 FONTSIZE = 14;
 title('performance against time', 'fontsize', FONTSIZE)
-xlabel('epochs', 'fontsize', FONTSIZE);
+xlabel('Epochs', 'fontsize', FONTSIZE);
+ylabel('Steps used', 'fontsize', FONTSIZE);
 mylegend = legend('number of steps used',...
     'number of items');
 set(mylegend,'FontSize',FONTSIZE);

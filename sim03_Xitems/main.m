@@ -2,14 +2,15 @@
 clear; clc % clear things up
 
 % set simulation parameters
-nSubj = 20;
-numtrials = 200;
+nSubj = 10;
+numtrials = 1000;
 
 %% analysis     TODO: revise! this procedure is terrible 
 % averaging the data
 temp = zeros(numtrials,1);
 for i = 1 : nSubj
-    out = touch(numtrials, i + 1600, false, false, true);
+    fprintf('%.2d: ', i);
+    out = touch(numtrials, i+26, false, false, true);
     temp = temp + out.h.stepsUsed;
     
 end

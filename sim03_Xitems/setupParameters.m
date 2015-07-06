@@ -6,7 +6,7 @@ p.alpha = 0.2;      % learning rate
 p.qscale = 3;       % softmax scaling factor
 
 % other parameters
-p.range = 5;            % the size of the state space
+p.range = 7;            % the size of the state space
 p.numItems = 3;         % number of items in the world
 p.nactions = p.range;   % number of possible actions
 
