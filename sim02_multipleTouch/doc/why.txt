@@ -1,6 +1,19 @@
 OVERALL GOAL: a simplified model for counting.
 build a model that touches every items in the environment (professor McClelland's suggestion)
 
-WHAT I DID: 
+WHAT I DID: a model that touches multiple objects in the world. When the model touches all items, the game ends. 
+
 
 SOME OBSERVATIONS: 
+where there are 5 spots and 3 items, the model easily learnt to touch every spot once. 
+When there are 7 spots, the model can still learn that strategy, but it needs much more time. 
+
+PROBLEM: 
+The model needs vision: the current model is blind
+
+It doesn’t make sense to touch empty spots
+But I can’t simply assign 0 prob to empty spots, because…  
+those empty spots still should matters, although I don’t know how… 
+
+TRY: 
+implement vision into the model’s state, so it can perceive it. 
