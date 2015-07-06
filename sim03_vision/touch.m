@@ -4,17 +4,17 @@ if nargin == 0
     epochs = 100; seed = randi(99);
     doPlotting = true; showSteps = false; showProgress = false;
 end
-% initialization
 rng(seed);
 
-%% modeing parameters
+%% initialization 
+% modeing parameters
 p = setupParameters(epochs);
 % preallocate & initilize Q to small values
 a.q = .01 + zeros(p.range+1,p.nactions);
 h.stepsUsed = zeros(p.trials,1);
 
 
-%% start training
+%% training
 if showProgress
     textprogressbar('Start training: ');
 end
@@ -27,11 +27,12 @@ for i = 1:p.trials
     
     % print the targets and spots touched
     if showSteps
-        fprintf('\nTargets: %s | spots touched: ', num2str(w.targets));
+        fprintf('\n%.4d - Targets: %s | Spots touched: ',...
+            i, num2str(w.targets));
     end
     while ~w.done
         %% choose action and go to the next state
-        w = chooseAction(w,p,a);
+        w.cura = chooseAction(w,p,a);
         w = nextState(w,p);
         
         % show spots touched
@@ -51,18 +52,20 @@ for i = 1:p.trials
         w.spotsTouched(w.steps) = w.nexts;
         
     end
-    
-    h.stepsUsed(i) = w.steps;   % save the performance metric
+    % save the performance metric
+    h.stepsUsed(i) = w.steps;   
     h.spotsTouched{i} = w.spotsTouched;
-    %     qhist(i,:,:) = a.q;
-end
+end    
+% end of the training
 if showProgress
     textprogressbar(' Done!');
 end
 
+%% save data
 % save the history
 output = struct('h',h,'a',a,'p',p);
-% plot the performance
+
+%% plot the performance
 if doPlotting
     plotPerformance(output);
 end

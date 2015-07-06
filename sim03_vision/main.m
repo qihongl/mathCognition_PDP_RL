@@ -2,10 +2,10 @@
 clear; clc % clear things up
 
 % set simulation parameters
-nSubj = 10;
-numtrials = 100;
+nSubj = 20;
+numtrials = 200;
 
-%% analysis
+%% analysis     TODO: revise! this procedure is terrible 
 % averaging the data
 temp = zeros(numtrials,1);
 for i = 1 : nSubj

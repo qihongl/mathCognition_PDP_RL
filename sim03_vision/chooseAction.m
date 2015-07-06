@@ -1,9 +1,9 @@
-function [w] = chooseAction(w,p,a)
+function [action] = chooseAction(w,p,a)
 
 % obtain the probability distribution for actions
 prob = softmax(a.q(w.curs+1,:), p.qscale);
 % choose action based 
-w.cura = sample(prob);
+action = sample(prob);
 
 end
 
