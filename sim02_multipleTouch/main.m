@@ -3,13 +3,13 @@ clear; clc % clear things up
 
 % set simulation parameters
 nSubj = 20;
-numtrials = 1000;
+numtrials = 100;
 
 %% analysis
 % averaging the data
 temp = zeros(numtrials,1);
 for i = 1 : nSubj
-    out = touch(i, false);
+    out = touch(i + 1600, false);
     temp = temp + out.h.stepsUsed;
     
 end

@@ -23,7 +23,7 @@ for i = 1:p.trials
     while ~w.done
         %% choose action and go to the next state
         w = chooseAction(w,p,a);
-        w = nextState(w);
+        w = nextState(w,p);
         
 %         fprintf('%d ', w.nexts)
         
