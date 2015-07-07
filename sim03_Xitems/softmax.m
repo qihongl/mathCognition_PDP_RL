@@ -9,7 +9,7 @@ end
 % transform when there is negative values
 % TODO: this transformation is not perfect
 if any(x < 0)
-    x = x - min(x);
+    x = x - min(x) - 0.0001;
 end
 
 % softmax transformation

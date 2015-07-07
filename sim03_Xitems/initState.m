@@ -13,8 +13,8 @@ w.steps = 0;    % steps used
 
 %% counting specific
 % specifiy the number of items in the world
-w.numItems = randi(p.range);
 % w.numItems = p.numItems;
+w.numItems = randi(p.range);
 
 % generate a target randomly in the range
 w.targets = false(1,p.range);
@@ -26,7 +26,6 @@ w.targetsRemain = w.targets;    % indicate the progress of the task
 w.done = false;                 % flag - stopping the counting process
 
 %% implement vision and memory
-w.memory = zeros(1,p.range);    % "working memory"
 w.vision = w.targets;           % what the model sees
 end
 
