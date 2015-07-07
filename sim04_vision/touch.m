@@ -10,7 +10,7 @@ rng(seed);
 % modeing parameters
 p = setupParameters(epochs);
 % preallocate & initilize Q values to small quantities
-a.q = .01 + zeros(p.range+1,p.nactions);
+a.q = .01 + zeros(p.range+1,p.nHandActions);
 h.stepsUsed = zeros(p.trials,1);
 
 %% training

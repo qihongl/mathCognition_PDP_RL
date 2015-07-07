@@ -10,8 +10,10 @@ p.qscale = 3;       % softmax scaling factor
 % other parameters
 p.range = 10;           % the size of the state space
 % p.numItems = 3;       % number of items in the world
-p.nactions = p.range;   % number of possible actions
-p.visualRadius = 2;       % the perceptual span (it should be ODD for sym.!)
+p.visualRadius = 2;     % the perceptual span (it should be ODD for sym.!)
+% number of possible actions
+p.nHandActions = p.range;
+p.nEyeActions = p.range;
 
 % reward signals
 p.finalR = 2;       % reward for complete counting
