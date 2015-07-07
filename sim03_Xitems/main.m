@@ -3,7 +3,7 @@ clear; clc % clear things up
 
 % set simulation parameters
 nSubj = 10;
-numtrials = 1000;
+numtrials = 100;
 
 %% analysis     TODO: revise! this procedure is terrible 
 % averaging the data
@@ -15,7 +15,6 @@ for i = 1 : nSubj
     
 end
 mean = temp/nSubj;
-
 
 %% plot performance
 FONTSIZE = 14;
@@ -36,8 +35,3 @@ ylabel('steps used', 'fontsize', FONTSIZE);
 baseline = sprintf('number of spots in the world (%d)', out.p.range);
 mylegend = legend('number of steps used', baseline);
 set(mylegend,'FontSize',FONTSIZE);
-
-
-
-
-

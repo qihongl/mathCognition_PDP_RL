@@ -10,7 +10,7 @@ if w.targetsRemain(w.nexts)
     w.targetsRemain(w.nexts) = false;
     w.R = p.subR;
     
-    % give reward if all items were touched
+    % give bonus reward if ALL items were touched
     if all(w.targetsRemain == false)
         w.R = p.finalR;
         w.done = true;
