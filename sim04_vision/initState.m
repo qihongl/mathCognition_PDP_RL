@@ -2,30 +2,34 @@
 % note that all things here are TRIAL SPECIFIC
 % originally written by Professor Jay McClelland
 function [w] = initState(p)
-% preallocation 
+%% preallocation for general varibles
 w.curs = 0;     % current state
 w.cura = 0;     % current action 
 w.nexts = 0;    % next state
 w.nexta = 0;    % next action 
-
 w.R = 0;        % reward
 w.steps = 0;    % steps used
 
 %% counting specific
-% specifiy the number of items in the world
-% w.numItems = p.numItems;
-w.numItems = randi(p.range);
-
-% generate a target randomly in the range
-w.targets = false(1,p.range);
-while sum(w.targets) < w.numItems   % generate items in space
-    w.targets(randi(p.range)) = true;
-end 
-
-w.targetsRemain = w.targets;    % indicate the progress of the task
+% generate items randomly
+w.numItems = randi(p.range);    % specifiy the number of items 
+w.rS.targets = false(1,p.range);    % preallocate
+w.rS.targets(randperm(p.range, w.numItems)) = true; % generate items
+w.targetsRemain = w.rS.targets;    % indicate the progress of the task
 w.done = false;                 % flag - stopping the counting process
 
-%% implement vision and memory
-w.vision = w.targets;           % what the model sees
+%% vision specific 
+% TODO try initialize at randomly location 
+w.rS.eyePos = p.visualRadius + 1;  % initialize to the left end
+% generate a symertic perceptual span
+visualSpan = (w.rS.eyePos-p.visualRadius) : (w.rS.eyePos+p.visualRadius);
+% randomly initialize the hand position within the perceptual span
+w.rS.handPos = datasample(visualSpan,1);
+% get the perceived space
+w.vS.targets = w.rS.targets(visualSpan);
+% initialize perceived eye & hand positions
+w.vS.eyePos = 0;
+w.vS.handPos = w.rS.handPos - w.rS.eyePos;
+
 end
 

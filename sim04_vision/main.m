@@ -3,7 +3,7 @@ clear; clc % clear things up
 
 % set simulation parameters
 nSubj = 5;
-numtrials = 1000;
+numtrials = 2000;
 
 %% analysis     TODO: revise! this procedure is terrible 
 % averaging the data

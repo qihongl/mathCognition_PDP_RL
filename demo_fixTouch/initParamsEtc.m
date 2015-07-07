@@ -4,14 +4,14 @@ function [] = initParamsEtc( )
 global p d a
 
 p.wf = .25;
-p.handTime = 5;
-p.eyeTime = 1;
-p.learner = 1;
-p.lrate = .01;
-p.runs = 4096;
-p.gamma = .8;
-p.smirate = .001;
-p.eyebias = 2; %initial bias to prefer eye movement
+p.handTime = 5;     % the amount of time needed to move hand 
+p.eyeTime = 1;      % the amount of time needed to move eye
+p.learner = 1;      % 
+p.lrate = .01;      % alpha 
+p.runs = 4096;      % epochs
+p.gamma = .8;       % discount 
+p.smirate = .001;   % ?
+p.eyebias = 2;      %initial bias to prefer eye movement
 
 d.fh = figure();
 d.fh.WindowStyle = 'docked';

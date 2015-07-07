@@ -6,27 +6,23 @@ if nargin == 0
 end
 rng(seed);
 
-%% initialization 
+%% initialization
 % modeing parameters
 p = setupParameters(epochs);
-% preallocate & initilize Q to small values
+% preallocate & initilize Q values to small quantities
 a.q = .01 + zeros(p.range+1,p.nactions);
 h.stepsUsed = zeros(p.trials,1);
-
 
 %% training
 if showProgress
     textprogressbar('Training: ');
 end
 for i = 1:p.trials
+    w = initState(p);   % set up for the current state
+    
     if showProgress
         textprogressbar(i);
-    end
-    % set up for the current state
-    w = initState(p);
-    
-    % print the targets and spots touched
-    if showSteps
+    elseif showSteps
         fprintf('\n%.4d - Targets: %s | Spots touched: ',...
             i, num2str(w.targets));
     end
@@ -53,9 +49,9 @@ for i = 1:p.trials
         
     end
     % save the performance metric
-    h.stepsUsed(i) = w.steps;   
+    h.stepsUsed(i) = w.steps;
     h.spotsTouched{i} = w.spotsTouched;
-end    
+end
 % end of the training
 if showProgress
     textprogressbar(' Done!');
