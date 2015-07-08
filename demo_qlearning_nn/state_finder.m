@@ -14,18 +14,18 @@ candidate=1;
 complete=0;
 
 while 0==complete
-
-        if ran<sum 
+    
+    if ran<sum
         
         complete=1;
         
-        else
+    else
         
         candidate=candidate+1;
-
-        sum=sum+TPM(old_state,candidate,old_action);
-
-        end
         
+        sum=sum+TPM(old_state,candidate,old_action);
+        
+    end
+    
 end
-                  
+
