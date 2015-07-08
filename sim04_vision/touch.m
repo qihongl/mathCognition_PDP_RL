@@ -34,7 +34,7 @@ for i = 1:p.trials
         
         % show spots touched
         if showSteps
-            fprintf('%d ', w.rS.eyePosNext)
+            fprintf('%d ', w.rS.s_handNext);
         end
         
         %% update Q values
