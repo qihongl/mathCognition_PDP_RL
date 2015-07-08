@@ -1,11 +1,10 @@
-function [action] = chooseAction(w,p,a)
-
-% choose to move eye or move hand
+function [action] = chooseHand(w,p,a)
 
 % obtain the probability distribution for actions
-prob = softmax(a.q(w.curs+1,:), p.qscale);
+qval = a.q(w.vS.eye + p.visualRadius + 1,:);
+prob = softmax(qval, p.qscale);
 % choose action based 
-action = sample(prob);
+action = sample(prob) - p.visualRadius - 1;
 
 end
 

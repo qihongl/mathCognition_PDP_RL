@@ -41,21 +41,18 @@ for i = 1:p.trials
         % update the Q value for current state given current action
         a.q(w.vS.eye + p.visualRadius +1,w.rS.a_handCur + p.visualRadius +1)=...
             (1-p.alpha)*a.q(w.vS.eye + p.visualRadius +1,w.rS.a_handCur + p.visualRadius +1)...
-            + p.alpha * (w.R + p.gamma * max(a.q(:,w.rS.a_handCur + p.visualRadius +1)));
+            + p.alpha * (w.R + p.gamma * max(a.q(w.nexts+1,:)));
         
         %% update state, action, and steps used
-%         w.curs = w.nexts;
-%         w.cura = 0;
-        w.rS.s_eyeCur = w.rS.s_eyeNext;
-        w.rS.s_handCur = w.rS.s_handNext;
-        
+        w.curs = w.nexts;
+        w.cura = 0;
         w.steps = w.steps+1;
-%         w.spotsTouched(w.steps) = w.nexts;
+        w.spotsTouched(w.steps) = w.nexts;
         
     end
     % save the performance metric
     h.stepsUsed(i) = w.steps;
-%     h.spotsTouched{i} = w.spotsTouched;
+    h.spotsTouched{i} = w.spotsTouched;
 end
 % end of the training
 if showProgress

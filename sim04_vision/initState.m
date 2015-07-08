@@ -3,10 +3,10 @@
 % originally written by Professor Jay McClelland
 function [w] = initState(p)
 %% preallocation for general varibles
-w.curs = 0;     % current state
-w.cura = 0;     % current action 
-w.nexts = 0;    % next state
-w.nexta = 0;    % next action 
+% w.curs = 0;     % current state
+% w.cura = 0;     % current action 
+% w.nexts = 0;    % next state
+% w.nexta = 0;    % next action 
 w.R = 0;        % reward
 w.steps = 0;    % steps used
 
@@ -15,21 +15,30 @@ w.steps = 0;    % steps used
 w.numItems = randi(p.range);    % specifiy the number of items 
 w.rS.targets = false(1,p.range);    % preallocate
 w.rS.targets(randperm(p.range, w.numItems)) = true; % generate items
-w.targetsRemain = w.rS.targets;    % indicate the progress of the task
+w.rS.targetsRemain = w.rS.targets;    % indicate the progress of the task
 w.done = false;                 % flag - stopping the counting process
 
 %% vision specific 
 % TODO try initialize at randomly location 
-w.rS.eyePos = p.visualRadius + 1;  % initialize to the left end
+w.rS.s_eyeCur = p.visualRadius + 1;  % initialize to the left end
+w.rS.s_eyeNext = 0;
 % generate a symertic perceptual span
-visualSpan = (w.rS.eyePos-p.visualRadius) : (w.rS.eyePos+p.visualRadius);
+visualSpan = (w.rS.s_eyeCur-p.visualRadius) : (w.rS.s_eyeCur+p.visualRadius);
 % randomly initialize the hand position within the perceptual span
-w.rS.handPos = datasample(visualSpan,1);
-% get the perceived space
-w.vS.targets = w.rS.targets(visualSpan);
-% initialize perceived eye & hand positions
-w.vS.eyePos = 0;
-w.vS.handPos = w.rS.handPos - w.rS.eyePos;
+w.rS.s_handCur = datasample(visualSpan,1);
+w.rS.s_handNext = 0;
+w.rS.a_eyeCur = 0;
+w.rS.a_eyeNext = 0;
+w.rS.a_handCur = 0;
+w.rS.a_handNext = 0;
 
+% get the perceived states
+w.vS.targets = w.rS.targets(visualSpan);
+w.vS.targetsRemain = w.vS.targets;
+
+% initialize perceived eye & hand positions
+w.vS.eye = 0;
+w.vS.handCur = w.rS.s_handCur - w.rS.s_eyeCur;
+w.vS.handNext = 0;
 end
 
