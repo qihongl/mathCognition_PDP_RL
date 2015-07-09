@@ -37,8 +37,7 @@ for i = 1:p.trials
         w.curs = w.nexts;
         w.cura = 0;
         w.steps = w.steps+1;
-
-    end
+end
 %     fprintf('Iteration %d completed in %d steps!\n\n', i, w.steps)
     h.stepsToReward(i) = w.steps;
     %     qhist(i,:,:) = a.q;
