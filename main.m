@@ -1,1 +1,0 @@
-% model for mathematical cognition 
