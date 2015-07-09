@@ -4,7 +4,7 @@ global p;
 qval = a.q(w.curs+1,:);
 prob = softmax(qval, p.qscale);
 % choose action based 
-action = sample(prob);s
+action = sample(prob);
 
 end
 

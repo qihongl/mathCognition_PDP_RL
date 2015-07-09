@@ -13,7 +13,7 @@ global p
 % modeing parameters
 setupParameters(epochs);
 % preallocate & initilize Q to small values
-a.q = .01 + zeros(p.range+1,p.nEyeAct, p.nHandAct);
+a.q = .01 + zeros(p.nEyeAct, p.nHandAct);
 h.stepsUsed = zeros(p.trials,1);
 
 %% training
