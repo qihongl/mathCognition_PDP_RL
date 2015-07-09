@@ -12,8 +12,7 @@ global w a p;
 a.act = a.wts * w.vS.visInput';
 % choose among the activation
 a.choice = choose(a.act.^a.smgain);
-a.choice = a.choice - p.mvRad - 1; % get vS action
-w.out.targGuess = a.choice;           % get action
+w.out.targGuess = a.choice - p.mvRad - 1; % get vS action
 
 %% compute the "moving vector" for eye and hand
 w.out.handStep = w.out.targGuess - w.vS.handPos;
