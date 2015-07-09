@@ -1,11 +1,12 @@
 %% counting simulation
-clear; clc % clear things up
-
+function main(numtrials)
+if nargin == 0
+    numtrials = 200;
+end
 % set simulation parameters
 nSubj = 10;
-numtrials = 500;
 
-%% analysis     TODO: revise! this procedure is terrible 
+%% analysis     TODO: revise! this procedure is terrible
 % averaging the data
 temp = zeros(numtrials,1);
 for i = 1 : nSubj
@@ -18,8 +19,8 @@ mean = temp/nSubj;
 
 %% plot performance
 FONTSIZE = 14;
-% plot 
-hold on 
+% plot
+hold on
 plot(mean)
 plot(ones(numtrials,1) * out.p.range)
 hold off
@@ -35,3 +36,4 @@ ylabel('steps used', 'fontsize', FONTSIZE);
 baseline = sprintf('number of spots in the world (%d)', out.p.range);
 mylegend = legend('number of steps used', baseline);
 set(mylegend,'FontSize',FONTSIZE);
+end

@@ -4,9 +4,9 @@
 function [w] = initState()
 global p;
 % preallocation 
-w.curs = 0;     % current state
+% w.curs = 0;     % current state
 % w.cura = 0;     % current action 
-w.nexts = 0;    % next state
+% w.nexts = 0;    % next state
 % w.nexta = 0;    % next action 
 w.R = 0;        % reward
 w.steps = 0;    % steps used
@@ -27,8 +27,7 @@ w.done = false;                 % flag - stopping the counting process
 w.rS.s_eyeCur = 0;
 w.rS.s_eyeNext = 0;
 % randomly initialize the hand position within the perceptual span
-w.rS.s_handCur = datasample(p.vSpan,1);
-w.rS.s_handCur = 0;
+w.rS.s_handCur = datasample(visualSpan,1);
 w.rS.s_handNext = 0;
 w.rS.a_eyeCur = 0;
 w.rS.a_eyeNext = 0;
@@ -36,7 +35,8 @@ w.rS.a_handCur = 0;
 w.rS.a_handNext = 0;
 
 % get the perceived states
-w.vS.targets = w.rS.targets(p.vSpan);
+w.vS.targets = w.rS.targets(visualSpan);
+w.vS.targetsRemain = w.vS.targets;
 
 % initialize perceived eye & hand positions
 w.vS.eye = 0;
