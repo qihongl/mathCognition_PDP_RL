@@ -2,7 +2,7 @@
 clear; clc % clear things up
 
 % set simulation parameters
-nSubj = 5;
+nSubj = 10;
 numtrials = 500;
 
 %% analysis     TODO: revise! this procedure is terrible 
@@ -10,7 +10,7 @@ numtrials = 500;
 temp = zeros(numtrials,1);
 for i = 1 : nSubj
     fprintf('%.2d: ', i);
-    out = touch(numtrials, i, 35, false, false, true);
+    out = touch(numtrials, i, 0, false, true);
     temp = temp + out.h.stepsUsed;
     
 end

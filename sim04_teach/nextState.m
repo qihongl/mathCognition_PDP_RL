@@ -1,7 +1,7 @@
-function [ w ] = nextState(w,p)
+function [ w ] = nextState(w)
 %NEXTSTATE the trainsition function
 % This is a function maps action to the next state
-
+global p;
 % transit to the target state with probability 1
 w.nexts = w.cura;
 

@@ -1,7 +1,8 @@
 % INITSTATE initialize the state parameters, or set up the "world"
 % note that all things here are TRIAL SPECIFIC
 % originally written by Professor Jay McClelland
-function [w] = initState(p)
+function [w] = initState()
+global p;
 % preallocation 
 w.curs = 0;     % current state
 w.cura = 0;     % current action 
@@ -30,6 +31,14 @@ w.vision = w.targets;           % what the model sees
 
 
 %% teaching related
-w.truth = 1:p.range;
+
+if p.teachTrial > 0 
+    w.teach = true;
+    p.teachTrial = p.teachTrial - 1;
+    w.truth = 1:p.range;
+else 
+    w.teach = false; 
+end 
+
 end
 
