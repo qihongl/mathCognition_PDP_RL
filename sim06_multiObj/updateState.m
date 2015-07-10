@@ -20,9 +20,10 @@ end
 
 % represent the visual input by Gaussian bumps
 w.vS.oldInput = w.vS.visInput;
-w.vS.visInput = normpdf(-50:50,w.vS.targPos,sd);
+w.vS.visInput = sumMultiItem( w.vS.targPos,sd);
+
 w.rS.aptargPos = w.vS.targPos + w.rS.eyePos;
-w.rS.visInput = normpdf(-50:50,w.rS.aptargPos,sd);
+w.rS.visInput = sumMultiItem(w.rS.aptargPos,sd);
 
 % save the history
 w.stateNum = w.stateNum + 1;

@@ -4,10 +4,9 @@ function [ ] = updateWeights( )
 global a w p;
 % give reward if touched the item
 if w.rS.handPos == w.rS.targPos
-    Rwd = 2;
+    Rwd = 1;
 else
     Rwd = max(a.wts*w.vS.visInput');
-%     Rwd = 0;
 end
 
 a.Rwd = Rwd;

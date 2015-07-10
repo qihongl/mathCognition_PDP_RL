@@ -25,8 +25,10 @@ w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 
-% TODO generate multiple targets
-w.rS.targPos = round(61*(rand-.5)); %target in -20 to 20
+% generate items in space
+w.rS.targPos = (randperm(60,p.nItems) - 30)';
+w.rS.targRemain(w.rS.targPos + p.spRad) = true; 
+w.rS.done = false;
 
 % initialize the location of hand and eye
 w.rS.eyePos = round(5*(rand-.5));  %eye close to origin at start
@@ -36,8 +38,8 @@ while w.rS.handPos == w.rS.targPos % don't start with hand on target!
 end
 
 % view state or the perceived state
-w.vS.oldInput = zeros(1,101);
-w.vS.visInput = zeros(1,101);
+w.vS.oldInput = zeros(1,p.spRange);
+w.vS.visInput = zeros(1,p.spRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
