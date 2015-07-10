@@ -12,9 +12,7 @@ while w.rS.handPos ~= w.rS.targPos && i < 50
     selectAction();
     Act();
     updateState();
-%     if p.learner == 1
-        updateWeights();
-%     end
+    updateWeights();
     showState();
     i = i+1;
 end

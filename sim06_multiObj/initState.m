@@ -24,9 +24,12 @@ a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
-w.rS.targPos = round(61*(rand-.5)); %target in -20 to 20
-w.rS.eyePos = round(5*(rand-.5));  %eye close to origin at start
 
+% TODO generate multiple targets
+w.rS.targPos = round(61*(rand-.5)); %target in -20 to 20
+
+% initialize the location of hand and eye
+w.rS.eyePos = round(5*(rand-.5));  %eye close to origin at start
 w.rS.handPos = round(21*(rand-.5)); % hand in intermediate range
 while w.rS.handPos == w.rS.targPos % don't start with hand on target!
     w.rS.handPos = round(21*(rand-.5)); 

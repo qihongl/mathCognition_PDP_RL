@@ -3,7 +3,7 @@ function [] = initParamsEtc( )
 %
 global p d a
 
-p.wf = .25;
+p.wf = .15;
 % p.handTime = 5;     % the amount of time needed to move hand 
 p.eyeTime = 1;      % the amount of time needed to move eye
 p.learner = 1;      % 

@@ -1,6 +1,5 @@
 % written by professor Jay McClelland
 function [record] = trainAgent( )
-
 global p d a;
 
 initParamsEtc();
