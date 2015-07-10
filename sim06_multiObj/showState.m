@@ -3,7 +3,7 @@ function [ ] = showState( )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-global w d a h;
+global p w d a h;
 
 %plot the positions of eye, hand, and target in the real state
 % axes(d.rSax);
@@ -26,8 +26,9 @@ plot(d.hax,[-50 50],[t t]); hold on;
 ylim(d.hax,[-0.25 t + .25]);
 text(w.rS.eyePos,t,'@','HorizontalAlignment','center');
 text(w.rS.handPos,t,'#','HorizontalAlignment','center');
-text(w.rS.targPos,t,'X','HorizontalAlignment','center');
-
+for i = 1 : p.nItems
+text(w.rS.targPos(i),t,'X','HorizontalAlignment','center');
+end
 axes(d.wax);
 plot(-50:50,a.wts);
 end

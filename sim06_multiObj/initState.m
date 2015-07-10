@@ -26,9 +26,10 @@ w.rS.td = 0;
 w.stateNum = -1;
 
 % generate items in space
-w.rS.targPos = (randperm(60,p.nItems) - 30)';
-w.rS.targRemain(w.rS.targPos + p.spRad) = true; 
-w.rS.done = false;
+objRange = 20;
+w.rS.targPos = (randperm(objRange * 2,p.nItems) - objRange)';
+w.rS.targRemain = true(p.nItems, 1);
+w.done = false;
 
 % initialize the location of hand and eye
 w.rS.eyePos = round(5*(rand-.5));  %eye close to origin at start
