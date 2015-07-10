@@ -20,7 +20,7 @@ w.vS.visInput = normpdf(-50:50,w.vS.targPos,sd);
 w.rS.aptargPos = w.vS.targPos + w.rS.eyePos;
 w.rS.visInput = normpdf(-50:50,w.rS.aptargPos,sd);
 w.stateNum = w.stateNum + 1;
-% save the history
+%we now calculate the reward value of the current state
 h(w.stateNum+1).w = w;
 end
 
