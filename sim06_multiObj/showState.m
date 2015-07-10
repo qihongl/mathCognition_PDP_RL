@@ -27,7 +27,12 @@ ylim(d.hax,[-0.25 t + .25]);
 text(w.rS.eyePos,t,'@','HorizontalAlignment','center');
 text(w.rS.handPos,t,'#','HorizontalAlignment','center');
 for i = 1 : p.nItems
-text(w.rS.targPos(i),t,'X','HorizontalAlignment','center');
+    if w.rS.targRemain(i)
+        symbol = 'X';
+    else
+        symbol = '|';
+    end
+    text(w.rS.targPos(i),t,symbol,'HorizontalAlignment','center');
 end
 axes(d.wax);
 plot(-50:50,a.wts);

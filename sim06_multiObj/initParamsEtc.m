@@ -28,7 +28,7 @@ d.fh.WindowStyle = 'docked';
 d.rax = subplot(3,1,1);
 d.hax = subplot(3,1,2);
 d.wax = subplot(3,1,3);
-d.dtimes = 2.^(2:13);
+d.dtimes = 2.^(10:13);
 
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,101);

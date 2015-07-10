@@ -16,12 +16,15 @@ catch
     disp('here are the variables ')
     w.rS.targPos
     w.rS.eyePos
+    w.rS
+    w.vS
 end
 % the error depends on the distance between target and fixation
 sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
-if sd < p.wf
-    sd = p.wf;
-end
+sd(sd < p.wf) = p.wf;
+% if sd < p.wf
+%     sd = p.wf;
+% end
 
 % represent the visual input by Gaussian bumps
 w.vS.oldInput = w.vS.visInput;
