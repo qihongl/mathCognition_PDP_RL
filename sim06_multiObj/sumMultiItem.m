@@ -2,6 +2,10 @@ function [cumVisualPattern] = sumMultiItem(targPos, sd)
 % this function generate cumulative input patterns for multiple objects
 global p;
 
+% if sd == 0
+%     error('Invalid Input: sd == 0');
+% end
+
 % preallocation
 visInput = nan(p.nItems, p.spRange);
 % generate visual input for every item
@@ -12,12 +16,4 @@ end
 sumInputs = sum(visInput);
 % normalize it so that it sums to 1
 cumVisualPattern = sumInputs./sum(sumInputs);
-% if any (isnan(cumVisualPattern))
-%     
-%     visInput
-%     targPos
-%     sd
-%     sum(sumInputs)
-%     error('wtf')
-% end
 end

@@ -8,9 +8,11 @@ if any(w.rS.handPos == w.rS.targPos) && (w.rS.targRemain(w.rS.handPos == w.rS.ta
     Rwd = 1;
     if all(w.rS.targRemain == false)
         Rwd = 2;
+        w.done = true;
     end
 else
-    Rwd = max(a.wts*w.vS.visInput');
+%     Rwd = max(a.wts*w.vS.visInput');
+    Rwd = -0.01;
 end
 
 a.Rwd = Rwd;

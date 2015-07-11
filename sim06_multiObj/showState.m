@@ -1,19 +1,6 @@
 % written by professor Jay McClelland
 function [ ] = showState( )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-
 global p w d a h;
-
-%plot the positions of eye, hand, and target in the real state
-% axes(d.rSax);
-% cla;
-% plot(d.rSax,[-50 50],[0 0]); hold on;
-% plot(d.rSax,-50:50,w.rS.visInput/max(w.rS.visInput));
-% ylim(d.rSax,[-0.25 1.25]);
-% text(w.rS.eyePos,0,'@','HorizontalAlignment','center');
-% text(w.rS.handPos,0,'#','HorizontalAlignment','center');
-% text(w.rS.targPos,0,'X','HorizontalAlignment','center');
 
 axes(d.rax);
 plot(w.rS.time,a.Rwd,'-*'); hold on;
