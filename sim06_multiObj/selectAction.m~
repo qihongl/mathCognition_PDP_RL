@@ -10,8 +10,7 @@ global w a p;
 % a.act = exp(scnet)/sum(exp(scnet));
 %% compute the output activation
 a.act = a.wts * w.vS.visInput';
-% bias toward action 0 (don't move)
-a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias; 
+a.act(p.mvRad) 
 % choose among the activation
 a.choice = choose(a.act.^a.smgain);
 w.out.targGuess = a.choice - p.mvRad - 1; % get vS action

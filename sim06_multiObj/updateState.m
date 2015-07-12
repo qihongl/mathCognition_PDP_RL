@@ -5,6 +5,7 @@ function [ ] = updateState()
 
 global w a d h p;
 
+%% compute the relative locations
 % the relative locations of eye and hand
 w.vS.eyePos = 0;
 w.vS.handPos = w.rS.handPos - w.rS.eyePos;
@@ -16,6 +17,7 @@ w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
 sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
 sd(sd < p.wf) = p.wf;
 
+%% Guanssian representation 
 % represent the visual input by Gaussian bumps
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = sumMultiItem( w.vS.targPos,sd);
