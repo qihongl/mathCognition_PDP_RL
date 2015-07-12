@@ -20,11 +20,11 @@ p.spRange = p.spRad * 2 + 1;
 p.mvRad = 10;       
 p.mvRange = p.mvRad * 2 + 1;
 % number of items in the environment
-p.nItems = 5;
+p.nItems = 6;
 % p.nItems = randi(x);
 
 % initialize with small small random values 
-a.wts = randsmall(p.mvRange,101);
+a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = 1;     % bias toward not moving (action 0)
 a.smgain = 1;
 

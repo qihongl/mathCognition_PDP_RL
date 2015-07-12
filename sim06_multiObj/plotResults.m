@@ -1,4 +1,4 @@
-function plotResults()
+function plotResults(record)
 global d;
 % initialize the parameters for the plot
 d.fh = figure();
@@ -8,7 +8,7 @@ d.hax = subplot(3,1,2);
 d.wax = subplot(3,1,3);
 % d.dtimes = 2.^(10:10);
 
-load('record.mat');
+% load('record.mat');
 for i = 1 : size(record.r.results.h,2)
     plotRes(i, record);
 end

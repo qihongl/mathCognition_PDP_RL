@@ -1,4 +1,7 @@
 % just testing
 clear global
 initParamsEtc()
-runAgent()
+% runAgent()
+
+record = trainAgent();
+plotResults(record);
