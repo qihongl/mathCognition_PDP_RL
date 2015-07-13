@@ -25,14 +25,14 @@ w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 
-% generate items in space
+% decide the number of items to generate
 if p.randItems
     w.nItems = randi(p.nItems);
 else
     w.nItems = p.nItems;
 end
-objRange = 20;
-w.rS.targPos = (randperm(objRange * 2,w.nItems) - objRange)';
+% generate items in space
+w.rS.targPos = itemGen(w.nItems);
 w.rS.targRemain = true(w.nItems, 1);
 w.done = false;
 

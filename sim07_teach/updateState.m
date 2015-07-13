@@ -17,8 +17,7 @@ w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
 sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
 sd(sd < p.wf) = p.wf;
 
-%% Guanssian representation 
-% represent the visual input by Gaussian bumps
+%% Guanssian representation of visual input
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = sumMultiItem( w.vS.targPos,sd);
 

@@ -1,5 +1,5 @@
 % just testing
 clear global
 initParamsEtc()
-record = trainAgent();
+record = trainAgent(0,1);
 plotResults(record);
