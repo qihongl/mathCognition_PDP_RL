@@ -4,7 +4,8 @@ global a w p;
 
 %% Assign the reward values
 % if the hand is touching a item, and that item is untouched before
-if any(w.rS.handPos == w.rS.targPos) && isUntouched && isNext 
+% if any(w.rS.handPos == w.rS.targPos) && (w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true) && isNext
+if any(w.rS.handPos == w.rS.targPos) && isNext
     actionCorrect = true;
     w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
 %     w.rS
@@ -38,10 +39,5 @@ if ~actionCorrect
 end
 end
 
-function isuntouched = isUntouched()
-global w;
-isuntouched = false; 
-if w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
-    isuntouched = true;
-end
+function isUntouched()
 end

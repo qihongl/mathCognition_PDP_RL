@@ -1,14 +1,15 @@
 % written by professor Jay McClelland
-function [record] = trainAgent(showPlot, showProg)
+function [record] = trainAgent(epoch, showPlot, showProg)
 if nargin == 0
+    epoch = 1024;
     showPlot = false;
     showProg = false; 
 end
 
 % initialize parameters
 global p d a;
-initParamsEtc();
-initPlot();
+initParamsEtc(epoch);
+initPlot(epoch);
 
 run = struct('results',[]);
 di = 1;

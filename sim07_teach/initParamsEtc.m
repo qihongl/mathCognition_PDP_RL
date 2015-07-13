@@ -1,5 +1,5 @@
 % written by professor Jay McClelland
-function [] = initParamsEtc( )
+function [] = initParamsEtc(epoch)
 % This program initialize and preallocate the parameters needed for the
 % model. This should be executed before the simulations. 
 global p d a
@@ -7,7 +7,7 @@ global p d a
 %% modeling parameters 
 p.wf = .05;          % noise magnitude
 p.lrate = .1;       % learning rate
-p.runs = 2^10;      % training upper lim 
+p.runs = epoch;      % training upper lim 
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % ???
 
