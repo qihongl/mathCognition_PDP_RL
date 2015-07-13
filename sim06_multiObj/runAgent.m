@@ -1,7 +1,6 @@
 % written by professor Jay McClelland
+
 function [ results ] = runAgent()
-%UNTITLED11 Summary of this function goes here
-%   Detailed explanation goes here
 global a w h p d;
 
 initState();

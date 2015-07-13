@@ -6,11 +6,13 @@ global p d a
 
 %% modeling parameters 
 p.wf = .2;          % noise magnitude
-p.learner = 1;      % learnign mode flag
 p.lrate = .1;       % learning rate
 p.runs = 1024;      % training upper lim 
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % ???
+
+%% teaching mode
+p.teacher = 0;
 
 %% counting specific
 % size of the state space and percetual span
@@ -27,6 +29,9 @@ p.nItems = 6;
 a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = 1;     % bias toward not moving (action 0)
 a.smgain = 1;
+
+
+
 
 %% set up the figure
 d.fh = figure();

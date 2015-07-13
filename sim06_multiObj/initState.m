@@ -44,8 +44,10 @@ w.vS.visInput = zeros(1,p.spRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
-% 
+% save 
 h = struct('w',w);
+
+% plot 
 axes(d.hax); cla;
 axes(d.rax); cla;
 end
