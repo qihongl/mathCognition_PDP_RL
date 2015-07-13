@@ -1,9 +1,7 @@
-OVERALL GOAL: a model that touches multiple objects in the world
-(based on the fixTouch model)
+OVERALL GOAL: implement the teaching mode
 
 WHAT I DID: 
-now, there are multiple objects initialized in the world,
-the models needs to touches everything in order get the biggest reward
+
 
 
 SOME OBSERVATIONS: 
