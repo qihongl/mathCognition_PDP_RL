@@ -12,7 +12,7 @@ p.gamma = .8;       % discount factor
 p.smirate = .001;   % ???
 
 %% teaching mode
-p.teacher = 0;
+p.teacher = true;
 
 %% counting specific
 % size of the state space and percetual span
@@ -29,16 +29,5 @@ p.nItems = 6;
 a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = 1;     % bias toward not moving (action 0)
 a.smgain = 1;
-
-
-
-
-%% set up the figure
-d.fh = figure();
-d.fh.WindowStyle = 'docked';
-d.rax = subplot(3,1,1);
-d.hax = subplot(3,1,2);
-d.wax = subplot(3,1,3);
-d.dtimes = 2.^(1:10);
 end
 
