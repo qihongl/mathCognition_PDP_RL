@@ -1,0 +1,11 @@
+OVERALL GOAL: implement the teaching model 
+(based on sim06_multiObj)
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: 
+
+PROBLEM: 
+
+TRY: 
