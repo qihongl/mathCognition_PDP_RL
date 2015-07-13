@@ -1,0 +1,4 @@
+Write a program that takes a set of weights (see sim06),
+and test it,
+and outputs the "performance".
+
