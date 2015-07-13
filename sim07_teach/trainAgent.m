@@ -5,9 +5,9 @@ global p d a;
 initParamsEtc();
 run = struct('results',[]);
 di = 1;
-textprogressbar('Training: ')
+% textprogressbar('Training: ')
 for i = 1:p.runs
-    textprogressbar(i)
+%     textprogressbar(i)
    run.results = runAgent();
    a.smgain = a.smgain + p.smirate;
    if i == d.dtimes(di)
@@ -19,7 +19,7 @@ for i = 1:p.runs
        di = di+1;
    end
 end
-textprogressbar(' Done.')
+% textprogressbar(' Done.')
 record.r = run;
 record.p = p;
 end
