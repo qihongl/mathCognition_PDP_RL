@@ -19,7 +19,7 @@ initState();
 updateState();
 showState();
 i = 0;
-while ~(w.done) && i < 100 
+while ~(w.done)
     selectAction();
     Act();
     updateState();
