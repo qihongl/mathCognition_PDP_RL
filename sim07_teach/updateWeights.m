@@ -17,7 +17,7 @@ if any(w.rS.handPos == w.rS.targPos) && (w.rS.targRemain(w.rS.handPos == w.rS.ta
 else
     % the reward value by default
     actionCorrect = false; 
-    Rwd = -0.01;
+    Rwd = -0.05;
 end
 
 % assign the reward values

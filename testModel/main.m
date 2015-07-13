@@ -2,7 +2,7 @@
 clear; 
 %% load the data
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim06_multiObj/';
+PATH.DIR = 'sim07_teach/';
 PATH.DATA = 'data/record.mat';
 % get the data
 record = loadData(PATH);
