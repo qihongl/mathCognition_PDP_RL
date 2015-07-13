@@ -11,7 +11,7 @@ if any(w.rS.handPos == w.rS.targPos) && (w.rS.targRemain(w.rS.handPos == w.rS.ta
     Rwd = 1;
     % the reward for touching all items
     if all(w.rS.targRemain == false)
-        Rwd = 2;
+        Rwd = 5;
         w.done = true;
     end
 else

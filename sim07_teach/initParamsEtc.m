@@ -7,7 +7,7 @@ global p d a
 %% modeling parameters 
 p.wf = .2;          % noise magnitude
 p.lrate = .1;       % learning rate
-p.runs = 1024;      % training upper lim 
+p.runs = 2^10;      % training upper lim 
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % ???
 
@@ -16,15 +16,15 @@ p.teacher = true;
 
 %% counting specific
 % size of the state space and percetual span
-p.spRad = 50;
+p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 10;       
+p.mvRad = 8;       
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 6;           % default number of items
+p.nItems = 10;           % default number of items
 p.randItems = false;    % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 

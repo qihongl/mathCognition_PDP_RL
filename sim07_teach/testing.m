@@ -3,3 +3,4 @@ clear global
 initParamsEtc()
 record = trainAgent(0,1);
 plotResults(record);
+save('record','record');

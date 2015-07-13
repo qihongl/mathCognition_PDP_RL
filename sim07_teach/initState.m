@@ -37,11 +37,8 @@ w.rS.targRemain = true(w.nItems, 1);
 w.done = false;
 
 % initialize the location of hand and eye
-w.rS.eyePos = round(5*(rand-.5));  %eye close to origin at start
-w.rS.handPos = round(21*(rand-.5)); % hand in intermediate range
-while w.rS.handPos == w.rS.targPos % don't start with hand on target!
-    w.rS.handPos = round(21*(rand-.5));
-end
+w.rS.eyePos = min(w.rS.targPos) - ceil(rand * p.maxSpacing);
+w.rS.handPos = min(w.rS.targPos) - ceil(rand * p.maxSpacing);
 
 % view state or the perceived state
 w.vS.oldInput = zeros(1,p.spRange);
