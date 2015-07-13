@@ -21,10 +21,13 @@ p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
 p.mvRad = 10;       
 p.mvRange = p.mvRad * 2 + 1;
-% number of items in the environment
-p.nItems = 6;
-% p.nItems = randi(x);
 
+% number of items in the environment
+% when randItems == 1, nItems is the MAX number of items
+p.nItems = 6;        % default number of items
+p.randItems = false; % flag for generating random number of items
+
+%% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = 1;     % bias toward not moving (action 0)

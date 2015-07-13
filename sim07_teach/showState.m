@@ -13,7 +13,7 @@ plot(d.hax,[-p.spRad p.spRad],[t t]); hold on;
 ylim(d.hax,[-0.25 t + .25]);
 text(w.rS.eyePos,t,'@','HorizontalAlignment','center');
 text(w.rS.handPos,t,'#','HorizontalAlignment','center');
-for i = 1 : p.nItems
+for i = 1 : w.nItems
     if w.rS.targRemain(i)
         symbol = 'X';
     else
