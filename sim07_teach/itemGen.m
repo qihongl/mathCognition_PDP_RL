@@ -1,7 +1,7 @@
 function targPos = itemGen(nItems)
 global p; 
 
-targPos = cumsum(uniform(1,p.maxSpacing, 1,nItems));
+targPos = cumsum(uniform(p.minSpacing,p.maxSpacing, 1,nItems));
 targPos = round (targPos - mean(targPos));
 
 %% check if the items are roughly centered

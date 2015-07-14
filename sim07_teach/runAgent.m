@@ -1,5 +1,4 @@
 % written by professor Jay McClelland
-
 function [ results ] = runAgent(showPlot)
 global a w h p;
 if nargin == 0

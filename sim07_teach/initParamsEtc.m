@@ -19,19 +19,20 @@ p.teacher = true;
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 15;   
+p.mvRad = 10;   
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 8;           % default number of items
+p.nItems = 6;           % default number of items
 p.randItems = false;    % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
+p.minSpacing = 2;       % min ... 
 
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
-a.bias = 1;     % bias toward not moving (action 0)
+a.bias = .5;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
 

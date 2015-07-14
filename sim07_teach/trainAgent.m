@@ -11,6 +11,7 @@ global p d a;
 initParamsEtc(epoch);
 initPlot(epoch);
 
+% preallocate
 run = struct('results',[]);
 di = 1;
 
