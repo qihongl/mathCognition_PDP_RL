@@ -4,7 +4,7 @@ global p w d a;
 
 axes(d.rax);
 plot(w.rS.time,a.Rwd,'-*'); hold on;
-ylim(d.rax,[-0.1 1.1]); xlim(d.rax,[-0.25,w.rS.time+0.25]);
+ylim(d.rax,[-0.1 5.1]); xlim(d.rax,[-0.25,w.rS.time+0.25]);
 
 t = w.rS.time;
 % plot the history of eye and hand positions

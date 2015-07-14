@@ -4,11 +4,8 @@ function isnext = isNext()
 global w ;
 % isnext is false by default
 isnext = false; 
-% if it is the 1st item
-if (find(w.rS.targPos == w.rS.handPos) - 1) == 0
-    isnext = true;
-    % or if ALL previous items were touched
-elseif w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos)) == 1
+% if it is the leftmost untouched item
+if sum(w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos))) == 1
     isnext = true;
 end
 %     w.rS

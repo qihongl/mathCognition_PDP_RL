@@ -6,11 +6,12 @@ global a w p;
 % if the hand is touching a item, and that item is untouched before
 if any(w.rS.handPos == w.rS.targPos) && w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
     actionCorrect = true;
-    w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
     Rwd = 0.5;
     if isNext
         Rwd = Rwd + 2;
-    end
+    end    
+    w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
+    
     % the reward for touching all items
     if all(w.rS.targRemain == false)
         Rwd = 5;

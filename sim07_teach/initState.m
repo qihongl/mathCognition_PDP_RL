@@ -38,11 +38,11 @@ w.done = false;
 
 % initialize the location of hand and eye
 % left 
-% w.rS.eyePos = min(w.rS.targPos) - ceil(rand * p.maxSpacing);
-% w.rS.handPos = min(w.rS.targPos) - ceil(rand * p.maxSpacing);
+w.rS.eyePos = min(w.rS.targPos) - ceil(rand * p.maxSpacing);
+w.rS.handPos = min(w.rS.targPos) - ceil(rand * p.maxSpacing);
 % center
-w.rS.eyePos = round(mean(w.rS.targPos));
-w.rS.handPos = round(mean(w.rS.targPos));
+% w.rS.eyePos = round(mean(w.rS.targPos));
+% w.rS.handPos = round(mean(w.rS.targPos));
 
 % view state or the perceived state
 w.vS.oldInput = zeros(1,p.spRange);
