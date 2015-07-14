@@ -11,12 +11,12 @@ rng(seed)
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim07_teach/';
 PATH.DATA = 'data/record.mat';
+% PATH.DATA = 'record.mat';
 % get the data
 % record = loadData(PATH);
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
 addpath([PATH.ROOT PATH.DIR])
 
-epoch = 1024;
 
 %% load the data
 global p a w;
@@ -26,7 +26,7 @@ a = record.r.results.a;
 
 %% test the model
 % initialization
-initPlot(epoch);
+initPlot();
 initState();
 updateState();
 showState();

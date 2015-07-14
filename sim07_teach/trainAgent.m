@@ -9,11 +9,9 @@ end
 % initialize parameters
 global p d a;
 initParamsEtc(epoch);
-initPlot(epoch);
-
+initPlot();
 % preallocate
 run = struct('results',[]);
-di = 1;
 
 if showProg
     textprogressbar('Training: ');
@@ -27,14 +25,6 @@ for i = 1:p.runs
     run.results = runAgent(showPlot);
     % ?
     a.smgain = a.smgain + p.smirate;
-    if i == d.dtimes(di)
-        prstr = sprintf('%d: ',i);
-        rstr = input(prstr,'s');
-        if rstr == 'b'
-            break;
-        end
-        di = di+1;
-    end
 end
 if showProg
     textprogressbar(' Done.');

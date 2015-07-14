@@ -8,6 +8,7 @@ global p d a
 p.wf = .05;          % noise magnitude
 p.lrate = .1;       % learning rate
 p.runs = epoch;      % training upper lim 
+p.dtimes = epoch;
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % ???
 
