@@ -1,36 +1,23 @@
 % written by professor Jay McClelland
-function [record] = trainAgent(epoch, showPlot, showProg)
-if nargin == 0
-    epoch = 1024;
-    showPlot = false;
-    showProg = false; 
-end
-
+function [record] = trainAgent(epoch)
+%% This function trains the network n trials
 % initialize parameters
 global p d a;
 initParamsEtc(epoch);
 initPlot();
-% preallocate
-run = struct('results',[]);
 
-if showProg
-    textprogressbar('Training: ');
-end
+% preallocate
+record.r = cell(1,epoch);
+% result = struct('results',[]);
 % train the model for n trials
 for i = 1:p.runs
-    if showProg
-        textprogressbar(i);
-    end
-    % run the model
-    run.results = runAgent(showPlot);
-    % ?
+    fprintf('%d\n',i);
+    result = runAgent(i);
     a.smgain = a.smgain + p.smirate;
-end
-if showProg
-    textprogressbar(' Done.');
+    record.a{i} = result.a;
 end
 
 % save the results
-record.r = run;
+% record.final = result.h;
 record.p = p;
 end

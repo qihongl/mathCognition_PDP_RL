@@ -3,13 +3,13 @@ function [ ] = updateWeights()
 global a w p;
 
 %% Assign the reward values
-% if the hand is touching a item, and that item is untouched before
-if any(w.rS.handPos == w.rS.targPos) && w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
+% if it is leftmost untouched item
+if any(w.rS.handPos == w.rS.targPos) && ...
+        w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true && ...
+        isNext()
+    % assign appropriate reward
     actionCorrect = true;
-    Rwd = 0.5;
-    if isNext
-        Rwd = Rwd + 2;
-    end    
+    Rwd = 2;
     w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
     
     % the reward for touching all items
@@ -18,7 +18,6 @@ if any(w.rS.handPos == w.rS.targPos) && w.rS.targRemain(w.rS.handPos == w.rS.tar
         w.done = true;
     end
 else
-    % the reward value by default
     actionCorrect = false;
     Rwd = -0.05;
 end
@@ -32,11 +31,22 @@ a.dfRwd = Rwd*p.gamma^w.rS.td;
 inc = p.lrate*(a.dfRwd - a.act(a.choice));
 a.wts(a.choice,:) = a.wts(a.choice,:) + inc*w.vS.oldInput;
 
-%% teaching specific
-% if ~actionCorrect
-    % feedback
-    % adjust the weights (how does it differ from correct?)
-    % force action (how?)
-% end
+%% start over if incorrect action was made
+if p.teach
+    if ~actionCorrect
+        w.redo = true;
+    end
 end
 
+end
+
+function isnext = isNext()
+%% check if the model is touching the leftmost untouched item
+global w ;
+% if it is the leftmost untouched item
+if sum(w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos))) == 1
+    isnext = true;
+else
+    isnext = false;
+end
+end

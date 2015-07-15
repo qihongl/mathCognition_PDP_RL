@@ -10,25 +10,25 @@ rng(seed)
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim07_teach/';
-PATH.DATA = 'data/record.mat';
-% PATH.DATA = 'record.mat';
+% PATH.DATA = 'data/record.mat';
+PATH.DATA = 'record.mat';
 % get the data
 % record = loadData(PATH);
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
 addpath([PATH.ROOT PATH.DIR])
 
-
 %% load the data
 global p a w;
 % get the parameters & weights
 p = record.p;
-a = record.r.results.a;
+a = record.a{size(record.a,2)};
 
 %% test the model
 % initialization
-initPlot();
+% initPlot();
 initState();
 updateState();
+initPlot();
 showState();
 w.rS    % show the initial state
 i = 0;

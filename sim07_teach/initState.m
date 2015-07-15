@@ -35,6 +35,7 @@ end
 w.rS.targPos = itemGen(w.nItems);
 w.rS.targRemain = true(w.nItems, 1);
 w.done = false;
+w.redo = false;
 
 % initialize the location of hand and eye
 % left 
@@ -53,7 +54,7 @@ w.out.eyeStep = 0;
 % save
 h = struct('w',w);
 
-% plot
+% % plot
 axes(d.hax); cla;
 axes(d.rax); cla;
 end

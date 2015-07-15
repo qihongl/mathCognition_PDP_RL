@@ -1,7 +1,7 @@
 % just testing
 clear global
-epoch = 2^11;
+epoch = 2^12;
 % initParamsEtc(epoch)
-record = trainAgent(epoch, 0,1);
-plotResults(record);
+record = trainAgent(epoch);
+
 save('record','record');

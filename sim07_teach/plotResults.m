@@ -9,7 +9,7 @@ d.wax = subplot(3,1,3);
 % d.dtimes = 2.^(10:10);
 
 % load('record.mat');
-for i = 1 : size(record.r.results.h,2)
+for i = 1 : size(record.r{size(record.r,2)}.h,2)
     plotRes(i, record);
 end
 
@@ -21,7 +21,7 @@ global p w a;
 
 % load data
 p = record.p;
-a = record.r.results.a;
-w = record.r.results.h(i).w;
+a = record.r{size(record.r,2)}.a;
+w = record.r{size(record.r,2)}.h(i).w;
 showState();
 end
