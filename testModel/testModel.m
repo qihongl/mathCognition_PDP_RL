@@ -25,10 +25,9 @@ a = record.a{size(record.a,2)};
 
 %% test the model
 % initialization
-% initPlot();
+initPlot();
 initState();
 updateState();
-initPlot();
 showState();
 w.rS    % show the initial state
 i = 0;
@@ -45,5 +44,6 @@ end
 %% evaluate the performance
 
 
+%%
 rmpath([PATH.ROOT PATH.DIR])
 end

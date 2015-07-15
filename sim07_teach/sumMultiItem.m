@@ -3,7 +3,7 @@ function [cumVisualPattern] = sumMultiItem(targPos, sd)
 global p w;
 
 % if sd == 0
-%     error('Invalid Input: sd == 0');
+%     error('Invalid Input: sd cannot be zero!');
 % end
 
 % preallocation

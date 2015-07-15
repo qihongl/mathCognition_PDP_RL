@@ -1,5 +1,9 @@
 % written by professor Jay McClelland
 function [ ] = updateWeights()
+% this function controls: 
+% 1. the reward policy
+% 2. the weight update
+% 3. activate the "teaching"
 global a w p;
 
 %% Assign the reward values

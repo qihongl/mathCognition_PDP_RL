@@ -1,13 +1,8 @@
 % written by professor Jay McClelland
 function [] = selectAction( )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+% It computes the output, and choose the action probabilistically. 
 global w a p;
 
-%% compute the normalized activation
-% a.net = a.wts * w.vS.visInput';
-% scnet = p.smgain*a.net;
-% a.act = exp(scnet)/sum(exp(scnet));
 %% compute the output activation
 a.act = a.wts * w.vS.visInput';
 % bias toward action 0 (don't move)

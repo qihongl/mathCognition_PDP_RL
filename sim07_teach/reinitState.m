@@ -1,10 +1,10 @@
 function [] = reinitState()
-%UNTITLED4 Summary of this function goes here
-%   Detailed explanation goes here
+% Initialize the current state to the initial state
+% It is used in a teaching mode, where the "teacher" let the agent do the
+% same task again when the agent made a mistake. 
 global a h w p;
 
 %% specify the parameters
-%a.net = zeros(2,1);
 a.act = zeros(p.mvRange,1);
 a.dfRwd = 0;
 a.Rwd = 0;

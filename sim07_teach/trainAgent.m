@@ -7,17 +7,17 @@ initParamsEtc(epoch);
 initPlot();
 
 % preallocate
-record.r = cell(1,epoch);
-% result = struct('results',[]);
+record.a = cell(1,epoch);
+record.steps = nan(1,epoch);
 % train the model for n trials
 for i = 1:p.runs
     fprintf('%d\n',i);
     result = runAgent(i);
     a.smgain = a.smgain + p.smirate;
+    % save weights
     record.a{i} = result.a;
+    record.steps(i) = result.steps;
 end
-
-% save the results
-% record.final = result.h;
+% save parameters
 record.p = p;
 end
