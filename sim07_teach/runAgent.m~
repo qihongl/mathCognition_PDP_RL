@@ -16,7 +16,6 @@ while ~(w.done) && i < 100
     Act();
     updateState();
     updateWeights();
-    recordAction();
     i = i+1;
     %% teaching mode 
     if p.teach && w.redo
@@ -25,6 +24,8 @@ while ~(w.done) && i < 100
         updateState();
         i = 0;
     end
+    if any(w.rS.targRemain == 0)
+        e
 end
 %% save result
 results.steps = i;
