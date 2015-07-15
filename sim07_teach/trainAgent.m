@@ -9,6 +9,7 @@ initPlot();
 % preallocate
 record.a = cell(1,epoch);
 record.steps = nan(1,epoch);
+record.indices = cell(1,epoch);
 % train the model for n trials
 for i = 1:p.runs
     fprintf('%d\n',i);
@@ -17,6 +18,7 @@ for i = 1:p.runs
     % save weights
     record.a{i} = result.a;
     record.steps(i) = result.steps;
+    record.indices{i} = result.indices;
 end
 % save parameters
 record.p = p;

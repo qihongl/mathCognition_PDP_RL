@@ -31,6 +31,7 @@ updateState();
 showState();
 w.rS    % show the initial state
 i = 0;
+score.indices = zeros(1,100);
 % test the model
 while ~(w.done) && i < 100
     selectAction();
@@ -38,6 +39,7 @@ while ~(w.done) && i < 100
     updateState();
     updateWeights();
     showState();
+    score.indices(i+1) = recordAction();
     i = i+1;
 end
 

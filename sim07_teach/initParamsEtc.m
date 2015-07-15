@@ -11,9 +11,10 @@ p.runs = epoch;      % training upper lim
 p.dtimes = epoch;
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % ???
+p.maxIter = 100;
 
 %% teaching mode
-p.teach = 0;
+p.teach = 1;
 
 %% counting specific
 % size of the state space and percetual span

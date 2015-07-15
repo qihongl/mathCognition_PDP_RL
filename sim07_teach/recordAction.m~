@@ -1,0 +1,9 @@
+function recordAction()
+%% It record the model's action in the form of time series 
+% it outputs a vector of action  
+global w h p a;
+prevState = h(1).w.rS.targRemain;
+if w.rS.targRemain ~= prevState
+
+
+end
