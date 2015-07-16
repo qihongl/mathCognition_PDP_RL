@@ -35,6 +35,8 @@ end
 w.rS.targPos = itemGen(w.nItems);
 w.rS.targRemain = true(w.nItems, 1);
 w.done = false;
+
+% teaching specific
 w.redo = false;
 
 % initialize the location of hand and eye

@@ -2,19 +2,21 @@
 function [] = initParamsEtc(epoch)
 % This program initialize and preallocate the parameters needed for the
 % model. This should be executed before the simulations. 
-global p d a
+global p a
 
 %% modeling parameters 
-p.wf = .05;          % noise magnitude
+p.wf = .05;         % noise magnitude
 p.lrate = .1;       % learning rate
-p.runs = epoch;      % training upper lim 
+p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;
 p.gamma = .8;       % discount factor 
-p.smirate = .001;   % ???
-p.maxIter = 100;
+p.smirate = .001;   % ?
+p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
+p.teachingModeOn = 0;
 p.teach = 1;
+p.maxTeachTrial = 100;
 
 %% counting specific
 % size of the state space and percetual span
@@ -30,6 +32,13 @@ p.nItems = 6;           % default number of items
 p.randItems = 0;    % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min ... 
+
+%% reward values
+p.r.smallNeg = - 0.05;
+p.r.punish = - 1;
+p.r.touch = 2;
+p.r.finish = 5;
+
 
 %% network specific
 % initialize with small small random values 

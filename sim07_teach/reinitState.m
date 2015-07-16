@@ -18,6 +18,8 @@ w.stateNum = -1;
 w.rS.targPos = h(1).w.rS.targPos;
 w.rS.targRemain = true(w.nItems, 1);
 w.done = false;
+
+% teaching specific 
 w.redo = false;
 
 % re-initialize the location of hand and eye
