@@ -51,6 +51,7 @@ for i = 1 : size(s,2)
     numObjTouched(i) = length(orders{i});
 end
 
+% compute summary statistics
 meanSteps = mean(steps);
 monotonicRate = sum(orderCorrect)/ numQs;
 skipRate = sum(numSkips ~= 0) / numQs;
@@ -68,15 +69,6 @@ fprintf('Percent trial incomplete: \t%.2f\n' , incompleteRate)
 fprintf('Tabulate number of objects touched: \n')
 tabulate(numObjTouched)
 
-%% plot 
-% FONTSIZE = 13; 
-% plot(steps)
-% plotTitle = sprintf(['Average steps used: %.3f \nPercent trial monotonic: %.2f' ...
-%     '\nPercent trial with skip: %.2f'],...
-%     meanSteps, monotonicRate, skipRate);
-% title(plotTitle, 'fontsize', FONTSIZE);
-% xlabel('Different questions', 'fontsize', FONTSIZE); 
-% ylabel('Steps used', 'fontsize', FONTSIZE)
 
 
 
