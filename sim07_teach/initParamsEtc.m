@@ -14,7 +14,7 @@ p.smirate = .001;   % ?
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
-p.teachingModeOn = 0;
+p.teachingModeOn = 1;
 p.teach = 1;
 p.maxTeachTrial = 100;
 

@@ -56,8 +56,8 @@ w.out.eyeStep = 0;
 % save
 h = struct('w',w);
 
-% % plot
-axes(d.hax); cla;
-axes(d.rax); cla;
+% % % plot
+% axes(d.hax); cla;
+% axes(d.rax); cla;
 end
 
