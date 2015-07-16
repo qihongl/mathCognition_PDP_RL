@@ -3,8 +3,8 @@
 clear all;
 %% Parameters
 % number of questions
-showPlot = 1;
-numQs = 10;
+showPlot = 0;
+numQs = 1000;
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim08_varyNumObj/';

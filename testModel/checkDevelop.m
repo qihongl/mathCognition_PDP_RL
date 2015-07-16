@@ -2,9 +2,9 @@
 clear all; 
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim07_teach/';
-PATH.DATA = 'data/record_teach.mat';
-% PATH.DATA = 'record.mat';
+PATH.DIR = 'sim08_varyNumObj/';
+% PATH.DATA = 'data/record_teach.mat';
+PATH.DATA = 'record.mat';
 
 %% load the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
@@ -20,7 +20,7 @@ finishedIdx = record.steps ~= MAX_ITER;
 % plot steps used for completed trials
 subplot(2,1,1)
 plot(record.steps(finishedIdx)); 
-xlim([0, size(record.steps(finishedIdx),2)]);
+xlim([0, length(record.steps(finishedIdx))]);
 ylim([0,p.maxIter + WHITE_SPACE]);
 title('Excluding incomplete trials', 'fontsize', FONTSIZE);
 xlabel('Epoch', 'fontsize', FONTSIZE);
