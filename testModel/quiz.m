@@ -1,10 +1,10 @@
 %% This is a quiz for the model
 % It come up with N questions and record the performance of the model
-
+clear all;
 %% Parameters
 % number of questions
 showPlot = 0;
-numQs = 1;
+numQs = 100;
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim07_teach/';
