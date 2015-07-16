@@ -8,7 +8,7 @@ numQs = 100;
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim07_teach/';
-PATH.DATA = 'data/record_teach.mat';
+PATH.DATA = 'data/record_noTeach.mat';
 % PATH.DATA = 'record.mat';
 % get the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
@@ -54,13 +54,13 @@ monotonicRate = sum(orderCorrect)/ numQs;
 skipRate = sum(numSkips ~= 0) / numQs;
 incompleteRate = sum(steps == p.maxIter) / numQs;
 
-fprintf('Performance: 4096 tirals with teaching\n')
+
+fprintf('Performance: 4096 tirals without ')
 fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
 fprintf('Percent trial incomplete: \t%.2f\n' , incompleteRate)
-
-%% plot 
+% plot 
 % FONTSIZE = 13; 
 % plot(steps)
 % plotTitle = sprintf(['Average steps used: %.3f \nPercent trial monotonic: %.2f' ...
