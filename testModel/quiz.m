@@ -4,7 +4,7 @@ clear all;
 %% Parameters
 % number of questions
 showPlot = 0;
-numQs = 100;
+numQs = 1000;
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim07_teach/';
@@ -39,6 +39,7 @@ steps = zeros(1,numQs);
 orders = cell(1,numQs);
 orderCorrect = true(1,numQs);
 numSkips = nan(1,numQs);
+numObjTouched  = zeros(1,numQs);
 % process the data 
 for i = 1 : size(s,2)    
     steps(i) = s{i}.steps;
@@ -47,6 +48,7 @@ for i = 1 : size(s,2)
         orderCorrect(i) = false;
     end
     numSkips(i) = detectSkip(orders{i});
+    numObjTouched(i) = length(orders{i});
 end
 
 meanSteps = mean(steps);
@@ -54,11 +56,17 @@ monotonicRate = sum(orderCorrect)/ numQs;
 skipRate = sum(numSkips ~= 0) / numQs;
 incompleteRate = sum(steps == p.maxIter) / numQs;
 
-fprintf('Performance: 4096 tirals with teaching\n')
+
+%% print results
+fprintf('------------------------------------------------\n')
+fprintf('Performance on %d questions: with teaching\n', numQs)
+fprintf('------------------------------------------------\n')
 fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
 fprintf('Percent trial incomplete: \t%.2f\n' , incompleteRate)
+fprintf('Tabulate number of objects touched: \n')
+tabulate(numObjTouched)
 
 %% plot 
 % FONTSIZE = 13; 
