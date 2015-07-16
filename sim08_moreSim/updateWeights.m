@@ -27,7 +27,7 @@ else
             else
                 actionCorrect = false;  
                 Rwd = p.r.punish;
-%                 w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
+                w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
                 
             end
             % if the model is touching an touched object

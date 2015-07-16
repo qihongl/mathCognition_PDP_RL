@@ -2,9 +2,9 @@
 clear all; 
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim08_varyNumObj/';
-% PATH.DATA = 'data/record_teach.mat';
-PATH.DATA = 'record.mat';
+PATH.DIR = 'sim08_moreSim/';
+PATH.DATA = 'data/record_noteach.mat';
+% PATH.DATA = 'record.mat';
 
 %% load the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
@@ -39,7 +39,7 @@ ylabel('Steps used', 'fontsize', FONTSIZE)
 ha = axes('Position',[0 0 1 1],'Xlim',[0 1],'Ylim',[0 
 1],'Box','off','Visible','off','Units','normalized', 'clipping' , 'off');
 
-text(0.5, 0.99,'\bf 4096 epochs WITHOUT teaching','HorizontalAlignment' ... 
+text(0.5, 0.99,'\bf 5000 epochs WITHOUT teaching','HorizontalAlignment' ... 
     ,'center','VerticalAlignment', 'top', 'fontsize', FONTSIZE)
 
 % close all; 

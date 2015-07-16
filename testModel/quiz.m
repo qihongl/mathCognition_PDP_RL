@@ -3,13 +3,13 @@
 clear all;
 %% Parameters
 % number of questions
-showPlot = 0;
-numQs = 1000;
+showPlot = 1;
+numQs = 3;
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim08_varyNumObj/';
-% PATH.DATA = 'data/record_teach.mat';
-PATH.DATA = 'record.mat';
+PATH.DIR = 'sim08_moreSim/';
+PATH.DATA = 'data/record_noteach.mat';
+% PATH.DATA = 'record.mat';
 % get the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
 addpath([PATH.ROOT PATH.DIR])
@@ -60,7 +60,7 @@ incompleteRate = sum(steps == p.maxIter) / numQs;
 
 %% print results
 fprintf('------------------------------------------------\n')
-fprintf('Performance on %d questions: with teaching\n', numQs)
+fprintf('Performance on %d questions: without teaching\n', numQs)
 fprintf('------------------------------------------------\n')
 fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
