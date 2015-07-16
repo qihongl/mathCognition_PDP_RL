@@ -29,7 +29,7 @@ p.mvRange = p.mvRad * 2 + 1;
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
 p.nItems = 6;           % default number of items
-p.randItems = 0;    % flag for generating random number of items
+p.randItems = 1;    % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min ... 
 
