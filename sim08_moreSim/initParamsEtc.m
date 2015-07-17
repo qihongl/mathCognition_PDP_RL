@@ -47,6 +47,6 @@ p.stopCounter = 5;
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = .5;     % bias toward not moving (action 0)
-a.smgain = 1;
+a.smgain = 10;
 end
 

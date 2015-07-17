@@ -26,7 +26,7 @@ else
                 % if the object is NOT the leftmost object (skip)
             else
                 actionCorrect = false;  
-                Rwd = p.r.punish;
+                Rwd = p.r.smallNeg;
                 w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
                 
             end
