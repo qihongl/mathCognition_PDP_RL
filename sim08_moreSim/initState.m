@@ -27,7 +27,7 @@ w.stateNum = -1;
 
 % decide the number of items to generate
 if p.randItems
-    w.nItems = randi(p.nItems);
+    w.nItems = generateNum(p.nItems);
 else
     w.nItems = p.nItems;
 end

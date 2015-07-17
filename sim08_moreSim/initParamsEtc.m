@@ -10,7 +10,7 @@ p.lrate = .1;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;
 p.gamma = .8;       % discount factor 
-p.smirate = .001;   % ?
+p.smirate = .001;   % soft max rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
@@ -28,8 +28,8 @@ p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 6;           % default number of items
-p.randItems = 0;    % flag for generating random number of items
+p.nItems = 7;           % default number of items
+p.randItems = 1;    % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min ... 
 
@@ -41,12 +41,12 @@ p.r.finish = 5;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
-p.stopCounter = 5;
+% p.stopCounter = 5;
 
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = .5;     % bias toward not moving (action 0)
-a.smgain = 10;
+a.smgain = 1.5;
 end
 
