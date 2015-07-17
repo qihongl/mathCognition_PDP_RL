@@ -8,7 +8,7 @@ global p a
 p.wf = .05;         % noise magnitude
 p.lrate = .1;       % learning rate
 p.runs = epoch;     % training upper lim 
-p.dtimes = epoch;
+p.dtimes = epoch;   
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % soft max rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
@@ -28,10 +28,10 @@ p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 7;           % default number of items
-p.randItems = 1;    % flag for generating random number of items
+p.nItems = 7;           % max number of items
+p.randItems = 1;        % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 2;       % min ... 
+p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;
@@ -47,6 +47,6 @@ p.r.finish = 5;
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
 a.bias = .5;     % bias toward not moving (action 0)
-a.smgain = 1.5;
+a.smgain = 1;
 end
 
