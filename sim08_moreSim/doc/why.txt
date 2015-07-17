@@ -1,4 +1,4 @@
-OVERALL GOAL: implement the teaching mode
+OVERALL GOAL: do more simulations
 
 WHAT I DID: 
 
