@@ -19,7 +19,7 @@ sd(sd < p.wf) = p.wf;
 
 %% Guanssian representation of visual input
 w.vS.oldInput = w.vS.visInput;
-w.vS.visInput = sumMultiItem( w.vS.targPos,sd);
+w.vS.visInput = sumMultiItem(w.vS.targPos,sd);
 
 w.rS.aptargPos = w.vS.targPos + w.rS.eyePos;
 w.rS.visInput = sumMultiItem(w.rS.aptargPos,sd);

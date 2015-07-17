@@ -3,13 +3,14 @@
 clear all;
 %% Parameters
 % number of questions
-showPlot = 0;
-numQs = 1000;
+showPlot = 1;
+numQs = 10;
+tt = sprintf('Performance on %d questions: softmax factor = 5\n', numQs);
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim08_moreSim/';
-% PATH.DATA = 'data/record_noteach.mat';
-PATH.DATA = 'record.mat';
+PATH.DATA = 'smg/record_smg1.mat';
+% PATH.DATA = 'record.mat';
 % get the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
 addpath([PATH.ROOT PATH.DIR])
@@ -60,16 +61,14 @@ incompleteRate = sum(steps == p.maxIter) / numQs;
 
 %% print results
 fprintf('------------------------------------------------\n')
-fprintf('Performance on %d questions: without teaching\n', numQs)
+fprintf(tt)
 fprintf('------------------------------------------------\n')
 fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
 fprintf('Percent trial incomplete: \t%.2f\n' , incompleteRate)
-fprintf('Tabulate number of objects touched: \n')
-tabulate(numObjTouched)
-
-
+% fprintf('Tabulate number of objects touched: \n')
+% tabulate(numObjTouched)
 
 
 %%
