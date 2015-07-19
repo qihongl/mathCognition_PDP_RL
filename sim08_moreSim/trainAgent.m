@@ -16,10 +16,11 @@ for i = 1:p.runs
     result = runAgent(i);
     a.smgain = a.smgain + p.smirate;
     % save weights
-    record.a{i} = result.a;
+    %     record.a{i} = result.a;
     record.steps(i) = result.steps;
-    record.indices{i} = result.indices;
+%     record.indices{i} = result.indices;
 end
 % save parameters
+record.a = result.a;
 record.p = p;
 end

@@ -27,7 +27,6 @@ xlabel('Epoch', 'fontsize', FONTSIZE);
 ylabel('Steps used', 'fontsize', FONTSIZE)
 subplot(2,1,2)
 
-
 % plot steps used for all trials
 plot(record.steps)
 xlim([0,p.runs]); ylim([0,p.maxIter + WHITE_SPACE])
@@ -36,11 +35,11 @@ xlabel('Epoch', 'fontsize', FONTSIZE);
 ylabel('Steps used', 'fontsize', FONTSIZE)
 
 
-ha = axes('Position',[0 0 1 1],'Xlim',[0 1],'Ylim',[0 
-1],'Box','off','Visible','off','Units','normalized', 'clipping' , 'off');
-
-text(0.5, 0.99,'\bf 5000 epochs WITHOUT teaching','HorizontalAlignment' ... 
-    ,'center','VerticalAlignment', 'top', 'fontsize', FONTSIZE)
+% ha = axes('Position',[0 0 1 1],'Xlim',[0 1],'Ylim',[0 
+% 1],'Box','off','Visible','off','Units','normalized', 'clipping' , 'off');
+% 
+% text(0.5, 0.99,'\bf 5000 epochs','HorizontalAlignment' ... 
+%     ,'center','VerticalAlignment', 'top', 'fontsize', FONTSIZE)
 
 % close all; 
 %% Plot the performance on using correct order 

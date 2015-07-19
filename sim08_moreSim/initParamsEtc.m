@@ -28,7 +28,7 @@ p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 7;           % max number of items
+p.nItems = 10;           % max number of items
 p.randItems = 1;        % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
@@ -36,8 +36,8 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.punish = - 1;
-p.r.touch = 2;
-p.r.finish = 5;
+p.r.touch = 1;
+p.r.finish = 3;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task

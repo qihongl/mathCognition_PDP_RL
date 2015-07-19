@@ -1,7 +1,7 @@
 % written by professor Jay McClelland
 function [ ] = initState( )
 
-global a w d h p;
+global a w h p;
 
 %realState is characterized by the position of a target to touch,
 %position of eye, and position of hand
@@ -55,9 +55,5 @@ w.out.eyeStep = 0;
 
 % save
 h = struct('w',w);
-
-% % % plot
-% axes(d.hax); cla;
-% axes(d.rax); cla;
 end
 

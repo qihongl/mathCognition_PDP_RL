@@ -5,12 +5,12 @@ clear all;
 % number of questions
 showPlot = 0;
 numQs = 1000;
-tt = sprintf('Performance on %d questions: softmax factor = 5\n', numQs);
-%% construct the path to the data files
+tt = sprintf('Performance on %d questions, softmax factor = 100\n', numQs);
+% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 PATH.DIR = 'sim08_moreSim/';
-% PATH.DATA = 'smg/record_smg1.mat';
-PATH.DATA = 'record.mat';
+PATH.DATA = 'smg/record_smg1.mat';
+% PATH.DATA = 'record.mat';
 % get the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
 addpath([PATH.ROOT PATH.DIR])
@@ -20,6 +20,7 @@ global p a;
 % get the parameters & weights
 p = record.p;
 a = record.a{size(record.a,2)};
+a.smgain = 100;
 
 
 %% Quiz
