@@ -1,7 +1,7 @@
 % just testing, a short cut for running the model
 function testing()
 if nargin == 0
-    epoch = 5000;
+    epoch = 10000;
     
     record = trainAgent(epoch);
     save('record','record');

@@ -7,7 +7,7 @@ function [ ] = updateWeights()
 global a w p;
 
 %% Assign the reward values
-actionCorrect = true;
+w.actionCorrect = true;
 % if the model doesn't move (choose the middle action)
 if a.choice == p.mvRad + 1
     Rwd = p.r.smallNeg;
@@ -25,7 +25,7 @@ else
                 
                 % if the object is NOT the leftmost object (skip)
             else
-                actionCorrect = false;  
+                w.actionCorrect = false;  
                 Rwd = p.r.smallNeg;
                 w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
                 
@@ -54,7 +54,7 @@ a.wts(a.choice,:) = a.wts(a.choice,:) + inc*w.vS.oldInput;
 
 %% start over if incorrect action was made
 if p.teachingModeOn
-    if ~actionCorrect
+    if ~w.actionCorrect
         w.redo = true;
     end
 end

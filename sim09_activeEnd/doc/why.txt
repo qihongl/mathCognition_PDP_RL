@@ -1,0 +1,10 @@
+OVERALL GOAL: enable the model terminate the task actively
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: 
+
+PROBLEM: 
+
+TRY: 

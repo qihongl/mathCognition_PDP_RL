@@ -9,7 +9,7 @@ initPlot();
 % preallocate
 record.a = cell(1,epoch);
 record.steps = nan(1,epoch);
-record.indices = cell(1,epoch);
+% record.indices = cell(1,epoch);
 % train the model for n trials
 for i = 1:p.runs
     fprintf('%d\n',i);

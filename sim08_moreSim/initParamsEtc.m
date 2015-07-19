@@ -23,12 +23,12 @@ p.maxTeachTrial = 100;
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 10;   
+p.mvRad = 8;   
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 10;           % max number of items
+p.nItems = 8;           % max number of items
 p.randItems = 1;        % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
