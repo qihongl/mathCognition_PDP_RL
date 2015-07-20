@@ -10,11 +10,13 @@ global a w p;
 w.actionCorrect = true;
 % if the model doesn't move (choose the middle action)
 if a.choice == p.mvRad + 1
-    Rwd = p.r.smallNeg;
+%     Rwd = p.r.smallNeg;
+    Rwd = 0;
 else
     % if the model is touching empty spot
     if ~isTouchingObj
-        Rwd = p.r.smallNeg;
+%         Rwd = p.r.smallNeg;
+        Rwd = 0;
     else
         % if the model is touching an untouched object
         if objIsUntouched
@@ -26,13 +28,14 @@ else
                 % if the object is NOT the leftmost object (skip)
             else
                 w.actionCorrect = false;  
-                Rwd = p.r.smallNeg;
+                Rwd = p.r.punish;
                 w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
                 
             end
             % if the model is touching an touched object
         else
-            Rwd = p.r.smallNeg;
+            w.actionCorrect = false;  
+            Rwd = p.r.punish;
         end
     end
 end

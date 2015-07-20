@@ -23,21 +23,21 @@ p.maxTeachTrial = 100;
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 8;   
+p.mvRad = 10;   
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
-p.nItems = 8;           % max number of items
+p.nItems = 7;           % max number of items
 p.randItems = 1;        % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 2;       % min spacing between neighbouring items
+p.minSpacing = 1;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.punish = - 1;
-p.r.touch = 1;
-p.r.finish = 3;
+p.r.touch = 5;
+p.r.finish = 10;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task

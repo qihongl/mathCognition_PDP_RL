@@ -18,6 +18,7 @@ while ~(w.done) && i < p.maxIter
     Act();
     updateState();
     updateWeights();
+    
     indices(i + 1) = recordAction();     % record the "touch-index"
     
     i = i+1;

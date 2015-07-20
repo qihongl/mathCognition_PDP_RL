@@ -18,6 +18,9 @@ sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
 sd(sd < p.wf) = p.wf;
 
 %% Guanssian representation of visual input
+if numel(w.vS.targPos) == 0
+end
+
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = sumMultiItem(w.vS.targPos,sd);
 
