@@ -19,8 +19,7 @@ if a.choice == p.mvRad + 1
             Rwd = p.r.finish;
         else 
             w.actionCorrect = false;  
-%             Rwd = p.r.bigNeg;
-            Rwd = p.r.smallNeg;
+            Rwd = p.r.bigNeg;
         end
     end
 else
@@ -30,15 +29,14 @@ else
     else
         % if the model is touching an untouched object
         if objIsUntouched
+            w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
             % if the object is the leftmost object
             if isNext
                 Rwd = p.r.touch;               
-                w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
                 % if the object is NOT the leftmost object (skip)
             else
                 w.actionCorrect = false;  
                 Rwd = p.r.midNeg;                
-                w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
             end
             % if the model is touching an touched object
         else
@@ -47,6 +45,13 @@ else
         end
     end
 end
+% 
+% %% terminate the task
+% % give the final reward if all items were touched
+% if all(w.rS.targRemain == false)
+%     Rwd = p.r.finish;
+%     w.done = true;
+% end
 
 %% assign the reward values
 a.Rwd = Rwd;

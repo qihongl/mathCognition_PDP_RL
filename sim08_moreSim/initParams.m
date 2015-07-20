@@ -9,12 +9,12 @@ p.wf = .05;         % noise magnitude
 p.lrate = .1;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;   
-p.gamma = 1;       % discount factor 
+p.gamma = .8;       % discount factor 
 p.smirate = .001;   % soft max rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
-p.teachingModeOn = 0;
+p.teachingModeOn = 1;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
@@ -47,7 +47,7 @@ p.stopCounter = 5;
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
-a.bias = .5;     % bias toward not moving (action 0)
+a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
 
