@@ -1,13 +1,14 @@
 % written by professor Jay McClelland
 function [ ] = showState( )
 global p w d a;
-
+% plot rewards over time 
 axes(d.rax);
 plot(w.rS.time,a.Rwd,'-*'); hold on;
-ylim(d.rax,[-0.1 5.1]); xlim(d.rax,[-0.25,w.rS.time+0.25]);
+ylim(d.rax,[p.r.bigNeg p.r.bigPos]); 
+xlim(d.rax,[-0.25,w.rS.time+0.25]);
 
-t = w.rS.time;
 % plot the history of eye and hand positions
+t = w.rS.time;
 axes(d.hax);
 plot(d.hax,[-p.spRad p.spRad],[t t]); hold on;
 ylim(d.hax,[-0.25 t + .25]);
@@ -21,6 +22,8 @@ for i = 1 : w.nItems
     end
     text(w.rS.targPos(i),t,symbol,'HorizontalAlignment','center');
 end
+
+% plot weights
 axes(d.wax);
 plot(-p.spRad:p.spRad,a.wts);
 end

@@ -4,7 +4,7 @@ clear all;
 %% Parameters
 % number of questions
 showPlot = 1;
-numQs = 10;
+numQs = 5;
 tt = sprintf('Performance on %d questions\n', numQs);
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';

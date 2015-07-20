@@ -37,7 +37,8 @@ while ~(w.done) && i < 100
 end
 % record the steps used
 score.steps = i;
-if length(nonzeros(score.indices)) == w.nItems
+% check if the model completed the task
+if length(nonzeros(score.indices)) == w.nItems && score.steps~=p.maxIter
     score.completed = true;
 else 
     score.completed = false;

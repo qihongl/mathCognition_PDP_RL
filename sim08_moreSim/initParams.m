@@ -14,13 +14,13 @@ p.smirate = .001;   % soft max rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
-p.teachingModeOn = 1;
+p.teachingModeOn = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
 %% counting specific
 % size of the state space and percetual span
-p.spRad = 35;
+p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
 p.mvRad = 10; 
@@ -37,17 +37,17 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
 p.r.bigNeg = -5;
-p.r.touch = 5;
-p.r.finish = 10;
+p.r.midPos = 1;
+p.r.bigPos = 5;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
-p.stopCounter = 5;
+p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
-a.bias = .1;     % bias toward not moving (action 0)
+a.bias = .05;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
 
