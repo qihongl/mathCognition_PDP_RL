@@ -1,2 +1,2 @@
-function gradeQuiz
-end
+% function gradeQuiz
+% end

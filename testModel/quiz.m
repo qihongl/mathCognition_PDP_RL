@@ -8,19 +8,20 @@ numQs = 1000;
 tt = sprintf('Performance on %d questions\n', numQs);
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim09_activeEnd/';
+PATH.DIR = 'sim08_moreSim/';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
 addpath([PATH.ROOT PATH.DIR])
 
+
 %% load the data
 global p a;
 % get the parameters & weights
 p = record.p;
 a = record.a;
-a.smgain = 100;
+a.smgain = 10;
 
 
 %% Quiz

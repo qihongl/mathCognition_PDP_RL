@@ -53,6 +53,9 @@ w.vS.visInput = zeros(1,p.spRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
+% actively terminate the process
+w.stopCount = p.stopCounter;
+
 % save
 h = struct('w',w);
 end

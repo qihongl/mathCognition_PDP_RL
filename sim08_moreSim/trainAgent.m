@@ -3,7 +3,7 @@ function [record] = trainAgent(epoch)
 %% This function trains the network n trials
 % initialize parameters
 global p d a;
-initParamsEtc(epoch);
+initParams(epoch);
 initPlot();
 
 % preallocate
@@ -14,7 +14,9 @@ record.steps = nan(1,epoch);
 for i = 1:p.runs
     fprintf('%d\n',i);
     result = runAgent(i);
-    a.smgain = a.smgain + p.smirate;
+    if a.smgain < 10
+        a.smgain = a.smgain + p.smirate;
+    end
     % save weights
     %     record.a{i} = result.a;
     record.steps(i) = result.steps;

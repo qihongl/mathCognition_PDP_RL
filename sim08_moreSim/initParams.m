@@ -1,5 +1,5 @@
 % written by professor Jay McClelland
-function [] = initParamsEtc(epoch)
+function [] = initParams(epoch)
 % This program initialize and preallocate the parameters needed for the
 % model. This should be executed before the simulations. 
 global p a
@@ -20,10 +20,10 @@ p.maxTeachTrial = 100;
 
 %% counting specific
 % size of the state space and percetual span
-p.spRad = 40;
+p.spRad = 35;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 10;   
+p.mvRad = 10; 
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
@@ -31,17 +31,17 @@ p.mvRange = p.mvRad * 2 + 1;
 p.nItems = 7;           % max number of items
 p.randItems = 1;        % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 1;       % min spacing between neighbouring items
+p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.punish = - 1;
-p.r.touch = 5;
-p.r.finish = 10;
+p.r.touch = 1;
+p.r.finish = 3;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
-% p.stopCounter = 5;
+p.stopCounter = 5;
 
 %% network specific
 % initialize with small small random values 
