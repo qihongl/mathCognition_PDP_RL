@@ -43,8 +43,9 @@ orders = cell(1,numQs);
 orderCorrect = true(1,numQs);
 numSkips = nan(1,numQs);
 numObjTouched  = zeros(1,numQs);
+completed = false(1,numQs);
 % process the data 
-for i = 1 : size(s,2)    
+for i = 1 : length(s)
     steps(i) = s{i}.steps;
     orders{i} = getOrder(s{i}.indices);
     if ~ismonotonic(getOrder(s{i}.indices))
@@ -52,13 +53,14 @@ for i = 1 : size(s,2)
     end
     numSkips(i) = detectSkip(orders{i});
     numObjTouched(i) = length(orders{i});
+    completed(i) = s{i}.completed;
 end
 
 % compute summary statistics
 meanSteps = mean(steps);
 monotonicRate = sum(orderCorrect)/ numQs;
 skipRate = sum(numSkips ~= 0) / numQs;
-incompleteRate = sum(steps == p.maxIter) / numQs;
+completeRate = sum(completed)/numQs;
 
 
 %% print results
@@ -67,10 +69,8 @@ fprintf(tt)
 fprintf('------------------------------------------------\n')
 fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
+fprintf('Percent trial completed: \t%.2f\n' , completeRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
-fprintf('Percent trial incomplete: \t%.2f\n' , incompleteRate)
-% fprintf('Tabulate number of objects touched: \n')
-% tabulate(numObjTouched)
 
 
 %%

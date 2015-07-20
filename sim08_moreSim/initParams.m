@@ -9,7 +9,7 @@ p.wf = .05;         % noise magnitude
 p.lrate = .1;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;   
-p.gamma = .8;       % discount factor 
+p.gamma = 1;       % discount factor 
 p.smirate = .001;   % soft max rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
@@ -30,14 +30,15 @@ p.mvRange = p.mvRad * 2 + 1;
 % when randItems == 1, nItems is the MAX number of items
 p.nItems = 7;           % max number of items
 p.randItems = 1;        % flag for generating random number of items
-p.maxSpacing = 5;       % max spacing between neighbouring items
+p.maxSpacing = 6;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;
-p.r.punish = - 1;
-p.r.touch = 1;
-p.r.finish = 3;
+p.r.midNeg = - 1;
+p.r.bigNeg = -5;
+p.r.touch = 5;
+p.r.finish = 10;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task

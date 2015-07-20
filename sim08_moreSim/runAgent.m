@@ -13,15 +13,16 @@ i = 0;
 teachTrial = 0;
 indices = zeros(1,p.maxIter);
 while ~(w.done) && i < p.maxIter
-    % alternate action and state update
+    %% choose action 
     selectAction();
     Act();
+    %% update the state
     updateState();
     updateWeights();
     indices(i + 1) = recordAction();     % record the "touch-index"
     
     i = i+1;
-    %% teaching mode
+    %% teaching mode, executed when redo is needed
     if p.teachingModeOn && p.teach && w.redo
         fprintf('.');
         % re-initialize the world if REDO

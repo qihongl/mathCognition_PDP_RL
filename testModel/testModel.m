@@ -37,6 +37,11 @@ while ~(w.done) && i < 100
 end
 % record the steps used
 score.steps = i;
+if length(nonzeros(score.indices)) == w.nItems
+    score.completed = true;
+else 
+    score.completed = false;
+end
 
 %%
 % rmpath([PATH.ROOT PATH.DIR])

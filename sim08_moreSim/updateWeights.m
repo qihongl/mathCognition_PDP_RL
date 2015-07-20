@@ -6,11 +6,21 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global a w p;
 
-%% Assign the reward values
+%% compute the reward values
 w.actionCorrect = true;
 % if the model doesn't move (choose the middle action)
 if a.choice == p.mvRad + 1
     Rwd = p.r.smallNeg;
+%     % actively terminate the task
+%     w.stopCount = w.stopCount - 1;
+%     if w.stopCount == 0
+%         w.done = true;
+%         if all(w.rS.targRemain == false)
+%             Rwd = p.r.finish;
+%         else 
+%             Rwd = p.r.bigNeg;
+%         end
+%     end
 else
     % if the model is touching empty spot
     if ~isTouchingObj
@@ -26,24 +36,25 @@ else
                 % if the object is NOT the leftmost object (skip)
             else
                 w.actionCorrect = false;  
-                Rwd = p.r.smallNeg;
+                Rwd = p.r.midNeg;
                 w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
                 
             end
             % if the model is touching an touched object
         else
-            Rwd = p.r.smallNeg;
+            Rwd = p.r.midNeg;
         end
     end
 end
 
+%% terminate the task
 % give the final reward if all items were touched
 if all(w.rS.targRemain == false)
     Rwd = p.r.finish;
     w.done = true;
 end
 
-% assign the reward values
+%% assign the reward values
 a.Rwd = Rwd;
 a.dfRwd = Rwd*p.gamma^w.rS.td;
 
