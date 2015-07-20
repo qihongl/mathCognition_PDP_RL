@@ -39,18 +39,15 @@ else
 end
 else
     %% terminate the task
+    w.done = true;
     % give the final reward if all items were touched
     if all(w.rS.targRemain == false)
         Rwd = p.r.finish;
-        w.done = true;
     else 
         Rwd = p.r.bigNeg;
-        w.done = true;
     end
     
 end
-
-
 
 %% assign the reward values
 a.Rwd = Rwd;

@@ -15,7 +15,7 @@ global a w h p;
 %actions consist of moving the eye OR the hand a certain distance
 
 %% specify the parameters
-a.act = zeros(p.mvRange,1);
+a.act = zeros(p.mvRange + 1,1);
 a.dfRwd = 0;
 a.Rwd = 0;
 
@@ -48,7 +48,6 @@ w.vS.oldInput = zeros(1,p.spRange);
 w.vS.visInput = zeros(1,p.spRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
-
 
 % active stop the task
 w.terminate = false; 
