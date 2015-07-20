@@ -1,0 +1,2 @@
+no big neg reward value when end task incorrectly, 
+when there is, terrible… 
