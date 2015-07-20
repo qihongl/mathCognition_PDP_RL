@@ -15,7 +15,6 @@ global a w h p;
 %actions consist of moving the eye OR the hand a certain distance
 
 %% specify the parameters
-%a.net = zeros(2,1);
 a.act = zeros(p.mvRange,1);
 a.dfRwd = 0;
 a.Rwd = 0;
@@ -43,9 +42,6 @@ w.redo = false;
 % left 
 w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
 w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
-% center
-% w.rS.eyePos = round(mean(w.rS.targPos));
-% w.rS.handPos = round(mean(w.rS.targPos));
 
 % view state or the perceived state
 w.vS.oldInput = zeros(1,p.spRange);
@@ -53,8 +49,9 @@ w.vS.visInput = zeros(1,p.spRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
-% actively terminate the process
-w.stopCount = p.stopCounter;
+
+% active stop the task
+w.terminate = false; 
 
 % save
 h = struct('w',w);
