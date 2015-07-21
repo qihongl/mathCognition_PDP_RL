@@ -25,4 +25,3 @@ if p.teachingModeOn
 end
 
 end
-

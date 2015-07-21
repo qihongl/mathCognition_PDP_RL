@@ -1,61 +1,38 @@
 function Rwd = computeRwd()
 %% this function controls the reward policy
 global w a p;
-% a
-% w.rS
 w.actionCorrect = true;
-% if there is target remain
-% if any(w.rS.targRemain == true)
-% if the model doesn't move
-if a.choice == p.mvRad + 1
-    Rwd = p.r.smallNeg;
-    w.stopCounter = w.stopCounter -1;
-    if w.stopCounter == 0
-        w.done = true; 
-        if all(w.rS.targRemain == false)
-            Rwd = p.r.bigPos;
-        else
-            Rwd = p.r.midNeg;
-        end
-    end
-else
-    % if the model is touching an empty spot
-    if ~isTouchingObj
+% if there is remaining items
+if targetRemain()
+    if a.choice == p.mvRad+1  % not moving
         Rwd = p.r.smallNeg;
+    elseif ~isTouchingObj       % touching empty spot
+        Rwd = p.r.smallNeg;
+    elseif objIsTouched         % touching touched object
+        Rwd = p.r.midNeg;
+        w.actionCorrect = false;
+    elseif ~isNext  % not touching left most untouched obj
+        Rwd = p.r.midNeg;
+        w.actionCorrect = false;
+        w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+    else            % CORRECT: touching left most untouched obj
+        Rwd = p.r.midPos;
+        w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+    end
+else    % if all targets were touched
+    if a.choice == p.mvRad + 1
+        Rwd = p.r.bigPos;
+        w.done = true;
     else
-        % if the model is touching an touched object
-        if ~objIsUntouched
-            Rwd = p.r.midNeg;
-            w.actionCorrect = false;
-            % if the model is touching an untouched object
-        else
-            % if the object is the leftmost object
-            if isNext
-                Rwd = p.r.midPos;
-                % if the object is NOT the leftmost object (skip)
-            else
-                Rwd = p.r.midNeg;
-                w.actionCorrect = false;
-            end
-            w.rS.targRemain(w.rS.targPos == w.rS.handPos) = false;
-        end
+        Rwd = p.r.smallNeg;
     end
 end
-% else
-%     %
-%     if a.choice == p.mvRad + 1
-%         w.done = true;
-%         Rwd = p.r.bigPos;
-%     else
-%         Rwd = p.r.midNeg;
-%     end
-% end
+
 
 end % end of the function
 
 
 %% Here're some helper functions to check some conditions
-
 % check if the model is touching the leftmost untouched item
 function isnext = isNext()
 global w;
@@ -77,13 +54,24 @@ else
 end
 end
 
-% check if the model that the model is touching is untouched so far
-function isUntouched = objIsUntouched()
+% check if the model that the model is touching is untouched object
+% assuming an object is being touched
+function isTouched = objIsTouched()
 global w;
 if w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
-    isUntouched = true;
+    isTouched = false;
 else
-    isUntouched = false;
+    isTouched = true;
+end
+end
+
+% check if there exists untouched objects
+function exist = targetRemain()
+global w;
+if any(w.rS.targRemain == true)
+    exist = true;
+else
+    exist = false;
 end
 end
 
