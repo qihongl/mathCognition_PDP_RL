@@ -2,7 +2,7 @@
 clear all; 
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim08_moreSim/';
+PATH.DIR = 'sim10_stopEnd/';
 % PATH.DATA = 'data/record_noteach.mat';
 PATH.DATA = 'record.mat';
 

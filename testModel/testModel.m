@@ -44,6 +44,4 @@ else
     score.completed = false;
 end
 
-%%
-% rmpath([PATH.ROOT PATH.DIR])
 end
