@@ -5,8 +5,8 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .05;         % noise magnitude
-p.lrate = .1;       % learning rate
+p.wf = .3;         % noise magnitude
+p.lrate = .01;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;   
 p.gamma = .8;       % discount factor 
@@ -36,7 +36,7 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-
+p.r.bigNeg = - 5;
 p.r.midPos = 2;
 p.r.bigPos = 5;
 
@@ -47,7 +47,7 @@ p.stopCounter = 3;
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.spRange);
-a.bias = .2;     % bias toward not moving (action 0)
+a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
 

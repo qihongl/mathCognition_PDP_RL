@@ -15,6 +15,6 @@ end
 % sum all visual input, columnwise
 sumInputs = sum(visInput);
 % normalize it so that it sums to 1
-% cumVisualPattern = sumInputs./sum(sumInputs);
-cumVisualPattern = sumInputs;
+cumVisualPattern = sumInputs./sum(sumInputs);
+% cumVisualPattern = sumInputs;
 end
