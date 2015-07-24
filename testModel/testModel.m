@@ -2,12 +2,10 @@
 % this function takes a set of trained weights and parameters, come up with
 % a counting question, let the model do the counting, and records its
 % performance! So it is in some sense a little quiz for the model.
-function [score] = testModel(seed, showPlot)
+function [score] = testModel(showPlot)
 if nargin == 0
-    seed = randi(999);
     showPlot = 1;
 end
-rng(seed)
 
 global p a w;
 

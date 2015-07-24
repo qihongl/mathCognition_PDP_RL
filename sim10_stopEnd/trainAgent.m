@@ -15,7 +15,7 @@ record.steps = nan(1,epoch);
 for i = 1:p.runs
     fprintf('%d\n',i);
     %% run the model 
-    result = runAgent(i);
+    result = runAgent();
     % increment the softmax scaling factor
     if a.smgain < 10
         a.smgain = a.smgain + p.smirate;

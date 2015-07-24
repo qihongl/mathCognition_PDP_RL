@@ -4,8 +4,15 @@ global w a p;
 w.actionCorrect = true;
 % if there is remaining items
 if targetRemain()
-    if a.choice == p.mvRad+1  % not moving
+    if a.choice == p.mvRad+1    % not moving
         Rwd = p.r.smallNeg;
+        % if stop too long, also termiante
+%         w.stopCounter = w.stopCounter - 1;  % TODO: ONLY count consecutive stop! 
+%         if w.stopCounter == 0
+%             w.done = true;
+%             Rwd = p.r.midNeg; 
+%             w.actionCorrect = false;
+%         end
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
     elseif objIsTouched         % touching touched object

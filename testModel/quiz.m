@@ -3,16 +3,17 @@
 clear all;
 %% Parameters
 % number of questions
-showPlot = 1;
-numQs = 10;
+showPlot = 0;
+numQs = 1000;
 tt = sprintf('Performance on %d questions\n', numQs);
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim10_stopEnd/';
+PATH.DIR = 'sim08_moreSim/';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
+% add path, in order to use its functions
 addpath([PATH.ROOT PATH.DIR])
 
 %% load the data
@@ -30,7 +31,7 @@ textprogressbar('Quiz in progress: ')
 for i = 1: numQs
     textprogressbar(i)
     % do the test
-    s{i} = testModel(i,showPlot);
+    s{i} = testModel(showPlot);
 end
 textprogressbar(' Done.')
 
@@ -72,6 +73,6 @@ fprintf('Percent trial completed: \t%.2f\n' , completeRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
 
 
-%%
+% undo add path, not to mix up the functions 
 rmpath([PATH.ROOT PATH.DIR])
 

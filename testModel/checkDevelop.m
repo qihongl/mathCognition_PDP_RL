@@ -2,12 +2,13 @@
 clear all; 
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim10_stopEnd/';
+PATH.DIR = 'sim08_moreSim/';
 % PATH.DATA = 'data/record_noteach.mat';
 PATH.DATA = 'record.mat';
 
 %% load the data
 load([PATH.ROOT PATH.DIR PATH.DATA], 'record')
+fprintf('Testing the model from "%s"\n', PATH.DIR);
 global p;
 p = record.p;
 

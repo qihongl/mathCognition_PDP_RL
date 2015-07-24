@@ -5,7 +5,7 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .15;         % noise magnitude
+p.wf = .2;         % noise magnitude
 p.lrate = .01;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;   
@@ -29,14 +29,14 @@ p.mvRange = p.mvRad * 2 + 1;
 % number of items in the environment
 % when randItems == 1, nItems is the MAX number of items
 p.nItems = 7;           % max number of items
-p.randItems = 1;        % flag for generating random number of items
+p.randItems = true;     % flag for generating random number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-
+p.r.bigNeg = - 5;
 p.r.midPos = 2;
 p.r.bigPos = 5;
 

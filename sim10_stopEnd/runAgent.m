@@ -1,8 +1,8 @@
 % written by professor Jay McClelland
-function [ results ] = runAgent(seed)
+function [ results ] = runAgent()
 global a w h p;
-rng(seed)
-w.seed = seed;
+% rng(seed)
+% w.seed = seed;
 
 %% initialize the state
 initState();
