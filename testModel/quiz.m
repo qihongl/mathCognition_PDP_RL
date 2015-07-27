@@ -32,7 +32,7 @@ global p a;
 p = record.p;
 a = record.a;
 a.smgain = 10;
-p.forcing = 0; 
+p.teacherForcing = 0; 
 p.teachingModeOn = 0;
 
 %% Quiz
