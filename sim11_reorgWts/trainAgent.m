@@ -2,9 +2,8 @@
 function [record] = trainAgent(epoch)
 %% This function trains the network n trials
 % initialize parameters
-global p d a;
+global p a;
 initParams(epoch);
-initPlot();
 
 % preallocate
 record.a = cell(1,epoch);

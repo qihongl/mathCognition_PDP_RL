@@ -4,7 +4,7 @@ global p w d a;
 % plot rewards over time 
 axes(d.rax);
 plot(w.rS.time,a.Rwd,'-*'); hold on;
-ylim(d.rax,[p.r.midNeg p.r.bigPos]); 
+ylim(d.rax,[p.r.bigNeg-.5 p.r.bigPos+.5]); 
 xlim(d.rax,[-0.25,w.rS.time+0.25]);
 
 % plot the history of eye and hand positions

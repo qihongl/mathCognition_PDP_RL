@@ -36,7 +36,7 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-% p.r.bigNeg = - 5;
+p.r.bigNeg = - 5;
 p.r.midPos = 5;
 p.r.bigPos = 10;
 
