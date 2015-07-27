@@ -21,7 +21,7 @@ a.wts(a.choice,:) = a.wts(a.choice,:) + inc*w.vS.oldInput;
 if p.teachingModeOn
     if ~w.actionCorrect
         w.redo = true;
-	w.teacherForcing = true; 
+        w.teacherForcing = true; 
     end
 end
 

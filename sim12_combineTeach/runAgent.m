@@ -8,14 +8,14 @@ global a w h p;
 initState();
 updateState();
 % compute the true answers
-w.answer = computeAnswer(w);
+w.answer = computeAnswer();
 
 %% training the model once
 i = 0;
 teachTrial = 0;
 indices = zeros(1,p.maxIter);
-while ~(w.done) && i < p.maxIter
-    %% choose action 
+while (~w.done) && i < p.maxIter
+    %% choose action
     selectAction();
     Act();
     %% update the state
@@ -25,7 +25,6 @@ while ~(w.done) && i < p.maxIter
     i = i+1;
     %% teaching mode, executed when redo is needed
     if p.teachingModeOn && p.teach && w.redo
-%         fprintf('.');
         % re-initialize the world if REDO
         reinitState();
         updateState();

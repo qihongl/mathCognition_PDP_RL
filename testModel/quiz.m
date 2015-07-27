@@ -8,7 +8,7 @@ end
 % number of questions
 if plot
     showPlot = 1;
-    numQs = 10;
+    numQs = 5;
 else 
     showPlot = 0;
     numQs = 1000;
@@ -17,7 +17,7 @@ end
 tt = sprintf('Performance on %d questions\n', numQs);
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim10_forcing/';
+PATH.DIR = 'sim11_reorgWts/';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data
