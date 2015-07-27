@@ -15,7 +15,7 @@ p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
 p.teachingModeOn = 0;
-p.teacherForcing = 0;
+% p.forcingModeOn = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
@@ -36,7 +36,7 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-p.r.bigNeg = - 5;
+% p.r.bigNeg = - 5;
 p.r.midPos = 5;
 p.r.bigPos = 10;
 

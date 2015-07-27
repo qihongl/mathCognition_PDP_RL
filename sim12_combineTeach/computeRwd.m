@@ -13,7 +13,7 @@ if targetRemain()
 %             w.done = true;
 %             Rwd = p.r.bigNeg; 
 %             w.actionCorrect = false;
-        end
+%         end
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
     elseif objIsTouched         % touching touched object

@@ -16,7 +16,7 @@ axes(d.rax);
 % end 
 
 plot(w.rS.time,a.Rwd,'-*'); hold on;
-ylim(d.rax,[p.r.bigNeg p.r.bigPos]); 
+ylim(d.rax,[p.r.midNeg p.r.bigPos]); 
 xlim(d.rax,[-0.25,w.rS.time+0.25]);
 
 % plot the history of eye and hand positions

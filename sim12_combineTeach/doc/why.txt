@@ -1,0 +1,10 @@
+OVERALL GOAL: implement teacher forcing
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: 
+
+PROBLEM: 
+
+TRY: 

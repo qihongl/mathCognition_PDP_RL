@@ -11,7 +11,7 @@ if plot
     numQs = 10;
 else 
     showPlot = 0;
-    numQs = 100;
+    numQs = 1000;
 end
 
 tt = sprintf('Performance on %d questions\n', numQs);
