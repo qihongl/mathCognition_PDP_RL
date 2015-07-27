@@ -29,7 +29,6 @@ if targetRemain()
     end
 else    % if all targets were touched
     if w.out.handStep == 0
-%     if a.choice == p.mvRad + 1
         Rwd = p.r.bigPos;
         w.done = true;
     else

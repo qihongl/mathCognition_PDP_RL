@@ -17,7 +17,7 @@ end
 tt = sprintf('Performance on %d questions\n', numQs);
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim11_reorgWts/';
+PATH.DIR = 'sim12_combineTeach/';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data

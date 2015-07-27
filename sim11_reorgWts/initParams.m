@@ -14,8 +14,8 @@ p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
-p.teachingModeOn = 0;
-p.teacherForcing = 0;
+p.teachingModeOn = 1;
+p.teacherForcing = 1;
 p.teach = 1;
 p.maxTeachTrial = 100;
 

@@ -40,7 +40,7 @@ if p.teachingModeOn
     p.teach = 1;
 end
 % check if it is behave correctly
-if w.teacherForcing
+if p.teacherForcing
     if w.nItems + 1 ~= w.stateNum
         warning('?')
     end
