@@ -26,7 +26,6 @@ w.stateNum = -1;
 
 % decide the number of items to generate
 w.nItems = generateNum(p.maxItems);
-w.nItems = 5;
 
 % generate items in space
 w.rS.targPos = itemGen(w.nItems);

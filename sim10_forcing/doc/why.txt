@@ -1,0 +1,12 @@
+OVERALL GOAL: implement teacher forcing
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: the learning is terrible, there is no negative weights. The model didn’t made any mistake due to teacher forcing, which is not good.  
+
+maybe this is also one thing that has be learning by doing. the teacher doesn’t make mistakes! 
+
+PROBLEM: 
+
+TRY: 
