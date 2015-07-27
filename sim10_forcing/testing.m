@@ -6,6 +6,5 @@ end
 record = trainAgent(epoch);
 save('record','record');
 % checkDevelop()
-quiz(1)
 quiz()
 end

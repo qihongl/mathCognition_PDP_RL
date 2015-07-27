@@ -15,7 +15,7 @@ p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
 p.teachingModeOn = 0;
-p.teacherForcing = 1;
+p.teacherForcing = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
