@@ -15,9 +15,10 @@ p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
 p.teachingModeOn = 0;
+p.forcing = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
-p.forcing = 1;
+
 
 %% counting specific
 % size of the state space and percetual span
