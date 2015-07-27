@@ -8,15 +8,16 @@ global p a
 p.wf = .2;         % noise magnitude
 p.lrate = .01;       % learning rate
 p.runs = epoch;     % training upper lim 
-p.dtimes = epoch;   
-p.gamma = .8;       % discount factor 
+p.gamma = 1;       % discount factor 
 p.smirate = .001;   % soft max rate
+p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
 p.teachingModeOn = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
+p.forcing = 1;
 
 %% counting specific
 % size of the state space and percetual span
@@ -27,18 +28,16 @@ p.mvRad = 7;
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
-% when randItems == 1, nItems is the MAX number of items
-p.nItems = 7;           % max number of items
-p.randItems = true;     % flag for generating random number of items
+p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-p.r.bigNeg = - 5;
-p.r.midPos = 2;
-p.r.bigPos = 5;
+% p.r.bigNeg = - 5;
+p.r.midPos = 5;
+p.r.bigPos = 10;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task

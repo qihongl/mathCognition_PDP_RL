@@ -10,7 +10,7 @@ if targetRemain()
 %         w.stopCounter = w.stopCounter - 1;  % TODO: ONLY count consecutive stop! 
 %         if w.stopCounter == 0
 %             w.done = true;
-%             Rwd = p.r.midNeg; 
+%             Rwd = p.r.bigNeg; 
 %             w.actionCorrect = false;
 %         end
     elseif ~isTouchingObj       % touching empty spot

@@ -1,5 +1,11 @@
 % just testing, a short cut for running the model
-epoch = 5000;
+function testing(epoch)
+if nargin == 0
+    epoch = 10;
+end
 record = trainAgent(epoch);
 save('record','record');
-checkDevelop()
+% checkDevelop()
+quiz(1)
+quiz()
+end

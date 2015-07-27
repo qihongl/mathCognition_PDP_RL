@@ -5,7 +5,7 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .2;         % noise magnitude
+p.wf = .15;         % noise magnitude
 p.lrate = .01;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.dtimes = epoch;   

@@ -1,9 +1,0 @@
-OVERALL GOAL: enable to model to end the task actively! 
-
-WHAT I DID: when the model doesn’t move, end the task! 
-
-SOME OBSERVATIONS: 
-
-PROBLEM: 
-
-TRY: 

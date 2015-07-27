@@ -7,8 +7,9 @@ global a w h p;
 %% initialize the state
 initState();
 updateState();
+
 % compute the true answers
-w.answer = computeAnswer(w);
+% w.answer = computeAnswer(w);
 
 %% training the model once
 i = 0;
@@ -22,6 +23,7 @@ while ~(w.done) && i < p.maxIter
     updateState();
     updateWeights();
     indices(i + 1) = recordAction();     % record the "touch-index"
+    
     i = i+1;
     %% teaching mode, executed when redo is needed
     if p.teachingModeOn && p.teach && w.redo
@@ -46,10 +48,6 @@ results.indices = indices;
 results.steps = i;
 results.h = h;
 results.a = a;
-
-if w.nItems + 1 ~= w.stateNum
-    warning('?')
-end
 
 
 end

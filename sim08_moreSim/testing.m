@@ -2,4 +2,4 @@
 epoch = 5000;
 record = trainAgent(epoch);
 save('record','record');
-checkDevelop()
+% checkDevelop()

@@ -1,14 +1,23 @@
 %% This is a quiz for the model
 % It come up with N questions and record the performance of the model
-clear all;
+function quiz(plot)
+if nargin == 0
+    plot = false;
+end 
 %% Parameters
 % number of questions
-showPlot = 0;
-numQs = 1000;
+if plot
+    showPlot = 1;
+    numQs = 10;
+else 
+    showPlot = 0;
+    numQs = 100;
+end
+
 tt = sprintf('Performance on %d questions\n', numQs);
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim08_moreSim/';
+PATH.DIR = 'sim10_stopEnd/';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data
@@ -23,10 +32,13 @@ global p a;
 p = record.p;
 a = record.a;
 a.smgain = 10;
+p.forcing = 0; 
+p.teachingModeOn = 0;
 
 %% Quiz
 % preallocate
 s = cell(1,numQs);
+fprintf('Start testing: %d questions\n', numQs)
 textprogressbar('Quiz in progress: ')
 for i = 1: numQs
     textprogressbar(i)
@@ -76,3 +88,4 @@ fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
 % undo add path, not to mix up the functions 
 rmpath([PATH.ROOT PATH.DIR])
 
+end

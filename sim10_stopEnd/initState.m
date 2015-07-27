@@ -25,11 +25,9 @@ w.rS.td = 0;
 w.stateNum = -1;
 
 % decide the number of items to generate
-if p.randItems
-    w.nItems = generateNum(p.nItems);
-else
-    w.nItems = p.nItems;
-end
+w.nItems = generateNum(p.maxItems);
+w.nItems = 5;
+
 % generate items in space
 w.rS.targPos = itemGen(w.nItems);
 w.rS.targRemain = true(w.nItems, 1);
@@ -39,7 +37,7 @@ w.done = false;
 w.redo = false;
 
 % initialize the location of hand and eye
-% left 
+% left
 w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
 w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
 
@@ -49,7 +47,7 @@ w.vS.visInput = zeros(1,p.spRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
-% 
+%
 w.stopCounter = p.stopCounter;
 
 % save
