@@ -18,10 +18,8 @@ global a w h p;
 a.act = zeros(p.mvRange,1);
 a.dfRwd = 0;
 a.Rwd = 0;
-
-% real state
 w.rS.time = 0;
-w.rS.td = 0;
+% w.rS.td = 0;
 w.stateNum = -1;
 
 % decide the number of items to generate

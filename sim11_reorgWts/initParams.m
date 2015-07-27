@@ -21,11 +21,11 @@ p.maxTeachTrial = 100;
 
 
 %% counting specific
-% size of the state space and percetual span
+% size of the state space 
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 10; 
+p.mvRad = 7; 
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
