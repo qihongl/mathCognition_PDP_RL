@@ -26,7 +26,6 @@ w.stateNum = -1;
 
 % decide the number of items to generate
 w.nItems = generateNum(p.maxItems);
-w.nItems = 5;
 
 % generate items in space
 w.rS.targPos = itemGen(w.nItems);
@@ -42,8 +41,8 @@ w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
 w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
 
 % view state or the perceived state
-w.vS.oldInput = zeros(1,p.spRange);
-w.vS.visInput = zeros(1,p.spRange);
+w.vS.oldInput = zeros(1,p.mvRange);
+w.vS.visInput = zeros(1,p.mvRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 

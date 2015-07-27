@@ -1,16 +1,16 @@
-function [cumVisualPattern] = sumMultiItem(targPos, sd)
+function [cumVisualPattern] = getVisualInput()
 % this function generate cumulative input patterns for multiple objects
 global p w;
 
-% if sd == 0
-%     error('Invalid Input: sd cannot be zero!');
+% if w.vS.sd == 0
+%     error('Invalid Input: w.vS.sd cannot be zero!');
 % end
 
 % preallocation
-visInput = nan(w.nItems, p.spRange);
+visInput = nan(w.nItems, p.mvRange);
 % generate visual input for every item
 for i = 1 : w.nItems
-    visInput(i,:) = normpdf(-p.spRad:p.spRad, targPos(i),sd(i));
+    visInput(i,:) = normpdf(-p.mvRad:p.mvRad, w.vS.targPos(i),w.vS.sd(i));
 end
 % sum all visual input, columnwise
 sumInputs = sum(visInput);

@@ -8,16 +8,16 @@ a.act = a.wts * w.vS.visInput';
 % bias toward action 0 (don't move)
 a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
 % choose among the activation
-a.choice = choose(a.act.^a.smgain);
+if p.teacherForcing 
+    a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1; 
+else
+    a.choice = choose(a.act.^a.smgain);
+end
 w.out.targGuess = a.choice - p.mvRad - 1; % get vS action
 
 %% compute the "moving vector" for eye and hand (in vS)
-if p.forcing
-    w.out.handStep = w.answer.hand(w.stateNum + 1);
-    w.out.eyeStep = w.answer.eye(w.stateNum + 1);
-else
-    w.out.handStep = w.out.targGuess - w.vS.handPos;
-    w.out.eyeStep = w.out.targGuess; % already in eye-centered coordinates
-end
+w.out.handStep = w.out.targGuess - w.vS.handPos;
+w.out.eyeStep = w.out.targGuess; % already in eye-centered coordinates
+
 
 end

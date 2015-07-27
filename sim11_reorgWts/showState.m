@@ -3,18 +3,6 @@ function [ ] = showState( )
 global p w d a;
 % plot rewards over time 
 axes(d.rax);
-% if a.Rwd == p.r.smallNeg 
-%     color = 'c';
-% elseif a.Rwd == p.r.midNeg || a.Rwd == p.r.bigNeg
-%     color = 'b';
-% elseif a.Rwd == p.r.midPos
-%     color = 'y';
-% elseif a.Rwd == p.r.bigPos
-%     color = 'r';
-% else
-%     color = 'k';
-% end 
-
 plot(w.rS.time,a.Rwd,'-*'); hold on;
 ylim(d.rax,[p.r.midNeg p.r.bigPos]); 
 xlim(d.rax,[-0.25,w.rS.time+0.25]);
@@ -42,6 +30,6 @@ end
 
 % plot weights
 axes(d.wax);
-plot(-p.spRad:p.spRad,a.wts);
+plot(-p.mvRad:p.mvRad,a.wts);
 end
 

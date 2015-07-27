@@ -25,7 +25,7 @@ while ~(w.done) && i < p.maxIter
     i = i+1;
     %% teaching mode, executed when redo is needed
     if p.teachingModeOn && p.teach && w.redo
-%         fprintf('.');
+        fprintf('.');
         % re-initialize the world if REDO
         reinitState();
         updateState();
@@ -47,8 +47,10 @@ results.steps = i;
 results.h = h;
 results.a = a;
 
-if w.nItems + 1 ~= w.stateNum
-    warning('?')
+if p.teacherForcing
+    if w.nItems + 1 ~= w.stateNum
+        warning('?')
+    end
 end
 
 

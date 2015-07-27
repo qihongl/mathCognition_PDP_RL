@@ -15,7 +15,7 @@ p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
 p.teachingModeOn = 0;
-p.forcing = 0;
+p.teacherForcing = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
@@ -25,7 +25,7 @@ p.maxTeachTrial = 100;
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 7; 
+p.mvRad = 10; 
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment
@@ -46,7 +46,7 @@ p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values 
-a.wts = randsmall(p.mvRange,p.spRange);
+a.wts = randsmall(p.mvRange,p.mvRange);
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
