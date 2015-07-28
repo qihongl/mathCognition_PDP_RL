@@ -3,7 +3,7 @@ function [ ] = updateState()
 %this function uses the real state to update the internal state
 %after Act is called to execute the hand or eye movement action
 
-global w a h p;
+global w h p;
 
 %% compute the relative locations
 % the relative locations of eye and hand
@@ -15,15 +15,12 @@ w.vS.handPos = w.rS.handPos - w.rS.eyePos;
 w.vS.targPos = round(w.rS.targPos - w.rS.eyePos);
 
 % the error depends on the distance between target and fixation
-sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
-sd(sd < p.wf) = p.wf;
+w.vS.sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
+w.vS.sd(w.vS.sd < p.wf) = p.wf;
 
 %% Guanssian representation of visual input
 w.vS.oldInput = w.vS.visInput;
-w.vS.visInput = sumMultiItem(w.vS.targPos,sd);
-
-w.rS.aptargPos = w.vS.targPos + w.rS.eyePos;
-w.rS.visInput = sumMultiItem(w.rS.aptargPos,sd);
+w.vS.visInput = getVisualInput();
 
 % save the history
 w.stateNum = w.stateNum + 1;

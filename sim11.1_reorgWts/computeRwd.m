@@ -1,6 +1,6 @@
 function Rwd = computeRwd()
 %% this function controls the reward policy
-global w a p;
+global w p;
 w.actionCorrect = true;
 % if there is remaining items
 if targetRemain()

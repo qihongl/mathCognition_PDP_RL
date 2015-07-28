@@ -8,7 +8,7 @@ end
 % number of questions
 if plot
     showPlot = 1;
-    numQs = 5;
+    numQs = 10;
 else 
     showPlot = 0;
     numQs = 1000;
@@ -36,15 +36,10 @@ loadParams(record);
 score = cell(1,numQs);
 fprintf('Start testing: %d questions\n', numQs)
 for i = 1: numQs
+    % progress bar
+    fprintf('%d\n', i)
     % test the model 
     score{i} = testModel(showPlot);
-    
-    % progress bar
-    if mod(i - 1,100) == 0
-        fprintf('\n%1.f',i/100);
-    else 
-        fprintf('.');
-    end
 end
 fprintf('\n')
 

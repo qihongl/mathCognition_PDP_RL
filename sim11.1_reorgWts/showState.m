@@ -42,6 +42,6 @@ end
 
 % plot weights
 axes(d.wax);
-plot(-p.spRad:p.spRad,a.wts);
+plot(-p.eyeRad:p.eyeRad,a.wts);
 end
 

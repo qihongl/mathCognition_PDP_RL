@@ -19,7 +19,6 @@ p.teacherForcing = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
-
 %% counting specific
 % size of the state space and percetual span
 p.spRad = 40;
@@ -29,7 +28,6 @@ p.mvRad = 7;
 p.mvRange = p.mvRad * 2 + 1;
 p.eyeRad = 15; 
 p.eyeRange = p.eyeRad * 2 + 1;
-
 
 % number of items in the environment
 p.maxItems = 7;         % max number of items

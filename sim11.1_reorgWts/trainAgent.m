@@ -2,14 +2,15 @@
 function [record] = trainAgent(epoch)
 %% This function trains the network n trials
 % initialize parameters
-global p a;
+global p a w;
 initParams(epoch);
 
 % preallocate
 record.a = cell(1,epoch);
 record.steps = nan(1,epoch);
-% record.indices = cell(1,epoch);
-% record.completed = false(1,epoch);
+record.indices = cell(1,epoch);
+record.completed = false(1,epoch);
+
 % train the model for n trials
 fprintf('%s\n', pwd);
 fprintf('Start training for %d epochs\n', epoch);
@@ -23,10 +24,10 @@ for i = 1:p.runs
     end
     % save performance
     record.steps(i) = result.steps;
-%     record.indices{i} = result.indices;
-%     if w.nItems == length(getOrder(record.indices{i}))
-%         record.completed(i) = true;
-%     end
+    record.indices{i} = result.indices;
+    if w.nItems == length(getNonzeros(record.indices{i}))
+        record.completed(i) = true;
+    end
 end
 % save parameters
 record.a = result.a;

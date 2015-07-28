@@ -10,8 +10,8 @@ completed = false(1,numQs);
 % process the data 
 for i = 1 : length(score)
     steps(i) = score{i}.steps;
-    orders{i} = getOrder(score{i}.indices);
-    if ~ismonotonic(getOrder(score{i}.indices))
+    orders{i} = getNonzeros(score{i}.indices);
+    if ~ismonotonic(getNonzeros(score{i}.indices))
         orderCorrect(i) = false;
     end
     numSkips(i) = detectSkip(orders{i});
