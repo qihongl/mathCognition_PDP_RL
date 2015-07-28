@@ -19,14 +19,15 @@ p.teacherForcing = 1;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
-
 %% counting specific
 % size of the state space 
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
-% the max unit that the model can move
-p.mvRad = 8; 
+% the max distance for hand and eye movement
+p.mvRad = 7; 
 p.mvRange = p.mvRad * 2 + 1;
+p.eyeRad = 15; 
+p.eyeRange = p.eyeRad * 2 + 1;
 
 % number of items in the environment
 p.maxItems = 7;         % max number of items
@@ -46,7 +47,7 @@ p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values 
-a.wts = randsmall(p.mvRange,p.mvRange);
+a.wts = randsmall(p.mvRange, p.eyeRange);
 a.bias = 0.1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end

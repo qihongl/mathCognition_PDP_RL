@@ -7,10 +7,10 @@ global p w;
 % end
 
 % preallocation
-visInput = nan(w.nItems, p.mvRange);
+visInput = nan(w.nItems, p.eyeRange);
 % generate visual input for every item
 for i = 1 : w.nItems
-    visInput(i,:) = normpdf(-p.mvRad:p.mvRad, w.vS.targPos(i),w.vS.sd(i));
+    visInput(i,:) = normpdf(-p.eyeRad:p.eyeRad, w.vS.targPos(i),w.vS.sd(i));
 end
 % sum all visual input, columnwise
 sumInputs = sum(visInput);
