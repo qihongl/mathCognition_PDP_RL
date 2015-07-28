@@ -11,7 +11,7 @@ if plot
     numQs = 10;
 else 
     showPlot = 0;
-    numQs = 1000;
+    numQs = 500;
 end
 
 %% Construct data path

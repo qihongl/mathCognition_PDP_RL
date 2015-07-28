@@ -20,5 +20,3 @@ initPlot_learning()
 % plot the complete rate over time
 plotPooledScore(record)
 
-
-
