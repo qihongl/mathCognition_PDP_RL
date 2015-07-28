@@ -22,8 +22,8 @@ sd(sd < p.wf) = p.wf;
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = sumMultiItem(w.vS.targPos,sd);
 
-w.rS.aptargPos = w.vS.targPos + w.rS.eyePos;
-w.rS.visInput = sumMultiItem(w.rS.aptargPos,sd);
+% w.rS.aptargPos = w.vS.targPos + w.rS.eyePos;
+% w.rS.visInput = sumMultiItem(w.rS.aptargPos,sd);
 
 % save the history
 w.stateNum = w.stateNum + 1;
