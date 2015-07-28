@@ -4,7 +4,7 @@ function [record] = trainAgent(epoch)
 % initialize parameters
 global p d a;
 initParams(epoch);
-initPlot();
+% initPlot();
 
 % preallocate
 record.a = cell(1,epoch);
