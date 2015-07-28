@@ -7,9 +7,10 @@ initParams(epoch);
 
 % preallocate
 record.a = cell(1,epoch);
-record.steps = nan(1,epoch);
-record.indices = cell(1,epoch);
-record.completed = false(1,epoch);
+record.s.steps = nan(1,epoch);
+record.s.indices = cell(1,epoch);
+record.s.completed = false(1,epoch);
+record.s.numItemsShowed = zeros(1,epoch);
 
 % train the model for n trials
 fprintf('%s\n', pwd);
@@ -23,10 +24,11 @@ for i = 1:p.runs
         a.smgain = a.smgain + p.smirate;
     end
     % save performance
-    record.steps(i) = result.steps;
-    record.indices{i} = result.indices;
-    if w.nItems == length(getNonzeros(record.indices{i}))
-        record.completed(i) = true;
+    record.s.steps(i) = result.steps;
+    record.s.indices{i} = result.indices;
+    record.s.numItemsShowed(i) = w.nItems;
+    if w.nItems == length(getNonzeros(record.s.indices{i}))
+        record.s.completed(i) = true;
     end
 end
 % save parameters
