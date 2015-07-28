@@ -25,7 +25,7 @@ p.maxTeachTrial = 100;
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
 % the max unit that the model can move
-p.mvRad = 7; 
+p.mvRad = 8; 
 p.mvRange = p.mvRad * 2 + 1;
 
 % number of items in the environment

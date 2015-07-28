@@ -6,18 +6,6 @@ w.actionCorrect = true;
 if targetRemain()
     if w.out.handStep == 0
         Rwd = p.r.smallNeg;
-        % only count consecutive stop! 
-%         if h(w.stateNum).w.out.handStep == 0;
-%             w.stopCounter = w.stopCounter - 1;  
-%         else 
-%             w.stopCounter = p.stopCounter;
-%         end
-%         % if stop too long, also termiante
-%         if w.stopCounter == 0
-%             w.done = true;
-%             Rwd = p.r.bigNeg; 
-%             w.actionCorrect = false;
-%         end
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
     elseif objIsTouched         % touching touched object
