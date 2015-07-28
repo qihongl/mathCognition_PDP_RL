@@ -5,12 +5,12 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .2;         % noise magnitude
-p.lrate = .01;       % learning rate
+p.wf = .2;          % noise magnitude
+p.lrate = .01;      % learning rate
 p.runs = epoch;     % training upper lim 
-p.gamma = 1;       % discount factor 
+p.gamma = 1;        % discount factor 
 p.smirate = .001;   % soft max rate
-p.smi_upperLim = 10; % the upper limit of the smi rate
+p.smi_upperLim = 10;% the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
@@ -36,7 +36,7 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-% p.r.bigNeg = - 5;
+p.r.bigNeg = - 5;
 p.r.midPos = 5;
 p.r.bigPos = 10;
 
