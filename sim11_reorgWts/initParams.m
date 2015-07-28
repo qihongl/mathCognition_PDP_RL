@@ -47,7 +47,7 @@ p.stopCounter = 3;
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.mvRange);
-a.bias = .1;     % bias toward not moving (action 0)
+a.bias = 0.1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
 

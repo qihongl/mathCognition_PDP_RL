@@ -4,7 +4,6 @@ global w p h;
 w.actionCorrect = true;
 % if there is remaining items
 if targetRemain()
-%     if a.choice == p.mvRad+1    % not moving
     if w.out.handStep == 0
         Rwd = p.r.smallNeg;
         % only count consecutive stop! 
@@ -17,7 +16,7 @@ if targetRemain()
 %         if w.stopCounter == 0
 %             w.done = true;
 %             Rwd = p.r.bigNeg; 
-            w.actionCorrect = false;
+%             w.actionCorrect = false;
 %         end
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
@@ -34,7 +33,6 @@ if targetRemain()
     end
 else    % if all targets were touched
     if w.out.handStep == 0
-%     if a.choice == p.mvRad + 1
         Rwd = p.r.bigPos;
         w.done = true;
     else

@@ -52,6 +52,4 @@ if p.teacherForcing
         warning('?')
     end
 end
-
-
 end
