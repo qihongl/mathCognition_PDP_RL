@@ -8,7 +8,7 @@ save('record','record');
 
 % eval the performance
 quiz()
-checkLearning()
+% checkLearning()
 
 beep % notice me that the program was ended
 end
