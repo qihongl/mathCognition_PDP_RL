@@ -1,39 +1,35 @@
-function Rwd = computeRwd()
+function rwd = computeRwd2()
 %% this function controls the reward policy
 global w p h;
+
 w.actionCorrect = true;
-% if there is remaining items
-if targetRemain()
-    if w.out.handStep == 0      % not moving
-        Rwd = p.r.smallNeg;
-        % if stop too long, also termiante
-%         w.stopCounter = w.stopCounter - 1;  % TODO: ONLY count consecutive stop!
-%         if w.stopCounter == 0
-%             w.done = true;
-%             Rwd = p.r.bigNeg;
-%             w.actionCorrect = false;
-%         end
-    elseif ~isTouchingObj       % touching empty spot
-        Rwd = p.r.smallNeg;
-    elseif objIsTouched         % touching touched object
-        Rwd = p.r.midNeg;
-        w.actionCorrect = false;
-    elseif ~isNext  % not touching left most untouched obj
-        Rwd = p.r.midNeg;
-        w.actionCorrect = false;
-        w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
-    else            % CORRECT: touching left most untouched obj
-        Rwd = p.r.midPos;
-        w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+if isNext()
+    w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+    rwd = p.r.midPos;
+    if ~targetRemain()
+        rwd = p.r.midPos;
+        w.done = true; 
     end
-else    % if all targets were touched
-    if w.out.handStep == 0
-        Rwd = p.r.bigPos;
-        w.done = true;
+else 
+    if w.rS.handPos < nextObjPosition
+        rwd = p.r.smallNeg;
     else
-        Rwd = p.r.smallNeg;
+        rwd = p.r.midNeg;
     end
 end
+    
+
+% if touch next item 
+% 	rwd = big pos 
+% 	if no more item 
+% 		stop 
+% if touch < next 
+% 	rwd = neg 
+% if touch > next 
+% 	rwd = neg 
+% 	stop 
+
+
 
 
 end % end of the function

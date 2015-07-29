@@ -1,0 +1,14 @@
+
+if touch next item 
+	rwd = big pos 
+	if no more item 
+		stop 
+if touch < next 
+	rwd = neg 
+if touch > next 
+	rwd = neg 
+	stop 
+
+
+
+CONCLUSION: this doesn’t solve the problem 

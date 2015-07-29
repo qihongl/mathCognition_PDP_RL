@@ -5,7 +5,7 @@ function [ ] = updateWeights()
 % 2. the weight update
 % 3. activate the "teaching"
 global a w p;
-%% compute the reward values according to the reward policy 
+%% compute the reward values according to the reward policy
 Rwd = computeRwd();
 
 %% assign the reward values
@@ -18,10 +18,8 @@ inc = p.lrate*(a.dfRwd - a.act(a.choice));          % TODO consider the update r
 a.wts(a.choice,:) = a.wts(a.choice,:) + inc*w.vS.oldInput;
 
 %% start over if an incorrect action was made
-if p.teachingModeOn
-    if ~w.actionCorrect
-        w.redo = true;
-    end
+if p.teachingModeOn && ~w.actionCorrect
+    w.redo = true;
 end
 
 end
