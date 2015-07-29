@@ -6,7 +6,7 @@ global p a
 
 %% modeling parameters 
 p.wf = .2;         % noise magnitude
-p.lrate = .01;       % learning rate
+p.lrate = .005;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.gamma = 1;       % discount factor 
 p.smirate = .001;   % soft max rate
