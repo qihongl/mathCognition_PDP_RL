@@ -17,7 +17,7 @@ end
 %% Construct data path
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim13_oneItem';
+PATH.DIR = 'sim14_forcing+';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data

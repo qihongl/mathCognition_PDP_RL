@@ -2,7 +2,7 @@
 function [ ] = Act( )
 % here we act according to the action selected
 % by selectAction
-global w p;
+global w;
 %% perform the actions 
 % update the real locations of hand and eye
 w.rS.handPos = w.rS.handPos + w.out.handStep;

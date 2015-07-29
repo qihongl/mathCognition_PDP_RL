@@ -16,12 +16,8 @@ w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
 % the error depends on the distance between target and fixation
 w.vS.sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
 w.vS.sd(w.vS.sd < p.wf) = p.wf;
-% w.vS.sd(w.vS.targPos == 0) = 0.01;  % if on the obj., almost 0 noise
-% if any(w.vS.targPos == 0)
-%     PAUSE;
-% end
 
-%% Guassian representation of visual input
+%% Gaussian representation of visual input
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = getVisualInput();
 

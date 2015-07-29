@@ -7,7 +7,7 @@ a.act = a.wts * w.vS.visInput';
 % inject bias to action 0 (don't move)
 a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
 % choose among the activation
-if p.teacherForcing 
+if w.teacherForcing
     a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1; 
 else
     a.choice = choose(a.act.^a.smgain);

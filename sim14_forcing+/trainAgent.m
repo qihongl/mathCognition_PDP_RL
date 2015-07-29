@@ -17,6 +17,12 @@ fprintf('%s\n', pwd);
 fprintf('Start training for %d epochs\n', epoch);
 for i = 1:p.runs
     fprintf('%d\n', i )
+    % alternate between forcing and self exp
+%     if mod(i,2) == 0 
+%         p.teacherForcing = true; 
+%     else 
+%         p.teacherForcing = false; 
+%     end
     %% run the model 
     result = runAgent();
     % increment the softmax scaling factor

@@ -3,7 +3,7 @@ clear all; clear global;
 global plots p;
 %% construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim13_oneItem/';
+PATH.DIR = 'sim14_forcing+/';
 % PATH.DATA = 'data/record_noteach.mat';
 PATH.DATA = 'record.mat';
 

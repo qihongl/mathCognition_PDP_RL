@@ -25,12 +25,9 @@ w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
 w.done = false;
 
-% teaching specific
-w.redo = false;
-
 % initialize the location of hand and eye
-w.rS.eyePos  = min(w.rS.targPos) - (randi(p.maxSpacing));
-w.rS.handPos = min(w.rS.targPos) - (randi(p.maxSpacing));
+w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
+w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
 
 % view state or the perceived state
 w.vS.oldInput = zeros(1, p.eyeRange);
@@ -40,6 +37,11 @@ w.out.eyeStep = 0;
 
 % copy the stop counter value
 w.stopCounter = p.stopCounter;
+
+% teaching specific
+w.redo = false;
+w.maxTeachTrial = p.maxTeachTrial;
+w.teacherForcing = p.teacherForcing; 
 
 % save
 h = struct('w',w);
