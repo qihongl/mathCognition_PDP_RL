@@ -19,7 +19,7 @@ p.teacherForcing = 0;
 p.teach = 1;
 p.maxTeachTrial = 100;
 
-%% counting specific
+%% range of the state space, eye, and hand
 % size of the state space and percetual span
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
@@ -29,8 +29,8 @@ p.mvRange = p.mvRad * 2 + 1;
 p.eyeRad = 15; 
 p.eyeRange = p.eyeRad * 2 + 1;
 
-% number of items in the environment
-p.maxItems = 10;         % max number of items
+%% number of items, and their positions
+p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
@@ -42,13 +42,13 @@ p.r.midPos = 5;
 p.r.bigPos = 10;
 
 %% actively stop the task
-% if the model doesn't move for 5 steps, terminate the task
+% if the model doesn't move in N steps, terminate the task
 p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values 
 a.wts = randsmall(p.mvRange,p.eyeRange);
-a.bias = .1;     % bias toward not moving (action 0)
-a.smgain = 1;
+a.bias = .1;    % bias toward not moving (action 0)
+a.smgain = 1;   % smi rate
 end
 
