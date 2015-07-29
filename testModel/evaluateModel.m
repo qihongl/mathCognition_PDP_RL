@@ -35,7 +35,7 @@ completeRate = sum(completed)/numQs;
 numItemsFreq = tabulate(numItemsShowed);
 
 % table showing performance for every number
-table = [(1:p.maxItems)' numItemsFreq(:,2:3) completedTrialsForEachNum' completedTrialsForEachNum'./numItemsFreq(:,2)]
+table = [(1:p.maxItems)' numItemsFreq(:,2:3) completedTrialsForEachNum' completedTrialsForEachNum'./numItemsFreq(:,2)];
 
 %% print results
 tt = sprintf('Performance on %d questions\n', numQs);
@@ -46,6 +46,9 @@ fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
 fprintf('Percent trial completed: \t%.2f\n' , completeRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
+
+fprintf('Performance by cardinality \n')
+table
 
 end
 

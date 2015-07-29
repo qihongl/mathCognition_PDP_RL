@@ -8,16 +8,16 @@ end
 % number of questions
 if plot
     showPlot = 1;
-    numQs = 10;
+    numQs = 1;
 else 
     showPlot = 0;
-    numQs = 1000;
+    numQs = 500;
 end
 
 %% Construct data path
 % construct the path to the data files
 PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim11.1_reorgWts';
+PATH.DIR = 'sim13_oneItem';
 % PATH.DATA = 'smg/record_smg1.mat';
 PATH.DATA = 'record.mat';
 % get the data
@@ -44,8 +44,9 @@ end
 fprintf('\n')
 
 %% show the quiz performance 
-evaluateModel(score, numQs)
-
+if ~showPlot
+    evaluateModel(score, numQs)
+end
 % undo add path, not to mix up the functions 
 rmpath([PATH.ROOT PATH.DIR])
 end
