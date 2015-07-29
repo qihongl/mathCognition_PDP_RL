@@ -40,7 +40,6 @@ else    % if all targets were touched
     end
 end
 
-
 end % end of the function
 
 

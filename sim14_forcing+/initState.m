@@ -4,15 +4,12 @@ function [ ] = initState( )
 global a w h p;
 
 %realState is characterized by the position of a target to touch,
-%position of eye, and position of hand
-%in a 101-pixel one-d space
+%position of eye, and position of hand 1-d space
 
 %viewedState is the input I have given that my eye and hand are
 %at particular positions w.r.t. the realState of the world
 %for now we treat hand position as a single value rather than as a
 %distribution over possible values in a map.
-
-%actions consist of moving the eye OR the hand a certain distance
 
 %% specify the parameters
 a.act = zeros(p.mvRange,1);
@@ -28,6 +25,9 @@ w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
 w.done = false;
 
+% teaching specific
+w.redo = false;
+
 % initialize the location of hand and eye
 w.rS.eyePos  = min(w.rS.targPos) - (randi(p.maxSpacing));
 w.rS.handPos = min(w.rS.targPos) - (randi(p.maxSpacing));
@@ -40,10 +40,6 @@ w.out.eyeStep = 0;
 
 % copy the stop counter value
 w.stopCounter = p.stopCounter;
-
-% teaching specific
-w.redo = false;
-w.maxTeachTrial = p.maxTeachTrial;
 
 % save
 h = struct('w',w);

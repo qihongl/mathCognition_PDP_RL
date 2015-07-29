@@ -1,14 +1,18 @@
 % written by professor Jay McClelland
 function [ results ] = runAgent()
 global a w h p;
+% rng(seed)
+% w.seed = seed;
 
 %% initialize the state
 initState();
 updateState();
-w.answer = computeAnswer(w);    % compute the true answers
+% compute the true answers
+w.answer = computeAnswer(w);
 
 %% training the model once
 i = 0;
+teachTrial = 0;
 indices = zeros(1,p.maxIter);
 while ~(w.done) && i < p.maxIter
     %% choose action 
@@ -21,13 +25,15 @@ while ~(w.done) && i < p.maxIter
     i = i+1;
     %% teaching mode, executed when redo is needed
     if p.teachingModeOn && p.teach && w.redo
-        fprintf('.');
+%         fprintf('.');
         % re-initialize the world if REDO
-        reinitState();  i = 0;
+        reinitState();
         updateState();
-        w.maxTeachTrial = w.maxTeachTrial - 1;  % decrement teacher's patience
-        if w.maxTeachTrial == 0 
-            p.teach = false;
+        i = 0;
+        teachTrial = teachTrial + 1;
+        if teachTrial > p.maxTeachTrial
+            % teacher give up if the model don't learn in 100 iterations
+            p.teach = 0;
         end
     end
 end
