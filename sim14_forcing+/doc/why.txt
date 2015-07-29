@@ -1,0 +1,12 @@
+OVERALL GOAL: implement teacher forcing in a more reasonable way: 
+			- alternate teacher forcing and self exploration
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: 
+if there is always 1 item only, the model is also to learn the task, but not so good
+
+PROBLEM: 
+
+TRY: 
