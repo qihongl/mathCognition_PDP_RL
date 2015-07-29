@@ -33,10 +33,11 @@ axes(d.allWeightsAx);
 plot(-p.eyeRad:p.eyeRad,a.wts);
 
 % plot weights around fovea
+plotRange = 4; 
 axes(d.someWeightsAx)
-midIdx = (p.eyeRad - 5) : (p.eyeRad + 5);
-plot((a.wts(:,midIdx))')
-legend_str = num2str(midIdx');
+midIdx = (p.mvRad - plotRange) : (p.mvRad + plotRange);
+plot((a.wts(midIdx,:))')
+legend_str = num2str((midIdx-p.mvRad)');
 legend(legend_str,'location','NorthWest')
 end
 

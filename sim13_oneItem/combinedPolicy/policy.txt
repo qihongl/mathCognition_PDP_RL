@@ -1,0 +1,4 @@
+in additional to the old policy, midNeg if the model passes the left most untouched
+
+
+CONCLUSION: this doesn’t solve the problem 
