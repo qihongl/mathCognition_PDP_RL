@@ -16,10 +16,10 @@ if targetRemain()
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
         % if skip the left most untouched
-        if w.rS.handPos > nextObjPosition()
-            Rwd = p.r.midNeg;
-            w.actionCorrect = false;
-        end
+%         if w.rS.handPos > nextObjPosition()
+%             Rwd = p.r.midNeg;
+%             w.actionCorrect = false;
+%         end
     elseif objIsTouched         % touching touched object
         Rwd = p.r.midNeg;
         w.actionCorrect = false;
