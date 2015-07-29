@@ -11,7 +11,7 @@ if plot
     numQs = 10;
 else 
     showPlot = 0;
-    numQs = 500;
+    numQs = 1000;
 end
 
 %% Construct data path
@@ -42,7 +42,6 @@ for i = 1: numQs
     score{i} = testModel(showPlot);
 end
 fprintf('\n')
-
 
 %% show the quiz performance 
 evaluateModel(score, numQs)

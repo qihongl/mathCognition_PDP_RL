@@ -31,6 +31,7 @@ while ~(w.done) && i < 100
     end
     % record the action sequence 
     score.indices(i+1) = recordAction();
+    score.nItemsShowed = w.nItems;
     i = i+1;
 end
 % record the steps used

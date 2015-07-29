@@ -1,17 +1,16 @@
 function Rwd = computeRwd()
 %% this function controls the reward policy
-global w p;
+global w p h;
 w.actionCorrect = true;
 % if there is remaining items
 if targetRemain()
-%     if a.choice == p.mvRad+1    % not moving
-    if w.out.handStep == 0
+    if w.out.handStep == 0      % not moving
         Rwd = p.r.smallNeg;
-        % if stop too long, also termiante
-%         w.stopCounter = w.stopCounter - 1;  % TODO: ONLY count consecutive stop! 
+%         % if stop too long, also termiante
+%         w.stopCounter = w.stopCounter - 1;  % TODO: ONLY count consecutive stop!
 %         if w.stopCounter == 0
 %             w.done = true;
-%             Rwd = p.r.bigNeg; 
+%             Rwd = p.r.bigNeg;
 %             w.actionCorrect = false;
 %         end
     elseif ~isTouchingObj       % touching empty spot
@@ -29,7 +28,6 @@ if targetRemain()
     end
 else    % if all targets were touched
     if w.out.handStep == 0
-%     if a.choice == p.mvRad + 1
         Rwd = p.r.bigPos;
         w.done = true;
     else

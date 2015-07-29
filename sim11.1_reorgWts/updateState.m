@@ -18,7 +18,7 @@ w.vS.targPos = round(w.rS.targPos - w.rS.eyePos);
 w.vS.sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);
 w.vS.sd(w.vS.sd < p.wf) = p.wf;
 
-%% Guanssian representation of visual input
+%% Guassian representation of visual input
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = getVisualInput();
 
