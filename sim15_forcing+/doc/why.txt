@@ -1,0 +1,12 @@
+OVERALL GOAL: 
+Experiment with teacher forcing 
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS: 
+
+
+PROBLEM: 
+
+TRY: 
