@@ -1,11 +1,15 @@
 % written by professor Jay McClelland
-function [ ] = showState( )
+function [ ] = showState()
 global p w d a;
+FONTSIZE = 13; 
 % plot rewards over time 
 axes(d.rwd);
 plot(w.rS.time,a.Rwd,'-*'); hold on;
 ylim(d.rwd,[p.r.bigNeg p.r.bigPos]); 
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
+title(d.rwd, 'reward history', 'fontsize', FONTSIZE)
+xlabel(d.rwd, 'time', 'fontsize', FONTSIZE)
+ylabel(d.rwd, 'reward value', 'fontsize', FONTSIZE)
 
 % plot the history of eye and hand positions
 t = w.rS.time;
@@ -27,14 +31,9 @@ for i = 1 : w.nItems
     end
     text(w.rS.targPos(i),t,symbol,'HorizontalAlignment','center');
 end
-
-% plot all weights
-axes(d.allWeights);
-plot(-p.eyeRad:p.eyeRad,a.wts);
-
-% plot weights around fovea
-axes(d.heatMap)
-imagesc(a.wts)
+title(d.history, 'action history', 'fontsize', FONTSIZE)
+xlabel(d.history, 'position', 'fontsize', FONTSIZE)
+ylabel(d.history, 'time', 'fontsize', FONTSIZE)
 
 end
 

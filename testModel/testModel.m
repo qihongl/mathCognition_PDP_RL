@@ -34,6 +34,10 @@ while ~(w.done) && i < 100
     score.nItemsShowed = w.nItems;
     i = i+1;
 end
+if showPlot
+    % plot the weights 
+    showWeights();
+end
 % record the steps used
 score.steps = i;
 % check if the model completed the task
