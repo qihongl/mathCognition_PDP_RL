@@ -16,18 +16,22 @@ end
 
 %% Construct data path
 % construct the path to the data files
-PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-PATH.DIR = 'sim14_cdf';
+% PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
+% PATH.DIR = 'sim14_cdf';
 % PATH.DATA = 'smg/record_smg1.mat';
+% load([PATH.ROOT PATH.DIR '/' PATH.DATA], 'record')
+
+% addpath([PATH.ROOT PATH.DIR])
 PATH.DATA = 'record.mat';
-% get the data
-load([PATH.ROOT PATH.DIR '/' PATH.DATA], 'record')
+load([pwd '/' PATH.DATA], 'record')
 % add path, in order to use its functions
-addpath([PATH.ROOT PATH.DIR])
+addpath(pwd)
+
+
 
 
 %% load the data
-fprintf('Testing the model from "%score"\n', PATH.DIR);
+
 global p a;
 loadParams(record);
 
@@ -48,5 +52,6 @@ if ~showPlot
     evaluateModel(score, numQs)
 end
 % undo add path, not to mix up the functions 
-rmpath([PATH.ROOT PATH.DIR])
+% rmpath([PATH.ROOT PATH.DIR])
+rmpath(pwd)
 end
