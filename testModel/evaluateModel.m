@@ -50,13 +50,14 @@ completeRate = sum(completed)/numQs;
 %% print results
 tt = sprintf('Performance on %d questions\n', numQs);
 fprintf('------------------------------------------------\n')
+fprintf('Directory: "%score"\n', pwd);
 fprintf(tt)
 fprintf('------------------------------------------------\n')
 fprintf('Average steps used: \t\t%.3f\n',meanSteps )
 fprintf('Percent trial monotonic: \t%.2f\n' , monotonicRate)
 fprintf('Percent trial completed: \t%.2f\n' , completeRate)
 fprintf('Percent trial with skip: \t%.2f\n' , skipRate)
-fprintf('-')
+fprintf('-\n')
 fprintf('Performance by cardinality: \n')
 fprintf('nItems\t occurance\tcompletionRate\t meanStepsUsed\n')
 for n = 1 : p.maxItems
