@@ -5,35 +5,27 @@ if nargin == 0
     plot = false;
 end 
 %% Parameters
-% number of questions
-if plot
-    showPlot = 1;
-    numQs = 1;
-else 
-    showPlot = 0;
-    numQs = 500;
-end
-
-%% Construct data path
-% construct the path to the data files
-% PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
-% PATH.DIR = 'sim14_cdf';
-% PATH.DATA = 'smg/record_smg1.mat';
-% load([PATH.ROOT PATH.DIR '/' PATH.DATA], 'record')
-
-% addpath([PATH.ROOT PATH.DIR])
+dfNumQs = 500; 
+dfNumPlots = 1; 
+%% Get data from the current directory 
 PATH.DATA = 'record.mat';
 load([pwd '/' PATH.DATA], 'record')
 % add path, in order to use its functions
 addpath(pwd)
 
-
-
-
 %% load the data
-
 global p a;
 loadParams(record);
+
+%% How many questions to ask, how many plots to show
+% number of questions
+if plot
+    showPlot = 1;
+    numQs = dfNumPlots;
+else 
+    showPlot = 0;
+    numQs = dfNumQs;
+end
 
 %% Quiz the model 
 % preallocate 
@@ -51,7 +43,18 @@ fprintf('\n')
 if ~showPlot
     evaluateModel(score, numQs)
 end
+
 % undo add path, not to mix up the functions 
-% rmpath([PATH.ROOT PATH.DIR])
 rmpath(pwd)
 end
+
+
+%% Construct data path
+% construct the path to the data files
+% PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
+% PATH.DIR = 'sim14_cdf';
+% PATH.DATA = 'smg/record_smg1.mat';
+% load([PATH.ROOT PATH.DIR '/' PATH.DATA], 'record')
+% addpath([PATH.ROOT PATH.DIR])
+
+% rmpath([PATH.ROOT PATH.DIR])
