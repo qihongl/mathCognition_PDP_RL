@@ -1,4 +1,4 @@
-function [ ] = evaluateModel( score, numQs )
+function [finalScore] = evaluateModel( score, numQs )
 %EVALUATEMODEL evalute the model's performance on the quiz test set
 global p; 
 % resource preallocation
@@ -69,5 +69,17 @@ for n = 1 : p.maxItems
 end
 
 fprintf('------------------------------------------------\n')
+
+%% save results 
+finalScore.numQs = numQs;
+finalScore.meanSteps = meanSteps;
+finalScore.monotonicRate = monotonicRate;
+finalScore.completeRate = completeRate;
+finalScore.skipRate = skipRate;
+finalScore.numItemsFreq = numItemsFreq;
+finalScore.completedTrialsByCard = completedTrialsByCard;
+finalScore.completeRateByCard = completeRateByCard;
+finalScore.stepsByCard = stepsByCard;
+
 end
 

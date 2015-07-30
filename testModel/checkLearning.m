@@ -2,8 +2,8 @@
 clear all; clear global; 
 global plots p;
 %% get data from the current dir 
-PATH.DATA = 'record.mat';
-load([pwd '/' PATH.DATA], 'record')
+filename = 'record.mat';
+load([pwd '/' filename], 'record')
 fprintf('Directory: %s\n', pwd)
 
 %% Prepare for the ploting
