@@ -10,8 +10,8 @@ d.history = subplot(2,2,2);
 d.allWeights = subplot(2,2,3);
 d.heatMap = subplot(2,2,4);
 
-% % plot
-axes(d.historyAx); cla;
-axes(d.rwdAx); cla;
+% plot
+axes(d.history); cla;
+axes(d.rwd); cla;
 end
 

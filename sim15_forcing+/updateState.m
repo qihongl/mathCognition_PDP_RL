@@ -21,7 +21,7 @@ w.vS.sd(w.vS.targPos == 0) = 0.01;
 %% Gaussian representation of visual input
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = getVisualInput();
-% figure;plot(w.vS.visInput)
+% plot(w.vS.visInput)
 % save the history
 w.stateNum = w.stateNum + 1;
 h(w.stateNum+1).w = w;
