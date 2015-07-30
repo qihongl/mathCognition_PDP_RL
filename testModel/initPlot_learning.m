@@ -3,9 +3,14 @@ function [] = initPlot_learning()
 global plots; 
 
 % CONSTANTS 
-plots.FONTSIZE = 12;
-plots.WHITE_SPACE = 5;
-plots.LENGTH = 100; 
+% for plot 
+plots.FONTSIZE = 14;        % size of the script on the plot 
+plots.WHITE_SPACE = 5;      % default white space on the plot 
+plots.WIDTH = 2;            % width of the line 
+
+% for data analysis 
+plots.LENGTH = 100;         % length of the period
+
 
 
 % name of the plots

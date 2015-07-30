@@ -19,8 +19,7 @@ fprintf('Directory: %s\n', pwd)
 initPlot_learning()
 
 %% plot the performance
-% plot the steps used to complete each trial
-% plotStepsUsed(record)
 % plot the complete rate over time
-plotPooledScore(record)
+poolScore = getPooledScores( record );
+plotPooledScore(record, poolScore)
 
