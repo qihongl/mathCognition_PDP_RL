@@ -5,10 +5,10 @@ global d
 d.fh = figure();
 d.fh.WindowStyle = 'docked';
 % name of the plots
-d.rwdAx = subplot(2,2,1);
-d.historyAx = subplot(2,2,2);
-d.allWeightsAx = subplot(2,2,3);
-d.someWeightsAx = subplot(2,2,4);
+d.rwd = subplot(2,2,1);
+d.history = subplot(2,2,2);
+d.allWeights = subplot(2,2,3);
+d.heatMap = subplot(2,2,4);
 
 % % plot
 axes(d.historyAx); cla;
