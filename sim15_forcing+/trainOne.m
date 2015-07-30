@@ -1,5 +1,5 @@
 % just testing, a short cut for running the model
-function testing(epoch)
+function trainOne(epoch)
 if nargin == 0
     epoch = 5000;
 end
