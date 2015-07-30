@@ -14,10 +14,13 @@ p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
 %% teaching mode
+% controls the redo mode 
 p.teachingModeOn = 0;
-p.teacherForcing = 0;
-p.teach = 1;
 p.maxTeachTrial = 100;
+
+% flag for the teacher forcing mode 
+p.teacherForcingOn = 0;
+
 
 %% counting specific
 % size of the state space and percetual span
@@ -32,7 +35,7 @@ p.eyeRange = p.eyeRad * 2 + 1;
 % number of items in the environment
 p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 2;       % min spacing between neighbouring items
+p.minSpacing = 1;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;

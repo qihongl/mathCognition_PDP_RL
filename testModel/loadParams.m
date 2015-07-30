@@ -7,8 +7,8 @@ p = record.p;
 a = record.a;
 % change parameters
 a.smgain = 10;         
-p.teacherForcing = 0;   % stop teaching
-p.teachingModeOn = 0;
+p.teacherForcingOn = false;   % stop teaching
+p.teachingModeOn = false;
 p.lrate = 0;            % stop learning 
 
 end

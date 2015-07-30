@@ -6,7 +6,7 @@ if nargin == 0
 end 
 %% Parameters
 dfNumQs = 500; 
-dfNumPlots = 1; 
+dfNumPlots = 10; 
 %% Get data from the current directory 
 PATH.DATA = 'record.mat';
 load([pwd '/' PATH.DATA], 'record')
@@ -14,7 +14,6 @@ load([pwd '/' PATH.DATA], 'record')
 addpath(pwd)
 
 %% load the data
-global p a;
 loadParams(record);
 
 %% How many questions to ask, how many plots to show

@@ -1,7 +1,7 @@
 % written by professor Jay McClelland
 function [ ] = initState( )
 
-global a w h p;
+global a w h p mode;
 
 %realState is characterized by the position of a target to touch,
 %position of eye, and position of hand 1-d space
@@ -41,8 +41,12 @@ w.stopCounter = p.stopCounter;
 % teaching specific
 w.redo = false;
 w.maxTeachTrial = p.maxTeachTrial;
-w.teacherForcing = p.teacherForcing; 
-
+mode.teach = true; 
+if p.teacherForcingOn
+    w.teacherForcing = mode.teacherForcing; 
+else 
+    w.teacherForcing = false; 
+end
 % save
 h = struct('w',w);
 end
