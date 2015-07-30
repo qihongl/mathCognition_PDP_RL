@@ -11,7 +11,7 @@ initPlot_learning()
 
 %% Compute the performance 
 pooledScore = getPooledScores(record);
-scoreByCard = getScoresByCard(record);
+% scoreByCard = getScoresByCard(record);
 
 %% Plot the performance
 % plot the complete rate over time
@@ -20,7 +20,7 @@ plotPooledScore(record, pooledScore)
 
 
 
-%% construct the path to the data files
+% %% construct the path to the data files
 % PATH.ROOT = '/Users/Qihong/Dropbox/github/mathCognition/';
 % PATH.DIR = 'sim14_cdf/';
 % % PATH.DATA = 'data/record_noteach.mat';
