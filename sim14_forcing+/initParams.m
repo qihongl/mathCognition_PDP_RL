@@ -5,7 +5,7 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .2;         % noise magnitude
+p.wf = .1;         % noise magnitude
 p.lrate = .005;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.gamma = 1;       % discount factor 
@@ -31,8 +31,8 @@ p.eyeRange = p.eyeRad * 2 + 1;
 
 % number of items in the environment
 p.maxItems = 7;         % max number of items
-p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 2;       % min spacing between neighbouring items
+p.maxSpacing = 6;       % max spacing between neighbouring items
+p.minSpacing = 3;       % min spacing between neighbouring items
 
 %% reward values
 p.r.smallNeg = - 0.05;

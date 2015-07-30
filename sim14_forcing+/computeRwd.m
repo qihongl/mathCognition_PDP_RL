@@ -7,7 +7,9 @@ if targetRemain()
     if w.out.handStep == 0      % not moving
         Rwd = p.r.smallNeg;
         % if stop too long, also termiante
-%         w.stopCounter = w.stopCounter - 1;  % TODO: ONLY count consecutive stop!
+%         if h(w.stateNum).w.out.handStep == 0
+%             w.stopCounter = w.stopCounter - 1;  % only count consecutive stop
+%         end
 %         if w.stopCounter == 0
 %             w.done = true;
 %             Rwd = p.r.bigNeg;

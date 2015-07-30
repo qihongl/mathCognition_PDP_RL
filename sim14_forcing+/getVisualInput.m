@@ -10,10 +10,12 @@ global p w;
 visInput = nan(w.nItems, p.eyeRange);
 % generate visual input for every item
 for i = 1 : w.nItems
-    visInput(i,:) = normpdf(-p.eyeRad:p.eyeRad, w.vS.targPos(i),w.vS.sd(i));
+    cdf_L = normcdf((-p.eyeRad:p.eyeRad) - .5, w.vS.targPos(i),w.vS.sd(i));
+    cdf_R = normcdf((-p.eyeRad:p.eyeRad) + .5, w.vS.targPos(i),w.vS.sd(i));
+    visInput(i,:) = cdf_R - cdf_L;
 end
 % sum all visual input, columnwise
-sumInputs = sum(visInput);
+sumInputs = sum(visInput,1);
 % normalize it so that it sums to 1
 % cumVisualPattern = sumInputs./sum(sumInputs);
 cumVisualPattern = sumInputs;

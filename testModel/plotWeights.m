@@ -1,24 +1,27 @@
-function plotWeights(record)
+function plotWeights(record, plotRange)
+if nargin == 1 
+    plotRange = 4;
+end
 
-% a = 0;
-x = 6:10;
-wts = record.a.wts';
+global a p; 
+a = record.a;
+p = record.p;
 
 % 
-wts = wts(:,x);
+wts = a.wts';
+midIdx = p.mvRad - plotRange :p.mvRad + plotRange;
+% 
+wts = wts(:,midIdx);
 
-% colIdx = sum(wts) == max(sum(wts));
-% idx = true(size(wts,2),1);
-% idx(colIdx) = false;
 plot(wts)
-% 
-% idx(idx == 0) = 1;
-
-title('weights (exclude the largest)');
+%
+xlim([0 2*p.eyeRad+1])
+title('Weights');
 xlabel('visual input layer');
 ylabel('weight values');
 
-legend_str = num2str(x');
+legend_str = num2str((midIdx - p.mvRad)');
 legend(legend_str,'location','NorthEast')
+
 
 end

@@ -8,7 +8,7 @@ end
 % number of questions
 if plot
     showPlot = 1;
-    numQs = 10;
+    numQs = 1;
 else 
     showPlot = 0;
     numQs = 500;
