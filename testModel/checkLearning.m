@@ -10,7 +10,7 @@ fprintf('Directory: %s\n', pwd)
 initPlot_learning()
 
 %% Compute the performance 
-pooledScore = getPooledScores(record);
+pooledScore = getPooledScores(record, plots.LENGTH);
 % scoreByCard = getScoresByCard(record);
 
 %% Plot the performance

@@ -1,9 +1,9 @@
-function [ ps ] = getPooledScores( record )
+function [ ps ] = getPooledScores( record, PERIOD_LENGTH )
 % get pooled performance for every N tirals 
 %% initialization 
-global p plots;
+global p;
 p = record.p;
-period = p.runs / plots.LENGTH;
+period = p.runs / PERIOD_LENGTH;
 
 %% get the data
 % resource preallocation
@@ -23,7 +23,7 @@ end
 %% compute the the performance over time 
 for i = 1 : period
     % get a vector of indices for the current period of time points
-    currentPeriod = (i-1)*plots.LENGTH+1 : i*plots.LENGTH;
+    currentPeriod = (i-1)*PERIOD_LENGTH+1 : i*PERIOD_LENGTH;
     
     % get the completion rate
     completeRate(i) = sum(record.s.completed(currentPeriod));
