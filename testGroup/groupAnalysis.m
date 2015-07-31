@@ -1,7 +1,7 @@
 %% groupAnalysis
 clear all; clear global;
+% initialization
 global p;
-
 p.numDir = 3;
 p.nSubj = 10;
 path.dirName = 'groupData';
@@ -21,7 +21,3 @@ gpData = processGroupQuiz(path);
 deveData = processGroupDeve(path);
 result = meanByCond_deve(deveData);
 plot_meanByCond_deve(result);
-
-
-
-
