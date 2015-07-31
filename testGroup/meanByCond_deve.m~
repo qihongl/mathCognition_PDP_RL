@@ -1,0 +1,14 @@
+function [] = meanByCond_deve( deveData )
+%UNTITLED18 Summary of this function goes here
+%   Detailed explanation goes here
+global p;
+
+for i = 1 : p.numDir
+    for j = 1: p.nSubj
+        
+        deveData{i,j}.completeRate
+        
+    end
+end
+end
+
