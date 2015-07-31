@@ -6,9 +6,9 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;         % noise magnitude
-p.lrate = .005;       % learning rate
+p.lrate = .01;       % learning rate
 p.runs = epoch;     % training upper lim 
-p.gamma = 1;       % discount factor 
+p.gamma = .8;       % discount factor 
 p.smirate = .001;   % soft max rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
@@ -19,7 +19,7 @@ p.teachingModeOn = 0;
 p.maxTeachTrial = 100;
 
 % flag for the teacher forcing mode 
-p.teacherForcingOn = 1;
+p.teacherForcingOn = 0;
 
 
 %% counting specific
@@ -35,14 +35,21 @@ p.eyeRange = p.eyeRad * 2 + 1;
 % number of items in the environment
 p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 1;       % min spacing between neighbouring items
+p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
+% p.r.smallNeg = - 0.05;
+% p.r.midNeg = - 1;
+% p.r.bigNeg = - 5;
+% p.r.midPos = 5;
+% p.r.bigPos = 10;
+% less feed back mode
 p.r.smallNeg = - 0.05;
-p.r.midNeg = - 1;
-p.r.bigNeg = - 5;
-p.r.midPos = 5;
+p.r.midNeg = p.r.smallNeg;
+p.r.bigNeg = p.r.smallNeg;
+p.r.midPos = p.r.smallNeg;
 p.r.bigPos = 10;
+
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
