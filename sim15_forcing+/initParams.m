@@ -19,7 +19,7 @@ p.teachingModeOn = 0;
 p.maxTeachTrial = 100;
 
 % flag for the teacher forcing mode 
-p.teacherForcingOn = 0;
+p.teacherForcingOn = 1;
 
 
 %% counting specific
