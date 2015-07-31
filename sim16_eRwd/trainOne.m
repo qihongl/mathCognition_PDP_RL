@@ -1,9 +1,13 @@
 % just testing, a short cut for running the model
 function trainOne(epoch)
 if nargin == 0
-    epoch = 5000;
+    epoch = 1;
 end
 record = trainAgent(epoch);
+
+% save simulation data
+saveDirName = getSaveDir();
+save([saveDirName '/' 'record'],'record');
 save('record','record');
 
 % eval the performance
