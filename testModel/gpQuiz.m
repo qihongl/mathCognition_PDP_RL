@@ -2,11 +2,11 @@
 clear all; clear global; 
 
 %% Get data from the current directory 
-dataDir = {'groupData00', 'groupData01'};
+dataDir = {'groupData00'};
 name = 'record';
 nGroups = length(dataDir);
 nSubj = 10; 
-numQs = 5;
+numQs = 500;
 
 datapath = [pwd '/' dataDir{1} '/'];
 addpath(pwd);
@@ -34,4 +34,4 @@ rmpath(pwd);
 saveFileName = sprintf('%sgroupScores' ,datapath);
 save(saveFileName,'groupScores');
 
-
+beep;
