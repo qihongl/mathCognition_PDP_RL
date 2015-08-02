@@ -48,7 +48,7 @@ p.r.smallNeg = - 0.05;
 p.r.midNeg = p.r.smallNeg;
 p.r.bigNeg = p.r.smallNeg;
 p.r.midPos = p.r.smallNeg;
-p.r.bigPos = 10;
+p.r.bigPos = 1;
 
 
 %% actively stop the task
