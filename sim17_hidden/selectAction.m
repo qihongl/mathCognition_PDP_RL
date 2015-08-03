@@ -12,6 +12,14 @@ a.aAct = a.aIn;
 % inject bias to action 0 (don't move)
 a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
 
+% testing - should replicate no hidden layer results
+% a.hIn = a.wtsTest * w.vS.visInput';
+% a.hAct = a.hIn;
+% a.aIn = a.wts2 * a.hAct;
+% a.aAct = a.aIn;
+% % inject bias to action 0 (don't move)
+% a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
+
 % choose action based on the activation in the action layer
 if w.teacherForcing
     a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1; 
