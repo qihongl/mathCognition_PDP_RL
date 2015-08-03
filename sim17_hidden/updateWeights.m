@@ -17,11 +17,11 @@ a.dfRwd = curRwd;
 delta3 = a.dfRwd - a.aAct(a.choice); 
 delta2 = a.wts2(a.choice, :)' * delta3 .* (sigmoid(a.hIn) .* (1 - sigmoid(a.hIn)));
 % compute the changes for the weights
-wts2_change = delta3 * a.hAct';
-wts1_change = delta2 * w.vS.visInput;
+wts2_change = p.lrate * delta3 * a.hAct';
+wts1_change = p.lrate * delta2 * w.vS.visInput;
 % update the weights
-a.wts2(a.choice,:) = a.wts2(a.choice,:) + p.lrate * wts2_change;
-a.wts1 = a.wts1 + p.lrate * wts1_change;
+a.wts2(a.choice,:) = a.wts2(a.choice,:) + wts2_change;
+a.wts1 = a.wts1 + wts1_change;
 
 %% start over if an incorrect action was made
 if p.teachingModeOn && ~w.actionCorrect
