@@ -18,10 +18,10 @@ w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 
-% preallocate for weights and activations 
-a.wts1 = randsmall(p.nHidden, p.eyeRange); 
-a.wts2 = randsmall(p.mvRange, p.nHidden); 
+% preallocation for activations 
+a.aIn = zeros(p.mvRange,1);
 a.aAct = zeros(p.mvRange,1);
+a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
 
 % generate items in space
@@ -47,6 +47,7 @@ w.stopCounter = p.stopCounter;
 w.redo = false;
 w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true; 
+% forcing specific
 if p.teacherForcingOn
     w.teacherForcing = mode.teacherForcing; 
 else 

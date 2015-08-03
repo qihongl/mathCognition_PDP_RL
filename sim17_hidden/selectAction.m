@@ -4,18 +4,23 @@ global w a p;
 
 %% compute the output activation
 % forward prop. 
-a.hAct = sigmoid(a.wts1 * w.vS.visInput');
-% a.aAct = sigmoid(a.wts2 * a.hAct);      % TODO consider sigmoid transformer function
-a.aAct = a.wts2 * a.hAct;
+a.hIn = a.wts1 * w.vS.visInput';
+a.hAct = sigmoid(a.hIn);
+a.aIn = a.wts2 * a.hAct;
+% a.aAct = sigmoid(a.aIn);      % TODO what if sigmoid 
+a.aAct = a.aIn;
 % inject bias to action 0 (don't move)
 a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
-% choose among the activation
+
+% choose action based on the activation in the action layer
 if w.teacherForcing
     a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1; 
 else
     a.choice = choose(a.aAct.^a.smgain);
 end
-w.out.targGuess = a.choice - p.mvRad - 1; % get vS action
+% get vS action
+w.out.targGuess = a.choice - p.mvRad - 1; 
+
 %% compute the "moving vector" for eye and hand (in vS)
 w.out.handStep = w.out.targGuess - w.vS.handPos;
 w.out.eyeStep = w.out.targGuess; % already in eye-centered coordinates

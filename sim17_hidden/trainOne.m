@@ -1,7 +1,7 @@
 % just testing, a short cut for running the model
 function trainOne(epoch)
 if nargin == 0
-    epoch = 5000;
+    epoch = 1000;
 end
 
 % run the simulation

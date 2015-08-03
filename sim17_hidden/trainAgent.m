@@ -38,6 +38,8 @@ for i = 1:p.runs
     if w.nItems == length(getNonzeros(s.indices{i}))
         s.completed(i) = true;
     end
+    %% tester for teaching mode 
+    
 end
 % save parameters
 record.p = p;

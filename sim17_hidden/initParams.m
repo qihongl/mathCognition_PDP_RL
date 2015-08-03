@@ -56,11 +56,11 @@ p.r.bigPos = 10;
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = 10; 
-a.bias = 1;     % bias toward not moving (action 0)
+p.nHidden = 30; 
+a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
-% a.wts = randsmall(p.mvRange,p.eyeRange);
-
+a.wts1 = randsmall(p.nHidden, p.eyeRange); 
+a.wts2 = randsmall(p.mvRange, p.nHidden); 
 end
 
