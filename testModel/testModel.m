@@ -36,7 +36,8 @@ while ~(w.done) && i < 100
 end
 if showPlot
     % plot the weights 
-    showWeights();
+%     showWeights();
+    showWeights2();
 end
 % record the steps used
 score.steps = i;
