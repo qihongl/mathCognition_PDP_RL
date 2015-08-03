@@ -19,7 +19,7 @@ p.teachingModeOn = 0;
 p.maxTeachTrial = 100;
 
 % flag for the teacher forcing mode 
-p.teacherForcingOn = 1;
+p.teacherForcingOn = 0;
 
 
 %% counting specific
@@ -43,6 +43,13 @@ p.r.midNeg = - 1;
 p.r.bigNeg = - 5;
 p.r.midPos = 5;
 p.r.bigPos = 10;
+% less feed back mode
+% p.r.smallNeg = - 0.05;
+% p.r.midNeg = p.r.smallNeg;
+% p.r.bigNeg = p.r.smallNeg;
+% p.r.midPos = p.r.smallNeg;
+% p.r.bigPos = 1;
+
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
