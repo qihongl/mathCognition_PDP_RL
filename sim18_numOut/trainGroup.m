@@ -1,4 +1,4 @@
-function [] = testGroup(nSubj, epoch)
+function [] = trainGroup(nSubj, epoch)
 %testGroup Run N models, to establish sample size
 if nargin == 0
     epoch = 5000;

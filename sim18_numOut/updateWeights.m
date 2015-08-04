@@ -9,7 +9,6 @@ global p a w;
 curRwd = computeRwd();
 expRwd = max(a.aAct);
 %% assign the reward values
-% a.dfRwd = curRwd;
 a.dfRwd = curRwd + expRwd * p.gamma;
 
 %% update the weights - back prop

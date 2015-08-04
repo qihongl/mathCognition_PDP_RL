@@ -13,7 +13,7 @@ s.steps = nan(1,epoch);
 s.indices = cell(1,epoch);
 s.completed = false(1,epoch);
 s.numItemsShowed = zeros(1,epoch);
-testScores = cell(1, epoch/p.testInterval);
+% testScores = cell(1, epoch/p.testInterval);
 
 % train the model for n trials
 fprintf('%s\n', pwd);
@@ -53,5 +53,5 @@ end
 record.p = p;
 record.a = result.a;
 record.s = s;
-record.testScores = testScores;
+% record.testScores = testScores;
 end

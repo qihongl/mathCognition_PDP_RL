@@ -6,10 +6,10 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;         % noise magnitude
-p.lrate = .001;       % learning rate
+p.lrate = .003;       % learning rate
 p.runs = epoch;     % training upper lim 
-p.gamma = .8;       % discount factor 
-p.smirate = .001;   % soft max rate
+p.gamma = .9;       % discount factor 
+p.smirate = .001;   % soft max incremental rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
 
@@ -38,17 +38,17 @@ p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
-% p.r.smallNeg = - 0.05;
-% p.r.midNeg = - 1;
-% p.r.bigNeg = - 5;
-% p.r.midPos = 5;
-% p.r.bigPos = 10;
-% less feed back mode
 p.r.smallNeg = - 0.05;
-p.r.midNeg = p.r.smallNeg;
-p.r.bigNeg = p.r.smallNeg;
-p.r.midPos = p.r.smallNeg;
-p.r.bigPos = 1;
+p.r.midNeg = - 1;
+p.r.bigNeg = - 5;
+p.r.midPos = 5;
+p.r.bigPos = 10;
+% less feed back mode
+% p.r.smallNeg = - 0.05;
+% p.r.midNeg = p.r.smallNeg;
+% p.r.bigNeg = p.r.smallNeg;
+% p.r.midPos = p.r.smallNeg;
+% p.r.bigPos = 1;
 
 
 %% actively stop the task

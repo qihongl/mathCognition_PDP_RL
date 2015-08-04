@@ -1,5 +1,5 @@
 %% Evaluative the development of the model
-clear all; clear global; 
+clear global; 
 global plots p;
 %% get data from the current dir 
 filename = 'record.mat';
@@ -16,6 +16,7 @@ pooledScore = getPooledScores(record, plots.LENGTH);
 %% Plot the performance
 % plot the complete rate over time
 plotPooledScore(record, pooledScore)
+
 
 
 
