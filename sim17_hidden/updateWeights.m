@@ -15,7 +15,7 @@ a.dfRwd = curRwd;
 %% update the weights - back prop
 % delta for all unit
 delta3 = a.dfRwd - a.aAct(a.choice); 
-delta2 = a.wts2(a.choice, :)' * delta3 .* (sigmoid(a.hIn) .* (1 - sigmoid(a.hIn)));
+delta2 = a.wts2(a.choice, :)' * delta3 .* (a.hAct .* (1-a.hAct));
 % compute the changes for the weights
 wts2_change =  delta3 * a.hAct';
 wts1_change = delta2 * w.vS.visInput;
@@ -29,7 +29,7 @@ a.wts1 = a.wts1 + p.lrate * wts1_change;
 
 %% start over if an incorrect action was made
 if p.teachingModeOn && ~w.actionCorrect
-    w.redo = true;
+    w.tryAgain = true;
 end
 
 end
