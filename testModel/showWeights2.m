@@ -1,4 +1,4 @@
-function [ ] = showWeights( )
+function [ ] = showWeights2( )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 global p w d a;
@@ -7,7 +7,7 @@ FONTSIZE = 13;
 % plot all weights
 axes(d.allWeights);
 imagesc(a.wts1)
-% imagesc(a.wtsTest)
+% imagesc(a.identity)
 title(d.allWeights, 'weights - from visual to hidden layer', 'fontsize', FONTSIZE)
 ylabel(d.allWeights, 'hidden units', 'fontsize', FONTSIZE);
 xlabel(d.allWeights, 'visual input', 'fontsize', FONTSIZE)

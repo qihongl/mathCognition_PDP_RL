@@ -4,21 +4,21 @@ global w a p;
 
 %% compute the output activation
 % forward prop. 
-% a.hIn = a.wts1 * w.vS.visInput';
-% a.hAct = sigmoid(a.hIn);
-% a.aIn = a.wts2 * a.hAct;
-% % a.aAct = sigmoid(a.aIn);      % TODO what if sigmoid 
-% a.aAct = a.aIn;
-% % inject bias to action 0 (don't move)
-% a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
-
-% testing - should replicate no hidden layer results
-a.hIn = a.wtsTest * w.vS.visInput';
-a.hAct = a.hIn;
+a.hIn = a.wts1 * w.vS.visInput';
+a.hAct = sigmoid(a.hIn);
 a.aIn = a.wts2 * a.hAct;
+% a.aAct = sigmoid(a.aIn);      % TODO what if sigmoid 
 a.aAct = a.aIn;
 % inject bias to action 0 (don't move)
 a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
+
+% testing - should replicate no hidden layer results
+% a.hIn = a.identity * w.vS.visInput';
+% a.hAct = a.hIn;
+% a.aIn = a.wts2 * a.hAct;
+% a.aAct = a.aIn;
+% % inject bias to action 0 (don't move)
+% a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
 
 % choose action based on the activation in the action layer
 if w.teacherForcing

@@ -53,7 +53,7 @@ else
 end
 
 % save weights
-score.wts1 = a.wts1;
-score.wts2 = a.wts2;
+% score.wts1 = a.wts1;
+% score.wts2 = a.wts2;
 
 end
