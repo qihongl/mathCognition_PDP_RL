@@ -39,9 +39,7 @@ while ~(w.done) && i < 100
     i = i+1;
 end
 if showPlot
-    % plot the weights
-    %     showWeights();
-    showWeights2();
+    showWeights();
 end
 % record the steps used
 score.steps = i;

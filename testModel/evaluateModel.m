@@ -2,18 +2,20 @@ function [finalScore] = evaluateModel( score, numQs )
 %EVALUATEMODEL evalute the model's performance on the quiz test set
 global p; 
 % resource preallocation
-steps = zeros(1,numQs);
-orders = cell(1,numQs);
-orderCorrect = true(1,numQs);
-numSkips = nan(1,numQs);
-numObjTouched  = zeros(1,numQs);
-completed = false(1,numQs);
-numItemsShowed = zeros(1,numQs);
-completedTrialsByCard = zeros(1,p.maxItems);
-numItemsFreq = zeros(1,p.maxItems);
+numTotalQ = numel(score);
+steps = zeros(1,numTotalQ);
+orders = cell(1,numTotalQ);
+orderCorrect = true(1,numTotalQ);
+numSkips = nan(1,numTotalQ);
+numObjTouched  = zeros(1,numTotalQ);
+completed = false(1,numTotalQ);
+numItemsShowed = zeros(1,numTotalQ);
+
+completedTrialsByCard = zeros(1,p.maxItems);    % ?
+numItemsFreq = zeros(1,p.maxItems);             % ?
 
 %% process the data 
-for i = 1 : length(score)
+for i = 1 : numel(score)
     steps(i) = score{i}.steps;
     orders{i} = getNonzeros(score{i}.indices);
     if ~ismonotonic(getNonzeros(score{i}.indices))
@@ -41,14 +43,14 @@ completeRateByCard = completedTrialsByCard ./ numItemsFreq;
 % average number of steps used 
 meanSteps = mean(steps);
 % don't go right to left
-monotonicRate = sum(orderCorrect)/ numQs;
+monotonicRate = sum(orderCorrect)/ numTotalQ;
 % don't skip item 
-skipRate = sum(numSkips ~= 0) / numQs;
+skipRate = sum(numSkips ~= 0) / numTotalQ;
 % touch all items within 100 steps
-completeRate = sum(completed)/numQs;
+completeRate = sum(completed)/numTotalQ;
 
 %% print results
-tt = sprintf('Performance on %d questions\n', numQs);
+tt = sprintf('Performance on %d * %d questions\n', p.maxItems, numQs);
 fprintf('------------------------------------------------\n')
 fprintf('Directory: "%score"\n', pwd);
 fprintf(tt)

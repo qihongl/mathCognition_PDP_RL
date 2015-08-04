@@ -5,13 +5,13 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .1;         % noise magnitude
-p.lrate = .003;       % learning rate
-p.runs = epoch;     % training upper lim 
-p.gamma = .9;       % discount factor 
-p.smirate = .001;   % soft max incremental rate
+p.wf = .1;           % noise magnitude
+p.lrate = .003;      % learning rate
+p.runs = epoch;      % training upper lim 
+p.gamma = .9;        % discount factor 
+p.smirate = .001;    % soft max incremental rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
-p.maxIter = 100;    % terminate if cannot finish in 100 iter
+p.maxIter = 100;     % terminate if cannot finish in 100 iter
 
 %% teaching mode
 % controls the redo mode 
@@ -22,7 +22,7 @@ p.maxTeachTrial = 100;
 p.teacherForcingOn = 0;
 
 
-%% counting specific
+%% item specific
 % size of the state space and percetual span
 p.spRad = 40;
 p.spRange = p.spRad * 2 + 1;
@@ -36,6 +36,9 @@ p.eyeRange = p.eyeRad * 2 + 1;
 p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
+
+%% counting specific
+p.maxCount = p.maxItems + 3;         % biggest number that the model can count
 
 %% reward values
 p.r.smallNeg = - 0.05;
@@ -60,9 +63,8 @@ p.nHidden = p.eyeRange;
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
-a.wts1 = randSmallWeights(p.nHidden, p.eyeRange); 
-a.wts2 = randSmallWeights(p.mvRange, p.nHidden); 
-% a.identity = eye(p.nHidden, p.eyeRange); 
+a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
+a.wts_HA = randSmallWeights(p.mvRange, p.nHidden); 
 
 %% insert testing questions during the training
 p.testInterval = 100; 

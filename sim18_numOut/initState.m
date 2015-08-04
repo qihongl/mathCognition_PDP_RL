@@ -25,7 +25,7 @@ a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
 
 % generate items in space
-if exist('mode.fixNumItems', 'var') && mode.fixNumItems
+if isfield(mode, 'fixNumItems') && mode.fixNumItems
     w.nItems = mode.nItem;              % fix the number of items
 else
     w.nItems = generateNum(p.maxItems);     % sample the number from prob 
@@ -48,7 +48,7 @@ w.out.eyeStep = 0;
 w.stopCounter = p.stopCounter;
 
 % teaching specific
-w.redo = false;
+w.tryAgain = false;
 w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true;
 % forcing specific

@@ -6,8 +6,8 @@ if nargin == 0
 end
 
 %% Parameters
-dfNumQs = 500;
-dfNumPlots = 5;
+dfNumQs = 50;
+dfNumPlots = 2;
 
 %% Get data from the current directory
 filename = 'record.mat';

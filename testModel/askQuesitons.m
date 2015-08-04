@@ -1,13 +1,18 @@
 function score = askQuesitons(numQs, showPlot)
 %% Quiz the model for n questions
+global p;
 % preallocate
-score = cell(1,numQs);
-fprintf('Start testing: %d questions\n', numQs)
-for i = 1: numQs
-    % progress bar
-    fprintf('%d\n', i)
-    % test the model
-    score{i} = testModel(showPlot);
+score = cell(p.maxItems,numQs);
+fprintf('Start testing: %d * %d  questions\n', p.maxItems, numQs)
+for cardinality = 1:p.maxItems
+    fprintf('%d', cardinality)
+    for i = 1: numQs
+        % progress bar
+        fprintf('.');
+        % test the model
+        score{cardinality,i} = testModel(showPlot, cardinality);
+    end
+    fprintf('\n');
 end
 fprintf('\n')
 

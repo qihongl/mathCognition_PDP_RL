@@ -5,18 +5,18 @@ if nargin == 0
     seed = randi(99);
 end
 
-% run the simulation
+%% run the simulation
 record = trainAgent(epoch, seed);
 
-% save the simulation results
+%% save the simulation results
 saveDirName = getSaveDir();
 save([saveDirName '/' 'record'],'record');
 save('record','record');
 
-% eval the performance
+%% eval the performance
 quiz();
 checkLearning();
-% save the plot 
+% save a plot 
 print([pwd '/' saveDirName '/' 'learningCurve'],'-dpng')
 beep % notice me that the program was ended
 end
