@@ -6,7 +6,7 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;         % noise magnitude
-p.lrate = .01;       % learning rate
+p.lrate = .0001;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.gamma = .8;       % discount factor 
 p.smirate = .001;   % soft max rate
@@ -60,9 +60,9 @@ p.nHidden = p.eyeRange;
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
-a.wts1 = randsmall(p.nHidden, p.eyeRange); 
-a.wts2 = randsmall(p.mvRange, p.nHidden); 
-% a.wtsTest = eye(p.nHidden, p.eyeRange); 
+% a.wts1 = randSmallWeights(p.nHidden, p.eyeRange); 
+a.wts2 = randSmallWeights(p.mvRange, p.nHidden); 
+a.wtsTest = eye(p.nHidden, p.eyeRange); 
 
 %% insert testing questions during the training
 p.testInterval = 100; 
