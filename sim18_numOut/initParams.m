@@ -53,7 +53,6 @@ p.r.bigPos = 10;
 % p.r.midPos = p.r.smallNeg;
 % p.r.bigPos = 1;
 
-
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
 p.stopCounter = 3;
