@@ -63,5 +63,9 @@ a.smgain = 1;
 a.wts1 = randsmall(p.nHidden, p.eyeRange); 
 a.wts2 = randsmall(p.mvRange, p.nHidden); 
 % a.wtsTest = eye(p.nHidden, p.eyeRange); 
+
+%% insert testing questions during the training
+p.testInterval = 100; 
+p.testBatchSize = 10; 
 end
 

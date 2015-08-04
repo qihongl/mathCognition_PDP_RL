@@ -18,16 +18,20 @@ w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 
-% preallocation for activations 
+% preallocation for activations
 a.aIn = zeros(p.mvRange,1);
 a.aAct = zeros(p.mvRange,1);
 a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
 
 % generate items in space
-w.nItems = generateNum(p.maxItems);     % sample the number
+if exist('mode.fixNumItems', 'var') && mode.fixNumItems
+    w.nItems = mode.nItem;              % fix the number of items
+else
+    w.nItems = generateNum(p.maxItems);     % sample the number from prob 
+end
 w.rS.targPos = itemGen(w.nItems);       % generate items
-w.rS.targRemain = true(w.nItems, 1);    % set up flag 
+w.rS.targRemain = true(w.nItems, 1);    % set up flag
 w.done = false;
 
 % initialize the location of hand and eye
@@ -46,12 +50,12 @@ w.stopCounter = p.stopCounter;
 % teaching specific
 w.redo = false;
 w.maxTeachTrial = p.maxTeachTrial;
-mode.teach = true; 
+mode.teach = true;
 % forcing specific
 if p.teacherForcingOn
-    w.teacherForcing = mode.teacherForcing; 
-else 
-    w.teacherForcing = false; 
+    w.teacherForcing = mode.teacherForcing;
+else
+    w.teacherForcing = false;
 end
 % save
 h = struct('w',w);
