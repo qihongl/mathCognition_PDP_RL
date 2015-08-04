@@ -2,12 +2,16 @@
 % this function takes a set of trained weights and parameters, come up with
 % a counting question, let the model do the counting, and records its
 % performance! So it is in some sense a little quiz for the model.
-function [score] = testModel(showPlot)
+function [score] = testModel(showPlot, nItem)
+
+global p a w mode; setTestModeParam();
 if nargin == 0
     showPlot = 1;
 end
-
-global p a w;
+if exist('nItem', 'var')
+    mode.fixNumItems = true;
+    mode.nItem = nItem;
+end
 
 %% test the model
 % initialization
@@ -29,14 +33,14 @@ while ~(w.done) && i < 100
     if showPlot
         showState();
     end
-    % record the action sequence 
+    % record the action sequence
     score.indices(i+1) = recordAction();
     score.nItemsShowed = w.nItems;
     i = i+1;
 end
 if showPlot
-    % plot the weights 
-%     showWeights();
+    % plot the weights
+    %     showWeights();
     showWeights2();
 end
 % record the steps used
@@ -44,8 +48,12 @@ score.steps = i;
 % check if the model completed the task
 if length(nonzeros(score.indices)) == w.nItems && score.steps~=p.maxIter
     score.completed = true;
-else 
+else
     score.completed = false;
 end
+
+% save weights
+score.wts1 = a.wts1;
+score.wts2 = a.wts2;
 
 end

@@ -1,14 +1,13 @@
 %% This is a quiz for the model
 % It come up with N questions and record the performance of the model
-function finalScore = quiz(showPlot, showStats)
+function finalScore = quiz(showPlot)
 if nargin == 0
     showPlot = false;
-    showStats = true; 
 end
 
 %% Parameters
 dfNumQs = 500;
-dfNumPlots = 1;
+dfNumPlots = 10;
 
 %% Get data from the current directory
 filename = 'record.mat';

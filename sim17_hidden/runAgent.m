@@ -22,7 +22,7 @@ while ~(w.done) && i < p.maxIter
     indices(i + 1) = recordAction();     % record the "touch-index"
     i = i+1;
     %% teaching mode, executed when redo is needed
-    if p.teachingModeOn && mode.teach && w.redo
+    if p.teachingModeOn && mode.teach && w.tryAgain
         fprintf('.');
         % re-initialize the world if REDO
         reinitState();
