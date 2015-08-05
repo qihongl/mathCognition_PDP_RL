@@ -27,7 +27,7 @@ score.indices = zeros(1,100);
 % test the model
 while ~(w.done) && i < 100
     selectAction();
-    Act();
+    move();
     updateState();
     updateWeights();
     if showPlot
