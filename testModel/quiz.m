@@ -7,7 +7,7 @@ end
 
 %% Parameters
 dfNumQs = 50;
-dfNumPlots = 2;
+dfNumPlots = 1;
 
 %% Get data from the current directory
 filename = 'record.mat';

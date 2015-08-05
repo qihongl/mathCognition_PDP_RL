@@ -64,7 +64,7 @@ fprintf('Performance by cardinality: \n')
 fprintf('nItems\t occurance\tcompletionRate\t meanStepsUsed\n')
 for n = 1 : p.maxItems
     fprintf('%d\t', n);
-    fprintf('%4d (%.2f)\t', numItemsFreq(n), numItemsFreq(n) / numQs);
+    fprintf('%4d (%.2f)\t', numItemsFreq(n), numItemsFreq(n) / numTotalQ);
     fprintf('%4d (%4.2f)\t', completedTrialsByCard(n), completeRateByCard(n));
     fprintf('%6.2f\t', stepsByCard(n));
     fprintf('\n');

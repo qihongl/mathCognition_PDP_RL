@@ -4,7 +4,7 @@ global p w d a;
 FONTSIZE = 13; 
 % plot rewards over time 
 axes(d.rwd);
-plot(w.rS.time,a.Rwd,'-*'); hold on;
+plot(w.rS.time,a.dfRwd,'-*'); hold on;
 ylim(d.rwd,[p.r.bigNeg p.r.bigPos]); 
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
 title(d.rwd, 'reward history', 'fontsize', FONTSIZE)

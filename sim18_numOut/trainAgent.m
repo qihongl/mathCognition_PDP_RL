@@ -5,7 +5,7 @@ function [record] = trainAgent(epoch, seed)
 % initialize parameters
 rng(seed)
 global p a w mode;
-initParams(epoch);
+initParams(epoch, seed);
 
 % preallocate
 record.a = cell(1,epoch);
@@ -47,7 +47,6 @@ for i = 1:p.runs
 %         testScores{((i-1)/ p.testInterval) +1} = insertTesting();
 %         p = temp.p; a = temp.a; w = temp.w; mode = temp.mode;
 %     end
-    
 end
 % save parameters and performance
 record.p = p;

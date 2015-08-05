@@ -6,10 +6,10 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global p a w;
 %% compute the reward values according to the reward policy
-curRwd = computeRwd();
+a.curRwd = computeRwd();
 expRwd = max(a.aAct);
 %% assign the reward values
-a.dfRwd = curRwd + expRwd * p.gamma;
+a.dfRwd = a.curRwd + expRwd * p.gamma;
 
 %% update the weights - back prop
 % delta for all unit
