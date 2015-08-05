@@ -12,7 +12,8 @@ p.gamma = .9;        % discount factor
 p.smirate = .001;    % soft max incremental rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;     % terminate if cannot finish in 100 iter
-p.seed = seed;       
+p.seed = seed;      
+p.memory = 0.5;
 
 %% teaching mode
 % controls the redo mode 
@@ -64,9 +65,10 @@ p.nHidden = p.eyeRange;
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
-a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
-a.wts_HA = randSmallWeights(p.mvRange, p.nHidden); 
-a.wts_HN = randSmallWeights(p.nCountUnits, p.nHidden); 
+a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange);     % visual->hidden
+a.wts_HA = randSmallWeights(p.mvRange, p.nHidden);      % hidden->action
+a.wts_HN = randSmallWeights(p.nCountUnits, p.nHidden);  % hidden->number
+a.wts_NH = randSmallWeights(p.nHidden, p.nCountUnits);  % number->hidden
 
 %% insert testing questions during the training
 p.testInterval = 100; 

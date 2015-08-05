@@ -1,5 +1,5 @@
 % written by professor Jay McClelland
-function [ ] = Act( )
+function [ ] = move( )
 % here we act according to the action selected
 % by selectAction
 global w;

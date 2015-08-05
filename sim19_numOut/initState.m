@@ -14,8 +14,10 @@ a.aIn = zeros(p.mvRange,1);             % action layer
 a.aAct = zeros(p.mvRange,1);
 a.hIn = zeros(p.nHidden,1);             % hidden layer 
 a.hAct = zeros(p.nHidden,1);
-% a.nIn = zeros(p.nCountUnits,1);         % number layer
-% a.nAct = zeros(p.nCountUnits,1);    
+a.nOutIn = zeros(p.nCountUnits,1);      % number output layer
+a.nOutAct = zeros(p.nCountUnits,1);    
+a.nPrevIn = zeros(p.nCountUnits,1);     % number context layer - Jordan
+a.nPrevAct = zeros(p.nCountUnits,1);    
 
 %% generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
@@ -36,6 +38,10 @@ w.vS.oldInput = zeros(1, p.eyeRange);
 w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
+
+%% counting specific
+w.curCorrectNum = 0; 
+% w.finalCorrectNum = w.nItems;
 
 %% teaching 
 % tryAgain mode specific
