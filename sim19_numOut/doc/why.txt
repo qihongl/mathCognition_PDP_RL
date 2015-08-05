@@ -1,0 +1,13 @@
+OVERALL GOAL: 
+Implement output layer for count word
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
