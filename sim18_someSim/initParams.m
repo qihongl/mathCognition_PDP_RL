@@ -6,7 +6,7 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;           % noise magnitude
-p.lrate = .001;      % learning rate
+p.lrate = .0003;      % learning rate
 p.runs = epoch;      % training upper lim 
 p.gamma = .9;        % discount factor 
 p.smirate = .001;    % soft max incremental rate
@@ -67,6 +67,9 @@ a.smgain = 1;
 a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
 a.wts_HA = randSmallWeights(p.mvRange, p.nHidden); 
 a.wts_HN = randSmallWeights(p.nCountUnits, p.nHidden); 
+% a.wts_VH = randsmall(p.nHidden, p.eyeRange); 
+% a.wts_HA = randsmall(p.mvRange, p.nHidden); 
+% a.wts_HN = randsmall(p.nCountUnits, p.nHidden); 
 
 %% insert testing questions during the training
 p.testInterval = 100; 
