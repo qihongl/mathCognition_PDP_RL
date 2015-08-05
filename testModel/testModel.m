@@ -4,7 +4,8 @@
 % performance! So it is in some sense a little quiz for the model.
 function [score] = testModel(showPlot, nItem)
 
-global p a w mode; setTestModeParam();
+global p a w mode; 
+setTestModeParam();
 if nargin == 0
     showPlot = 1;
 end

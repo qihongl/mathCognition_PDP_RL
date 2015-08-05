@@ -12,8 +12,9 @@ p.gamma = .9;        % discount factor
 p.smirate = .001;    % soft max incremental rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;     % terminate if cannot finish in 100 iter
+p.memory = .5;
 p.seed = seed;      
-p.memory = 0.5;
+
 
 %% teaching mode
 % controls the redo mode 
@@ -46,7 +47,7 @@ p.nCountUnits = p.maxCount + 1;
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
-p.r.bigNeg = - 2;
+p.r.bigNeg = - 5;
 p.r.midPos = 5;
 p.r.bigPos = 10;
 % reward policy 2: no intermediate feed back 
@@ -61,7 +62,7 @@ p.r.bigPos = 10;
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = p.eyeRange; 
+p.nHidden = p.eyeRange+p.nCountUnits; 
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 

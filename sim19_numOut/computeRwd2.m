@@ -36,7 +36,7 @@ if targetRemain()
     end
 else    % if all targets were touched
     if w.out.handStep == 0
-        if w.out.countWord == 0 || w.out.countWord == w.curCorrectNum
+        if w.out.countWord == w.curCorrectNum
             Rwd = p.r.bigPos;
             w.done = true;
         else
@@ -48,7 +48,6 @@ else    % if all targets were touched
         else
             Rwd = p.r.midNeg;
         end
-        
     end
 end
 
