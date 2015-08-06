@@ -40,7 +40,7 @@ w.out.handStep = 0;
 w.out.eyeStep = 0;
 
 %% counting specific
-w.curCorrectNum = 0; 
+% w.curCorrectNum = 0; 
 % w.finalCorrectNum = w.nItems;
 
 %% teaching 

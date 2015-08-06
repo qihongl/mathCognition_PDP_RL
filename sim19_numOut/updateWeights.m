@@ -6,7 +6,7 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global p a w;
 %% compute the reward values according to the reward policy
-a.curRwd = computeRwd2();
+a.curRwd = computeRwd3();
 aExpRwd = max(a.aAct); 
 nExpRwd = max(a.nOutAct); 
 % sum current reward and future reward 

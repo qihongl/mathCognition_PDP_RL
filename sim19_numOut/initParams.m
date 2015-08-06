@@ -36,19 +36,19 @@ p.eyeRad = 15;
 p.eyeRange = p.eyeRad * 2 + 1;
 
 % number of items in the environment
-p.maxItems = 7;         % max number of items
+p.maxItems = 5;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% counting specific
-p.maxCount = p.maxItems + 3;  % number of units in the numOut layer 
+p.maxCount = p.maxItems;  % number of units in the numOut layer 
 p.nCountUnits = p.maxCount + 1;
 
 %% reward values
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
 p.r.bigNeg = - 5;
-p.r.midPos = 5;
+p.r.midPos = 10;
 p.r.bigPos = 10;
 % reward policy 2: no intermediate feed back 
 % p.r.smallNeg = - 0.05;

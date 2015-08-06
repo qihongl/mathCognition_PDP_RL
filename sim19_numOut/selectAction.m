@@ -2,6 +2,7 @@ function [] = selectAction( )
 % It computes the output activation, and choose the action probabilistically.
 global w a p;
 
+%% Forward prop. 
 %% Send two input layers activations to the hidden layers
 % sum hidden activation 
 a.hIn = a.wts_VH * w.vS.visInput' + a.wts_NH * a.nPrevAct;
@@ -17,12 +18,7 @@ a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
 a.nOutIn = a.wts_HN * a.hAct;
 a.nOutAct = a.nOutIn;       % no transfer function
 % inject bias to the last unit (saying nothing)
-a.nOutAct(p.nCountUnits) = a.nOutAct(p.nCountUnits) + a.bias;
-
-%% Accumulate activations to the context layer
-% a.old.nPrevAct = a.nPrevAct;
-% a.nPrevIn = p.memory * a.nPrevIn + a.nOutAct;
-% a.nPrevAct = a.nPrevIn;     % no transfer function
+a.nOutAct(p.nCountUnits) = a.nOutAct(p.nCountUnits) + a.bias * 20;
 
 %% choose move and number actions based on the output activations 
 if w.teacherForcing
