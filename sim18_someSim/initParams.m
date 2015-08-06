@@ -8,7 +8,7 @@ global p a
 p.wf = .1;           % noise magnitude
 p.lrate = .001;      % learning rate
 p.runs = epoch;      % training upper lim 
-p.gamma = .9;        % discount factor 
+p.gamma = 0.99;        % discount factor 
 p.smirate = .001;    % soft max incremental rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;     % terminate if cannot finish in 100 iter
@@ -21,7 +21,6 @@ p.maxTeachTrial = 100;
 
 % flag for the teacher forcing mode 
 p.teacherForcingOn = 0;
-
 
 %% item specific
 % size of the state space and percetual span
@@ -53,15 +52,15 @@ p.r.smallNeg = - 0.05;
 p.r.midNeg = p.r.smallNeg;
 p.r.bigNeg = p.r.smallNeg;
 p.r.midPos = p.r.smallNeg;
-p.r.bigPos = 1;
+p.r.bigPos = 10;
 
 %% actively stop the task
 % if the model doesn't move for N steps, terminate the task
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = p.eyeRange; 
-a.bias = .1;     % bias toward not moving (action 0)
+p.nHidden = 10; 
+a.bias = 0;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
 a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
