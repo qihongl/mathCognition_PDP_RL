@@ -6,7 +6,7 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;           % noise magnitude
-p.lrate = .0003;      % learning rate
+p.lrate = .001;      % learning rate
 p.runs = epoch;      % training upper lim 
 p.gamma = .9;        % discount factor 
 p.smirate = .001;    % soft max incremental rate
@@ -43,17 +43,17 @@ p.maxCount = p.maxItems + 3;  % number of units in the numOut layer
 p.nCountUnits = p.maxCount + 1;
 
 %% reward values
-p.r.smallNeg = - 0.05;
-p.r.midNeg = - 1;
-p.r.bigNeg = - 2;
-p.r.midPos = 5;
-p.r.bigPos = 10;
-% reward policy 2: no intermediate feed back 
 % p.r.smallNeg = - 0.05;
-% p.r.midNeg = p.r.smallNeg;
-% p.r.bigNeg = p.r.smallNeg;
-% p.r.midPos = p.r.smallNeg;
+% p.r.midNeg = - 1;
+% p.r.bigNeg = - 2;
+% p.r.midPos = 5;
 % p.r.bigPos = 10;
+% reward policy 2: no intermediate feed back 
+p.r.smallNeg = - 0.05;
+p.r.midNeg = p.r.smallNeg;
+p.r.bigNeg = p.r.smallNeg;
+p.r.midPos = p.r.smallNeg;
+p.r.bigPos = 1;
 
 %% actively stop the task
 % if the model doesn't move for N steps, terminate the task
@@ -67,9 +67,6 @@ a.smgain = 1;
 a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
 a.wts_HA = randSmallWeights(p.mvRange, p.nHidden); 
 a.wts_HN = randSmallWeights(p.nCountUnits, p.nHidden); 
-% a.wts_VH = randsmall(p.nHidden, p.eyeRange); 
-% a.wts_HA = randsmall(p.mvRange, p.nHidden); 
-% a.wts_HN = randsmall(p.nCountUnits, p.nHidden); 
 
 %% insert testing questions during the training
 p.testInterval = 100; 
