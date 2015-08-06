@@ -7,6 +7,7 @@ function [ ] = updateWeights()
 global p a w;
 %% compute the reward values according to the reward policy
 a.aCurRwd = computeRwdA();
+a.cCurRwd = computeRwdC();
 aExpRwd = max(a.aAct); 
 nExpRwd = max(a.nOutAct); 
 % sum current reward and future reward 
@@ -39,6 +40,10 @@ a.nPrevAct = a.nPrevIn;     % no transfer function
 %% start over if an incorrect action was made
 if p.teachingModeOn && ~w.actionCorrect
     w.tryAgain = true;
+end
+
+if w.doneTouching && w.doneCounting 
+    w.done = true;
 end
 
 end

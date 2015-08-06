@@ -22,7 +22,7 @@ if targetRemain()
 else    % if all targets were touched
     if w.out.handStep == 0
         Rwd = p.r.bigPos;
-        w.done = true;
+        w.doneTouching = true;
     else
         Rwd = p.r.smallNeg;
     end
@@ -32,14 +32,24 @@ end % end of the function
 
 
 %% Here're some helper functions to check some conditions
+function touchTarget()
+global w;
+% mark the object
+w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+% increment the current correct number to say
+% w.curCorrectNum = w.curCorrectNum +1;
+end
+
+
 % check if the model is touching the leftmost untouched item
 function isnext = isNext()
 global w;
-% if it is the leftmost untouched item
-if sum(w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos))) == 1
-    isnext = true;
-else
-    isnext = false;
+isnext = false;
+if isTouchingObj && ~objIsTouched()
+    % if it is the leftmost untouched item
+    if sum(w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos))) == 1
+        isnext = true;
+    end
 end
 end
 
@@ -57,7 +67,7 @@ end
 % assuming an object is being touched
 function isTouched = objIsTouched()
 global w;
-if w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
+if isTouchingObj && w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
     isTouched = false;
 else
     isTouched = true;

@@ -4,11 +4,10 @@ global p w d a;
 FONTSIZE = 13; 
 % plot rewards over time 
 axes(d.rwd);
-% plot(w.rS.time,a.aDfRwd,'-b*')
-plot(w.rS.time, a.curRwd,'-*'); 
+plot(w.rS.time, a.aCurRwd,'-b*'); 
 hold on;
-% plot(w.rS.time,a.nDfRwd,'-r*'); 
-% legend({'move', 'number'},'Location','northeast', 'fontsize', FONTSIZE)
+plot(w.rS.time, a.cCurRwd,'-r*'); 
+legend({'move', 'number'},'Location','northeast', 'fontsize', FONTSIZE)
 ylim(d.rwd,[p.r.bigNeg p.r.bigPos]); 
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
 title(d.rwd, 'reward history', 'fontsize', FONTSIZE)

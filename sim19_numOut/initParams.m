@@ -62,7 +62,7 @@ p.r.bigPos = 10;
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = p.eyeRange+p.nCountUnits; 
+p.nHidden = p.eyeRange; 
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 

@@ -3,8 +3,10 @@ function [ ] = initState( )
 global a w h p mode;
 
 %% initialize the parameters
-a.dfRwd = 0;
-a.Rwd = 0;
+a.aCurRwd = 0;
+a.cCurRwd = 0;
+a.aDfRwd = 0;
+a.nDfRwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
@@ -27,7 +29,6 @@ else
 end
 w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag
-w.done = false;
 
 %% initialize the location of hand and eye
 w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
@@ -40,8 +41,14 @@ w.out.handStep = 0;
 w.out.eyeStep = 0;
 
 %% counting specific
+w.numSaid = false(w.nItems, 1);
 % w.curCorrectNum = 0; 
 % w.finalCorrectNum = w.nItems;
+
+%% flags
+w.done = false;
+w.doneTouching = false;
+w.doneCounting = false;
 
 %% teaching 
 % tryAgain mode specific
