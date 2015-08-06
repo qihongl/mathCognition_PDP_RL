@@ -37,10 +37,6 @@ p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
-%% counting specific
-p.maxCount = p.maxItems + 3;  % number of units in the numOut layer 
-p.nCountUnits = p.maxCount + 1;
-
 %% reward values
 % p.r.smallNeg = - 0.05;
 % p.r.midNeg = - 1;
@@ -48,7 +44,7 @@ p.nCountUnits = p.maxCount + 1;
 % p.r.midPos = 5;
 % p.r.bigPos = 10;
 % reward policy 2: no intermediate feed back 
-p.r.smallNeg = - 0.05;
+p.r.smallNeg = - 0.1;
 p.r.midNeg = p.r.smallNeg;
 p.r.bigNeg = p.r.smallNeg;
 p.r.midPos = p.r.smallNeg;
@@ -59,7 +55,7 @@ p.r.bigPos = 10;
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = 10; 
+p.nHidden = 30; 
 a.bias = 0;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 

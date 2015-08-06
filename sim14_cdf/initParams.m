@@ -6,9 +6,9 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;         % noise magnitude
-p.lrate = .005;       % learning rate
+p.lrate = .001;       % learning rate
 p.runs = epoch;     % training upper lim 
-p.gamma = 1;       % discount factor 
+p.gamma = 0.99;       % discount factor 
 p.smirate = .001;   % soft max rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter

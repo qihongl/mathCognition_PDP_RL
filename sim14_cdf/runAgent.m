@@ -15,7 +15,7 @@ indices = zeros(1,p.maxIter);
 while ~(w.done) && i < p.maxIter
     %% choose action 
     selectAction();
-    Act();
+    move();
     %% update the state
     updateState();
     updateWeights();
