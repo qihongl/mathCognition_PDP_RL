@@ -46,9 +46,9 @@ p.nCountUnits = p.maxCount + 1;
 
 %% reward values
 p.r.smallNeg = - 0.05;
-p.r.midNeg = - 1;
+p.r.midNeg = - .5;
 p.r.bigNeg = - 5;
-p.r.midPos = 10;
+p.r.midPos = 5;
 p.r.bigPos = 10;
 % reward policy 2: no intermediate feed back 
 % p.r.smallNeg = - 0.05;
