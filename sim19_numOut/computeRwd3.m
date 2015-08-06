@@ -19,15 +19,18 @@ if targetRemain()
     elseif objIsTouched         % touching touched object
         Rwd = p.r.midNeg;
         w.actionCorrect = false;
-    elseif ~isNext  % not touching left most untouched obj
-        Rwd = p.r.midNeg;
-        w.actionCorrect = false;
-        touchTarget()
+%     elseif ~isNext  % not touching left most untouched obj
+%         Rwd = p.r.midNeg;
+%         w.actionCorrect = false;
+%         touchTarget()
     else            % CORRECT: touching left most untouched obj
-        Rwd = p.r.midPos;
-        touchTarget()
+%         Rwd = p.r.midPos;
+%         touchTarget()
         if w.out.countWord == sum(w.rS.targRemain == 0)
-            Rwd = Rwd * 2; 
+            Rwd = p.r.midPos;
+            touchTarget()
+        else
+            Rwd = p.r.smallNeg;
         end
     end
 else    % if all targets were touched

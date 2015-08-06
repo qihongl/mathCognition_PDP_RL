@@ -6,12 +6,12 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global p a w;
 %% compute the reward values according to the reward policy
-a.curRwd = computeRwd3();
+a.aCurRwd = computeRwdA();
 aExpRwd = max(a.aAct); 
 nExpRwd = max(a.nOutAct); 
 % sum current reward and future reward 
-a.aDfRwd = a.curRwd + aExpRwd * p.gamma;    % action
-a.nDfRwd = a.curRwd + nExpRwd * p.gamma;    % number output 
+a.aDfRwd = a.aCurRwd + aExpRwd * p.gamma;    % action
+a.nDfRwd = a.cCurRwd + nExpRwd * p.gamma;    % number output 
 
 %% Update the weights - Back Propagation
 % compute deltas for action, number and hidden
@@ -33,7 +33,7 @@ a.wts_VH = a.wts_VH + p.lrate * wtsVH_change;
 a.wts_NH = a.wts_NH + p.lrate * wtsNH_change;
 
 %% Accumulate activations to the context layer
-a.nPrevIn = p.memory * a.nPrevIn + a.nOutAct;
+a.nPrevIn = p.memory * a.nPrevAct + a.nOutAct;
 a.nPrevAct = a.nPrevIn;     % no transfer function
 
 %% start over if an incorrect action was made

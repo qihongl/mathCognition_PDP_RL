@@ -9,7 +9,7 @@ plot(w.rS.time, a.curRwd,'-*');
 hold on;
 % plot(w.rS.time,a.nDfRwd,'-r*'); 
 % legend({'move', 'number'},'Location','northeast', 'fontsize', FONTSIZE)
-ylim(d.rwd,[p.r.bigNeg p.r.bigPos]); 
+ylim(d.rwd,[p.r.bigNeg ]); 
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
 title(d.rwd, 'reward history', 'fontsize', FONTSIZE)
 xlabel(d.rwd, 'time', 'fontsize', FONTSIZE)

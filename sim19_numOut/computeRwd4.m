@@ -1,45 +1,47 @@
-function Rwd = computeRwd2()
+function Rwd = computeRwd4()
 %% this function controls the reward policy
-global w p h a;
+global w p h;
 w.actionCorrect = true;
+% if there is remaining items
 if targetRemain()
     if w.out.handStep == 0      % not moving
+        Rwd = p.r.smallNeg;
         if w.out.countWord == 0
-            Rwd = p.r.smallNeg;
-        else
-            Rwd = p.r.midNeg;
+            Rwd = 0;
         end
     elseif ~isTouchingObj       % touching empty spot
+        Rwd = p.r.smallNeg;
         if w.out.countWord == 0
-            Rwd = p.r.smallNeg;
-        else
-            Rwd = p.r.midNeg;
+            Rwd = 0;
         end
     elseif objIsTouched         % touching touched object
+        Rwd = p.r.midNeg;
         if w.out.countWord == 0
-            Rwd = p.r.smallNeg;
-        else
-            Rwd = p.r.midNeg;
+            Rwd = 0;
         end
         w.actionCorrect = false;
     elseif ~isNext  % not touching left most untouched obj
         Rwd = p.r.midNeg;
         w.actionCorrect = false;
-        touchTarget();
-    else            % CORRECT: touching left most untouched obj
-        touchTarget();
+        w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
         if w.out.countWord == sum(w.rS.targRemain == 0)
             Rwd = p.r.midPos;
-        else
-            Rwd = p.r.midNeg;
+        end
+    else            % CORRECT: touching left most untouched obj
+        Rwd = p.r.midPos;
+        w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+        if w.out.countWord == sum(w.rS.targRemain == 0)
+            Rwd = p.r.midPos * 2;
         end
     end
 else    % if all targets were touched
-    if w.out.countWord == sum(w.rS.targRemain == 0)
+    if w.out.countWord == w.nItems
         Rwd = p.r.bigPos;
         w.done = true;
+    elseif w.out.countWord == 0
+        Rwd = 0;
     else
-        Rwd = p.r.midNeg;
+        Rwd = p.r.smallNeg;
     end
 end
 
@@ -47,24 +49,14 @@ end % end of the function
 
 
 %% Here're some helper functions to check some conditions
-function touchTarget()
-global w;
-% mark the object
-w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
-% increment the current correct number to say
-% w.curCorrectNum = w.curCorrectNum +1;
-end
-
-
 % check if the model is touching the leftmost untouched item
 function isnext = isNext()
 global w;
-isnext = false;
-if isTouchingObj && ~objIsTouched()
-    % if it is the leftmost untouched item
-    if sum(w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos))) == 1
-        isnext = true;
-    end
+% if it is the leftmost untouched item
+if sum(w.rS.targRemain(1:find(w.rS.targPos == w.rS.handPos))) == 1
+    isnext = true;
+else
+    isnext = false;
 end
 end
 
@@ -82,7 +74,7 @@ end
 % assuming an object is being touched
 function isTouched = objIsTouched()
 global w;
-if isTouchingObj && w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
+if w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
     isTouched = false;
 else
     isTouched = true;
