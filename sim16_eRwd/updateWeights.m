@@ -10,7 +10,11 @@ curRwd = computeRwd();
 expRwd = max(a.wts*w.vS.visInput');
 %% assign the reward values
 % a.Rwd = curRwd;
-a.dfRwd = curRwd + expRwd * p.gamma;
+if ~w.done
+    a.dfRwd = curRwd + expRwd * p.gamma;
+else
+    a.dfRwd = curRwd; 
+end
 
 %% update the weights
 % change in weights equals input times reward prediction error
