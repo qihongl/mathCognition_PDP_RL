@@ -1,4 +1,4 @@
-function Rwd = computeRwd()
+function Rwd = computeRwdA()
 %% this function controls the reward policy
 global w p h;
 w.actionCorrect = true;
@@ -20,12 +20,14 @@ if targetRemain()
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
     end
 else    % if all targets were touched
-    if w.out.handStep == 0
-        Rwd = p.r.bigPos;
+%     if w.out.handStep == 0
+%         Rwd = p.r.bigPos;
+%         w.doneTouching = true;
+%     else
+%         Rwd = p.r.smallNeg;
+%     end
         w.doneTouching = true;
-    else
         Rwd = p.r.smallNeg;
-    end
 end
 
 end % end of the function

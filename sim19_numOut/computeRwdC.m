@@ -11,7 +11,7 @@ if targetRemain()
         if isNext
             Rwd = p.r.midPos;
         else
-            Rwd = p.r.midNeg;
+            Rwd = p.r.smallNeg;
         end
 
     else

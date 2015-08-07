@@ -8,7 +8,7 @@ global p a
 p.wf = .1;           % noise magnitude
 p.lrate = .001;      % learning rate
 p.runs = epoch;      % training upper lim 
-p.gamma = .99;        % discount factor 
+p.gamma = .8;        % discount factor 
 p.smirate = .001;    % soft max incremental rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;     % terminate if cannot finish in 100 iter
@@ -48,7 +48,7 @@ p.nCountUnits = p.maxCount + 1;
 p.r.smallNeg = - 0.05;
 p.r.midNeg = - 1;
 p.r.bigNeg = - 3;
-p.r.midPos = 5;
+p.r.midPos = 10;
 p.r.bigPos = 10;
 % reward policy 2: no intermediate feed back 
 % p.r.smallNeg = - 0.05;
@@ -63,7 +63,7 @@ p.stopCounter = 3;
 
 %% network specific
 p.nHidden = p.eyeRange; 
-a.bias = .1;     % bias toward not moving (action 0)
+a.bias = 0.1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
 a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange);     % visual->hidden

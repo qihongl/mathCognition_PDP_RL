@@ -18,7 +18,7 @@ a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
 a.nOutIn = a.wts_HN * a.hAct;
 a.nOutAct = a.nOutIn;       % no transfer function
 % inject bias to the last unit (saying nothing)
-a.nOutAct(p.nCountUnits) = a.nOutAct(p.nCountUnits) + a.bias * 20;
+a.nOutAct(p.nCountUnits) = a.nOutAct(p.nCountUnits) + a.bias * 10;
 
 %% choose move and number actions based on the output activations 
 if w.teacherForcing
