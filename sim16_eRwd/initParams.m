@@ -44,11 +44,11 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 % p.r.midPos = 5;
 % p.r.bigPos = 10;
 % less feed back mode
-p.r.smallNeg = - 0.05;
+p.r.smallNeg = 0;
 p.r.midNeg = p.r.smallNeg;
 p.r.bigNeg = p.r.smallNeg;
 p.r.midPos = p.r.smallNeg;
-p.r.bigPos = 1;
+p.r.bigPos = 10;
 
 
 %% actively stop the task
@@ -57,7 +57,8 @@ p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values 
-a.wts = randsmall(p.mvRange,p.eyeRange);
+% a.wts = randsmall(p.mvRange,p.eyeRange);
+a.wts = randSmallWeights(p.mvRange,p.eyeRange);
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
