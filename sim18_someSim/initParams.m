@@ -6,7 +6,7 @@ global p a
 
 %% modeling parameters 
 p.wf = .1;           % noise magnitude
-p.lrate = .001;      % learning rate
+p.lrate = .0003;      % learning rate
 p.runs = epoch;      % training upper lim 
 p.gamma = 0.99;        % discount factor 
 p.smirate = .001;    % soft max incremental rate
@@ -55,7 +55,7 @@ p.r.bigPos = 10;
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = 30; 
+p.nHidden = 20; 
 a.bias = 0;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
