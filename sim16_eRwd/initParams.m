@@ -5,7 +5,7 @@ function [] = initParams(epoch)
 global p a
 
 %% modeling parameters 
-p.wf = .1;         % noise magnitude
+p.wf = .15;         % noise magnitude
 p.lrate = .001;       % learning rate
 p.runs = epoch;     % training upper lim 
 p.gamma = .9;       % discount factor 
@@ -45,11 +45,13 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 % p.r.bigPos = 10;
 % less feed back mode
 p.r.smallNeg = 0;
-p.r.midNeg = p.r.smallNeg;
-p.r.bigNeg = p.r.smallNeg;
-p.r.midPos = p.r.smallNeg;
-p.r.bigPos = 10;
+p.r.midNeg = 0;
+p.r.bigNeg = 0;
+p.r.midPos = 0;
+p.r.bigPos = 1;
 
+% count how many errors the model made
+p.punishFactor = 0.9;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
@@ -57,9 +59,8 @@ p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values 
-% a.wts = randsmall(p.mvRange,p.eyeRange);
 a.wts = randSmallWeights(p.mvRange,p.eyeRange);
-a.bias = .1;     % bias toward not moving (action 0)
+a.bias = 0.1;     % bias toward not moving (action 0)
 a.smgain = 1;
 end
 

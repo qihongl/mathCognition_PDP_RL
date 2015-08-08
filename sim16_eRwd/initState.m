@@ -18,9 +18,14 @@ a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
+w.errors = 0; 
 
 % generate items in space
-w.nItems = generateNum(p.maxItems);     % sample the number
+if isfield(mode, 'fixNumItems') && mode.fixNumItems
+    w.nItems = mode.nItem;              % fix the number of items
+else
+    w.nItems = generateNum(p.maxItems);     % sample the number from prob 
+end
 w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
 w.done = false;

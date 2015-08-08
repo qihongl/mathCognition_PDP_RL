@@ -1,10 +1,12 @@
 %% Trains the network n trials
 % written by professor Jay McClelland
-function [record] = trainAgent(epoch)
+function [record] = trainAgent(epoch, seed)
 %% initialization 
 % initialize parameters
 global p a w mode;
 initParams(epoch);
+p.seed = seed; 
+rng(seed)
 
 % preallocate
 record.a = cell(1,epoch);

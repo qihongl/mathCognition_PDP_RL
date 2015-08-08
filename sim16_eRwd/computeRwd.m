@@ -6,28 +6,18 @@ w.actionCorrect = true;
 if targetRemain()
     if w.out.handStep == 0      % not moving
         Rwd = p.r.smallNeg;
-        % if stop too long, also termiante
-%         if h(w.stateNum).w.out.handStep == 0
-%             w.stopCounter = w.stopCounter - 1;  % only count consecutive stop
-%         end
-%         if w.stopCounter == 0
-%             w.done = true;
-%             Rwd = p.r.bigNeg;
-%             w.actionCorrect = false;
-%         end
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
-        % if skip the left most untouched
-%         if w.rS.handPos > nextObjPosition()
-%             Rwd = p.r.midNeg;
-%             w.actionCorrect = false;
-%         end
     elseif objIsTouched         % touching touched object
         Rwd = p.r.midNeg;
+%         w.done = true;
+        w.errors = w.errors + 1; 
         w.actionCorrect = false;
     elseif ~isNext  % not touching left most untouched obj
         Rwd = p.r.midNeg;
         w.actionCorrect = false;
+        w.errors = w.errors + 1; 
+%         w.done = true;
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
     else            % CORRECT: touching left most untouched obj
         Rwd = p.r.midPos;
@@ -35,7 +25,8 @@ if targetRemain()
     end
 else    % if all targets were touched
     if w.out.handStep == 0
-        Rwd = p.r.bigPos;
+%         Rwd = p.r.bigPos;
+        Rwd = p.r.bigPos * p.punishFactor ^ w.errors;
         w.done = true;
     else
         Rwd = p.r.smallNeg;
