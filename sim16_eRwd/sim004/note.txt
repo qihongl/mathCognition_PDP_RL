@@ -1,2 +1,0 @@
-replication of sim 001 
-- stop earlier to see the weights - in order to understand of U curve during learning 
