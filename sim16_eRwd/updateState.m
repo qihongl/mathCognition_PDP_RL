@@ -3,7 +3,7 @@ function [ ] = updateState()
 %this function uses the real state to update the internal state
 %after Act is called to execute the hand or eye movement action
 
-global w h p;
+global w h p a;
 
 %% compute the relative locations
 % the relative locations of eye and hand
