@@ -10,7 +10,11 @@ curRwd = computeRwd();
 expRwd = max(a.aAct);
 %% assign the reward values
 % a.dfRwd = curRwd;
-a.dfRwd = curRwd + expRwd * p.gamma;
+if ~w.done
+    a.dfRwd = curRwd + expRwd * p.gamma;
+else
+    a.dfRwd = curRwd;
+end
 
 %% update the weights - back prop
 % delta for all unit

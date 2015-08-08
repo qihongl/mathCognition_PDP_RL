@@ -8,7 +8,7 @@ global p a
 p.wf = .1;         % noise magnitude
 p.lrate = .001;       % learning rate
 p.runs = epoch;     % training upper lim 
-p.gamma = .8;       % discount factor 
+p.gamma = .9;       % discount factor 
 p.smirate = .001;   % soft max rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 p.maxIter = 100;    % terminate if cannot finish in 100 iter
@@ -44,10 +44,10 @@ p.minSpacing = 2;       % min spacing between neighbouring items
 % p.r.midPos = 5;
 % p.r.bigPos = 10;
 % less feed back mode
-p.r.smallNeg = - 0.05;
-p.r.midNeg = p.r.smallNeg;
-p.r.bigNeg = p.r.smallNeg;
-p.r.midPos = p.r.smallNeg;
+p.r.smallNeg = 0;
+p.r.midNeg = 0;
+p.r.bigNeg = 0;
+p.r.midPos = 0;
 p.r.bigPos = 1;
 
 
@@ -56,7 +56,7 @@ p.r.bigPos = 1;
 p.stopCounter = 3;
 
 %% network specific
-p.nHidden = p.eyeRange; 
+p.nHidden = 20; 
 a.bias = .1;     % bias toward not moving (action 0)
 a.smgain = 1;
 % initialize with small small random values 
