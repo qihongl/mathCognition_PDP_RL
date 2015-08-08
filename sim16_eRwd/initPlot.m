@@ -10,6 +10,9 @@ d.history = subplot(2,2,2);
 d.lineWts = subplot(2,2,3);
 d.heatWts = subplot(2,2,4);
 
+% constant
+d.FONTSIZE = 14; 
+
 % % plot
 axes(d.history); cla;
 axes(d.rwd); cla;
