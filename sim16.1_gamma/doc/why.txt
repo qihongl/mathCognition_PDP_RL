@@ -1,0 +1,13 @@
+OVERALL GOAL: 
+Implement RL, compute expected reward
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
