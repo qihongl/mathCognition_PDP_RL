@@ -1,37 +1,43 @@
 %% Test a group of models, in order to establish average performance
-clear all; clear global; 
+clear all; clear global;
 
-%% Get data from the current directory 
-dataDir = {'groupData00'};
+%% Get data from the current directory
+
+nSubj = 5;
+numQs = 50;
+nGroups = 8;
 name = 'record';
-nGroups = length(dataDir);
-nSubj = 10; 
-numQs = 500;
-
-datapath = [pwd '/' dataDir{1} '/'];
+name = {'groupData'};
+for i = 1 : nGroups
+    name = 'record';
+    dataDir = sprintf()
+ 
+    datapath = [pwd '/' dataDir{1} '/'];
+end
 addpath(pwd);
 
 
-%% Single subject analysis 
-% loop over all directories 
+%% Single subject analysis
+% loop over all directories
 filenames = getFilenames(name, nSubj);
 groupScores = cell(1, nSubj);
 for n = 1 : nSubj
-    % load the record for all subjects 
+    % load the record for all subjects
     fullPath = [datapath filenames{n}];
     load(fullPath, 'record');
     loadParams(record);
-    % do single subject analysis and save the results 
+    % do single subject analysis and save the results
     scores = askQuesitons(numQs, false);
     groupScores{n} = evaluateModel(scores, numQs);
-    clear global; 
+    clear global;
 end
 rmpath(pwd);
 
-%% Group analysis 
+%% Group analysis
 
 %% save the results
 saveFileName = sprintf('%sgroupScores' ,datapath);
 save(saveFileName,'groupScores');
+
 
 beep;
