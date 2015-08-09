@@ -4,7 +4,7 @@ clear all; clear global;
 dataDir = {'groupData00'};
 name = 'record';
 nGroups = length(dataDir);
-nSubj = 10; 
+nSubj = 5; 
 LENGTH = 100; 
 datapath = [pwd '/' dataDir{1} '/'];
 
@@ -19,7 +19,6 @@ for n = 1 : nSubj
     % get performance evaluation by period
     pooledScore{n} = getPooledScores(record, LENGTH);
 end
-
 
 %% save the results
 saveFileName = sprintf('%spooledScore' ,datapath);
