@@ -19,6 +19,6 @@ mkdir(dirName)
 readmeName = [dirName '/' 'readme.txt'];
 readmeFile = fopen(readmeName, 'wt');
 fprintf(readmeFile, 'Simulation notes:\n');
-fprintf(readmeFile, 'gamma = %d \n', p.gamma);
+fprintf(readmeFile, 'p.PFd = %.2f \n', p.PFd);
 fclose(readmeFile); % close the file 
 end

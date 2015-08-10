@@ -12,6 +12,7 @@ completeRate = zeros(period, 1);
 numItemsShowed = zeros(period, 1);
 propItemsTouched = zeros(period, 1);
 propSkips = zeros(period, 1);
+meanNumErrors = zeros(period, 1);
 
 % get num item skipped for every trial;
 numSkips = zeros(1, p.runs);
@@ -41,7 +42,7 @@ for i = 1 : period
     end
     % divide by how many items the model saw, to get a 'touch rate'
     propItemsTouched(i) = numTouched / numItemsShowed(i);
-    
+    meanNumErrors(i) = sum(record.s.numErrors(currentPeriod)) / PERIOD_LENGTH;
 end
 
 %% save pooled socres
@@ -49,6 +50,7 @@ ps.completeRate = completeRate;
 ps.stepsUsed = stepsUsed;
 ps.propItemsTouched = propItemsTouched;
 ps.propSkips = propSkips;
+ps.meanNumErrors = meanNumErrors;
 
 end
 

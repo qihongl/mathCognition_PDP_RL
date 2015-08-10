@@ -16,11 +16,13 @@ plot(ps.stepsUsed, 'LineWidth',plots.WIDTH)
 plot(ps.completeRate * 100 / plots.LENGTH, 'LineWidth',plots.WIDTH)
 plot(ps.propItemsTouched * 100, 'LineWidth',plots.WIDTH)
 plot(ps.propSkips * 100, 'LineWidth',plots.WIDTH)
+plot(ps.meanNumErrors, 'LineWidth',plots.WIDTH)
 
 % add scripts
 stepsLegend = sprintf('Average steps used (max == %d)', p.maxIter);
 legend({stepsLegend, 'Proportion trials completed * 100', ...
-    'Proportion items touched * 100', 'Proportion items skipped * 100'}, ...
+    'Proportion items touched * 100', 'Proportion items skipped * 100', ...
+    'Mean Number of errors'}, ...
     'FontSize',plots.FONTSIZE)
 
 xlb = sprintf('Time (pooling data for every %d trials)',plots.LENGTH);
