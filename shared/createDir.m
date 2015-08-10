@@ -1,5 +1,6 @@
 function [dirName] = createDir(name)
 %% create a directory to save results
+global p; 
 if nargin == 0 
     name = 'groupResults';
 end
@@ -17,8 +18,7 @@ mkdir(dirName)
 %% make a read me file
 readmeName = [dirName '/' 'readme.txt'];
 readmeFile = fopen(readmeName, 'wt');
-fprintf('Simulation notes:\n')
-
+fprintf(readmeFile, 'Simulation notes:\n');
+fprintf(readmeFile, 'gamma = %d \n', p.gamma);
 fclose(readmeFile); % close the file 
-
 end

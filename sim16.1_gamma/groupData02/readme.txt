@@ -1,1 +1,2 @@
-gamma = 0.7
+Simulation notes:
+gamma = 8.500000e-01 

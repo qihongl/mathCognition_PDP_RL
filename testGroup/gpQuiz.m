@@ -26,11 +26,10 @@ for i = 0 : nGroups
         loadParams(record);
         % do single subject analysis and save the results
         scores = askQuesitons(numQs, false);
-        groupScores{n} = evaluateModel(scores, numQs);
+        groupScores{n} = evaluateModel_quiz(scores, numQs);
         clear global;
     end
     rmpath(pwd);
-    
     
     %% save the results
     saveFileName = sprintf('%sgroupScores' ,datapath);

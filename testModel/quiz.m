@@ -36,7 +36,7 @@ scores = askQuesitons(numQs, showPlot);
 %% show the quiz performance
 finalScore = []; 
 if ~showPlot
-    finalScore = evaluateModel(scores, numQs);
+    finalScore = evaluateModel_quiz(scores, numQs);
 end
 
 % undo add path, not to mix up the functions

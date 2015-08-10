@@ -3,8 +3,8 @@ clear all;
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.1_gamma/';
 filename = 'groupScores';
-initialGammaVal = 0.6;
-increment = 0.05; 
+initialGammaVal = 0.8;
+increment = 0.025; 
 numItems = 7; 
 numSub = 5;
 % loop over all data dir
@@ -12,8 +12,7 @@ for i = 0 : 8
     dataDir = sprintf('%s%.2d', dirName, i);
     datapath = [path dataDir];
     load([datapath '/' filename])
-    
-    initialGammaVal = 0.6;
+
     % loop over all "subjects"
     for n = 1 : length(groupScores)
         
@@ -31,4 +30,4 @@ for i = 0 : 8
 end
 
 % save the data
-% csvwrite('gammaData.csv',dataMatrix)
+csvwrite('gammaData.csv',dataMatrix)

@@ -34,6 +34,7 @@ for i = 1:p.runs
         a.smgain = a.smgain + p.smirate;
     end
     %% save performance
+    s.numErrors(i) = result.numErrors; 
     s.steps(i) = result.steps;
     s.indices{i} = result.indices;
     s.numItemsShowed(i) = w.nItems;

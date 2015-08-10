@@ -51,6 +51,8 @@ else
     score.completed = false;
 end
 
+score.numErrors = w.errors;
+
 % save weights
 % score.wts1 = a.wts1;
 % score.wts2 = a.wts2;

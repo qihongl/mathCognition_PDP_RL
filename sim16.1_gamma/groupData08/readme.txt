@@ -1,1 +1,2 @@
-gamma = 1
+Simulation notes:
+gamma = 1 

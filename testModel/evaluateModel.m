@@ -28,6 +28,7 @@ for i = 1 : numel(score)
     if completed(i) == 1
         completedTrialsByCard(score{i}.nItemsShowed) = completedTrialsByCard(score{i}.nItemsShowed) + 1;
     end
+    numErrors(i) = score{i}.numErrors;
 end
 
 % associate numItemShowed with steps used
