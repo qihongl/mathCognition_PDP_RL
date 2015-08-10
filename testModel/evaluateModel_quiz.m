@@ -46,7 +46,7 @@ overall.completeRate = sum(completed(:))/numTotalQ;
 overall.meanNumErrors = mean(numErrors(:));
 % complete without making error
 correctCompletedMatrix = bsxfun(@and, numErrors == 0, completed);
-overall.numCorrectCompleted = sum(sum(correctCompletedMatrix))/ numTotalQ;
+overall.correctCompRate = sum(sum(correctCompletedMatrix))/ numTotalQ;
 
 %% 2. compute summary statistics (for every cardinality)
 byCard.meanSteps = mean(steps,2);

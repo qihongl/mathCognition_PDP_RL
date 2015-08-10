@@ -15,16 +15,21 @@ for i = 0 : 8
 
     % loop over all "subjects"
     for n = 1 : length(groupScores)
-        
         dataVec = initialGammaVal + increment * i; 
-        dataVec = [dataVec groupScores{n}.meanSteps];
-        dataVec = [dataVec groupScores{n}.monotonicRate];
-        dataVec = [dataVec groupScores{n}.completeRate];
-        dataVec = [dataVec groupScores{n}.skipRate];
-        dataVec = [dataVec groupScores{n}.stepsByCard];
-        if length(dataVec) ~= 12
-            error('nani!?')
-        end
+        % overall data
+        dataVec = [dataVec groupScores{n}.overall.meanSteps];
+        dataVec = [dataVec groupScores{n}.overall.monotonicRate];
+        dataVec = [dataVec groupScores{n}.overall.completeRate];
+        dataVec = [dataVec groupScores{n}.overall.numCorrectCompleted];
+        dataVec = [dataVec groupScores{n}.overall.skipRate];
+        % by cardinality 
+        dataVec = [dataVec groupScores{n}.byCard.meanSteps'];
+        dataVec = [dataVec groupScores{n}.byCard.compRate'];
+        dataVec = [dataVec groupScores{n}.byCard.correctCompRate'];
+%         % check the length of the data 
+%         if length(dataVec) ~= 12
+%             error('nani!?')
+%         end
         dataMatrix(numSub * i + n,:) = dataVec;
     end
 end
