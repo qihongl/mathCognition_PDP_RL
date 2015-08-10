@@ -45,3 +45,19 @@ record.p = p;
 record.a = result.a;
 record.s = s; 
 end
+
+
+function [] = updateSmiPf()
+
+global a p ;
+% update softmax rate
+if a.smgain < p.smi_upperLim
+    a.smgain = a.smgain + p.smirate;
+end
+% update punish factor
+if a.punishFactor > p.PF_lowerLim
+    a.punishFactor = a.punishFactor - p.PFd;
+end
+
+end
+

@@ -5,7 +5,7 @@ clear all; clear global;
 
 nSubj = 5;
 numQs = 50;
-nGroups = 8;
+nGroups = 3;
 name = 'record';
 dirName = 'groupData';
 

@@ -1,5 +1,9 @@
 OVERALL GOAL: 
-Experimenting with different punish factor
+Compare different modes of teaching
+
+it requires me to implement a fully working tester
+	- insert test every 100 trials
+	- insert a matrix of tests: [numQs X cardinality]
 
 
 WHAT I DID: 

@@ -9,7 +9,7 @@ for i = 1 : length(PFD)
         epoch = 5000;
         nSubj = 5;
     end
-    
+     
     %% create a new directory to save the results
     dirName = createDir('groupData');
     

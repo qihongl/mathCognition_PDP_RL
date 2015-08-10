@@ -14,7 +14,7 @@ a.smgain = 1;
 p.smirate = .001;   % soft max rate
 p.smi_upperLim = 10; % the upper limit of the smi rate
 a.punishFactor = 1;   % count how many errors the model made
-% p.PFd = .001;         
+p.PFd = .001;         
 p.PF_lowerLim = 0.1; 
 
 %% teaching mode

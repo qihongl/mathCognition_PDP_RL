@@ -35,6 +35,23 @@ while ~(w.done) && i < p.maxIter
         end
     end
 end
+
+updateTeachingConditions();
+
+%% save result
+results.numErrors = w.errors;
+results.indices = indices;
+results.steps = i;
+results.h = h;
+results.a = a;
+end
+
+
+
+%% Helper functions 
+
+function updateTeachingConditions()
+global mode w p; 
 if p.teachingModeOn
     mode.teach = true; % the teacher is willing to teach at the begining
 end
@@ -45,11 +62,4 @@ if p.teacherForcingOn && mode.teacherForcing
         warning('?')
     end
 end
-
-%% save result
-results.numErrors = w.errors;
-results.indices = indices;
-results.steps = i;
-results.h = h;
-results.a = a;
 end

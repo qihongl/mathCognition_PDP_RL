@@ -1,0 +1,7 @@
+This simulation varies PFD: 0 0.001 0.002 0.005 
+
+The reward is computed as follows:
+	r = 1 * punishFactor ^ numErrorsMade
+This punish factor decrease over time, so the reward policy become hasher toward errors 
+And PFD is the decrement for each trial 
+
