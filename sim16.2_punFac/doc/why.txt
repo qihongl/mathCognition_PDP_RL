@@ -1,5 +1,5 @@
 OVERALL GOAL: 
-Tuning punish factor 
+Experimenting with different punish factor
 
 
 WHAT I DID: 

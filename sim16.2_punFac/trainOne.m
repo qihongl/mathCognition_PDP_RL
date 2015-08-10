@@ -1,5 +1,5 @@
 % just testing, a short cut for running the model
-function trainOne(epoch, seed)
+function record = trainOne(epoch, seed)
 if nargin == 0
     epoch = 2000;
     seed = randi(99);
@@ -16,7 +16,6 @@ save('record','record');
 %% eval the performance
 quiz();
 checkLearning();
-% save a plot 
 print([pwd '/' saveDirName '/' 'learningCurve'],'-dpng')
 beep % notice me that the program was ended
 end
