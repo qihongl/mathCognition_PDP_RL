@@ -24,7 +24,7 @@ p.teachingModeOn = 0;
 p.maxTeachTrial = 100;
 
 % flag for the teacher forcing mode 
-p.teacherForcingOn = 0;
+p.teacherForcingOn = 1;
 
 
 %% counting specific
@@ -43,17 +43,17 @@ p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 2;       % min spacing between neighbouring items
 
 %% reward values
-% p.r.smallNeg = - 0.05;
-% p.r.midNeg = - 1;
-% p.r.bigNeg = - 5;
-% p.r.midPos = 5;
-% p.r.bigPos = 10;
+p.r.smallNeg = - 0.05;
+p.r.midNeg = - 1;
+p.r.bigNeg = - 5;
+p.r.midPos = 5;
+p.r.bigPos = 10;
 % less feed back mode
-p.r.smallNeg = 0;
-p.r.midNeg = 0;
-p.r.bigNeg = 0;
-p.r.midPos = 0;
-p.r.bigPos = 1;
+% p.r.smallNeg = 0;
+% p.r.midNeg = 0;
+% p.r.bigNeg = 0;
+% p.r.midPos = 0;
+% p.r.bigPos = 1;
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task

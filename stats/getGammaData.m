@@ -3,12 +3,12 @@ clear all;
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.3_compTeach/';
 filename = 'groupScores';
-teachingModel = [0 1 2 3];
+teachingModel = [0 1 2 3 4];
 
 numItems = 7; 
 numSub = 10;
 % loop over all data dir
-for i = 0 : 3
+for i = teachingModel
     dataDir = sprintf('%s%.2d', dirName, i);
     datapath = [path dataDir];
     load([datapath '/' filename])
@@ -32,4 +32,4 @@ for i = 0 : 3
 end
 
 % save the data
-csvwrite('punFacData.csv',dataMatrix)
+csvwrite('compTeach2.csv',dataMatrix)
