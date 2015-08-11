@@ -1,12 +1,12 @@
 clear all;
 %% Analyze the effect of gamma value 
 dirName = 'groupData';
-path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.2_punFac/';
+path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.3_compTeach/';
 filename = 'groupScores';
-PFD = [0 0.001 0.002 0.005];
+teachingModel = [0 1 2 3];
 
 numItems = 7; 
-numSub = 5;
+numSub = 10;
 % loop over all data dir
 for i = 0 : 3
     dataDir = sprintf('%s%.2d', dirName, i);
@@ -15,7 +15,7 @@ for i = 0 : 3
 
     % loop over all "subjects"
     for n = 1 : length(groupScores)
-        dataVec = PFD(i + 1); 
+        dataVec = teachingModel(i + 1); 
         % overall data
         dataVec = [dataVec groupScores{n}.overall.meanSteps];
         dataVec = [dataVec groupScores{n}.overall.monotonicRate];
