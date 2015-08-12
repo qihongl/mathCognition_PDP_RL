@@ -9,7 +9,7 @@ nGroups = 3;
 name = 'record';
 dirName = 'groupData';
 
-for i = 4
+for i = 5
     % get access to the right data directory 
     dataDir = sprintf('%s%.2d',dirName, i);
     datapath = [pwd '/' dataDir '/'];
