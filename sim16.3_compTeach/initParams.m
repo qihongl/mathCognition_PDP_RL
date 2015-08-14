@@ -77,10 +77,10 @@ elseif p.teachingStyle == 2 || p.teachingStyle == 4
 %     p.r.bigPos = 10;
     % scale 
     p.r.smallNeg = 0;
-    p.r.midNeg = - 0.1;
-    p.r.bigNeg = - 0.5;
-    p.r.midPos = 0.5;
-    p.r.bigPos = 1;
+    p.r.midNeg = - 1;
+    p.r.bigNeg = - 5;
+    p.r.midPos = 5;
+    p.r.bigPos = 10;
 else
     error('Unrecognized teaching mode')
 end

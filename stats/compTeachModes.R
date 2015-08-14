@@ -1,10 +1,10 @@
 # Compare the performance across different ways of teaching
 rm(list = ls())
 library(ggplot2); library(plyr); library(tidyr); library(dplyr)
+setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('multiplot.R'); source('se.R')
 # load data
-setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
-mydata = read.csv('compTeach3.csv', header = F)
+mydata = read.csv('compTeach4.csv', header = F)
 
 colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate', 'skipRate',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
@@ -15,6 +15,8 @@ mydata$parameter[mydata$parameter == 0] = '1.finalRwdOnly'
 mydata$parameter[mydata$parameter == 1] = '2.interm'
 mydata$parameter[mydata$parameter == 2] = '3.demon'
 mydata$parameter[mydata$parameter == 3] = '4.demon+interm'
+mydata$parameter[mydata$parameter == 4] = '5.interm_s0'
+mydata$parameter[mydata$parameter == 5] = '6.interm_0'
 
 mydata$monoRate = 1 - mydata$monoRate
 
@@ -36,7 +38,7 @@ meanOverallData = data.frame(meanOverallData, seOverallData[,2:ncol(seOverallDat
 # do the plotting 
 limits = aes(ymax = ms + se_ms, ymin=ms - se_ms)
 p1 = ggplot(meanOverallData, aes(x = parameter, y = ms, fill=parameter)) + 
-    geom_bar(stat="identity") + 
+    geom_bar(stat="identity") + theme(legend.position="none") + 
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Mean number of steps used")
 

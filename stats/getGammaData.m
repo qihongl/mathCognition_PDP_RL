@@ -3,7 +3,7 @@ clear all;
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.3_compTeach/';
 filename = 'groupScores';
-teachingModel = [0 1 2 3];
+teachingModel = [0 1 2 3 4 5];
 
 numItems = 7; 
 numSub = 10;
@@ -32,4 +32,4 @@ for i = teachingModel
 end
 
 % save the data
-csvwrite('compTeach3.csv',dataMatrix)
+csvwrite('compTeach4.csv',dataMatrix)
