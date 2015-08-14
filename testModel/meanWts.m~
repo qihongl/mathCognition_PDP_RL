@@ -1,9 +1,0 @@
-% take average of the weights
-name = 'record';
-nsubj = 10; 
-wts = cell(10,1);
-for i = 1 : nsubj 
-    filename = sprintf('%s%.2d.mat', name, i)
-    temp = load(filename);
-    wts{i} = temp.record.a.wts;
-end

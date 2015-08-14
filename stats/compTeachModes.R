@@ -11,14 +11,16 @@ colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctC
                      'CR1','CR2','CR3','CR4','CR5','CR6','CR7',
                      'CCR1','CCR2','CCR3','CCR4','CCR5','CCR6','CCR7')
 # IMPORTANT! - set the condition label
-mydata$parameter[mydata$parameter == 0] = 'finalRwdOnly'
-mydata$parameter[mydata$parameter == 1] = 'interm'
-mydata$parameter[mydata$parameter == 2] = 'tForcing'
-mydata$parameter[mydata$parameter == 3] = 'tForcing+interm'
+mydata$parameter[mydata$parameter == 0] = '1.finalRwdOnly'
+mydata$parameter[mydata$parameter == 1] = '2.interm'
+mydata$parameter[mydata$parameter == 2] = '3.demon'
+mydata$parameter[mydata$parameter == 3] = '4.demon+interm'
+
+mydata$monoRate = 1 - mydata$monoRate
 
 # visualize data
 # mydata$parameter = factor(mydata$parameter)
-theme_set(theme_gray(base_size = 16))
+theme_set(theme_gray(base_size = 20))
 
 ################################################################################################
 ################################## Performance Overall #########################################
@@ -34,7 +36,7 @@ meanOverallData = data.frame(meanOverallData, seOverallData[,2:ncol(seOverallDat
 # do the plotting 
 limits = aes(ymax = ms + se_ms, ymin=ms - se_ms)
 p1 = ggplot(meanOverallData, aes(x = parameter, y = ms, fill=parameter)) + 
-    geom_bar(stat="identity") + theme(legend.position="none") + 
+    geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Mean number of steps used")
 
@@ -54,15 +56,19 @@ p3 = ggplot(meanOverallData, aes(x = parameter, y = ccr, fill=parameter)) +
 
 limits = aes(ymax = mr + se_mr, ymin=mr - se_mr)
 p4 = ggplot(meanOverallData, aes(x = parameter, y = mr, fill=parameter)) + 
-    geom_bar(stat="identity") + theme(legend.position="none") + 
-    geom_errorbar(limits, width=0.15) + 
-    labs(x = "Teaching mode", y = "Monotonic rate")
+    geom_bar(stat="identity") + 
+    geom_errorbar(limits, width=0.15) + theme_bw() + 
+    labs(x = "Teaching mode", y = "Order incorrect rate") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = sr + se_sr, ymin=sr - se_sr)
 p5 = ggplot(meanOverallData, aes(x = parameter, y = sr, fill=parameter)) +
-    geom_bar(stat="identity") + theme(legend.position="none") + 
-    geom_errorbar(limits, width=0.15) + 
-    labs(x = "Teaching mode", y = "Skip rate")
+    geom_bar(stat="identity") +
+    geom_errorbar(limits, width=0.15) + theme_bw() + 
+    labs(x = "Teaching mode", y = "Skip rate") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
+
+
 
 # multiplot(p4, p5, cols=2)
 
