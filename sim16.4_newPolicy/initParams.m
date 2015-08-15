@@ -4,7 +4,7 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a
 
-p.teachingStyle = 2;
+% p.teachingStyle = 2;
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -71,7 +71,7 @@ if p.teachingStyle == 1 || p.teachingStyle == 3
 elseif p.teachingStyle == 2 || p.teachingStyle == 4
     % with intermediate reward
     p.r.smallNeg = 0;
-    p.r.midNeg = 0;
+    p.r.midNeg = -1;
     p.r.midPos = 5;
     p.r.bigPos = 10;
 else

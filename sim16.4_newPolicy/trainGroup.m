@@ -7,9 +7,9 @@ if nargin == 0
     nSubj = 10;
 end
 
-param = [0];
+param = [1 2 3 4];
 for i = 1 : length(param)
-%     p.PFd = param(i); % varying parameter
+    p.teachingStyle = param(i); % varying parameter
     
     %% create a new directory to save the results
     dirName = createDir('groupData');

@@ -4,7 +4,7 @@ library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('multiplot.R'); source('se.R')
 # load data
-mydata = read.csv('compTeach4.csv', header = F)
+mydata = read.csv('newPolicy.csv', header = F)
 
 colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate', 'skipRate',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
@@ -38,37 +38,40 @@ meanOverallData = data.frame(meanOverallData, seOverallData[,2:ncol(seOverallDat
 # do the plotting 
 limits = aes(ymax = ms + se_ms, ymin=ms - se_ms)
 p1 = ggplot(meanOverallData, aes(x = parameter, y = ms, fill=parameter)) + 
-    geom_bar(stat="identity") + theme(legend.position="none") + 
+    geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
-    labs(x = "Teaching mode", y = "Mean number of steps used")
+    labs(x = "Teaching mode", y = "Mean number of steps used") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = cr + se_cr, ymin=cr - se_cr)
 p2 = ggplot(meanOverallData, aes(x = parameter, y = cr, fill=parameter)) + 
-    geom_bar(stat="identity") + theme(legend.position="none") + 
+    geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
-    labs(x = "Teaching mode", y = "Completion rate")
+    labs(x = "Teaching mode", y = "Completion rate") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = ccr + se_ccr, ymin=ccr - se_ccr)
 p3 = ggplot(meanOverallData, aes(x = parameter, y = ccr, fill=parameter)) + 
-    geom_bar(stat="identity") + theme(legend.position="none") + 
+    geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
-    labs(x = "Teaching mode", y = "Correct completion rate")
+    labs(x = "Teaching mode", y = "Correct completion rate") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 # multiplot(p1, p2, p3, cols=3)
 
 limits = aes(ymax = mr + se_mr, ymin=mr - se_mr)
 p4 = ggplot(meanOverallData, aes(x = parameter, y = mr, fill=parameter)) + 
     geom_bar(stat="identity") + 
-    geom_errorbar(limits, width=0.15) + theme_bw() + 
+    geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Order incorrect rate") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = sr + se_sr, ymin=sr - se_sr)
 p5 = ggplot(meanOverallData, aes(x = parameter, y = sr, fill=parameter)) +
     geom_bar(stat="identity") +
-    geom_errorbar(limits, width=0.15) + theme_bw() + 
+    geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Skip rate") + 
-    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank())
 
 
 
