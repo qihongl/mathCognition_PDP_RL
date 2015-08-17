@@ -1,0 +1,12 @@
+OVERALL GOAL: 
+re implement hidden units
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
