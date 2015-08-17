@@ -1,0 +1,16 @@
+OVERALL GOAL: 
+
+- implement a “completion unit”
+- implement more things to test! 
+
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
