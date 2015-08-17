@@ -1,4 +1,4 @@
-function [] = computeAnwer()
+function [] = computeAnswer()
 global w;
 % compute the best actions to take
 answer.eye = diff([w.rS.eyePos w.rS.targPos]);

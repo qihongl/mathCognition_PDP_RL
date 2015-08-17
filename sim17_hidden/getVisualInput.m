@@ -15,8 +15,5 @@ for i = 1 : w.nItems
     visInput(i,:) = cdf_R - cdf_L;
 end
 % sum all visual input, columnwise
-sumInputs = sum(visInput,1);
-% normalize it so that it sums to 1
-% cumVisualPattern = sumInputs./sum(sumInputs);
-cumVisualPattern = sumInputs;
+cumVisualPattern = sum(visInput,1);
 end
