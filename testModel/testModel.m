@@ -24,9 +24,9 @@ if showPlot
 end
 % w.rS    % show the initial state
 i = 0;
-score.indices = zeros(1,100);
+score.indices = zeros(1,p.maxIter);
 % test the model
-while ~(w.done) && i < 100
+while ~(w.done) && i < p.maxIter
     selectAction();
     move();
     updateState();
@@ -52,9 +52,4 @@ else
 end
 
 score.numErrors = w.errors;
-
-% save weights
-% score.wts1 = a.wts1;
-% score.wts2 = a.wts2;
-
 end

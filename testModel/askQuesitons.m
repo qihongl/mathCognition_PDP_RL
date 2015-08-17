@@ -3,6 +3,7 @@ function score = askQuesitons(numQs, showPlot)
 global p;
 % preallocate
 score = cell(p.maxItems,numQs);
+% ask a matrix of questions: cardinality by numQuestions
 fprintf('Start testing: %d * %d  questions\n', p.maxItems, numQs)
 for cardinality = 1:p.maxItems
     fprintf('%d', cardinality)
