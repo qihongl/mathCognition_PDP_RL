@@ -1,9 +1,9 @@
 clear all;
 %% Analyze the effect of gamma value 
 dirName = 'groupData';
-path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.4_newPolicy/';
+path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.5_compleUnit/';
 filename = 'groupScores';
-teachingModel = [0 1 2 3];
+teachingModel = [0 1];
 
 numItems = 7; 
 numSub = 10;
@@ -32,4 +32,4 @@ for i = teachingModel
 end
 
 % save the data
-csvwrite('newPolicy.csv',dataMatrix)
+csvwrite('completUnit.csv',dataMatrix)
