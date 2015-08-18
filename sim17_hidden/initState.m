@@ -48,7 +48,6 @@ w.out.eyeStep = 0;
 w.stopCounter = p.stopCounter;
 
 % teaching specific
-w.redo = false;
 w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true;
 % forcing specific

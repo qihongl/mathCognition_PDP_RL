@@ -12,13 +12,18 @@ global a w h p mode;
 %distribution over possible values in a map.
 
 %% specify the parameters
-a.act = zeros(p.mvRange,1);
 a.dfRwd = 0;
 a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 w.errors = 0; 
+
+% preallocation for activations
+a.aIn = zeros(p.mvRange,1);
+a.aAct = zeros(p.mvRange,1);
+a.hIn = zeros(p.nHidden,1);
+a.hAct = zeros(p.nHidden,1);
 
 % generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
@@ -44,7 +49,6 @@ w.out.eyeStep = 0;
 w.stopCounter = p.stopCounter;
 
 % teaching specific
-w.redo = false;
 w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true; 
 if p.teacherForcingOn
