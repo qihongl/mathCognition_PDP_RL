@@ -4,7 +4,7 @@ library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('multiplot.R'); source('se.R')
 # load data
-mydata = read.csv('newPolicy.csv', header = F)
+mydata = read.csv('completUnit.csv', header = F)
 
 colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate', 'skipRate',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
@@ -13,10 +13,10 @@ colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctC
 # IMPORTANT! - set the condition label
 mydata$parameter[mydata$parameter == 0] = '1.finalRwdOnly'
 mydata$parameter[mydata$parameter == 1] = '2.interm'
-mydata$parameter[mydata$parameter == 2] = '3.demon'
-mydata$parameter[mydata$parameter == 3] = '4.demon+interm'
-mydata$parameter[mydata$parameter == 4] = '5.interm_s0'
-mydata$parameter[mydata$parameter == 5] = '6.interm_0'
+# mydata$parameter[mydata$parameter == 2] = '3.demon'
+# mydata$parameter[mydata$parameter == 3] = '4.demon+interm'
+# mydata$parameter[mydata$parameter == 4] = '5.interm_s0'
+# mydata$parameter[mydata$parameter == 5] = '6.interm_0'
 
 mydata$monoRate = 1 - mydata$monoRate
 
