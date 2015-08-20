@@ -17,6 +17,7 @@ a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
+w.errors = 0; 
 
 % preallocation for activations
 a.aIn = zeros(p.mvRange,1);

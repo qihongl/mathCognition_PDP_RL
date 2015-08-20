@@ -10,10 +10,12 @@ if targetRemain()
         Rwd = p.r.smallNeg;
     elseif objIsTouched         % touching touched object
         Rwd = p.r.midNeg;
+        w.errors = w.errors + 1;
         w.actionCorrect = false;
     elseif ~isNext  % not touching left most untouched obj
         Rwd = p.r.midNeg;
         w.actionCorrect = false;
+        w.errors = w.errors + 1;
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
     else            % CORRECT: touching left most untouched obj
         Rwd = p.r.midPos;

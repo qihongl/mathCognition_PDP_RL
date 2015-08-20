@@ -14,7 +14,7 @@ global p a
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .0006;         % learning rate
+p.lrate = .0001;         % learning rate
 p.gamma = .9;           % discount factor
 a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
@@ -81,7 +81,7 @@ end
 
 %% network specific
 % initialize with small small random values
-p.nHidden = 20; 
+p.nHidden = 30; 
 % a.wts = randSmallWeights(p.mvRange,p.eyeRange);
 a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
 a.wts_HA = randSmallWeights(p.mvRange, p.nHidden); 
