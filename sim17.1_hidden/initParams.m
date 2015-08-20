@@ -4,7 +4,7 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a
 
-p.teachingStyle = 2;
+% p.teachingStyle = 2;
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -14,7 +14,7 @@ p.teachingStyle = 2;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .0007;         % learning rate
+p.lrate = .0006;         % learning rate
 p.gamma = .9;           % discount factor
 a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
@@ -23,20 +23,16 @@ p.smi_upperLim = 10;    % the upper limit of the smi rate
 if p.teachingStyle == 1 || p.teachingStyle == 3
     a.punishFactor = 0.8;   % count how many errors the model made
     p.PFd = .001;
-    p.PF_lowerLim = 0.2;
 elseif p.teachingStyle == 2 || p.teachingStyle == 4
     a.punishFactor = 1;   % count how many errors the model made
     p.PFd = 0;
-    p.PF_lowerLim = 0.2;
 else
     error('Unrecognized teaching mode')
 end
+p.PF_lowerLim = 0.2;
 
 %% teaching mode
-% controls the redo mode
 p.teachingModeOn = 0;
-p.maxTeachTrial = 100;
-
 if p.teachingStyle == 3 || p.teachingStyle == 4
     % flag for the teacher forcing mode
     p.teacherForcingOn = 1;
@@ -81,7 +77,7 @@ end
 
 %% actively stop the task
 % if the model doesn't move for 5 steps, terminate the task
-p.stopCounter = 3;
+% p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values

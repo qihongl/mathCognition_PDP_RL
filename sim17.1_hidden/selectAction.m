@@ -7,7 +7,7 @@ global w a p;
 a.hIn = a.wts_VH * w.vS.visInput';
 a.hAct = sigmoid(a.hIn);
 a.aIn = a.wts_HA * a.hAct;
-a.aAct = a.aIn;
+a.aAct = a.aIn;     % no sigmoid transformation here
 % inject bias to action 0 (don't move)
 a.aAct(p.mvRad +1) = a.aAct(p.mvRad +1) + a.bias;
 
@@ -17,7 +17,9 @@ if w.teacherForcing
 else
     a.choice = choose(a.aAct.^a.smgain);
 end
-w.out.targGuess = a.choice - p.mvRad - 1; % get vS action
+% get vS target guess
+w.out.targGuess = a.choice - p.mvRad - 1; 
+
 %% compute the "moving vector" for eye and hand (in vS)
 w.out.handStep = w.out.targGuess - w.vS.handPos;
 w.out.eyeStep = w.out.targGuess; % already in eye-centered coordinates

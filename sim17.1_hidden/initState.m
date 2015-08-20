@@ -20,10 +20,10 @@ w.stateNum = -1;
 w.errors = 0; 
 
 % preallocation for activations
-a.aIn = zeros(p.mvRange,1);
-a.aAct = zeros(p.mvRange,1);
 a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
+a.aIn = zeros(p.mvRange,1);
+a.aAct = zeros(p.mvRange,1);
 
 % generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
@@ -33,6 +33,8 @@ else
 end
 w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
+
+% flag for ending the task
 w.done = false;
 
 % initialize the location of hand and eye
@@ -45,11 +47,7 @@ w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
-% copy the stop counter value
-w.stopCounter = p.stopCounter;
-
 % teaching specific
-w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true; 
 if p.teacherForcingOn
     w.teacherForcing = mode.teacherForcing; 
