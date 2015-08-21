@@ -5,7 +5,7 @@ close all; clear all;
 % set up the objective mapping 
 input = [0 0; 0 1; 1 0; 1 1]';
 target = [0 1 1 0];
-p.epochs = 10000;
+p.epochs = 1000;
 p.lrate = 0.01;
 % get the dimensions
 [numInput N] = size(input);
@@ -31,7 +31,6 @@ for iter = 1 : p.epochs;
         wts1_change = delta2 * input(:,i)';
         wts2 = wts2 + p.lrate * wts2_change;
         wts1 = wts1 + p.lrate * wts1_change;
-        
     end
 end
 

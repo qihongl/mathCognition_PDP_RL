@@ -6,8 +6,8 @@ close all; clear all;
 input = [0 0; 0 1; 1 0; 1 1]';
 target = [0 1 1 0];
 
-p.epochs = 10000;
-p.lrate = 0.001;
+p.epochs = 1000;
+p.lrate = 0.005;
 
 % get the dimensions
 [numInput N] = size(input);
