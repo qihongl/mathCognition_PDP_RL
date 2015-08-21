@@ -19,7 +19,8 @@ end
 %% update the weights - back prop
 % delta for all unit
 delta3 = a.dfRwd - a.aAct(a.choice); 
-delta2 = a.wts_HA(a.choice, :)' * delta3 .* (a.hAct .* (1-a.hAct));
+delta2 = a.wts_HA(a.choice, :)' * delta3 .* (1-(a.hAct.^2));
+
 % compute the changes for the weights
 wtsHA_change = delta3 * a.hAct';
 wtsVH_change = delta2 * w.vS.oldInput;

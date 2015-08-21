@@ -4,10 +4,8 @@ global w a p;
 
 %% compute the output activation
 % forward prop. 
-a.hIn = a.wts_VH * w.vS.visInput';
-a.hAct = sigmoid(a.hIn);
-a.aIn = a.wts_HA * a.hAct;
-a.aAct = a.aIn;     % no sigmoid transformation here
+a.hAct = tanh(a.wts_VH * w.vS.visInput');
+a.aAct = a.wts_HA * a.hAct; 
 % inject bias to action 0 (don't move)
 a.aAct(p.mvRad +1) = a.aAct(p.mvRad +1) + a.bias;
 
