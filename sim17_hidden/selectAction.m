@@ -7,8 +7,7 @@ global w a p;
 a.hIn = a.wts1 * w.vS.visInput';
 a.hAct = sigmoid(a.hIn);
 a.aIn = a.wts2 * a.hAct;
-% a.aAct = sigmoid(a.aIn);      % TODO what if sigmoid 
-a.aAct = a.aIn;
+a.aAct = a.aIn;     % no transfer function 
 % inject bias to action 0 (don't move)
 a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
 
