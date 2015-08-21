@@ -1,0 +1,12 @@
+OVERALL GOAL: 
+use tanh layer
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
