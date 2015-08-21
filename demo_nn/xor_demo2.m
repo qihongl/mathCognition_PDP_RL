@@ -36,15 +36,15 @@ for iter = 1:p.epochs
         pred = hiddenAct'*wts2';
         
         % back propagation 
-        delta3 = pred - target;
+        delta3 = target - pred;
         delta2 = delta3.*wts2'.*(1-(hiddenAct.^2));
 %         delta2 = delta3.*wts2'.*(hiddenAct.*(1 - hiddenAct));
         % compute the weight changes
-        wts2_change = p.lrate * delta3.* hiddenAct;
-        wts1_change= p.lrate * delta2 * this_pat;
+        wts2_change = delta3.* hiddenAct;
+        wts1_change= delta2 * this_pat;
         % weight update
-        wts2 = wts2 - wts2_change';
-        wts1 = wts1 - wts1_change';
+        wts2 = wts2 + p.lrate * wts2_change';
+        wts1 = wts1 + p.lrate * wts1_change';
     end
     
     %plot overall network error at end of each epoch
@@ -64,12 +64,3 @@ for iter = 1:p.epochs
     end
     
 end
-
-%-----FINISHED---------
-%display actual,predicted & error
-% fprintf('state after %d p.epochs\n',iter);
-% a = (y* sigma_out(:,1)) + mu_out(:,1);
-% b = (pred'* sigma_out(:,1)) + mu_out(:,1);
-% act_pred_err = [a b b-a]
-
-
