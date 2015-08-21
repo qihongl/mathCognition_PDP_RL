@@ -1,0 +1,13 @@
+OVERALL GOAL: 
+Implement a hidden layer
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
