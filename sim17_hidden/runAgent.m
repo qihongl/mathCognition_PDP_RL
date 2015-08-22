@@ -47,6 +47,7 @@ if p.teacherForcingOn && mode.teacherForcing
 end
 
 %% save result
+results.numErrors = w.errors;
 results.indices = indices;
 results.steps = i;
 results.h = h;
