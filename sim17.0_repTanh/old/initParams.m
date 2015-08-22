@@ -1,3 +1,4 @@
+
 % written by professor Jay McClelland
 function [] = initParams(epoch)
 % This program initialize and preallocate the parameters needed for the

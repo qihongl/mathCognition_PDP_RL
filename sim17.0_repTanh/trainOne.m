@@ -1,7 +1,7 @@
 % just testing, a short cut for running the model
 function trainOne(epoch, seed)
 if nargin == 0
-    epoch = 8000;
+    epoch = 5000;
     seed = randi(99);
 end
 

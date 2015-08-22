@@ -11,7 +11,7 @@ global a w h p mode;
 %for now we treat hand position as a single value rather than as a
 %distribution over possible values in a map.
 
-%% specify the parameters
+%% initialize the parameters
 a.dfRwd = 0;
 a.Rwd = 0;
 w.rS.time = 0;
@@ -20,10 +20,10 @@ w.stateNum = -1;
 w.errors = 0; 
 
 % preallocation for activations
-a.hIn = zeros(p.nHidden,1);
-a.hAct = zeros(p.nHidden,1);
 a.aIn = zeros(p.mvRange,1);
 a.aAct = zeros(p.mvRange,1);
+a.hIn = zeros(p.nHidden,1);
+a.hAct = zeros(p.nHidden,1);
 
 % generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
@@ -32,9 +32,7 @@ else
     w.nItems = generateNum(p.maxItems);     % sample the number from prob 
 end
 w.rS.targPos = itemGen(w.nItems);       % generate items
-w.rS.targRemain = true(w.nItems, 1);    % set up flag 
-
-% flag for ending the task
+w.rS.targRemain = true(w.nItems, 1);    % set up flag
 w.done = false;
 
 % initialize the location of hand and eye
@@ -47,12 +45,17 @@ w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
+% copy the stop counter value
+w.stopCounter = p.stopCounter;
+
 % teaching specific
-mode.teach = true; 
+w.maxTeachTrial = p.maxTeachTrial;
+mode.teach = true;
+% forcing specific
 if p.teacherForcingOn
-    w.teacherForcing = mode.teacherForcing; 
-else 
-    w.teacherForcing = false; 
+    w.teacherForcing = mode.teacherForcing;
+else
+    w.teacherForcing = false;
 end
 % save
 h = struct('w',w);

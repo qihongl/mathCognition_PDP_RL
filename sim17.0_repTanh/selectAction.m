@@ -5,7 +5,7 @@ global w a p;
 %% compute the output activation
 % forward prop. 
 a.hIn = a.wts_VH * w.vS.visInput';
-a.hAct = sigmoid(a.hIn);
+a.hAct = tanh(a.hIn);
 a.aIn = a.wts_HA * a.hAct;
 a.aAct = a.aIn;     % no transfer function 
 % inject bias to action 0 (don't move)
