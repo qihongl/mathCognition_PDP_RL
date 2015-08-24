@@ -4,7 +4,7 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a
 
-p.teachingStyle = 2;
+% p.teachingStyle = 2;
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -14,7 +14,7 @@ p.teachingStyle = 2;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .0005;         % learning rate
+p.lrate = .0001;         % learning rate
 p.gamma = .9;           % discount factor
 a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
@@ -74,7 +74,7 @@ else
 end
 
 %% network specific
-p.nHidden = 20; 
+p.nHidden = 31; 
 % initialize with small small random values
 a.wts_VH = randSmallWeights(p.nHidden, p.eyeRange); 
 a.wts_HA = randSmallWeights(p.mvRange, p.nHidden); 

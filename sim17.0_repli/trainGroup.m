@@ -7,7 +7,7 @@ if nargin == 0
     nSubj = 10;
 end
 
-param = [2];
+param = [1 2 3 4];
 for i = 1 : length(param)
     p.teachingStyle = param(i); % varying parameter
     

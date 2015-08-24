@@ -5,11 +5,11 @@ clear all; clear global;
 
 nSubj = 10;
 numQs = 50;
-nGroups = 6;
+nGroups = 3;
 name = 'record';
 dirName = 'groupData';
 
-for i = 4
+for i = 0 : nGroups
     % get access to the right data directory 
     dataDir = sprintf('%s%.2d',dirName, i);
     datapath = [pwd '/' dataDir '/'];
