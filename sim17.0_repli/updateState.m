@@ -11,7 +11,8 @@ w.vS.eyePos = 0;
 w.vS.handPos = w.rS.handPos - w.rS.eyePos;
 % the next line is the apparent new position of the target
 % purturbed by scalar variability based on true targ pos
-w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
+% w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
+w.vS.targPos = w.rS.targPos - w.rS.eyePos;
 
 % the error depends on the distance between target and fixation
 w.vS.sd = p.wf*abs(w.rS.targPos - w.rS.eyePos);

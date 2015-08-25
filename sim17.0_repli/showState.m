@@ -3,7 +3,7 @@ function [ ] = showState( )
 global p w d a;
 % plot rewards over time 
 axes(d.rwd);
-plot(w.rS.time,a.Rwd,'-*'); hold on;
+plot(w.rS.time,a.dfRwd,'-*'); hold on;
 ylim(d.rwd,[p.r.midNeg p.r.bigPos]); 
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
 
