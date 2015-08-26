@@ -2,38 +2,44 @@
 rm(list = ls())
 library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
-source('multiplot.R'); source('se.R')
+source('helperFunctions/multiplot.R'); source('helperFunctions/se.R')
 # load data
-mydata = read.csv('compUnit0.csv', header = F)
+mydata = read.csv('compUnit_samePf0.csv', header = F)
 
-colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate', 'skipRate',
+################################################################################################
+################################## Preprocess the data #########################################
+################################################################################################
+# set the name (need to be revised when adding new variables!)
+numOverallData = 7; 
+colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
+                     'skipRate','stopEarlyRate',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
                      'CR1','CR2','CR3','CR4','CR5','CR6','CR7',
-                     'CCR1','CCR2','CCR3','CCR4','CCR5','CCR6','CCR7')
-# IMPORTANT! - set the condition label
+                     'CCR1','CCR2','CCR3','CCR4','CCR5','CCR6','CCR7',
+                     'SR1','SR2','SR3','SR4','SR5','SR6','SR7',
+                     'SER1','SER2','SER3','SER4','SER5','SER6','SER7',
+                     'numErr1','numErr2','numErr3','numErr4','numErr5','numErr6','numErr7')
+
+# set the condition label (need to be revised when changing conditions!)
 mydata$parameter[mydata$parameter == 0] = '1.finalRwdOnly'
 mydata$parameter[mydata$parameter == 1] = '2.interm'
 mydata$parameter[mydata$parameter == 2] = '3.demon'
 mydata$parameter[mydata$parameter == 3] = '4.demon+interm'
-# mydata$parameter[mydata$parameter == 4] = '5.interm_s0'
-# mydata$parameter[mydata$parameter == 5] = '6.interm_0'
 
+# convert correct rate to error rate
 mydata$monoRate = 1 - mydata$monoRate
-
-# visualize data
-# mydata$parameter = factor(mydata$parameter)
+# set the font size
 theme_set(theme_gray(base_size = 20))
 
 ################################################################################################
 ################################## Performance Overall #########################################
 ################################################################################################
-overallData = mydata[,1:6]
+overallData = mydata[,1:numOverallData]
 meanOverallData = ddply(overallData,~parameter,summarise,ms=mean(meanSteps),mr=mean(monoRate),
                       cr=mean(compRate),ccr=mean(correctCompRate),sr=mean(skipRate))
 seOverallData = ddply(overallData,~parameter,summarise,se_ms=se(meanSteps),se_mr=se(monoRate),
                       se_cr=se(compRate),se_ccr=se(correctCompRate),se_sr=se(skipRate))
 meanOverallData = data.frame(meanOverallData, seOverallData[,2:ncol(seOverallData)])
-
 
 # do the plotting 
 limits = aes(ymax = ms + se_ms, ymin=ms - se_ms)

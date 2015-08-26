@@ -39,4 +39,4 @@ for i = teachingModel
 end
 
 % save the data
-csvwrite('compUnit_samePf0.csv',dataMatrix)
+csvwrite('compUnit_samePf.csv',dataMatrix)
