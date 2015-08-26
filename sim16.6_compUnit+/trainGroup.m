@@ -4,7 +4,7 @@ global p;
 %% set the parameter that you want to vary
 if nargin == 0
     epoch = 10000;
-    nSubj = 10;
+    nSubj = 20;
 end
 
 param = [1 2 3 4];

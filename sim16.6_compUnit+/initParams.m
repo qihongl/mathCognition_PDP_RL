@@ -16,27 +16,18 @@ p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
 p.lrate = .0005;        % learning rate
 p.gamma = .9;           % discount factor
+
 a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
 p.smi_upperLim = 10;    % the upper limit of the smi rate
-
-if p.teachingStyle == 1 || p.teachingStyle == 3
-    a.punishFactor = 0.8;   % count how many errors the model made
-    p.PFd = .001;
-    p.PF_lowerLim = 0.2;
-elseif p.teachingStyle == 2 || p.teachingStyle == 4
-    a.punishFactor = 1;   % count how many errors the model made
-    p.PFd = 0;
-    p.PF_lowerLim = 0.2;
-else
-    error('Unrecognized teaching mode')
-end
+a.punishFactor = 0.8;   % the punish factor on the final reward
+p.PFd = .001;           % the decrement rate for the punish factor 
+p.PF_lowerLim = 0.2;    % the lower bound for the punish factor 
 
 %% teaching mode
 % % controls the redo mode
 p.teachingModeOn = 0;
 p.maxTeachTrial = 100;
-
 if p.teachingStyle == 3 || p.teachingStyle == 4
     % flag for the teacher forcing mode
     p.teacherForcingOn = 1;

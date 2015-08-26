@@ -1,7 +1,6 @@
 OVERALL GOAL: 
 
-- implement a “completion unit”
-- implement more things to test! 
+- all conditions: using punish factor
 
 
 
