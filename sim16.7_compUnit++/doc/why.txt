@@ -1,6 +1,6 @@
 OVERALL GOAL: 
 
-- all conditions: use max instead of softmax DURING testing
+- all conditions: using punish factor
 
 
 
