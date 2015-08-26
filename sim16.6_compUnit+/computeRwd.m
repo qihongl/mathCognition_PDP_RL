@@ -12,7 +12,7 @@ if targetRemain()
         Rwd = p.r.smallNeg;
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
-    elseif objIsTouched         % touching touched object
+    elseif objIsTouched         % touching a previously touched object
         Rwd = p.r.midNeg;
         w.errors = w.errors + 1; 
         w.actionCorrect = false;
@@ -64,6 +64,7 @@ end
 function isTouched = objIsTouched()
 global w;
 if w.rS.targRemain(w.rS.handPos == w.rS.targPos) == true
+    % this means that the object was touched before
     isTouched = false;
 else
     isTouched = true;

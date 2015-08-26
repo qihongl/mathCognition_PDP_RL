@@ -1,7 +1,8 @@
 OVERALL GOAL: 
 
-- further refine complete unit 
-- maybe: try hidden units 
+- implement a “completion unit”
+- implement more things to test! 
+
 
 
 WHAT I DID: 
