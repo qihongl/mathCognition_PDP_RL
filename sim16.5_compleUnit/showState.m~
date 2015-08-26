@@ -3,14 +3,14 @@ function [ ] = showState( )
 
 global p w d a;
 
-%% plot current and expected rewards over time
+%% plot current and expected rewards over time 
 axes(d.rwd);
 plot(w.rS.time,a.Rwd,'-b*'); hold on;
 plot(w.rS.time,a.dfRwd,'-r*');
 legend({'current reward', 'discounted future reward'},...
     'Location','northwest', 'fontsize', d.FONTSIZE)
 
-ylim(d.rwd,[p.r.midNeg p.r.bigPos]);
+ylim(d.rwd,[p.r.midNeg p.r.bigPos]); 
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
 title(d.rwd, 'Reward history', 'fontsize', d.FONTSIZE)
 xlabel(d.rwd, 'Time', 'fontsize', d.FONTSIZE)
@@ -53,18 +53,16 @@ ylabel(d.actionHistory, 'Time', 'fontsize', d.FONTSIZE)
 
 %% plot all weights
 axes(d.visInpHistory);
+
+
 col = autumn;
-col = flipud(col);
 intensityVal = floor(w.vS.visInput * size(col,1));
 hold on
 for i = 1: length(w.vS.visInput)
-    if intensityVal(i) == 0
-        plot(i,t);
-    else
-        plot(i,t,'-*', 'color',col(intensityVal(i),:));
+    if intensityVal(i) ~= 0
+        plot(0,[-p.eyeRad, p.eyeRad],'-*', 'color',col(intensityVal(i),:));
     end
 end
-text(p.eyeRad+1,t,'@');
 hold off
 
 
