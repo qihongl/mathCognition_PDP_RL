@@ -1,12 +1,12 @@
 clear all;
 %% Analyze the effect of gamma value 
 dirName = 'groupData';
-path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.5_compleUnit/';
+path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.6_compUnit+/';
 filename = 'groupScores';
 teachingModel = [0 1 2 3];
 
 numItems = 7; 
-numSub = 10;
+numSub = 20;
 % loop over all data dir
 for i = teachingModel
     dataDir = sprintf('%s%.2d', dirName, i);
@@ -32,4 +32,4 @@ for i = teachingModel
 end
 
 % save the data
-csvwrite('compUnit0.csv',dataMatrix)
+csvwrite('compUnit_samePf.csv',dataMatrix)
