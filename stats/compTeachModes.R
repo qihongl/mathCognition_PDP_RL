@@ -2,7 +2,8 @@
 rm(list = ls())
 library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
-source('helperFunctions/multiplot.R'); source('helperFunctions/se.R')
+source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
+source('helperFunctions/plotBars.R')
 # load data
 mydata = read.csv('compUnit_samePf0.csv', header = F)
 
@@ -11,7 +12,7 @@ mydata = read.csv('compUnit_samePf0.csv', header = F)
 ################################################################################################
 # set the name (need to be revised when adding new variables!)
 numOverallData = 7; 
-colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
+colnames(mydata) = c('teachModes', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
                      'skipRate','stopEarlyRate',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
                      'CR1','CR2','CR3','CR4','CR5','CR6','CR7',
@@ -21,10 +22,10 @@ colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctC
                      'numErr1','numErr2','numErr3','numErr4','numErr5','numErr6','numErr7')
 
 # set the condition label (need to be revised when changing conditions!)
-mydata$parameter[mydata$parameter == 0] = '1.finalRwdOnly'
-mydata$parameter[mydata$parameter == 1] = '2.interm'
-mydata$parameter[mydata$parameter == 2] = '3.demon'
-mydata$parameter[mydata$parameter == 3] = '4.demon+interm'
+mydata$teachModes[mydata$teachModes == 0] = '1.finalRwdOnly'
+mydata$teachModes[mydata$teachModes == 1] = '2.interm'
+mydata$teachModes[mydata$teachModes == 2] = '3.demon'
+mydata$teachModes[mydata$teachModes == 3] = '4.demon+interm'
 
 # convert correct rate to error rate
 mydata$monoRate = 1 - mydata$monoRate
@@ -35,55 +36,57 @@ theme_set(theme_gray(base_size = 20))
 ################################## Performance Overall #########################################
 ################################################################################################
 overallData = mydata[,1:numOverallData]
-meanOverallData = ddply(overallData,~parameter,summarise,ms=mean(meanSteps),mr=mean(monoRate),
-                      cr=mean(compRate),ccr=mean(correctCompRate),sr=mean(skipRate))
-seOverallData = ddply(overallData,~parameter,summarise,se_ms=se(meanSteps),se_mr=se(monoRate),
-                      se_cr=se(compRate),se_ccr=se(correctCompRate),se_sr=se(skipRate))
+meanOverallData = ddply(overallData,~teachModes,summarise,ms=mean(meanSteps),mr=mean(monoRate),
+                      cr=mean(compRate),ccr=mean(correctCompRate),sr=mean(skipRate), ser = mean(stopEarlyRate))
+seOverallData = ddply(overallData,~teachModes,summarise,se_ms=se(meanSteps),se_mr=se(monoRate),
+                      se_cr=se(compRate),se_ccr=se(correctCompRate),se_sr=se(skipRate), se_ser = se(stopEarlyRate))
 meanOverallData = data.frame(meanOverallData, seOverallData[,2:ncol(seOverallData)])
 
 # do the plotting 
 limits = aes(ymax = ms + se_ms, ymin=ms - se_ms)
-p1 = ggplot(meanOverallData, aes(x = parameter, y = ms, fill=parameter)) + 
+p1 = ggplot(meanOverallData, aes(x = teachModes, y = ms, fill=teachModes)) + 
     geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Mean number of steps used") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = cr + se_cr, ymin=cr - se_cr)
-p2 = ggplot(meanOverallData, aes(x = parameter, y = cr, fill=parameter)) + 
+p2 = ggplot(meanOverallData, aes(x = teachModes, y = cr, fill=teachModes)) + 
     geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Completion rate") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = ccr + se_ccr, ymin=ccr - se_ccr)
-p3 = ggplot(meanOverallData, aes(x = parameter, y = ccr, fill=parameter)) + 
+p3 = ggplot(meanOverallData, aes(x = teachModes, y = ccr, fill=teachModes)) + 
     geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Correct completion rate") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
-# multiplot(p1, p2, p3, cols=3)
-
 limits = aes(ymax = mr + se_mr, ymin=mr - se_mr)
-p4 = ggplot(meanOverallData, aes(x = parameter, y = mr, fill=parameter)) + 
+p4 = ggplot(meanOverallData, aes(x = teachModes, y = mr, fill=teachModes)) + 
     geom_bar(stat="identity") + 
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Order incorrect rate") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 limits = aes(ymax = sr + se_sr, ymin=sr - se_sr)
-p5 = ggplot(meanOverallData, aes(x = parameter, y = sr, fill=parameter)) +
+p5 = ggplot(meanOverallData, aes(x = teachModes, y = sr, fill=teachModes)) +
     geom_bar(stat="identity") +
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Skip rate") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank())
 
 
+limits = aes(ymax = ser + se_ser, ymin=ser - se_ser)
+p6 = ggplot(meanOverallData, aes(x = teachModes, y = ser, fill=teachModes)) + 
+    geom_bar(stat="identity") + 
+    geom_errorbar(limits, width=0.15) + 
+    labs(x = "Teaching mode", y = "Mean stop early rate") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
-# multiplot(p4, p5, cols=2)
-
-multiplot(p1, p2, p3, p4, p5, cols=3)
+multiplot(p1, p2, p3, p4, p5, p6, cols=3)
 cat ("Press [enter] to continue")
 line <- readline()
 
@@ -97,13 +100,13 @@ line <- readline()
 ################################################################################################
 # mean steps used by cardinality 
 ################################################################################################
-tempSelectVars <- c('parameter',"steps1", "steps2", "steps3",
+tempSelectVars <- c('teachModes',"steps1", "steps2", "steps3",
                     'steps4', 'steps5', 'steps6', 'steps7')
 stepsData = mydata[tempSelectVars]
 # compute mean by cardinality 
-meanStepsData = ddply(stepsData,~parameter,summarise,one=mean(steps1),two=mean(steps2),
+meanStepsData = ddply(stepsData,~teachModes,summarise,one=mean(steps1),two=mean(steps2),
                       three=mean(steps3),four=mean(steps4),five=mean(steps5),six=mean(steps6),seven=mean(steps7))
-seStepsData = ddply(stepsData,~parameter,summarise,one=se(steps1),two=se(steps2),
+seStepsData = ddply(stepsData,~teachModes,summarise,one=se(steps1),two=se(steps2),
                       three=se(steps3),four=se(steps4),five=se(steps5),six=se(steps6),seven=se(steps7))
 # gather data by cardinality
 meanStepsData = gather(meanStepsData, cardinality, meanSteps, one:seven)
@@ -114,7 +117,7 @@ colnames(meanStepsData)[ncol(meanStepsData)] = 'seSteps'
 limits = aes(ymax = meanSteps + seSteps, ymin=meanSteps - seSteps)
 
 # do the plotting 
-p1 = ggplot(data=meanStepsData, aes(x=cardinality, y=meanSteps, group=parameter, colour=parameter)) +
+p1 = ggplot(data=meanStepsData, aes(x=cardinality, y=meanSteps, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 100) +  
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Number of items", y = "Mean number of steps used") 
@@ -123,12 +126,12 @@ p1 = ggplot(data=meanStepsData, aes(x=cardinality, y=meanSteps, group=parameter,
 ################################################################################################
 # complete rate by cardinality 
 ################################################################################################
-tempSelectVars <- c('parameter',"CR1", "CR2", "CR3",'CR4', 'CR5', 'CR6', 'CR7')
+tempSelectVars <- c('teachModes',"CR1", "CR2", "CR3",'CR4', 'CR5', 'CR6', 'CR7')
 CRData = mydata[tempSelectVars]
 # compute mean by cardinality 
-meanCRData = ddply(CRData,~parameter,summarise,one=mean(CR1),two=mean(CR2),
+meanCRData = ddply(CRData,~teachModes,summarise,one=mean(CR1),two=mean(CR2),
                    three=mean(CR3),four=mean(CR4),five=mean(CR5),six=mean(CR6),seven=mean(CR7))
-seCRData = ddply(CRData,~parameter,summarise,one=se(CR1),two=se(CR2),
+seCRData = ddply(CRData,~teachModes,summarise,one=se(CR1),two=se(CR2),
                     three=se(CR3),four=se(CR4),five=se(CR5),six=se(CR6),seven=se(CR7))
 # gather data by cardinality
 meanCRData = gather(meanCRData, cardinality, meanCR, one:seven)
@@ -139,7 +142,7 @@ colnames(meanCRData)[ncol(meanCRData)] = 'seCR'
 limits = aes(ymax = meanCR + seCR, ymin=meanCR - seCR)
 
 # do the plotting 
-p2 = ggplot(data=meanCRData, aes(x=cardinality, y=meanCR, group=parameter, colour=parameter)) +
+p2 = ggplot(data=meanCRData, aes(x=cardinality, y=meanCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Number of items", y = "Mean completion rate")
@@ -148,12 +151,12 @@ p2 = ggplot(data=meanCRData, aes(x=cardinality, y=meanCR, group=parameter, colou
 ################################################################################################
 # correct complete rate by cardinality 
 ################################################################################################
-tempSelectVars <- c('parameter',"CCR1", "CCR2", "CCR3",'CCR4', 'CCR5', 'CCR6', 'CCR7')
+tempSelectVars <- c('teachModes',"CCR1", "CCR2", "CCR3",'CCR4', 'CCR5', 'CCR6', 'CCR7')
 CCRData = mydata[tempSelectVars]
 # compute mean by cardinality 
-meanCCRData = ddply(CCRData,~parameter,summarise,one=mean(CCR1),two=mean(CCR2),
+meanCCRData = ddply(CCRData,~teachModes,summarise,one=mean(CCR1),two=mean(CCR2),
                     three=mean(CCR3),four=mean(CCR4),five=mean(CCR5),six=mean(CCR6),seven=mean(CCR7))
-seCCRData = ddply(CCRData,~parameter,summarise,one=se(CCR1),two=se(CCR2),
+seCCRData = ddply(CCRData,~teachModes,summarise,one=se(CCR1),two=se(CCR2),
                  three=se(CCR3),four=se(CCR4),five=se(CCR5),six=se(CCR6),seven=se(CCR7))
 # gather data by cardinality
 meanCCRData = gather(meanCCRData, cardinality, meanCCR, one:seven)
@@ -165,11 +168,64 @@ colnames(meanCCRData)[ncol(meanCCRData)] = 'seCCR'
 limits = aes(ymax = meanCCR + seCCR, ymin=meanCCR - seCCR)
 
 # do the plotting 
-p3 = ggplot(data=meanCCRData, aes(x=cardinality, y=meanCCR, group=parameter, colour=parameter)) +
+p3 = ggplot(data=meanCCRData, aes(x=cardinality, y=meanCCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Number of items", y = "Mean correct completion rate")
 
 
+
+################################################################################################
+# skip rate by cardinality 
+################################################################################################
+tempSelectVars <- c('teachModes',"SR1", "SR2", "SR3",'SR4', 'SR5', 'SR6', 'SR7')
+SRData = mydata[tempSelectVars]
+# compute mean by cardinality 
+meanSRData = ddply(SRData,~teachModes,summarise,one=mean(SR1),two=mean(SR2),
+                    three=mean(SR3),four=mean(SR4),five=mean(SR5),six=mean(SR6),seven=mean(SR7))
+seSRData = ddply(SRData,~teachModes,summarise,one=se(SR1),two=se(SR2),
+                  three=se(SR3),four=se(SR4),five=se(SR5),six=se(SR6),seven=se(SR7))
+# gather data by cardinality
+meanSRData = gather(meanSRData, cardinality, meanSR, one:seven)
+seSRData = gather(seSRData, cardinality, seSR, one:seven)
+
+# attach the se to the end of the data frame
+meanSRData <- data.frame(meanSRData, seSRData$seSR)
+colnames(meanSRData)[ncol(meanSRData)] = 'seSR'
+limits = aes(ymax = meanSR + seSR, ymin=meanSR - seSR)
+
+# do the plotting 
+p4 = ggplot(data=meanSRData, aes(x=cardinality, y=meanSR, group=teachModes, colour=teachModes)) +
+    geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
+    geom_errorbar(limits, width=0.15) + 
+    labs(x = "Number of items", y = "Mean skip rate")
+
+
+################################################################################################
+# stop early rate by cardinality 
+################################################################################################
+tempSelectVars <- c('teachModes',"SER1", "SER2", "SER3",'SER4', 'SER5', 'SER6', 'SER7')
+SERData = mydata[tempSelectVars]
+# compute mean by cardinality 
+meanSERData = ddply(SERData,~teachModes,summarise,one=mean(SER1),two=mean(SER2),
+                   three=mean(SER3),four=mean(SER4),five=mean(SER5),six=mean(SER6),seven=mean(SER7))
+seSERData = ddply(SERData,~teachModes,summarise,one=se(SER1),two=se(SER2),
+                 three=se(SER3),four=se(SER4),five=se(SER5),six=se(SER6),seven=se(SER7))
+# gather data by cardinality
+meanSERData = gather(meanSERData, cardinality, meanSER, one:seven)
+seSERData = gather(seSERData, cardinality, seSER, one:seven)
+
+# attach the se to the end of the data frame
+meanSERData <- data.frame(meanSERData, seSERData$seSER)
+colnames(meanSERData)[ncol(meanSERData)] = 'seSER'
+limits = aes(ymax = meanSER + seSER, ymin=meanSER - seSER)
+
+# do the plotting 
+p5 = ggplot(data=meanSERData, aes(x=cardinality, y=meanSER, group=teachModes, colour=teachModes)) +
+    geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
+    geom_errorbar(limits, width=0.15) + 
+    labs(x = "Number of items", y = "Mean stop early rate")
+
+
 # plot them all 
-multiplot(p1, p2, p3, cols=2)
+multiplot(p1, p2, p3, p4, p5, cols=2)

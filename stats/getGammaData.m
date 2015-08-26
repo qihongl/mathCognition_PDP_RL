@@ -32,7 +32,6 @@ for i = teachingModel
         dataVec = [dataVec groupScores{n}.byCard.stopEarlyRate'];
         dataVec = [dataVec groupScores{n}.byCard.meanNumErrors'];
         
-        
         % add the vector into a data matrix
         dataMatrix(numSub * i + n,:) = dataVec;
     end

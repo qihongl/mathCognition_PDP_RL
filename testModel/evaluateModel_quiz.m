@@ -98,7 +98,7 @@ for n = 1 : p.maxItems
     fprintf('%.0f%%\t  ', byCard.correctCompRate(n) * 100);
     fprintf('%4.0f%%\t\t', byCard.skipRate(n) * 100);
     fprintf('%.2f\t', byCard.meanNumErrors(n));
-    fprintf('%8.2f\t', byCard.stopEarlyRate(n));
+    fprintf('%8.2f%%\t', byCard.stopEarlyRate(n)*100);
     fprintf('\n');
 end
 
