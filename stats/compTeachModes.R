@@ -4,7 +4,7 @@ library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('multiplot.R'); source('se.R')
 # load data
-mydata = read.csv('completUnit.csv', header = F)
+mydata = read.csv('compUnit0.csv', header = F)
 
 colnames(mydata) = c('parameter', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate', 'skipRate',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',

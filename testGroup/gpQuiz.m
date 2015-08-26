@@ -4,7 +4,7 @@ clear all; clear global;
 %% Get data from the current directory
 
 nSubj = 10;
-numQs = 5;
+numQs = 50;
 nGroups = 3;
 name = 'record';
 dirName = 'groupData';
