@@ -6,7 +6,7 @@ name = 'record';
 nsubj = 10; 
 
 % get the weights
-wts = cell(10,1);
+wts = cell(nsubj,1);
 for i = 1 : nsubj 
     filename = sprintf('%s%.2d.mat', name, i);
     load(filename);
@@ -14,7 +14,7 @@ for i = 1 : nsubj
 end
 
 % averaging the weights
-meanWts = zeros(record.p.mvRange, record.p.eyeRange);
+meanWts = zeros(record.p.mvRange+1, record.p.eyeRange);
 for i = 1 : nsubj 
     meanWts = meanWts + wts{i};
 end

@@ -38,7 +38,7 @@ for i = 1 : period
     numTouched = 0;
     for j = currentPeriod
         % compute how many items the model touched
-        numTouched = numTouched + length(getNonzeros(record.s.indices{j}));
+        numTouched = numTouched + sum(getNonzeros(record.s.indices{j})~= (p.maxItems+1));
     end
     % divide by how many items the model saw, to get a 'touch rate'
     propItemsTouched(i) = numTouched / numItemsShowed(i);

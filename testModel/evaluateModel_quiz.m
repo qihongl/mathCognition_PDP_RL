@@ -14,6 +14,7 @@ completed = nan(p.maxItems, numQs);
 numItemsShowed = nan(p.maxItems, numQs);
 numErrors = nan(p.maxItems, numQs);
 orderCorrect = false(p.maxItems, numQs);
+stopEarly = false(p.maxItems, numQs);
 
 %% save data in "cardinality X numQs" form
 for cardinality = 1 : p.maxItems
@@ -21,6 +22,11 @@ for cardinality = 1 : p.maxItems
         tempScore = score{cardinality,i};
         steps(cardinality, i) = tempScore.steps;
         orders{cardinality, i} = getNonzeros(tempScore.indices);
+        if any(orders{cardinality,i} == p.maxItems +1) && length(orders{cardinality,i}) -1  < cardinality
+            stopEarly(cardinality, i) = true; 
+        end
+        % delete "finish" unit 
+        orders{cardinality, i} = orders{cardinality, i}(orders{cardinality, i} ~= p.maxItems + 1);
         numSkips(cardinality, i) = detectSkip(orders{cardinality, i});
         completed(cardinality, i) = tempScore.completed;
         numItemsShowed(cardinality, i) = tempScore.nItemsShowed;
@@ -29,6 +35,7 @@ for cardinality = 1 : p.maxItems
             orderCorrect(cardinality, i) = true;
         end
     end
+    
 end
 
 
@@ -47,6 +54,8 @@ overall.meanNumErrors = mean(numErrors(:));
 % complete without making error
 correctCompletedMatrix = bsxfun(@and, numErrors == 0, completed);
 overall.correctCompRate = sum(sum(correctCompletedMatrix))/ numTotalQ;
+% stop early rate
+overall.stopEarlyRate = sum(stopEarly(:)) / numTotalQ;
 
 %% 2. compute summary statistics (for every cardinality)
 byCard.meanSteps = mean(steps,2);
@@ -56,6 +65,7 @@ byCard.meanNumSkips = mean(numSkips,2);
 byCard.compRate = sum(completed,2)./numQs;
 byCard.correctCompRate = sum(correctCompletedMatrix,2)./numQs;
 byCard.meanNumErrors = mean(numErrors,2);
+byCard.stopEarlyRate = sum(stopEarly,2) / numQs;
 
 % check if the distribution of caridnality is the same
 if any(mean(numItemsShowed,2) ~= (1 : p.maxItems)')
@@ -74,19 +84,21 @@ fprintf('Percent trials monotonic: \t%.2f\n' , overall.monotonicRate)
 fprintf('Percent trials completed: \t%.2f\n' , overall.completeRate)
 fprintf('Percent trials correct comp: \t%.2f\n' , overall.correctCompRate)
 fprintf('Percent trials with skip: \t%.2f\n' , overall.skipRate)
+fprintf('Percent trials stopped early: \t%.2f\n' , overall.stopEarlyRate)
 fprintf('Mean number of skips: \t\t%.2f\n' , overall.meanNumSkips)
 fprintf('Mean number of errors: \t\t%.2f\n' , overall.meanNumErrors)
 fprintf('-\n')
 % Performance by cardinality
 fprintf('Performance by cardinality: \n')
-fprintf('nItems\tmeanStepsUsed\tcompleteRate\tcorrectCompRate\tskipRate\tmeanErrors\n')
+fprintf('nItems\tmeanStepsUsed\tcompRate  correctCompRate  skipRate  meanErrors\tstopEarlyRate\n')
 for n = 1 : p.maxItems
     fprintf('%d\t', n);
     fprintf('%.2f\t\t', byCard.meanSteps(n));
     fprintf('%4.0f%%\t\t', byCard.compRate(n) * 100);
-    fprintf('%4.0f%%\t\t', byCard.correctCompRate(n) * 100);
+    fprintf('%.0f%%\t  ', byCard.correctCompRate(n) * 100);
     fprintf('%4.0f%%\t\t', byCard.skipRate(n) * 100);
-    fprintf('%4.2f\t', byCard.meanNumErrors(n));
+    fprintf('%.2f\t', byCard.meanNumErrors(n));
+    fprintf('%8.2f\t', byCard.stopEarlyRate(n));
     fprintf('\n');
 end
 

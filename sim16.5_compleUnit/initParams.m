@@ -14,7 +14,7 @@ p.teachingStyle = 2;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .001;         % learning rate
+p.lrate = .0005;        % learning rate
 p.gamma = .9;           % discount factor
 a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
@@ -43,7 +43,6 @@ if p.teachingStyle == 3 || p.teachingStyle == 4
 else
     p.teacherForcingOn = 0;
 end
-
 
 %% counting specific
 % size of the state space and percetual span
@@ -77,11 +76,6 @@ elseif p.teachingStyle == 2 || p.teachingStyle == 4
 else
     error('Unrecognized teaching mode')
 end
-
-
-%% actively stop the task
-% if the model doesn't move for 5 steps, terminate the task
-% p.stopCounter = 3;
 
 %% network specific
 % initialize with small small random values

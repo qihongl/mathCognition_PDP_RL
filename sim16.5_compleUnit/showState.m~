@@ -38,12 +38,7 @@ for i = 1 : w.nItems
 end
 
 for i = 1 : w.nItems
-    if w.rS.targRemain(i)
-        symbol = 'x';
-    else
-        symbol = '|';
-    end
-    text(w.vS.targPos(i) + w.rS.eyePos,t, symbol,'HorizontalAlignment','center','color','red');
+    text(w.vS.targPos(i) + w.rS.eyePos,t,'x','HorizontalAlignment','center','color','red');
 end
 
 title(d.actionHistory, 'Action history', 'fontsize', d.FONTSIZE)
