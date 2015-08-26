@@ -1,0 +1,15 @@
+OVERALL GOAL: 
+
+- all conditions: use max instead of softmax DURING testing
+
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
