@@ -8,9 +8,8 @@ a.act = a.wts * w.vS.visInput';
 a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
 % choose among the activation
 if w.teacherForcing
-    % if it is done unit, don't need to transform to real state
     if w.answer.eye(w.stateNum + 1) == p.mvRange+1
-        a.choice = w.answer.eye(w.stateNum + 1);
+        a.choice = w.answer.eye(w.stateNum + 1)
     else
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
