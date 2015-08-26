@@ -18,7 +18,12 @@ a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
+
+% record errors
 w.errors = 0; 
+w.numSkips = 0;
+w.numDoubleTouch = 0; 
+w.stopEarly = false; 
 
 % generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
@@ -39,9 +44,6 @@ w.vS.oldInput = zeros(1, p.eyeRange);
 w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
-
-% copy the stop counter value
-% w.stopCounter = p.stopCounter;
 
 % teaching specific
 w.maxTeachTrial = p.maxTeachTrial;

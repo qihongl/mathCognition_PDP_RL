@@ -4,7 +4,7 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a
 
-% p.teachingStyle = 3;
+p.teachingStyle = 2;
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -26,8 +26,6 @@ p.PF_lowerLim = 0.2;    % the lower bound for the punish factor
 
 %% teaching mode
 % % controls the redo mode
-p.teachingModeOn = 0;
-p.maxTeachTrial = 100;
 if p.teachingStyle == 3 || p.teachingStyle == 4
     % flag for the teacher forcing mode
     p.teacherForcingOn = 1;
