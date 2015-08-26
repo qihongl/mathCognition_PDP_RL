@@ -1,28 +1,40 @@
 % take average of the weights
-clear all; clear global; close all; 
+function averagingWts()
+global p;
 FONTSIZE = 14;
+NSUBJ = 10;
+NAME = 'record';
 
-name = 'record';
-nsubj = 10; 
-
-% get the weights
-wts = cell(nsubj,1);
-for i = 1 : nsubj 
-    filename = sprintf('%s%.2d.mat', name, i);
+%% get the weights
+wts = cell(NSUBJ,1);
+for i = 1 : NSUBJ
+    filename = sprintf('%s%.2d.mat', NAME, i);
     load(filename);
     wts{i} = record.a.wts;
 end
+p = record.p;
 
-% averaging the weights
+%% averaging the weights
 meanWts = zeros(record.p.mvRange+1, record.p.eyeRange);
-for i = 1 : nsubj 
+for i = 1 : NSUBJ
     meanWts = meanWts + wts{i};
 end
 
-% visualize it 
-imagesc(meanWts / nsubj)
-title('Final reward only', 'fontsize', FONTSIZE)
+%% visualize the weights 
+visualizeWeightsMatrix(meanWts / NSUBJ)
+
+% adding some text
+title('Connection strength', 'fontsize', FONTSIZE)
 xlabel('Visual input layer', 'fontsize', FONTSIZE)
-ylabel('Action layer', 'fontsize', FONTSIZE)
-% save the plot 
+ylabel('Action layer (last unit = "done")', 'fontsize', FONTSIZE)
+% save the plot
 print([pwd '/' 'meanWts'],'-dpng')
+
+end
+
+function visualizeWeightsMatrix(wts)
+global p;
+imagesc(-p.eyeRad:p.eyeRad,-p.mvRad:p.mvRad+1, wts)
+set(gca,'xtick',-p.eyeRad:1:p.eyeRad);
+set(gca,'ytick',-p.mvRad:1:p.mvRad+1);
+end

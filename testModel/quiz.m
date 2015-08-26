@@ -10,11 +10,11 @@ dfNumQs = 50;
 dfNumPlots = 1;
 
 %% Get data from the current directory
-filename = 'record01.mat';
+filename = 'record.mat';
 datapath = [pwd '/' filename];
 load(datapath, 'record');
 
-% add path, in order to use its functions
+% add path, in order to use its functions3
 addpath(pwd)
 
 %% load the data
