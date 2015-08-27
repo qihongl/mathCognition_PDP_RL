@@ -9,7 +9,7 @@ nGroups = 3;
 name = 'record';
 dirName = 'groupData';
 
-for i = 4 : 7
+for i = 0 : 3
     % get access to the right data directory 
     dataDir = sprintf('%s%.2d',dirName, i);
     datapath = [pwd '/' dataDir '/'];
@@ -32,7 +32,7 @@ for i = 4 : 7
     rmpath(pwd);
     
     %% save the results
-    saveFileName = sprintf('%sgroupScores_max' ,datapath);
+    saveFileName = sprintf('%sgroupScores' ,datapath);
     save(saveFileName,'groupScores');
     
 end

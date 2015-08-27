@@ -3,9 +3,9 @@ clear all;
 
 % set parameters corrospondingly
 dirName = 'groupData';
-path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.7_compUnit++/';
+path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.6_compUnit+/';
 filename = 'groupScores';
-saveFileName = 'compUnit_samePf_initPos1.csv';
+saveFileName = 'compUnit_samePf_initPos0_notMax.csv';
 
 teachingModel = 0:3;
 numItems = 7; 
