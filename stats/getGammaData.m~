@@ -1,17 +1,14 @@
 clear all;
-%% Analyze the effect of different parameters
-
-% set parameters corrospondingly
+%% Analyze the effect of gamma value 
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.7_compUnit++/';
 filename = 'groupScores';
 saveFileName = 'compUnit_samePf_initPos1.csv';
-
 teachingModel = 0:3;
 numItems = 7; 
 numSub = 20;
 
-%% start gathering data
+
 % loop over all data dir
 for i = teachingModel
     dataDir = sprintf('%s%.2d', dirName, i);
