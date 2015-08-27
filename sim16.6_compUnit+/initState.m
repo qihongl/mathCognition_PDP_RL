@@ -36,8 +36,11 @@ w.rS.targRemain = true(w.nItems, 1);    % set up flag
 w.done = false;
 
 % initialize the location of hand and eye
-w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
-w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
+% w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
+% w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
+w.rS.eyePos  = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+ p.minSpacing);
+w.rS.handPos = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+ p.minSpacing);
+
 
 % view state or the perceived state
 w.vS.oldInput = zeros(1, p.eyeRange);
@@ -46,7 +49,7 @@ w.out.handStep = 0;
 w.out.eyeStep = 0;
 
 % teaching specific
-w.maxTeachTrial = p.maxTeachTrial;
+% w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true; 
 if p.teacherForcingOn
     w.teacherForcing = mode.teacherForcing; 
