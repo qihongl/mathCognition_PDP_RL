@@ -5,21 +5,22 @@ setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
 source('helperFunctions/plotBars.R')
 # load data
-mydata = read.csv('compUnit_samePf_initPos1.csv', header = F)
+mydata = read.csv('compUnit_dt0.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################
 ################################################################################################
 # set the name (need to be revised when adding new variables!)
-numOverallData = 7; 
+numOverallData = 8; 
 colnames(mydata) = c('teachModes', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
-                     'skipRate','stopEarlyRate',
+                     'skipRate','stopEarlyRate', 'numDoubleTouch',
                      'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
                      'CR1','CR2','CR3','CR4','CR5','CR6','CR7',
                      'CCR1','CCR2','CCR3','CCR4','CCR5','CCR6','CCR7',
                      'SR1','SR2','SR3','SR4','SR5','SR6','SR7',
                      'SER1','SER2','SER3','SER4','SER5','SER6','SER7',
-                     'numErr1','numErr2','numErr3','numErr4','numErr5','numErr6','numErr7')
+                     'numErr1','numErr2','numErr3','numErr4','numErr5','numErr6','numErr7',
+                     'DT1','DT2','DT3','DT4','DT5','DT6','DT7')
 
 # set the condition label (need to be revised when changing conditions!)
 mydata$teachModes[mydata$teachModes == 0] = '1.finalRwdOnly'
@@ -37,9 +38,11 @@ theme_set(theme_gray(base_size = 20))
 ################################################################################################
 overallData = mydata[,1:numOverallData]
 meanOverallData = ddply(overallData,~teachModes,summarise,ms=mean(meanSteps),mr=mean(monoRate),
-                      cr=mean(compRate),ccr=mean(correctCompRate),sr=mean(skipRate), ser = mean(stopEarlyRate))
+                      cr=mean(compRate),ccr=mean(correctCompRate),sr=mean(skipRate), 
+                      ser = mean(stopEarlyRate), dt = mean(numDoubleTouch))
 seOverallData = ddply(overallData,~teachModes,summarise,se_ms=se(meanSteps),se_mr=se(monoRate),
-                      se_cr=se(compRate),se_ccr=se(correctCompRate),se_sr=se(skipRate), se_ser = se(stopEarlyRate))
+                      se_cr=se(compRate),se_ccr=se(correctCompRate),se_sr=se(skipRate), 
+                      se_ser = se(stopEarlyRate), se_dt = se(numDoubleTouch))
 meanOverallData = data.frame(meanOverallData, seOverallData[,2:ncol(seOverallData)])
 
 # do the plotting 
@@ -76,7 +79,7 @@ p5 = ggplot(meanOverallData, aes(x = teachModes, y = sr, fill=teachModes)) +
     geom_bar(stat="identity") +
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Teaching mode", y = "Skip rate") + 
-    theme(axis.text.x = element_blank(),axis.ticks = element_blank())
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
 
 limits = aes(ymax = ser + se_ser, ymin=ser - se_ser)
@@ -86,7 +89,14 @@ p6 = ggplot(meanOverallData, aes(x = teachModes, y = ser, fill=teachModes)) +
     labs(x = "Teaching mode", y = "Mean stop early rate") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
-multiplot(p1, p2, p3, p4, p5, p6, cols=3)
+limits = aes(ymax = dt + se_dt, ymin=dt - se_dt)
+p7 = ggplot(meanOverallData, aes(x = teachModes, y = dt, fill=teachModes)) + 
+    geom_bar(stat="identity") + 
+    geom_errorbar(limits, width=0.15) + 
+    labs(x = "Teaching mode", y = "Mean number of double touching") + 
+    theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
+
+multiplot(p1, p2, p3, p4, p5, p6, p7, cols=3)
 cat ("Press [enter] to continue")
 line <- readline()
 
@@ -227,5 +237,31 @@ p5 = ggplot(data=meanSERData, aes(x=cardinality, y=meanSER, group=teachModes, co
     labs(x = "Number of items", y = "Mean stop early rate")
 
 
+################################################################################################
+# mean number of double touching by cardinality 
+################################################################################################
+tempSelectVars <- c('teachModes',"DT1", "DT2", "DT3",'DT4', 'DT5', 'DT6', 'DT7')
+DTData = mydata[tempSelectVars]
+# compute mean by cardinality 
+meanDTData = ddply(DTData,~teachModes,summarise,one=mean(DT1),two=mean(DT2),
+                    three=mean(DT3),four=mean(DT4),five=mean(DT5),six=mean(DT6),seven=mean(DT7))
+seDTData = ddply(DTData,~teachModes,summarise,one=se(DT1),two=se(DT2),
+                  three=se(DT3),four=se(DT4),five=se(DT5),six=se(DT6),seven=se(DT7))
+# gather data by cardinality
+meanDTData = gather(meanDTData, cardinality, meanDT, one:seven)
+seDTData = gather(seDTData, cardinality, seDT, one:seven)
+
+# attach the se to the end of the data frame
+meanDTData <- data.frame(meanDTData, seDTData$seDT)
+colnames(meanDTData)[ncol(meanDTData)] = 'seDT'
+limits = aes(ymax = meanDT + seDT, ymin=meanDT - seDT)
+
+# do the plotting 
+p6 = ggplot(data=meanDTData, aes(x=cardinality, y=meanDT, group=teachModes, colour=teachModes)) +
+    geom_line(size = 1.25) + geom_point() + ylim(0, ceiling(max(meanDTData$meanDT + meanDTData$seDT))) +  
+    geom_errorbar(limits, width=0.15) + 
+    labs(x = "Number of items", y = "Mean stop early rate")
+
+
 # plot them all 
-multiplot(p1, p2, p3, p4, p5, cols=2)
+multiplot(p1, p2, p3, p4, p5, p6, cols=2)

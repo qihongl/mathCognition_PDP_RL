@@ -5,7 +5,7 @@ clear all;
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.6_compUnit+/';
 filename = 'groupScores';
-saveFileName = 'compUnit_samePf_initPos0_notMax.csv';
+saveFileName = 'compUnit_dt0.csv';
 
 teachingModel = 0:3;
 numItems = 7; 
@@ -28,6 +28,7 @@ for i = teachingModel
         dataVec = [dataVec groupScores{n}.overall.correctCompRate];
         dataVec = [dataVec groupScores{n}.overall.skipRate];
         dataVec = [dataVec groupScores{n}.overall.stopEarlyRate];
+        dataVec = [dataVec groupScores{n}.overall.meanNumDoubleTouch];
         
         % by cardinality 
         dataVec = [dataVec groupScores{n}.byCard.meanSteps'];
@@ -36,6 +37,7 @@ for i = teachingModel
         dataVec = [dataVec groupScores{n}.byCard.skipRate'];
         dataVec = [dataVec groupScores{n}.byCard.stopEarlyRate'];
         dataVec = [dataVec groupScores{n}.byCard.meanNumErrors'];
+        dataVec = [dataVec groupScores{n}.byCard.meanNumDoubleTouch'];
         
         % add the vector into a data matrix
         dataMatrix(numSub * i + n,:) = dataVec;
