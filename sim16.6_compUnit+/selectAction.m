@@ -17,6 +17,7 @@ if w.teacherForcing
     end
 else % choice using softmax (self exploration mode)
     a.choice = choose(a.act.^a.smgain);
+%     a.choice = chooseMax(a.act);
 end
 
 %% update where to move
