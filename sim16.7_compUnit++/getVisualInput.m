@@ -6,14 +6,19 @@ global p w;
 %     error('Invalid Input: w.vS.sd cannot be zero!');
 % end
 
-% preallocation
 visInput = nan(w.nItems, p.eyeRange);
-% generate visual input for every item
+%% generate visual input for every item
 for i = 1 : w.nItems
-    cdf_L = normcdf((-p.eyeRad:p.eyeRad) - .5, w.vS.targPos(i),w.vS.sd(i));
-    cdf_R = normcdf((-p.eyeRad:p.eyeRad) + .5, w.vS.targPos(i),w.vS.sd(i));
-    visInput(i,:) = cdf_R - cdf_L;
+    visualCDF = normcdf((-p.eyeRad:p.eyeRad+1) - .5, w.vS.targPos(i),w.vS.sd(i));
+    % approximate the area of the rectangular region under PDF using its CDF
+    visInput(i,:) = visualCDF(2:end) - visualCDF(1:length(visualCDF)-1);
+    
+    %     cdf_L = normcdf((-p.eyeRad:p.eyeRad) - .5, w.vS.targPos(i),w.vS.sd(i));
+    %     cdf_R = normcdf((-p.eyeRad:p.eyeRad) + .5, w.vS.targPos(i),w.vS.sd(i));
+    %     if visInput(i,:)~= cdf_R - cdf_L
+    %         error('what?!');
+    %     end
 end
-% sum all visual input, columnwise
+%% sum all visual input, columnwise, no normalization 
 cumVisualPattern = sum(visInput,1);
 end
