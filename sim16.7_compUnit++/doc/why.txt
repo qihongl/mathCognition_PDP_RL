@@ -1,13 +1,15 @@
 OVERALL GOAL: 
 
 - all conditions: using punish factor
-
+- record double touch rate
 
 
 WHAT I DID: 
 
 
 SOME OBSERVATIONS:
+- was able to replicate previous results, aka the general pattern holds
+
 
 
 PROBLEM: 
