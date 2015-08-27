@@ -24,6 +24,8 @@ updateTeachingConditions();
 
 %% save result
 results.numErrors = w.errors; 
+results.numSkips = w.numSkips;
+results.numDoubleTouch = w.numDoubleTouch;
 results.indices = indices;
 results.steps = i;
 results.h = h;

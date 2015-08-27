@@ -10,10 +10,7 @@ rng(seed)
 
 % preallocate
 record.a = cell(1,epoch);
-s.steps = nan(1,epoch);
-s.indices = cell(1,epoch);
-s.completed = false(1,epoch);
-s.numItemsShowed = zeros(1,epoch);
+s = preallocateScores(epoch);
 
 % train the model for n trials
 fprintf('%s\n', pwd);
@@ -32,6 +29,8 @@ for i = 1:p.runs
     % increment the softmax scaling factor
     updateSmiPf();
     %% save performance
+    s.numSkips(i) = result.numSkips;
+    s.numDoubleTouch(i) = result.numDoubleTouch;
     s.numErrors(i) = result.numErrors;
     s.steps(i) = result.steps;
     s.indices{i} = result.indices;
@@ -46,6 +45,14 @@ record.a = result.a;
 record.s = s;
 end
 
+function [s] = preallocateScores(epoch)
+s.steps = nan(1,epoch);
+s.indices = cell(1,epoch);
+s.completed = false(1,epoch);
+s.numItemsShowed = zeros(1,epoch);
+s.numSkips = nan(1,epoch);
+s.numDoubleTouch = nan(1,epoch);
+end
 
 function [] = updateSmiPf()
 

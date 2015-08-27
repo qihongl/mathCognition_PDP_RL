@@ -22,7 +22,7 @@ if showPlot
     initPlot();
     showState();
 end
-% w.rS    % show the initial state
+
 i = 0;
 score.indices = zeros(1,p.maxIter);
 % test the model
@@ -35,13 +35,14 @@ while ~(w.done) && i < p.maxIter
         showState();
     end
     % record the action sequence
-    score.indices(i+1) = recordAction();
-    score.nItemsShowed = w.nItems;
+    score.indices(i+1) = recordAction();    
     i = i+1;
 end
 if showPlot
     showWeights();
 end
+
+score.nItemsShowed = w.nItems;
 % record the steps used
 score.steps = i;
 % check if the model completed the task
@@ -50,6 +51,7 @@ if (length(nonzeros(score.indices)) == (w.nItems+1)) && score.steps~=p.maxIter
 else
     score.completed = false;
 end
-
+score.numSkips = w.numSkips;
+score.numDoubleTouch = w.numDoubleTouch;
 score.numErrors = w.errors;
 end
