@@ -2,7 +2,7 @@ clear all;
 %% Analyze the effect of gamma value 
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.6_compUnit+/';
-filename = 'groupScores';
+filename = 'groupScores_max';
 teachingModel = [0 1 2 3];
 
 numItems = 7; 
@@ -38,4 +38,4 @@ for i = teachingModel
 end
 
 % save the data
-csvwrite('compUnit_samePf0.csv',dataMatrix)
+csvwrite('compUnit_samePf_max.csv',dataMatrix)

@@ -2,7 +2,7 @@
 function averagingWts()
 global p;
 FONTSIZE = 14;
-NSUBJ = 10;
+NSUBJ = 20;
 NAME = 'record';
 
 %% get the weights
