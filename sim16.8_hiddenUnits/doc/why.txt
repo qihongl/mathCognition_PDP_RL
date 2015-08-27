@@ -1,0 +1,11 @@
+OVERALL GOAL: 
+- implement hidden units, but I don’t feel it is going to work, since it didn’t work previously  
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+PROBLEM: 
+
+TRY: 
