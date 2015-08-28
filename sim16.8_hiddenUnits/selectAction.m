@@ -3,9 +3,13 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-a.act = a.wts * w.vS.visInput';
+% forward prop. 
+a.hIn = a.wts_VH * w.vS.visInput';
+a.hAct = sigmoid(a.hIn);
+a.aIn = a.wts_HA * a.hAct;
+a.aAct = a.aIn;     % no transfer function 
 % inject bias to action 0 (don't move)
-a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
+a.aAct(p.mvRad + 1) = a.aAct(p.mvRad + 1) + a.bias;
 
 %% choose action (where to move)
 if w.teacherForcing
@@ -16,12 +20,12 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else % choice using softmax (self exploration mode)
-    a.choice = choose(a.act.^a.smgain);
+    a.choice = choose(a.aAct.^a.smgain);
 end
 
 %% update where to move
 % check if the model is done
-if a.choice == length(a.act)
+if a.choice == length(a.aAct)
     w.out.targGuess = 0;
     w.out.handStep = 0;
     w.out.eyeStep = 0;

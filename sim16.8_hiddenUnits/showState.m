@@ -52,27 +52,24 @@ ylabel(d.actionHistory, 'Time', 'fontsize', d.FONTSIZE)
 
 
 %% plot all weights
-axes(d.visInpHistory);
-col = autumn;
-col = flipud(col);
-intensityVal = floor(w.vS.visInput * size(col,1));
-hold on
-for i = 1: length(w.vS.visInput)
-    if intensityVal(i) == 0
-        plot(i,t);
-    else
-        plot(i,t,'-*', 'color',col(intensityVal(i),:));
-    end
-end
-text(p.eyeRad+1,t,'@');
-hold off
-
-
-% plot(w.vS.visInput)
-% plot([-p.eyeRad:p.eyeRad],w.vS.visInput);
-title(d.visInpHistory, 'Visual input across time', 'fontsize', d.FONTSIZE)
-xlabel(d.visInpHistory, 'Visual input pattern', 'fontsize', d.FONTSIZE)
-ylabel(d.visInpHistory, 'Time', 'fontsize', d.FONTSIZE)
+% axes(d.visInpHistory);
+% col = autumn;
+% col = flipud(col);
+% intensityVal = floor(w.vS.visInput * size(col,1));
+% hold on
+% for i = 1: length(w.vS.visInput)
+%     if intensityVal(i) == 0
+%         plot(i,t);
+%     else
+%         plot(i,t,'-*', 'color',col(intensityVal(i),:));
+%     end
+% end
+% text(p.eyeRad+1,t,'@');
+% hold off
+% 
+% title(d.visInpHistory, 'Visual input across time', 'fontsize', d.FONTSIZE)
+% xlabel(d.visInpHistory, 'Visual input pattern', 'fontsize', d.FONTSIZE)
+% ylabel(d.visInpHistory, 'Time', 'fontsize', d.FONTSIZE)
 
 end
 

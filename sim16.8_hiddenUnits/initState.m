@@ -12,12 +12,18 @@ global a w h p mode;
 %distribution over possible values in a map.
 
 %% specify the parameters
-a.act = zeros(p.mvRange+1,1);
+% a.act = zeros(p.mvRange+1,1);
 a.dfRwd = 0;
 a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
+
+% preallocation for activations
+a.hIn = zeros(p.nHidden,1);
+a.hAct = zeros(p.nHidden,1);
+a.aIn = zeros(p.mvRange+1,1);
+a.aAct = zeros(p.mvRange+1,1);
 
 % record errors
 w.errors = 0; 
