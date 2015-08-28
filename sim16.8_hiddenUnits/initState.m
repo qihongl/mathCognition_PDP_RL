@@ -3,14 +3,6 @@ function [ ] = initState( )
 
 global a w h p mode;
 
-%realState is characterized by the position of a target to touch,
-%position of eye, and position of hand 1-d space
-
-%viewedState is the input I have given that my eye and hand are
-%at particular positions w.r.t. the realState of the world
-%for now we treat hand position as a single value rather than as a
-%distribution over possible values in a map.
-
 %% specify the parameters
 % a.act = zeros(p.mvRange+1,1);
 a.dfRwd = 0;
@@ -52,7 +44,6 @@ w.out.handStep = 0;
 w.out.eyeStep = 0;
 
 % teaching specific
-% w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true; 
 if p.teacherForcingOn
     w.teacherForcing = mode.teacherForcing; 

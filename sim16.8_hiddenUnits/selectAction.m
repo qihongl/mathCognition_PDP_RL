@@ -5,7 +5,7 @@ global w a p;
 %% compute the output activation
 % forward prop. 
 a.hIn = a.wts_VH * w.vS.visInput';
-a.hAct = sigmoid(a.hIn);
+a.hAct = tanh(a.hIn);
 a.aIn = a.wts_HA * a.hAct;
 a.aAct = a.aIn;     % no transfer function 
 % inject bias to action 0 (don't move)
@@ -27,8 +27,8 @@ end
 % check if the model is done
 if a.choice == length(a.aAct)
     w.out.targGuess = 0;
-    w.out.handStep = 0;
-    w.out.eyeStep = 0;
+    w.out.handStep  = 0;
+    w.out.eyeStep   = 0;
 else    % update the where to move if the model is not done
     w.out.targGuess = a.choice - p.mvRad - 1; % get vS action
     % compute the "moving vector" for eye and hand (in vS)

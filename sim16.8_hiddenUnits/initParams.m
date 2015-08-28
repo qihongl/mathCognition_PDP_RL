@@ -69,10 +69,8 @@ end
 %% network specific
 p.nHidden = 40; 
 % initialize with small small random values
-% a.wts = randSmallWeights(p.mvRange+1,p.eyeRange);
 a.wts_VH = randSmallWeights(p.nHidden,p.eyeRange);
 a.wts_HA = randSmallWeights(p.mvRange+1,p.nHidden);
-
 a.bias = 0.00001;     % bias toward not moving (action 0)
 
 end
