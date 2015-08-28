@@ -1,5 +1,6 @@
 clear all; 
-%user specified values
+%% initialization 
+% user specified values
 p.numHidden = 3;
 p.epochs = 10000;
 p.lrate = 0.01;
@@ -21,21 +22,21 @@ p.numInputs = size(x,2);
 wts1 = randSmallWeights(p.numInputs,p.numHidden);
 wts2 = randSmallWeights(1,p.numHidden);
 
-%do a number of p.epochs
+%% train p.epochs
 for iter = 1:p.epochs
-    %loop through all patterns randomly
+    % loop through all patterns randomly
     for j = 1:p.numPatterns
-        %select a random pattern
+        % select a random pattern
         patnum = randi(p.numPatterns);
         this_pat = x(patnum,:);
         target = y(patnum,1);
         
-        %forward propagation 
+        %% forward propagation 
         hiddenAct = (tanh(this_pat*wts1))';
 %         hiddenAct = (sigmoid(this_pat*wts1))';
         pred = hiddenAct'*wts2';
         
-        % back propagation 
+        %% back propagation 
         delta3 = target - pred;
         delta2 = delta3.*wts2'.*(1-(hiddenAct.^2));
 %         delta2 = delta3.*wts2'.*(hiddenAct.*(1 - hiddenAct));
@@ -47,7 +48,7 @@ for iter = 1:p.epochs
         wts1 = wts1 + p.lrate * wts1_change';
     end
     
-    %plot overall network error at end of each epoch
+    %% plot overall network error at end of each epoch
     pred = wts2*tanh(x*wts1)';
 %     pred = wts2*sigmoid(x*wts1)';
     delta3 = pred' - y;
