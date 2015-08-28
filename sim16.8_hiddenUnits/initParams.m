@@ -14,7 +14,7 @@ p.teachingStyle = 2;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .0002;        % learning rate
+p.lrate = .00002;        % learning rate
 p.gamma = .9;           % discount factor
 
 a.smgain = 1;           % initial softmax rate
@@ -58,16 +58,16 @@ if p.teachingStyle == 1 || p.teachingStyle == 3
     p.r.bigPos = 1;
 elseif p.teachingStyle == 2 || p.teachingStyle == 4
     % with intermediate reward
-    p.r.smallNeg = -0.02;
-    p.r.midNeg = -1;
-    p.r.midPos = 3;
-    p.r.bigPos = 10;
+    p.r.smallNeg = 0;
+    p.r.midNeg = -.1;
+    p.r.midPos = .5;
+    p.r.bigPos = 1;
 else
     error('Unrecognized teaching mode')
 end
 
 %% network specific
-p.nHidden = 30; 
+p.nHidden = 40; 
 % initialize with small small random values
 % a.wts = randSmallWeights(p.mvRange+1,p.eyeRange);
 a.wts_VH = randSmallWeights(p.nHidden,p.eyeRange);

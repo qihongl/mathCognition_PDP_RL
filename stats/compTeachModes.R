@@ -3,9 +3,9 @@ rm(list = ls())
 library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
-source('helperFunctions/plotBars.R')
+# source('helperFunctions/plotBars.R')
 # load data
-mydata = read.csv('compUnit_dt0.csv', header = F)
+mydata = read.csv('moreTrain.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################
@@ -260,7 +260,7 @@ limits = aes(ymax = meanDT + seDT, ymin=meanDT - seDT)
 p6 = ggplot(data=meanDTData, aes(x=cardinality, y=meanDT, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, ceiling(max(meanDTData$meanDT + meanDTData$seDT))) +  
     geom_errorbar(limits, width=0.15) + 
-    labs(x = "Number of items", y = "Mean stop early rate")
+    labs(x = "Number of items", y = "Mean number of double touches")
 
 
 # plot them all 

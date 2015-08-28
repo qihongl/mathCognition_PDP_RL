@@ -3,8 +3,8 @@ function [] = trainGroup(nSubj, epoch)
 global p;
 %% set the parameter that you want to vary
 if nargin == 0
-    epoch = 10000;
-    nSubj = 20;
+    epoch = 1000000;
+    nSubj = 5;
 end
 
 param = [1 2 3 4];
