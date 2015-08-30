@@ -12,6 +12,10 @@ w.rS.td = 0;
 w.stateNum = -1;
 
 % preallocation for activations
+% a.old.hIn = zeros(p.nHidden,1);
+% a.old.hAct = zeros(p.nHidden,1);
+% a.old.aIn = zeros(p.mvRange+1,1);
+% a.old.aAct = zeros(p.mvRange+1,1);
 a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
 a.aIn = zeros(p.mvRange+1,1);

@@ -3,7 +3,7 @@ clear all; clear global;
 
 %% Get data from the current directory
 
-nSubj = 5;
+nSubj = 10;
 numQs = 100;
 name = 'record';
 dirName = 'groupData';

@@ -5,7 +5,7 @@ setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
 # source('helperFunctions/plotBars.R')
 # load data
-mydata = read.csv('moreTrain.csv', header = F)
+mydata = read.csv('compUnit0.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################

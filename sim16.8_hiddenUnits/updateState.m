@@ -12,9 +12,9 @@ w.vS.handPos = w.rS.handPos - w.rS.eyePos;
 
 %% adding noise to the locations of the obejcts
 % 1. iid noise for all objects 
-% w.vS.targPos = round((w.rS.targPos - w.rS.eyePos).*(1+randn(1,length(w.rS.targPos))*p.wf));
+w.vS.targPos = round((w.rS.targPos - w.rS.eyePos).*(1+randn(1,length(w.rS.targPos))*p.wf));
 % 2. same noise for all objects
-w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
+% w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
 % 3. no noise
 % w.vS.targPos = w.rS.targPos - w.rS.eyePos;
 

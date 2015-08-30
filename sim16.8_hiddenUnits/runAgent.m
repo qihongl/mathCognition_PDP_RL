@@ -5,7 +5,7 @@ global a w h p mode;
 %% initialize the state
 initState();
 updateState();
-computeAnswer();    % compute the true 'answers'
+computeAnswer();
 
 %% training the model once
 i = 0;
@@ -34,7 +34,6 @@ end
 
 
 %% Helper functions
-
 function updateTeachingConditions()
 global mode w p;
 % check if it is behave correctly

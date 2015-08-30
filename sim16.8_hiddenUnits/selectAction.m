@@ -2,10 +2,10 @@ function [] = selectAction( )
 % It computes the output activation, and choose the action probabilistically.
 global w a p;
 
-%% compute the output activation
-% forward prop. 
+%% approximate action values
+% forward propagation
 a.hIn = a.wts_VH * w.vS.visInput';
-a.hAct = tanh(a.hIn);
+a.hAct = sigmoid(a.hIn);
 a.aIn = a.wts_HA * a.hAct;
 a.aAct = a.aIn;     % no transfer function 
 % inject bias to action 0 (don't move)

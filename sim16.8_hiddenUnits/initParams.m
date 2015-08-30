@@ -14,18 +14,17 @@ p.teachingStyle = 2;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .00002;        % learning rate
+p.lrate = .0001;        % learning rate
 p.gamma = .9;           % discount factor
 
 a.smgain = 1;           % initial softmax rate
-p.smirate = .001;       % softmax decrement rate
+p.smirate = .001;      % softmax decrement rate
 p.smi_upperLim = 10;    % the upper limit of the smi rate
 a.punishFactor = 0.8;   % the punish factor on the final reward
 p.PFd = .001;           % the decrement rate for the punish factor 
 p.PF_lowerLim = 0.2;    % the lower bound for the punish factor 
 
 %% teaching mode
-% % controls the redo mode
 if p.teachingStyle == 3 || p.teachingStyle == 4
     % flag for the teacher forcing mode
     p.teacherForcingOn = 1;
@@ -59,15 +58,15 @@ if p.teachingStyle == 1 || p.teachingStyle == 3
 elseif p.teachingStyle == 2 || p.teachingStyle == 4
     % with intermediate reward
     p.r.smallNeg = 0;
-    p.r.midNeg = -.1;
-    p.r.midPos = .5;
-    p.r.bigPos = 1;
+    p.r.midNeg = -1;
+    p.r.midPos = 5;
+    p.r.bigPos = 10;
 else
     error('Unrecognized teaching mode')
 end
 
 %% network specific
-p.nHidden = 40; 
+p.nHidden = 30; 
 % initialize with small small random values
 a.wts_VH = randSmallWeights(p.nHidden,p.eyeRange);
 a.wts_HA = randSmallWeights(p.mvRange+1,p.nHidden);

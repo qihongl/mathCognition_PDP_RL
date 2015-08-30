@@ -7,6 +7,7 @@ global p a w mode;
 initParams(epoch);
 p.seed = seed;
 rng(seed)
+progBarLen = 10;
 
 % preallocate
 record.a = cell(1,epoch);
@@ -16,7 +17,8 @@ s = preallocateScores(epoch);
 fprintf('%s\n', pwd);
 fprintf('Start training for %d epochs\n', epoch);
 for i = 1:p.runs
-    fprintf('%d\n', i )
+    fprintf('%d\n',i)
+%     fprintf(['%' num2str(progBarLen) '.d'], i); % progress bar1
     %% alternate between forcing and self exp (iff forcing mode is on)
     if p.teacherForcingOn == true;
         mode.teacherForcing = false;
@@ -38,7 +40,9 @@ for i = 1:p.runs
     if w.nItems == length(getNonzeros(s.indices{i}))
         s.completed(i) = true;
     end
+%     fprintf(repmat('\b', [1,progBarLen]));  % progress bar2
 end
+fprintf('Done!\n')
 % save parameters
 record.p = p;
 record.a = result.a;
