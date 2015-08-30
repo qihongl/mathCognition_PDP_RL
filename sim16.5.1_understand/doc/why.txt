@@ -1,0 +1,15 @@
+OVERALL GOAL: 
+
+- understand why 16.5 is working but 16.6 and 16.7 are not 
+
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
