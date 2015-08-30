@@ -6,7 +6,8 @@ global w a p;
 a.act = a.wts * w.vS.visInput';
 % inject bias to action 0 (don't move)
 a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
-% choose among the activation
+
+%% choose among the activation
 if w.teacherForcing
     % if it is done unit, don't need to transform to real state
     if w.answer.eye(w.stateNum + 1) == p.mvRange+1
@@ -18,7 +19,7 @@ else
     a.choice = choose(a.act.^a.smgain);
 end
 
-% check if the model is completing the task
+%% check if the model is completing the task
 if a.choice == length(a.act)
     w.out.targGuess = 0;
     w.out.handStep = 0;
