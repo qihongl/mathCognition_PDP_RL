@@ -19,6 +19,8 @@ w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 w.errors = 0; 
+w.numSkips = 0;
+w.numDoubleTouch = 0;
 
 % generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems

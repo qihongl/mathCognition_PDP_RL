@@ -5,7 +5,7 @@ global w p h a;
 if targetRemain()
     if a.choice == p.mvRange +1     % saying "done"
         Rwd = p.r.smallNeg;
-        w.stopEarly = true;
+        w.stopEarly = true; w.errors = w.errors+1;
         w.done = true;
     elseif a.choice == p.mvRad +1     % not moving
         Rwd = p.r.smallNeg;

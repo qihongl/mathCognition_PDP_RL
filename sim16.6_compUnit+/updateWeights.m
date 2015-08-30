@@ -7,7 +7,7 @@ function [ ] = updateWeights()
 global p a w;
 %% compute the reward values according to the reward policy
 curRwd = computeRwd();
-expRwd = max(a.act);
+expRwd = max(a.wts*w.vS.visInput');
 
 if ~w.done
     % if not done, reward = "current + expected"

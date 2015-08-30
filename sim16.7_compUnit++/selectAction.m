@@ -5,7 +5,7 @@ global w a p;
 %% compute the output activation
 a.act = a.wts * w.vS.visInput';
 % inject bias to action 0 (don't move)
-a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
+% a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
 
 %% choose action (where to move)
 if w.teacherForcing
