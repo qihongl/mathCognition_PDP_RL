@@ -80,7 +80,7 @@ end
 %% network specific
 % initialize with small small random values
 a.wts = randSmallWeights(p.mvRange+1,p.eyeRange);
-a.bias = 0.00001;     % bias toward not moving (action 0)
+a.bias = 0.0000000000000000000001;     % bias toward not moving (action 0)
 
 end
 
