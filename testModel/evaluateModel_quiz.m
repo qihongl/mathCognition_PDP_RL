@@ -135,15 +135,16 @@ fprintf('Mean number of errors: \t\t%.2f\n' , overall.meanNumErrors)
 fprintf('-\n')
 % Performance by cardinality
 fprintf('Performance by cardinality: \n')
-fprintf('nItems\tmeanStepsUsed\tcompRate  correctCompRate  skipRate  meanErrors\tstopEarlyRate\n')
+fprintf('nItems StepsUsed compRate  cCompRate numErrors numSkips numDTs stopEarlyRate\n')
 for n = 1 : p.maxItems
     fprintf('%d\t', n);
-    fprintf('%.2f\t\t', byCard.meanSteps(n));
-    fprintf('%4.0f%%\t\t', byCard.compRate(n) * 100);
-    fprintf('%.0f%%\t  ', byCard.correctCompRate(n) * 100);
-    fprintf('%4.0f%%\t\t', byCard.skipRate(n) * 100);
-    fprintf('%.2f\t', byCard.meanNumErrors(n));
-    fprintf('%8.2f%%\t', byCard.stopEarlyRate(n)*100);
+    fprintf('%.2f', byCard.meanSteps(n));
+    fprintf('%10.0f%%  ', byCard.compRate(n) * 100);
+    fprintf('%6.0f%%', byCard.correctCompRate(n) * 100);
+    fprintf('%10.2f\t', byCard.meanNumErrors(n));
+    fprintf('%4.2f', byCard.meanNumSkips2(n));
+    fprintf('%8.2f', byCard.meanNumDoubleTouch(n));
+    fprintf('%8.2f%%', byCard.stopEarlyRate(n)*100);
     fprintf('\n');
 end
 

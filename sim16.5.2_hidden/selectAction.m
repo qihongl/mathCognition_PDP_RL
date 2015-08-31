@@ -5,7 +5,7 @@ global w a p;
 %% compute the output activation
 % forward propagation
 a.hIn = a.wts_VH * w.vS.visInput';
-a.hAct = sigmoid(a.hIn);
+a.hAct = tanh(a.hIn);
 a.aIn = a.wts_HA * a.hAct;
 a.aAct = a.aIn;     % no transfer function 
 % inject bias to action 0 (don't move)
@@ -20,7 +20,8 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else
-    a.choice = choose(a.act.^a.smgain);
+%     a.choice = choose(a.act.^a.smgain);
+    a.choice = chooseMax(a.act);
 end
 
 %% check if the model is completing the task

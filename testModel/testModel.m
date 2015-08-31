@@ -4,7 +4,7 @@
 % performance! So it is in some sense a little quiz for the model.
 function [score] = testModel(showPlot, nItem)
 
-global p a w mode; 
+global p a w mode;
 setTestModeParam();
 if nargin == 0
     showPlot = 1;
@@ -14,7 +14,7 @@ if exist('nItem', 'var')
     mode.nItem = nItem;
 end
 
-%% test the model
+% test the model
 % initialization
 initState();
 updateState();
@@ -34,8 +34,8 @@ while ~(w.done) && i < p.maxIter
     if showPlot
         showState();
     end
-    % record the action sequence
-    score.indices(i+1) = recordAction();    
+%     record the action sequence
+    score.indices(i+1) = recordAction();
     i = i+1;
 end
 if showPlot
@@ -46,7 +46,8 @@ score.nItemsShowed = w.nItems;
 % record the steps used
 score.steps = i;
 % check if the model completed the task
-if (length(nonzeros(score.indices)) == (w.nItems+1)) && score.steps~=p.maxIter
+% if (length(nonzeros(score.indices)) == (w.nItems+1)) && score.steps~=p.maxIter
+if all(w.rS.targRemain == false)
     score.completed = true;
 else
     score.completed = false;

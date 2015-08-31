@@ -7,7 +7,7 @@ function [ ] = updateWeights()
 global p a w;
 %% compute the reward values according to the reward policy
 curRwd = computeRwd();
-a.aAct_next = a.wts_HA*sigmoid(a.wts_VH * w.vS.visInput');
+a.aAct_next = a.wts_HA*tanh(a.wts_VH * w.vS.visInput');
 a.aAct_next(p.mvRad + 1) = a.aAct_next(p.mvRad + 1) + a.bias;
 expRwd = max(a.aAct_next); 
 
@@ -21,7 +21,7 @@ end
 %% update the weights - back prop
 % compute delta the active action unit and hidden units
 delta3 = a.dfRwd - a.aAct(a.choice); 
-delta2 = a.wts_HA(a.choice, :)' * delta3 .* (a.hAct.*(1-a.hAct));
+delta2 = a.wts_HA(a.choice, :)' * delta3 .* (1-(a.hAct.^2));
 
 % compute the changes for the weights
 wtsHA_change = delta3 * a.hAct';

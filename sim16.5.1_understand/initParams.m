@@ -20,17 +20,10 @@ a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
 p.smi_upperLim = 10;    % the upper limit of the smi rate
 
-% if p.teachingStyle == 1 || p.teachingStyle == 3
-    a.punishFactor = 0.8;   % count how many errors the model made
-    p.PFd = .001;
-    p.PF_lowerLim = 0.2;
-% elseif p.teachingStyle == 2 || p.teachingStyle == 4
-%     a.punishFactor = 1;   % count how many errors the model made
-%     p.PFd = 0;
-%     p.PF_lowerLim = 0.2;
-% else
-%     error('Unrecognized teaching mode')
-% end
+a.punishFactor = 0.8;   % count how many errors the model made
+p.PFd = .001;
+p.PF_lowerLim = 0.2;
+
 
 %% teaching mode
 % % controls the redo mode
@@ -80,7 +73,7 @@ end
 %% network specific
 % initialize with small small random values
 a.wts = randSmallWeights(p.mvRange+1,p.eyeRange);
-a.bias = 0.0000000000000000000001;     % bias toward not moving (action 0)
+a.bias = 1e-8;     % bias toward not moving (action 0)
 
 end
 

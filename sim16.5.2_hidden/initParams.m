@@ -25,17 +25,18 @@ a.punishFactor = 0.8;   % initial punish factor
 p.PFd = .001;           % punish factor decrement rate
 p.PF_lowerLim = 0.2;    % lower bound
 
-
 %% teaching mode
-% % controls the redo mode
+% controls the redo mode
 p.teachingModeOn = 0;
 p.maxTeachTrial = 100;
 
+% flag for the teacher forcing mode
 if p.teachingStyle == 3 || p.teachingStyle == 4
-    % flag for the teacher forcing mode
     p.teacherForcingOn = 1;
-else
+elseif p.teachingStyle == 1 || p.teachingStyle == 2
     p.teacherForcingOn = 0;
+else
+    error('Unrecognized teaching mode')
 end
 
 %% counting specific
@@ -76,7 +77,7 @@ end
 p.nHidden = 30;
 a.wts_VH = randSmallWeights(p.nHidden,p.eyeRange);
 a.wts_HA = randSmallWeights(p.mvRange+1,p.nHidden);
-a.bias = 0.00001;     % bias toward not moving (action 0)
+a.bias = 1e-8;     % bias toward not moving (action 0)
 
 end
 

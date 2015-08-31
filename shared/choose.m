@@ -10,6 +10,7 @@ function [ choice ] = choose(strengths)
 %     end
 % else
 v = rand; % a number between 0 and 1
+
 nstr = strengths/sum(strengths); %normalize strengths
 cstr = cumsum(nstr);        %get top edges of bins
 choice = find(cstr>v,1);    %returns the bin v falls in

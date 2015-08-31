@@ -7,14 +7,16 @@ function [ ] = updateWeights()
 global p a w;
 %% compute the reward values according to the reward policy
 curRwd = computeRwd();
-expRwd = max(a.aAct);
+a.aAct_next = a.wts_HA*tanh(a.wts_VH * w.vS.visInput');
+a.aAct_next(p.mvRad + 1) = a.aAct_next(p.mvRad + 1) + a.bias;
+expRwd = max(a.aAct_next); 
 
 %% assign the reward values
-% if ~w.done
-%     a.dfRwd = curRwd + expRwd * p.gamma;
-% else
+if ~w.done
+    a.dfRwd = curRwd + expRwd * p.gamma;
+else
     a.dfRwd = curRwd; 
-% end
+end
 
 %% update the weights - back prop
 % delta for all unit
