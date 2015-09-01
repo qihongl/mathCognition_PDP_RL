@@ -12,17 +12,16 @@ global a w h p mode;
 %distribution over possible values in a map.
 
 %% specify the parameters
-a.act = zeros(p.mvRange+1,1);
 a.dfRwd = 0;
 a.Rwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
-
+% error counters
 w.errors = 0; 
 w.numSkips = 0;
 w.numDoubleTouch = 0;
-
+% preallocate the network untis
 a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
 a.aIn = zeros(p.mvRange+1,1);
@@ -47,9 +46,6 @@ w.vS.oldInput = zeros(1, p.eyeRange);
 w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
-
-% copy the stop counter value
-% w.stopCounter = p.stopCounter;
 
 % teaching specific
 w.maxTeachTrial = p.maxTeachTrial;

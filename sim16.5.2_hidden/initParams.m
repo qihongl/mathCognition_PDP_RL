@@ -4,7 +4,7 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a
 
-p.teachingStyle = 4;
+% p.teachingStyle = 4;
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -14,7 +14,7 @@ p.teachingStyle = 4;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .00001;        % learning rate
+p.lrate = .000001;        % learning rate
 p.gamma = .9;           % discount factor
 
 %% changes over time
