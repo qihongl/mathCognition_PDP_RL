@@ -20,12 +20,11 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else
-%     a.choice = choose(a.act.^a.smgain);
-    a.choice = chooseMax(a.act);
+    a.choice = choose(a.aAct.^a.smgain);
 end
 
 %% check if the model is completing the task
-if a.choice == length(a.act)
+if a.choice == length(a.aAct)
     w.out.targGuess = 0;
     w.out.handStep = 0;
     w.out.eyeStep = 0;
