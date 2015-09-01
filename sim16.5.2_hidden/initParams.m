@@ -14,7 +14,7 @@ p.teachingStyle = 4;
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .10;             % noise magnitude
-p.lrate = .0001;        % learning rate
+p.lrate = .00001;        % learning rate
 p.gamma = .9;           % discount factor
 
 %% changes over time

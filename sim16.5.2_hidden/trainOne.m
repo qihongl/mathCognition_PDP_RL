@@ -8,7 +8,7 @@ end
 %% run the simulation
 record = trainAgent(epoch, seed);
 
-%% save the simulation results
+%% save the simulation .
 saveDirName = getSaveDir();
 save([saveDirName '/' 'record'],'record');
 save('record','record');
