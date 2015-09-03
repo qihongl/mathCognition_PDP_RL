@@ -4,10 +4,10 @@ global p;
 %% set the parameter that you want to vary
 if nargin == 0
     epoch = 100000;
-    nSubj = 5;
+    nSubj = 2;
 end
 
-param = [2 3 4];
+param = [1];
 for i = 1 : length(param)
     p.teachingStyle = param(i); % varying parameter
     
