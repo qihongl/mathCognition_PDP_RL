@@ -3,12 +3,12 @@ clear all; clear global;
 
 %% Get data from the current directory
 
-nSubj = 10;
+nSubj = 5;
 numQs = 100;
 name = 'record';
 dirName = 'groupData';
 
-for i = 0
+for i = 0:3
     % get access to the right data directory 
     dataDir = sprintf('%s%.2d',dirName, i);
     datapath = [pwd '/' dataDir '/'];
