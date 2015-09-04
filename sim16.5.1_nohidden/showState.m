@@ -5,8 +5,8 @@ global p w d a;
 
 %% plot current and expected rewards over time
 axes(d.rwd);
-plot(w.rS.time,a.Rwd,'-b*'); hold on;
-plot(w.rS.time,a.dfRwd,'-r*');
+plot(w.rS.time,a.curRwd,'-b*'); hold on;
+plot(w.rS.time,a.expRwd,'-r*');
 legend({'current reward', 'discounted future reward'},...
     'Location','northwest', 'fontsize', d.FONTSIZE)
 
