@@ -3,7 +3,7 @@ function targPos = itemGen(nItems)
 global p; 
 
 % generate the position vector for the targets
-targPos = cumsum(uniform(p.minSpacing,p.maxSpacing, 1,nItems));
+targPos = cumsum(uniform(p.minSpacing+1,p.maxSpacing, 1,nItems));
 % center them
 targPos = round (targPos - mean(targPos));
 end
