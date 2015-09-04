@@ -3,13 +3,13 @@ clear all;
 
 % set parameters corrospondingly
 dirName = 'groupData';
-path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.7_compUnit++/';
+path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.5.2_hidden/';
 filename = 'groupScores';
-saveFileName = 'moreTrain.csv';
+saveFileName = 'tanh.csv';
 
 teachingModel = 0:3;
 numItems = 7; 
-numSub = 20;
+numSub = 5;
 
 %% start gathering data
 % loop over all data dir

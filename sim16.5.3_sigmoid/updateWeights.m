@@ -6,16 +6,16 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global p a w;
 %% compute the reward values according to the reward policy
-curRwd = computeRwd();
+a.curRwd = computeRwd();
 a.aAct_next = a.wts_HA*sigmoid(a.wts_VH * w.vS.visInput');
 a.aAct_next(p.mvRad + 1) = a.aAct_next(p.mvRad + 1) + a.bias;
-expRwd = max(a.aAct_next); 
+a.expRwd = max(a.aAct_next); 
 
 % there is no expected reward for the last step
 if ~w.done
-    a.dfRwd = curRwd + expRwd * p.gamma;
+    a.dfRwd = a.curRwd + a.expRwd * p.gamma;
 else
-    a.dfRwd = curRwd; 
+    a.dfRwd = a.curRwd; 
 end
 
 %% update the weights - back prop

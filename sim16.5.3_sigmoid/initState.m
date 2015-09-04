@@ -13,7 +13,8 @@ global a w h p mode;
 
 %% specify the parameters
 a.dfRwd = 0;
-a.Rwd = 0;
+a.curRwd = 0;
+a.expRwd = 0; 
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;

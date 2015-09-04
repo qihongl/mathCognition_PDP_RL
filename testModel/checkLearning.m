@@ -2,7 +2,7 @@
 clear global; 
 global plots p;
 %% Get data from the current dir 
-filename = 'record.mat';
+filename = 'record_noNoise.mat';
 load([pwd '/' filename], 'record');
 fprintf('Directory: %s\n', pwd);
 
