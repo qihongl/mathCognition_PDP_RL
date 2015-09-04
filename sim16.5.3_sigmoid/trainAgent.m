@@ -36,7 +36,7 @@ for i = 1:p.runs
     s.steps(i) = result.steps;
     s.indices{i} = result.indices;
     s.numItemsShowed(i) = w.nItems;
-    if w.nItems == length(getNonzeros(s.indices{i}))
+    if all(w.rS.targRemain==false) && i ~= p.maxIter
         s.completed(i) = true;
     end
 end
