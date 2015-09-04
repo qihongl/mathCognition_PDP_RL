@@ -1,7 +1,7 @@
 % just testing, a short cut for running the model
 function record = trainOne(epoch, seed)
 if nargin == 0
-    epoch = 10000;
+    epoch = 5000;
     seed = randi(99);
 end
 
@@ -17,5 +17,8 @@ save('record','record');
 quiz();
 checkLearning();
 print([pwd '/' saveDirName '/' 'learningCurve'],'-dpng')
-beep % notice me that the program was ended
+
+% end the simulation
+clear gobal; % make the current values do not influence the next simulation
+beep % notice me that the program was terminated!
 end
