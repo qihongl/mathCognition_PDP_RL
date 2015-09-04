@@ -19,11 +19,12 @@ w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
 
+%% initialize error counters
 w.errors = 0; 
 w.numSkips = 0;
 w.numDoubleTouch = 0;
 
-% generate items in space
+%% generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
     w.nItems = mode.nItem;              % fix the number of items
 else
@@ -33,21 +34,17 @@ w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
 w.done = false;
 
-% initialize the location of hand and eye
-w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
-w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
+%% initialize the location of hand and eye
+w.rS.eyePos  = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+p.minSpacing);
+w.rS.handPos = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+p.minSpacing);
 
-% view state or the perceived state
+%% view state or the perceived state
 w.vS.oldInput = zeros(1, p.eyeRange);
 w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 
-% copy the stop counter value
-% w.stopCounter = p.stopCounter;
-
-% teaching specific
-w.maxTeachTrial = p.maxTeachTrial;
+%% teaching specific
 mode.teach = true; 
 if p.teacherForcingOn
     w.teacherForcing = mode.teacherForcing; 

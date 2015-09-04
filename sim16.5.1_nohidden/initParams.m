@@ -13,23 +13,20 @@ p.teachingStyle = 4;
 %% modeling parameters
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
-p.wf = .10;             % noise magnitude
+p.wf = .1;             % noise magnitude
 p.lrate = .0005;        % learning rate
 p.gamma = .9;           % discount factor
+
+%% changes over time
 a.smgain = 1;           % initial softmax rate
 p.smirate = .001;       % softmax decrement rate
-p.smi_upperLim = 10;    % the upper limit of the smi rate
-
-a.punishFactor = 0.8;   % count how many errors the model made
-p.PFd = .001;
-p.PF_lowerLim = 0.2;
+p.smi_upperLim = 10;    % upper bound
+a.punishFactor = 0.8;   % initial punish factor
+p.PFd = .001;           % punish factor decrement rate
+p.PF_lowerLim = 0.2;    % lower bound
 
 
 %% teaching mode
-% % controls the redo mode
-p.teachingModeOn = 0;
-p.maxTeachTrial = 100;
-
 if p.teachingStyle == 3 || p.teachingStyle == 4
     % flag for the teacher forcing mode
     p.teacherForcingOn = 1;
@@ -50,7 +47,7 @@ p.eyeRange = p.eyeRad * 2 + 1;
 % number of items in the environment
 p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 2;       % min spacing between neighbouring items
+p.minSpacing = 1;       % min spacing between neighbouring items
 
 %% reward values
 if p.teachingStyle == 1 || p.teachingStyle == 3
