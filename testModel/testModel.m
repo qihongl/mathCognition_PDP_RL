@@ -34,7 +34,7 @@ while ~(w.done) && i < p.maxIter
     if showPlot
         showState();
     end
-%     record the action sequence
+    % record the action sequence
     score.indices(i+1) = recordAction();
     i = i+1;
 end
@@ -46,12 +46,12 @@ score.nItemsShowed = w.nItems;
 % record the steps used
 score.steps = i;
 % check if the model completed the task
-% if (length(nonzeros(score.indices)) == (w.nItems+1)) && score.steps~=p.maxIter
-if all(w.rS.targRemain == false)
+if all(w.rS.targRemain == false) && i ~= p.maxIter
     score.completed = true;
 else
     score.completed = false;
 end
+% record errors
 score.numSkips = w.numSkips;
 score.numDoubleTouch = w.numDoubleTouch;
 score.numErrors = w.errors;
