@@ -18,11 +18,13 @@ a.expRwd = 0;
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
-% error counters
+
+%% initialize error counters
 w.errors = 0; 
 w.numSkips = 0;
 w.numDoubleTouch = 0;
-% preallocate the network untis
+
+%% preallocate the network untis
 a.hIn = zeros(p.nHidden,1);
 a.hAct = zeros(p.nHidden,1);
 a.aIn = zeros(p.mvRange+1,1);
@@ -38,9 +40,9 @@ w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
 w.done = false;
 
-% initialize the location of hand and eye
-w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
-w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
+%% initialize the location of hand and eye
+w.rS.eyePos  = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+p.minSpacing);
+w.rS.handPos = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+p.minSpacing);
 
 % view state or the perceived state
 w.vS.oldInput = zeros(1, p.eyeRange);
@@ -49,7 +51,6 @@ w.out.handStep = 0;
 w.out.eyeStep = 0;
 
 % teaching specific
-w.maxTeachTrial = p.maxTeachTrial;
 mode.teach = true; 
 if p.teacherForcingOn
     w.teacherForcing = mode.teacherForcing; 

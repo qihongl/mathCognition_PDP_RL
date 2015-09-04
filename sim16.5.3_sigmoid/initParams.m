@@ -13,7 +13,7 @@ p.teachingStyle = 4;
 %% modeling parameters
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
-p.wf = .1;              % noise magnitude
+p.wf = .1;             % noise magnitude
 p.lrate = .0005;        % learning rate
 p.gamma = .9;           % discount factor
 
@@ -26,17 +26,11 @@ p.PFd = .001;           % punish factor decrement rate
 p.PF_lowerLim = 0.2;    % lower bound
 
 %% teaching mode
-% controls the redo mode
-p.teachingModeOn = 0;
-p.maxTeachTrial = 100;
-
-% flag for the teacher forcing mode
 if p.teachingStyle == 3 || p.teachingStyle == 4
+    % flag for the teacher forcing mode
     p.teacherForcingOn = 1;
-elseif p.teachingStyle == 1 || p.teachingStyle == 2
-    p.teacherForcingOn = 0;
 else
-    error('Unrecognized teaching mode')
+    p.teacherForcingOn = 0;
 end
 
 %% counting specific
@@ -52,7 +46,7 @@ p.eyeRange = p.eyeRad * 2 + 1;
 % number of items in the environment
 p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
-p.minSpacing = 2;       % min spacing between neighbouring items
+p.minSpacing = 1;       % min spacing between neighbouring items
 
 %% reward values
 if p.teachingStyle == 1 || p.teachingStyle == 3
@@ -71,6 +65,7 @@ elseif p.teachingStyle == 2 || p.teachingStyle == 4
 else
     error('Unrecognized teaching mode')
 end
+
 
 %% network specific
 % initialize with small small random values
