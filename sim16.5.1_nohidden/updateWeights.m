@@ -23,9 +23,4 @@ end
 change = p.lrate*(a.dfRwd - a.act(a.choice)); 
 a.wts(a.choice,:) = a.wts(a.choice,:) + change * w.vS.oldInput;
 
-%% start over if an incorrect action was made
-if p.teachingModeOn && ~w.actionCorrect
-    w.redo = true;
-end
-
 end
