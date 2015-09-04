@@ -18,5 +18,4 @@ elseif a.choice == p.mvRange +1
     index = p.maxItems +1;     
 end
 
-
 end
