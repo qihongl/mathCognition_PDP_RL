@@ -13,7 +13,6 @@ w.vS.handPos = w.rS.handPos - w.rS.eyePos;
 % purturbed by scalar variability based on true targ pos
 
 % w.vS.targPos = round((w.rS.targPos - w.rS.eyePos).*(1+randn(1,length(w.rS.targPos))*p.wf));
-% w.vS.targPos = round((w.rS.targPos - w.rS.eyePos)*(1 + randn*p.wf));
 w.vS.targPos = w.rS.targPos - w.rS.eyePos;
 
 % the error depends on the distance between target and fixation

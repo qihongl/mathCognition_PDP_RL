@@ -12,9 +12,9 @@ global a w h p mode;
 %distribution over possible values in a map.
 
 %% specify the parameters
-a.act = zeros(p.mvRange+1,1);
 a.dfRwd = 0;
-a.Rwd = 0;
+a.curRwd = 0;
+a.expRwd = 0; 
 w.rS.time = 0;
 w.rS.td = 0;
 w.stateNum = -1;
@@ -23,6 +23,9 @@ w.stateNum = -1;
 w.errors = 0; 
 w.numSkips = 0;
 w.numDoubleTouch = 0;
+
+%% preallocate the network untis
+a.act = zeros(p.mvRange+1,1);
 
 %% generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
