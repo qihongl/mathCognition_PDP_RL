@@ -1,6 +1,6 @@
 function initPlot()
 % Set up for the plot 
-global d
+global d p;
 %% set up the figure
 d.fh = figure();
 d.fh.WindowStyle = 'docked';
@@ -12,9 +12,8 @@ d.wts_HA = subplot(2,2,4);
 
 % constant
 d.FONTSIZE = 14; 
+d.rwdUpper = p.r.bigPos;
+d.rwdLower = p.r.midNeg;
 
-% % plot
-% axes(d.actionHistory); cla;
-% axes(d.rwd); cla;
 end
 

@@ -7,10 +7,18 @@ global p w d a;
 axes(d.rwd);
 plot(w.rS.time,a.curRwd,'-b*'); hold on;
 plot(w.rS.time,a.expRwd,'-r*');
-legend({'current reward', 'discounted future reward'},...
+legend({'current reward', 'esimtated reward'},...
     'Location','northwest', 'fontsize', d.FONTSIZE)
 
-ylim(d.rwd,[p.r.midNeg p.r.bigPos]);
+% extend the y range if needed
+if a.expRwd > d.rwdUpper
+    d.rwdUpper = a.expRwd;
+elseif a.expRwd < d.rwdLower
+    d.rwdLower = a.expRwd;
+end
+ylim(d.rwd,[floor(d.rwdLower) ceil(d.rwdUpper)]);
+
+% add labels
 xlim(d.rwd,[-0.25,w.rS.time+0.25]);
 title(d.rwd, 'Reward history', 'fontsize', d.FONTSIZE)
 xlabel(d.rwd, 'Time', 'fontsize', d.FONTSIZE)
