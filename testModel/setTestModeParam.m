@@ -3,7 +3,7 @@ function [] = setTestModeParam()
 %   Detailed explanation goes here
 global a p;
 % change parameters
-a.smgain = 10;         
+a.smgain = 100;         
 p.teacherForcingOn = false;   % stop teaching
 p.teachingModeOn = false;
 p.lrate = 0;            % stop learning 
