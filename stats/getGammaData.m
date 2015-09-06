@@ -3,13 +3,13 @@ clear all;
 
 % set parameters corrospondingly
 dirName = 'groupData';
-path = '/Users/Qihong/Dropbox/github/mathCognition/sim16.5.2_hidden/';
+path = '/Users/Qihong/Dropbox/github/mathCognition/sim20_perfect/';
 filename = 'groupScores';
-saveFileName = 'tanh.csv';
+saveFileName = 'perfect.csv';
 
 teachingModel = 0:3;
 numItems = 7; 
-numSub = 5;
+numSub = 20;
 
 %% start gathering data
 % loop over all data dir
