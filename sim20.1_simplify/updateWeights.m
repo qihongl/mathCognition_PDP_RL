@@ -19,18 +19,6 @@ else
     a.dfRwd = a.curRwd;
 end
 
-% % there is no expected reward for the last step
-% if ~w.done
-%     if a.curRwd < 0
-%         a.dfRwd = a.expRwd * p.gamma; %quick and dirty -- jlm
-%     else
-%         a.dfRwd = a.curRwd + a.expRwd * p.gamma;
-%     end
-% else
-%     a.dfRwd = a.curRwd;
-% end
-
-
 %% update the weights
 % change in weights equals input times reward prediction error
 change = p.lrate*(a.dfRwd - a.act(a.choice));
