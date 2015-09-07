@@ -3,24 +3,25 @@ rm(list = ls())
 library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
-# source('helperFunctions/plotBars.R')
+source('helperFunctions/genNameByCard.R')
 # load data
-mydata = read.csv('perfect.csv', header = F)
+mydata = read.csv('simplify01.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################
 ################################################################################################
 # set the name (need to be revised when adding new variables!)
 numOverallData = 8; 
-colnames(mydata) = c('teachModes', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
-                     'skipRate','stopEarlyRate', 'numDoubleTouch',
-                     'steps1', 'steps2', 'steps3', 'steps4', 'steps5', 'steps6', 'steps7',
-                     'CR1','CR2','CR3','CR4','CR5','CR6','CR7',
-                     'CCR1','CCR2','CCR3','CCR4','CCR5','CCR6','CCR7',
-                     'SR1','SR2','SR3','SR4','SR5','SR6','SR7',
-                     'SER1','SER2','SER3','SER4','SER5','SER6','SER7',
-                     'numErr1','numErr2','numErr3','numErr4','numErr5','numErr6','numErr7',
-                     'DT1','DT2','DT3','DT4','DT5','DT6','DT7')
+maxNumItems = 7;
+names = c('teachModes', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
+          'skipRate','stopEarlyRate', 'numDoubleTouch')
+namesByCard = c('steps', 'CR', 'CCR', 'SR', 'SER', 'numErr', 'DT');
+# start generate the labels
+for (i in 1 : length(namesByCard)){
+    names = c(names, genNameByCard(namesByCard[i], maxNumItems))    
+}
+# attach the labels to the data set
+colnames(mydata) = names
 
 # set the condition label (need to be revised when changing conditions!)
 mydata$teachModes[mydata$teachModes == 0] = '1.finalRwdOnly'
