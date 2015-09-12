@@ -4,7 +4,7 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a
 
-% p.teachingStyle = 4;
+p.teachingStyle = 4;
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -71,6 +71,6 @@ end
 % initialize with small small random values
 a.wts = randSmallWeights(p.mvRange+1,p.eyeRange);
 a.bias = 1e-8;     % bias toward not moving (action 0)
-
+p.saveWtsInterval = 10; 
 end
 

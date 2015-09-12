@@ -10,11 +10,13 @@ rng(seed)
 
 
 % preallocate
-record.wts = cell(1,epoch/p.saveWtsInterval+1);
+record.a = cell(1,epoch/p.saveWtsInterval+1);
+record.wts = cell(1,epoch);
 s.steps = nan(1,epoch);
 s.indices = cell(1,epoch);
 s.completed = false(1,epoch);
 s.numItemsShowed = zeros(1,epoch);
+
 
 % train the model for n trials
 fprintf('%s\n', pwd);
@@ -40,7 +42,7 @@ for i = 1:p.runs
     if all(w.rS.targRemain==false) && i ~= p.maxIter
         s.completed(i) = true;
     end
-    record = saveWts(i, record);
+    saveWts(i, record);
 end
 % save parameters
 record.p = p;
@@ -48,15 +50,14 @@ record.a = result.a;
 record.s = s;
 end
 
-function [record] = saveWts(curEpoch, record)
-global a p;
-if curEpoch == 1   
-    % save the initial wts
+function saveWts(curEpoch, record)
+global a p w;
+if curEpoch == 0    % save the initial wts
     record.wts{1} = a.wts;
-elseif mod(curEpoch,p.saveWtsInterval) == 0 
-    % save wts periodically
-    record.wts{1+curEpoch/p.saveWtsInterval} = a.wts;
+elseif mod(curEpoch,p.saveWtsInterval) == 0 % save wts periodically
+    
 end
+
 end
 
 function [] = updateSmiPf()
