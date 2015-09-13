@@ -5,7 +5,7 @@ clear all;
 dirName = 'groupData';
 path = '/Users/Qihong/Dropbox/github/mathCognition/sim20.1_simplify/';
 filename = 'groupScores';
-saveFileName = 'simplify03.csv';
+saveFileName = 'simplify04.csv';
 
 teachingModel = 0:3;
 numItems = 7; 

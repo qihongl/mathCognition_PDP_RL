@@ -38,8 +38,8 @@ w.rS.targRemain = true(w.nItems, 1);    % set up flag
 w.done = false;
 
 %% initialize the location of hand and eye
-w.rS.eyePos  = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+p.minSpacing);
-w.rS.handPos = min(w.rS.targPos) - (randi(p.maxSpacing-p.minSpacing)+p.minSpacing);
+w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
+w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
 
 %% view state or the perceived state
 w.vS.oldInput = zeros(1, p.eyeRange);

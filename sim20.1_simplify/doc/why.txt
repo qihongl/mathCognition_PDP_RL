@@ -1,0 +1,16 @@
+OVERALL GOAL: 
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+1. just set the mid rwd == 0 has the same effect, so the code can be simplified
+2. recording the weights along the training, so plotting the learning curve is very flexible
+3. initial location was U[2,5], and now it is U[1,5], which is consistent with the current spacing policy. the results was replicated quite successfully
+
+
+
+PROBLEM: 
+
+TRY: 

@@ -5,7 +5,7 @@ setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
 source('helperFunctions/genNameByCard.R')
 # load data
-mydata = read.csv('simplify01.csv', header = F)
+mydata = read.csv('simplify04.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################
@@ -97,9 +97,9 @@ p7 = ggplot(meanOverallData, aes(x = teachModes, y = dt, fill=teachModes)) +
     labs(x = "Teaching mode", y = "Mean number of double touching") + 
     theme(axis.text.x = element_blank(),axis.ticks = element_blank(), legend.position="none")
 
-multiplot(p1, p2, p3, p4, p5, p6, p7, cols=3)
-cat ("Press [enter] to continue")
-line <- readline()
+# multiplot(p1, p2, p3, p4, p5, p6, p7, cols=3)
+# cat ("Press [enter] to continue")
+# line <- readline()
 
 
 
@@ -156,6 +156,7 @@ limits = aes(ymax = meanCR + seCR, ymin=meanCR - seCR)
 p2 = ggplot(data=meanCRData, aes(x=cardinality, y=meanCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
+    theme(legend.position="none") + 
     labs(x = "Number of items", y = "Mean completion rate")
 
 
@@ -182,6 +183,7 @@ limits = aes(ymax = meanCCR + seCCR, ymin=meanCCR - seCCR)
 p3 = ggplot(data=meanCCRData, aes(x=cardinality, y=meanCCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
+    theme(legend.position="none") + 
     labs(x = "Number of items", y = "Mean correct completion rate")
 
 
@@ -209,6 +211,7 @@ limits = aes(ymax = meanSR + seSR, ymin=meanSR - seSR)
 p4 = ggplot(data=meanSRData, aes(x=cardinality, y=meanSR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
+    theme(legend.position="none") + 
     labs(x = "Number of items", y = "Mean skip rate")
 
 
@@ -235,6 +238,7 @@ limits = aes(ymax = meanSER + seSER, ymin=meanSER - seSER)
 p5 = ggplot(data=meanSERData, aes(x=cardinality, y=meanSER, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
+    theme(legend.position="none") + 
     labs(x = "Number of items", y = "Mean stop early rate")
 
 
@@ -261,8 +265,10 @@ limits = aes(ymax = meanDT + seDT, ymin=meanDT - seDT)
 p6 = ggplot(data=meanDTData, aes(x=cardinality, y=meanDT, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, ceiling(max(meanDTData$meanDT + meanDTData$seDT))) +  
     geom_errorbar(limits, width=0.15) + 
+    theme(legend.position="none") + 
     labs(x = "Number of items", y = "Mean number of double touches")
 
 
 # plot them all 
 multiplot(p1, p2, p3, p4, p5, p6, cols=2)
+# multiplot(p4, p5, p6, cols=2)
