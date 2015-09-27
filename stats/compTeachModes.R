@@ -270,5 +270,5 @@ p6 = ggplot(data=meanDTData, aes(x=cardinality, y=meanDT, group=teachModes, colo
 
 
 # plot them all 
-multiplot(p1, p2, p3, p4, p5, p6, cols=2)
-# multiplot(p4, p5, p6, cols=2)
+# multiplot(p1, p2, p3, p4, p5, p6, cols=2)
+multiplot(p4, p5, p6, cols=2)
