@@ -19,9 +19,11 @@ for i = 1 : numFiles
     temp = regexp(tempStr, expression,'match');
     % increment numSubject if YES
     if(isempty(temp))
-        disp(tempStr);
+%         disp(tempStr);
     else
         numSubjects = numSubjects + 1;
     end
 end
+
+fprintf('%s: Got %d subjects\n', path, numSubjects);
 end
