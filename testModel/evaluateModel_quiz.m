@@ -1,4 +1,7 @@
-function [finalScore] = evaluateModel_quiz( score, numQs )
+function [finalScore] = evaluateModel_quiz( score, numQs, showResults)
+if nargin < 3
+    showResults = true;
+end
 %   This function assume the data is the quiz data
 %   Namely, the input data can be converted to "cardinality X numQs matrix"
 
@@ -44,8 +47,9 @@ end
 % now we can assume each caridnality were tested equally
 
 %% print results
-printResultsToConsole(numQs, overall, byCard)
-
+if showResults
+    printResultsToConsole(numQs, overall, byCard)
+end
 %% save data
 finalScore.overall = overall;
 finalScore.byCard = byCard;
