@@ -6,7 +6,7 @@ numQs = 20;
 name = 'record';
 dirName = 'groupData';
 
-for i = 0:3
+for i = 1:3
     % get access to the right data directory 
     dataDir = sprintf('%s%.2d',dirName, i);
     datapath = [pwd '/' dataDir '/'];

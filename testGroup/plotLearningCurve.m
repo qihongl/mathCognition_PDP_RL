@@ -3,7 +3,7 @@
 % Which is computed by testing the wts for all development time points
 
 function plotLearningCurve()
-load('groupDeveScoresTest.mat')
+load('groupDeveScores.mat')
 %% Get numSubjects and num development time points
 numSubj = size(groupDeveScores,1);
 numWts = size(groupDeveScores,2);
