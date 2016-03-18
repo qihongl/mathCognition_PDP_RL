@@ -4,7 +4,7 @@ library(ggplot2); library(plyr); library(tidyr); library(dplyr)
 setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R'); source('helperFunctions/genNameByCard.R')
 # load data
-mydata = read.csv('simplify02.csv', header = F)
+mydata = read.csv('simplify03.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################

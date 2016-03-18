@@ -5,14 +5,16 @@ setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
 source('helperFunctions/genNameByCard.R')
 # load data
-mydata = read.csv('simplify04.csv', header = F)
+mydata = read.csv('perfect.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################
 ################################################################################################
 # set the name (need to be revised when adding new variables!)
-numOverallData = 8; 
+# numOverallData = 8; 
 maxNumItems = 7;
+levels = c("one", "two", "three", "four", "five", "six", "seven")
+
 names = c('teachModes', 'meanSteps', 'monoRate', 'compRate', 'correctCompRate',
           'skipRate','stopEarlyRate', 'numDoubleTouch')
 namesByCard = c('steps', 'CR', 'CCR', 'SR', 'SER', 'numErr', 'DT');
@@ -24,15 +26,15 @@ for (i in 1 : length(namesByCard)){
 colnames(mydata) = names
 
 # set the condition label (need to be revised when changing conditions!)
-mydata$teachModes[mydata$teachModes == 0] = '1.finalRwdOnly'
-mydata$teachModes[mydata$teachModes == 1] = '2.interm'
-mydata$teachModes[mydata$teachModes == 2] = '3.demon'
-mydata$teachModes[mydata$teachModes == 3] = '4.demon+interm'
+mydata$teachModes[mydata$teachModes == 0] = '1.Final Reward Only'
+mydata$teachModes[mydata$teachModes == 1] = '2.Intermediate Reward Only'
+mydata$teachModes[mydata$teachModes == 2] = '3.Demonstration Only'
+mydata$teachModes[mydata$teachModes == 3] = '4.Intermediate Reward + Demonstration'
 
 # convert correct rate to error rate
 mydata$monoRate = 1 - mydata$monoRate
 # set the font size
-theme_set(theme_gray(base_size = 20))
+# theme_set(theme_gray(base_size = 20))
 
 ################################################################################################
 ################################## Performance Overall #########################################
@@ -127,8 +129,11 @@ meanStepsData <- data.frame(meanStepsData, seStepsData$seSteps)
 colnames(meanStepsData)[ncol(meanStepsData)] = 'seSteps'
 limits = aes(ymax = meanSteps + seSteps, ymin=meanSteps - seSteps)
 
+# create a factor variable
+numOrder = factor(meanStepsData$cardinality, levels)
+
 # do the plotting 
-p1 = ggplot(data=meanStepsData, aes(x=cardinality, y=meanSteps, group=teachModes, colour=teachModes)) +
+p1 = ggplot(data=meanStepsData, aes(x=numOrder, y=meanSteps, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 100) +  
     geom_errorbar(limits, width=0.15) + 
     labs(x = "Number of items", y = "Mean number of steps used") 
@@ -152,8 +157,11 @@ meanCRData <- data.frame(meanCRData, seCRData$seCR)
 colnames(meanCRData)[ncol(meanCRData)] = 'seCR'
 limits = aes(ymax = meanCR + seCR, ymin=meanCR - seCR)
 
+# create a factor variable
+numOrder = factor(meanCRData$cardinality, levels)
+
 # do the plotting 
-p2 = ggplot(data=meanCRData, aes(x=cardinality, y=meanCR, group=teachModes, colour=teachModes)) +
+p2 = ggplot(data=meanCRData, aes(x=numOrder, y=meanCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
     theme(legend.position="none") + 
@@ -179,8 +187,12 @@ meanCCRData <- data.frame(meanCCRData, seCCRData$seCCR)
 colnames(meanCCRData)[ncol(meanCCRData)] = 'seCCR'
 limits = aes(ymax = meanCCR + seCCR, ymin=meanCCR - seCCR)
 
+
+# create a factor variable
+numOrder = factor(meanStepsData$cardinality, levels)
+
 # do the plotting 
-p3 = ggplot(data=meanCCRData, aes(x=cardinality, y=meanCCR, group=teachModes, colour=teachModes)) +
+p3 = ggplot(data=meanCCRData, aes(x=numOrder, y=meanCCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
     theme(legend.position="none") + 
@@ -207,8 +219,11 @@ meanSRData <- data.frame(meanSRData, seSRData$seSR)
 colnames(meanSRData)[ncol(meanSRData)] = 'seSR'
 limits = aes(ymax = meanSR + seSR, ymin=meanSR - seSR)
 
+# create a factor variable
+numOrder = factor(meanSRData$cardinality, levels)
+
 # do the plotting 
-p4 = ggplot(data=meanSRData, aes(x=cardinality, y=meanSR, group=teachModes, colour=teachModes)) +
+p4 = ggplot(data=meanSRData, aes(x=numOrder, y=meanSR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
     theme(legend.position="none") + 
@@ -234,8 +249,11 @@ meanSERData <- data.frame(meanSERData, seSERData$seSER)
 colnames(meanSERData)[ncol(meanSERData)] = 'seSER'
 limits = aes(ymax = meanSER + seSER, ymin=meanSER - seSER)
 
+# create a factor variable
+numOrder = factor(meanSERData$cardinality, levels)
+
 # do the plotting 
-p5 = ggplot(data=meanSERData, aes(x=cardinality, y=meanSER, group=teachModes, colour=teachModes)) +
+p5 = ggplot(data=meanSERData, aes(x=numOrder, y=meanSER, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
     theme(legend.position="none") + 
@@ -261,8 +279,11 @@ meanDTData <- data.frame(meanDTData, seDTData$seDT)
 colnames(meanDTData)[ncol(meanDTData)] = 'seDT'
 limits = aes(ymax = meanDT + seDT, ymin=meanDT - seDT)
 
+# create a factor variable
+numOrder = factor(meanDTData$cardinality, levels)
+
 # do the plotting 
-p6 = ggplot(data=meanDTData, aes(x=cardinality, y=meanDT, group=teachModes, colour=teachModes)) +
+p6 = ggplot(data=meanDTData, aes(x=numOrder, y=meanDT, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, ceiling(max(meanDTData$meanDT + meanDTData$seDT))) +  
     geom_errorbar(limits, width=0.15) + 
     theme(legend.position="none") + 
@@ -270,5 +291,7 @@ p6 = ggplot(data=meanDTData, aes(x=cardinality, y=meanDT, group=teachModes, colo
 
 
 # plot them all 
-multiplot(p1, p2, p3, p4, p5, p6, cols=2)
-multiplot(p4, p5, p6, cols=2)
+# multiplot(p1, p2, p3, p4, p5, p6, cols=2)
+# multiplot(p4, p5, p6, cols=2)
+p1
+multiplot(p3, p4, p5, p6, cols=2)
