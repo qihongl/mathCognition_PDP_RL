@@ -195,8 +195,8 @@ numOrder = factor(meanStepsData$cardinality, levels)
 p3 = ggplot(data=meanCCRData, aes(x=numOrder, y=meanCCR, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, 1) +  
     geom_errorbar(limits, width=0.15) + 
-    theme(legend.position="none") + 
-    labs(x = "Number of items", y = "Mean correct completion rate")
+    theme_bw() + theme(legend.position="none") + 
+    labs(x = "Number of items", y = "Mean correct completion rate") 
 
 
 
