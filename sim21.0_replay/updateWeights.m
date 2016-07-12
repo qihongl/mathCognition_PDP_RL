@@ -13,29 +13,32 @@ a.curRwd = computeRwd();
 if p.experienceReply
     updateBuffer();
     
-    if a.bufferUsage > p.bufferSize
+    
+    for i = 1 : p.replay_batchSize
+        % sample from the memory buffer
+        memoryIdx = randsample(min(p.bufferSize,a.bufferUsage), 1);
+        %     memoryIdx = min(a.bufferUsage, p.bufferSize);
         
-        for i = 1 : 5
-            % sample from the memory buffer
-            memoryIdx = randsample(min(p.bufferSize,a.bufferUsage), 1);
-            %     memoryIdx = min(a.bufferUsage, p.bufferSize);
-            
-            if ~buffer(memoryIdx).taskDone
-                % compute the expected reward
-                nextAct = a.wts * buffer(memoryIdx).s_next';
-                nextAct(p.mvRad + 1) = nextAct(p.mvRad + 1) + a.bias;
-                % combine current reward with the expected reward
-                dfRwd = buffer(memoryIdx).r_cur + p.gamma * max(nextAct);
-            else
-                dfRwd = buffer(memoryIdx).r_cur;
-            end
-            
-            % weight update
-            change = p.lrate*(dfRwd - buffer(memoryIdx).a_act(buffer(memoryIdx).a_cur));
-            a.wts(buffer(memoryIdx).a_cur,:) = a.wts(buffer(memoryIdx).a_cur,:) ...
-                + change * buffer(memoryIdx).s_cur;
+        %             if buffer(memoryIdx).r_cur == 0  && rand > .5
+        %                 while buffer(memoryIdx).r_cur == 0
+        %                     memoryIdx = randsample(min(p.bufferSize,a.bufferUsage), 1);
+        %                 end
+        %             end
+        
+        if ~buffer(memoryIdx).taskDone
+            % compute the expected reward
+            nextAct = a.wts * buffer(memoryIdx).s_next';
+            nextAct(p.mvRad + 1) = nextAct(p.mvRad + 1) + a.bias;
+            % combine current reward with the expected reward
+            dfRwd = buffer(memoryIdx).r_cur + p.gamma * max(nextAct);
+        else
+            dfRwd = buffer(memoryIdx).r_cur;
         end
         
+        % weight update
+        change = p.lrate*(dfRwd - buffer(memoryIdx).a_act(buffer(memoryIdx).a_cur));
+        a.wts(buffer(memoryIdx).a_cur,:) = a.wts(buffer(memoryIdx).a_cur,:) ...
+            + change * buffer(memoryIdx).s_cur;
     end
     
 else
