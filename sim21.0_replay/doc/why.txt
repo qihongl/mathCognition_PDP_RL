@@ -1,0 +1,14 @@
+OVERALL GOAL: 
+- copy <- sim20.1 
+- implement the experience replay buffer (DQN, by Google Deepmind)
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
