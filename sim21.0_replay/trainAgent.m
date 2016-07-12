@@ -8,9 +8,8 @@ initParams(epoch);
 p.seed = seed;
 rng(seed)
 
-
 % preallocate
-record.wts = cell(1,epoch/p.saveWtsInterval+1);
+record.wts = cell(1,epoch / p.saveWtsInterval+1);
 s.steps = nan(1,epoch);
 s.indices = cell(1,epoch);
 s.completed = false(1,epoch);

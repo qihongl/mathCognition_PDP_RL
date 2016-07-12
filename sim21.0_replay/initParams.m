@@ -2,9 +2,13 @@
 function [] = initParams(epoch)
 % This program initialize and preallocate the parameters needed for the
 % model. This should be executed before the simulations.
-global p a
+global p a buffer
 
+%% teaching strategy 
+% if teaching style is specified here, then trainGroup will use this 
+% value for all models ... 
 p.teachingStyle = 4;
+
 % 1 = final reward only
 % 2 = intermediate reward
 % 3 = final reward only + teacher forcing
@@ -69,8 +73,21 @@ end
 
 %% network specific
 % initialize with small small random values
-a.wts = zeros(p.mvRange+1,p.eyeRange);
+a.wts = zeros(p.mvRange+1, p.eyeRange);
 a.bias = 1e-8;     % bias toward not moving (action 0)
 p.saveWtsInterval = 100; 
+
+
+%% experience replay 
+p.experienceReply = 1;
+p.bufferSize = 500; 
+buffer = struct('s_cur', repmat({nan(1)}, p.bufferSize, 1), ...
+    'a_cur', repmat({nan}, p.bufferSize, 1), ...
+    'a_act', repmat({nan}, p.bufferSize, 1), ...
+    's_next', repmat({nan}, p.bufferSize, 1), ... 
+    'r_cur', repmat({nan}, p.bufferSize, 1), ...
+    'wts', repmat({nan}, p.bufferSize, 1));
+a.bufferUsage = 0; 
+
 end
 
