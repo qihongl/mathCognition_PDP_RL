@@ -9,7 +9,7 @@ else
     % delete the 1st experience in the buffer, add new experience to the end
     buffer(1) = [];
     buffer(p.bufferSize) = struct('s_cur', nan, 'a_cur', nan, 'a_act', nan,...
-        's_next', nan, 'r_cur', nan, 'wts', nan);
+        's_next', nan, 'r_cur', nan, 'taskDone', nan);
     saveCurrentExperience(memoryIdx)
 end
 
@@ -26,7 +26,7 @@ a.bufferUsage = a.bufferUsage + 1;
         buffer(memoryIdx).a_act = a.act;
         buffer(memoryIdx).s_next = w.vS.visInput;
         buffer(memoryIdx).r_cur = a.curRwd;
-%         buffer(memoryIdx).wts = a.wts;
+        buffer(memoryIdx).taskDone = w.done;
     end
 
 end

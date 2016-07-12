@@ -3,6 +3,7 @@ function record = trainOne(epoch, seed)
 if nargin == 0
     epoch = 10000;
     seed = randi(99);
+    seed = 66       % works for no replay 
 end
 
 %% run the simulation

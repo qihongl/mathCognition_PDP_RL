@@ -27,7 +27,7 @@ legend({stepsLegend, 'Proportion trials completed * 100', ...
 
 xlb = sprintf('Time (pooling data for every %d trials)',plots.LENGTH);
 xlabel(xlb, 'fontsize', plots.FONTSIZE)
-
+ylim([0, 100]);
 tt = sprintf('Performance over time');
 title(tt, 'fontsize', plots.FONTSIZE);
 

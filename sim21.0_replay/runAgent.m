@@ -8,16 +8,16 @@ updateState();
 computeAnswer();    % compute the true 'answers'
 
 %% train the model once
-i = 0;
+t = 0;
 indices = zeros(1,p.maxIter);
-while ~(w.done) && i < p.maxIter
+while ~(w.done) && t < p.maxIter
     %% choose action
     selectAction();
     move();
     updateState();
     updateWeights();
-    indices(i + 1) = recordAction();     % record the "touch-index"
-    i = i+1;
+    indices(t + 1) = recordAction();     % record the "touch-index"
+    t = t+1;
 end
 
 updateTeachingConditions();
@@ -25,7 +25,7 @@ updateTeachingConditions();
 %% save result
 results.numErrors = w.errors;
 results.indices = indices;
-results.steps = i;
+results.steps = t;
 results.h = h;
 results.a = a;
 end
