@@ -3,13 +3,15 @@ function [] = trainGroup(nSubj, epoch)
 global p;
 %% set the parameter that you want to vary
 if nargin == 0
-    epoch = 10000;
+    epoch = 5000;
     nSubj = 20;
 end
 
-param = [1 2 3 4];
+% param = [1 2 3 4];
+param = [1 2 16];
 for i = 1 : length(param)
-    p.teachingStyle = param(i); % varying parameter
+%     p.teachingStyle = param(i); % varying parameter
+    p.replay_batchSize = param(i);
     
     %% create a new directory to save the results
     dirName = createDir('groupData');
