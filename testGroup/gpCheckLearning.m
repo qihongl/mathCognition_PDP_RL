@@ -4,7 +4,7 @@ clear all; clear global;
 dataDir = {'groupData00'};
 name = 'record';
 nGroups = length(dataDir);
-nSubj = 5; 
+nSubj = 20; 
 LENGTH = 100; 
 datapath = [pwd '/' dataDir{1} '/'];
 

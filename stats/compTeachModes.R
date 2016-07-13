@@ -5,13 +5,13 @@ setwd('/Users/Qihong/Dropbox/github/mathCognition/stats')
 source('helperFunctions/multiplot.R'); source('helperFunctions/se.R');
 source('helperFunctions/genNameByCard.R')
 # load data
-mydata = read.csv('perfect.csv', header = F)
+mydata = read.csv('replay00.csv', header = F)
 
 ################################################################################################
 ################################## Preprocess the data #########################################
 ################################################################################################
 # set the name (need to be revised when adding new variables!)
-# numOverallData = 8; 
+numOverallData = 8; 
 maxNumItems = 7;
 levels = c("one", "two", "three", "four", "five", "six", "seven")
 
@@ -26,10 +26,17 @@ for (i in 1 : length(namesByCard)){
 colnames(mydata) = names
 
 # set the condition label (need to be revised when changing conditions!)
-mydata$teachModes[mydata$teachModes == 0] = '1.Final Reward Only'
-mydata$teachModes[mydata$teachModes == 1] = '2.Intermediate Reward Only'
-mydata$teachModes[mydata$teachModes == 2] = '3.Demonstration Only'
-mydata$teachModes[mydata$teachModes == 3] = '4.Intermediate Reward + Demonstration'
+# mydata$teachModes[mydata$teachModes == 0] = '1.Final Reward Only'
+# mydata$teachModes[mydata$teachModes == 1] = '2.Intermediate Reward Only'
+# mydata$teachModes[mydata$teachModes == 2] = '3.Demonstration Only'
+# mydata$teachModes[mydata$teachModes == 3] = '4.Intermediate Reward + Demonstration'
+
+
+mydata$teachModes[mydata$teachModes == 0] = 'epoch 5000, batchSize - 1'
+mydata$teachModes[mydata$teachModes == 1] = 'epoch 5000, batchSize - 2'
+mydata$teachModes[mydata$teachModes == 2] = 'epoch 5000, batchSize - 16'
+mydata$teachModes[mydata$teachModes == 3] = 'epoch 10000, no replay'
+mydata$teachModes[mydata$teachModes == 4] = 'epoch 5000, no replay'
 
 # convert correct rate to error rate
 mydata$monoRate = 1 - mydata$monoRate
@@ -286,7 +293,7 @@ numOrder = factor(meanDTData$cardinality, levels)
 p6 = ggplot(data=meanDTData, aes(x=numOrder, y=meanDT, group=teachModes, colour=teachModes)) +
     geom_line(size = 1.25) + geom_point() + ylim(0, ceiling(max(meanDTData$meanDT + meanDTData$seDT))) +  
     geom_errorbar(limits, width=0.15) + 
-    theme(legend.position="none") + 
+    # theme(legend.position="none") + 
     labs(x = "Number of items", y = "Mean number of double touches")
 
 

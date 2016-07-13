@@ -79,9 +79,9 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay 
-p.experienceReply = true;
+p.experienceReply = false;
 p.bufferSize = 500;
-% p.replay_batchSize = 2; 
+p.replay_batchSize = 30; 
 
 buffer = struct(...
     's_cur',    repmat({nan}, p.bufferSize, 1), ...

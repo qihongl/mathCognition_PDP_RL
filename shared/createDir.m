@@ -1,24 +1,25 @@
-function [dirName] = createDir(name)
+function [fullpath] = createDir(location,name)
 %% create a directory to save results
 global p; 
-if nargin == 0 
-    name = 'groupResults';
-end
 
 index = 0;
-dirName = sprintf('%s%.2d',name, index);
+fullname = sprintf('%s%.2d',name, index);
+fullpath = fullfile(location, fullname);
 % if directory already exists, use a new name 
-while exist(dirName, 'dir') == 7
+
+while exist(fullpath, 'dir') == 7
     index = index + 1;
-    dirName = sprintf('%s%.2d',name, index);
+    fullname = sprintf('%s%.2d',name, index);
+    fullpath = fullfile(location, fullname);
 end
 % make the directory 
-mkdir(dirName)
+mkdir(location, fullname)
 
 %% make a read me file
-readmeName = [dirName '/' 'readme.txt'];
-readmeFile = fopen(readmeName, 'wt');
-fprintf(readmeFile, 'Simulation notes:\n');
-% fprintf(readmeFile, 'p.PFd = %.4f \n', p.PFd);
-fclose(readmeFile); % close the file 
+
+filename = fullfile(fullpath,'paramRecord.txt');
+fileID = fopen(filename,'w');
+writeParam(fileID, p)
+fclose(fileID);
+
 end

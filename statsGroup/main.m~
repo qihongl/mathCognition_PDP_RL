@@ -1,0 +1,50 @@
+clear all;
+%% Analyze the effect of different parameters
+% these three path info should be fixed ... 
+path = '/Users/Qihong/Dropbox/github/mathCognition/';
+dataDirName = 'groupData';
+filename = 'groupScores.mat';
+
+% set parameters corrospondingly
+simName = 'sim21.0_replay';
+subSimName = 'combinedMode';
+saveFileName = 'replay00';
+
+% max number of objects & sim sample size
+numItems = 7; 
+numSub = 20;
+
+% used as legend later 
+% TODO, read the label automatically 
+condition.labels = {'a','b','c','d','e','f'};
+
+%% load data 
+path = fullfile(path,simName,dataDirName,subSimName);
+load(fullfile(path, saveFileName))
+% check the number of conditions used 
+condition.num = length(unique(data.matrix(:,1)));
+[col, numSubj, numItems, dataMatrix] = procInput(condition, data);
+clear data; 
+%% read data 
+
+dataBySubj = cell(6,1);
+
+for i = 1 : condition.num
+    % the row for each condition, each row represents a subject 
+    rowIdx = 1 + (i-1) * numSubj : i * numSubj;
+    dataBySubj{i} = dataMatrix(rowIdx,:);
+    
+    % compute summary statistics 
+    mean(dataMatrix(rowIdx,:));
+    std(dataMatrix(rowIdx,:));
+    
+end
+
+
+
+
+
+
+
+
+

@@ -2,17 +2,25 @@
 clear all; clear global;
 
 %% Get data from the current directory
+projPath = '/Users/Qihong/Dropbox/github/mathCognition/';
+datadir = 'groupData';
+filename = 'groupScores';
+% set parameters corrospondingly
+simName = 'sim21.0_replay';
+subSimName = 'combinedMode';
+path = fullfile(projPath, simName, datadir,subSimName);
 
+% 
 nSubj = 20;
 numQs = 100;
 name = 'record';
-dirName = 'groupData';
+option = {'runAllDir', 'runSelectedDir'};
+dirNames = getAllDirNames(path);
 
-for i = 0:3
+for i = 1: length(dirNames)
     % get access to the right data directory 
-    dataDir = sprintf('%s%.2d',dirName, i);
-    datapath = [pwd '/' dataDir '/'];
-    addpath(pwd);
+    finalpath = fullfile(path,dirNames(i).name);
+    addpath(fullfile(projPath,simName));
     
     %% Single subject analysis
     % loop over all directories
@@ -20,18 +28,17 @@ for i = 0:3
     groupScores = cell(1, nSubj);
     for n = 1 : nSubj
         % load the record for all subjects
-        fullPath = [datapath filenames{n}];
-        load(fullPath, 'record');
+        load(fullfile(finalpath, filenames{n}), 'record');
         loadParams(record);
         % do single subject analysis and save the results
         scores = askQuesitons(numQs, false);
         groupScores{n} = evaluateModel_quiz(scores, numQs);
         clear global;
     end
-    rmpath(pwd);
+    rmpath(fullfile(projPath,simName));
     
     %% save the results
-    saveFileName = sprintf('%sgroupScores' ,datapath);
+    saveFileName = fullfile(finalpath,'groupScores.mat');
     save(saveFileName,'groupScores');
     
 end

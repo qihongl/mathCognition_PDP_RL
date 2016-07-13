@@ -2,8 +2,8 @@
 clear all; clear global;
 % initialization
 global p;
-p.numDir = 3;
-p.nSubj = 10;
+p.numDir = 4;
+p.nSubj = 20;
 path.dirName = 'groupData';
 path.quizDataName = 'groupScores';
 path.deveDataName = 'pooledScore';

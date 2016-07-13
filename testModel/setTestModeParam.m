@@ -7,5 +7,7 @@ a.smgain = 100;
 p.teacherForcingOn = false;   % stop teaching
 p.teachingModeOn = false;
 p.lrate = 0;            % stop learning 
+
+p.experienceReply = false; 
 end
 

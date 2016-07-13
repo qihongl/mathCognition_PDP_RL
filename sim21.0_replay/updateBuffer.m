@@ -3,17 +3,20 @@ function [ ] = updateBuffer()
 global p a w buffer;
 
 memoryIdx = min(a.bufferUsage+1, p.bufferSize);
+
 if a.bufferUsage+1 <= p.bufferSize
     saveCurrentExperience(memoryIdx)
 else
-    % delete the 1st experience in the buffer, add new experience to the end
+    % delete the 1st experience in the buffer
     buffer(1) = [];
+    % preallocate a slot for new experience
     buffer(p.bufferSize) = struct('s_cur', nan, 'a_cur', nan, 'a_act', nan,...
         's_next', nan, 'r_cur', nan, 'taskDone', nan);
+    
     saveCurrentExperience(memoryIdx)
 end
 
-% keep track of how many slots in the buffer are being used
+% keep track of how many slots in the buffer are used
 a.bufferUsage = a.bufferUsage + 1;
 
 
@@ -21,12 +24,16 @@ a.bufferUsage = a.bufferUsage + 1;
 % save the current experience to the memory buffer with a specified 
 % memory index
     function [] = saveCurrentExperience (memoryIdx)
+        % required info 
         buffer(memoryIdx).s_cur = w.vS.oldInput;
         buffer(memoryIdx).a_cur = a.choice;
         buffer(memoryIdx).a_act = a.act;
         buffer(memoryIdx).s_next = w.vS.visInput;
         buffer(memoryIdx).r_cur = a.curRwd;
-        buffer(memoryIdx).taskDone = w.done;
+        
+        % other info 
+        buffer(memoryIdx).taskDone = w.done;    % if done: no future reward
+        
     end
 
 end

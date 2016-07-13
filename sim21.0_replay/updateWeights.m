@@ -9,22 +9,15 @@ global p a w buffer;
 % compute the true reward at this time step
 a.curRwd = computeRwd();
 
-%% experience replay ON - update wts w/ random sample from the buffer
+%% experience replay ON - update wts w/ a random sample from the buffer
 if p.experienceReply
+    
     updateBuffer();
-    
-    
+
     for i = 1 : p.replay_batchSize
         % sample from the memory buffer
         memoryIdx = randsample(min(p.bufferSize,a.bufferUsage), 1);
-        %     memoryIdx = min(a.bufferUsage, p.bufferSize);
-        
-        %             if buffer(memoryIdx).r_cur == 0  && rand > .5
-        %                 while buffer(memoryIdx).r_cur == 0
-        %                     memoryIdx = randsample(min(p.bufferSize,a.bufferUsage), 1);
-        %                 end
-        %             end
-        
+        % replay the experience 
         if ~buffer(memoryIdx).taskDone
             % compute the expected reward
             nextAct = a.wts * buffer(memoryIdx).s_next';
@@ -42,7 +35,7 @@ if p.experienceReply
     end
     
 else
-    %% experience replay OFF - update wts w/ to current info
+    %% experience replay OFF - update wts w/ current info
     if ~w.done
         % compute the expected reward
         a.act_next = a.wts * w.vS.visInput';
