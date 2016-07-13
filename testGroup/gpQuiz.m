@@ -4,7 +4,7 @@ clear all; clear global;
 %% Get data from the current directory
 projPath = '/Users/Qihong/Dropbox/github/mathCognition/';
 datadir = 'groupData';
-filename = 'groupScores';
+sfname = 'groupScores.mat';
 % set parameters corrospondingly
 simName = 'sim21.0_replay';
 subSimName = 'combinedMode';
@@ -20,9 +20,15 @@ dirNames = getAllDirNames(path);
 for i = 1: length(dirNames)
     % get access to the right data directory 
     finalpath = fullfile(path,dirNames(i).name);
-    addpath(fullfile(projPath,simName));
+    % if the group data is already colllected, don't do it again
+    saveFileName = fullfile(finalpath,sfname);
+    if exist(saveFileName, 'file') == 2
+        fprintf(sprintf('Skip testing: %s (data file exists)\n', dirNames(i).name));
+        continue; 
+    end
     
     %% Single subject analysis
+    addpath(fullfile(projPath,simName));
     % loop over all directories
     filenames = getFilenames(name, nSubj);
     groupScores = cell(1, nSubj);
@@ -38,7 +44,6 @@ for i = 1: length(dirNames)
     rmpath(fullfile(projPath,simName));
     
     %% save the results
-    saveFileName = fullfile(finalpath,'groupScores.mat');
     save(saveFileName,'groupScores');
     
 end
