@@ -17,9 +17,9 @@ mkdir(location, fullname)
 
 %% make a read me file
 
-filename = fullfile(fullpath,'paramRecord.txt');
-fileID = fopen(filename,'w');
-writeParam(fileID, p)
-fclose(fileID);
+% filename = fullfile(fullpath,'paramRecord.txt');
+% fileID = fopen(filename,'w');
+% writeParam(fileID, p)
+% fclose(fileID);
 
 end
