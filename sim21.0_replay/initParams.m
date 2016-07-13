@@ -7,7 +7,9 @@ global p a buffer
 %% teaching strategy 
 % if teaching style is specified here, then trainGroup will use this 
 % value for all models ... 
-p.teachingStyle = 4;
+if ~isfield(p,'teachingStyle')
+    p.teachingStyle = 4;
+end
 
 % 1 = final reward only
 % 2 = intermediate reward
@@ -79,9 +81,11 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay 
-p.experienceReply = false;
+p.experienceReply = true;
 p.bufferSize = 500;
-p.replay_batchSize = 30; 
+if ~isfield(p,'replay_batchSize')
+    p.replay_batchSize = 10; 
+end
 
 buffer = struct(...
     's_cur',    repmat({nan}, p.bufferSize, 1), ...
