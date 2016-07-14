@@ -13,7 +13,11 @@ There is an RL driven model for a couting sub-task. Given a sequence of objects 
  
  <img src="https://github.com/QihongL/mathCognition_PDP_RL/blob/master/%5Bplots%5D/demo_git/performance.png" width="800">
  
- Even with additional teaching strategies, we needed 10,000 epochs to train the model (figure above). It turns out the training experience required can be reduced by implementing an experience replay buffer. When the model is augmented with the replay functionality, it only needs 500 epochs to match the previous performance (figure below). Specifically, the buffer store the most recent 500 transitions {s_t, a_t, r_t, s_t+1}. In each epoch, the model learns from a batch of transitions, sampled uniformly (with replacement) from the buffer. All models use the combination of intermediate reward and teacher demonstration. 
+ Even with additional teaching strategies, we needed 10,000 epochs to train the model (figure above). It turns out the training experience required can be reduced substantially with an experience replay buffer. 
+ 
+ 
+ 
+ Specifically, the replay buffer store the most recent 500 transitions {s_t, a_t, r_t, s_t+1}. In each epoch, the model learns from a batch of transitions (with fixed batch size), sampled uniformly with replacement from the buffer. All models use the combination of intermediate reward and teacher demonstration. When the model is augmented with the replay buffer, it only needs 500 epochs to match the previous performance (figure below). However, too many replay (red curve) doesn't help and it can even be detrimental. 
  
  <img src="https://github.com/QihongL/mathCognition_PDP_RL/blob/master/%5Bplots%5D/demo_git/replay/compareReplay500.jpg" width="700">
  
