@@ -18,7 +18,6 @@ if p.experienceReply
         for i = 1 : p.replay_batchSize
             
             % sample from the memory buffer, uniformly w/ replacement
-%             memoryIdx = randsample(min(p.bufferSize,a.bufferUsage), 1);
             memoryIdx = sampleFromBuffer();
             
             % compute the expected rewrad

@@ -7,7 +7,7 @@ datadir = 'groupData';
 sfname = 'groupScores.mat';
 % set parameters corrospondingly
 simName = 'sim21.0_replay';
-subSimName = 'combinedMode';
+subSimName = 'epoch5000_start500_softmax';
 path = fullfile(projPath, simName, datadir,subSimName);
 
 % 

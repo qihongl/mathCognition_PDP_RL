@@ -5,11 +5,11 @@ clear all;
 path = '/Users/Qihong/Dropbox/github/mathCognition/';
 dataDirName = 'groupData';
 simName = 'sim21.0_replay';
-subSimName = 'epoch5000_start500';
+subSimName = 'epoch5000_start500_softmax';
 path = fullfile(path,simName,dataDirName,subSimName);
 
 filename = 'groupScores.mat';
-saveFileName = 'replay02';
+saveFileName = 'replay00';
 
 numItems = 7; 
 numSub = 20;

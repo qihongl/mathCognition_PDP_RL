@@ -3,18 +3,18 @@ function [] = trainGroup(nSubj, epoch)
 global p;
 dataSaveDirName = 'groupData';
 projDir = fullfile(pwd, dataSaveDirName);
-simName = 'batchSize';
+simName = 'epoch5000_start500_softmax';
 param.saveDir = fullfile(projDir, simName);
 
 %% set the parameter that you want to vary
 if nargin == 0
-    epoch = 500;
+    epoch = 5000;
     nSubj = 20;
 end
 
 param.runningCondition = 'fix teaching mode, varying replay buffer parameter';
 % param.val = [1 2 3 4];
-param.val = [20 30];
+param.val = [2 16 32];
 % param.val = 0
 for i = 1 : length(param.val)
     %     p.teachingStyle = param.val(i); % varying parameter
@@ -25,10 +25,12 @@ for i = 1 : length(param.val)
     
     %% run the group analysis
     for n = 1:nSubj
+        % train a model 
         record = trainAgent(epoch, n);
+        % save data 
         recordfilename = sprintf('record%.2d', n);
         save([dirName '/'  recordfilename],'record');
-
+        
         if n == 1
             paramfilename = fullfile(dirName,'paramRecord.txt');
             fileID = fopen(paramfilename,'w');
