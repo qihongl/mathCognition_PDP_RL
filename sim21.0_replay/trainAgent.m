@@ -19,7 +19,9 @@ s.numItemsShowed = zeros(1,epoch);
 fprintf('%s\n', pwd);
 fprintf('Start training for %d epochs\n', epoch);
 for i = 1:p.runs
-    fprintf('%d\n', i )
+    if mod(i,100) == 0 
+        fprintf('%d\n', i )
+    end
     %% alternate between forcing and self exp (iff forcing mode is on)
     if p.teacherForcingOn == true;
         mode.teacherForcing = false;
