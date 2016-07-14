@@ -11,7 +11,7 @@ else
     buffer(1) = [];
     % preallocate a slot for new experience
     buffer(p.bufferSize) = struct('s_cur', nan, 'a_cur', nan, 'a_act', nan,...
-        's_next', nan, 'r_cur', nan, 'taskDone', nan);
+        's_next', nan, 'r_cur', nan, 'TDErr', nan, 'taskDone', nan);
     
     saveCurrentExperience(memoryIdx)
 end
@@ -32,7 +32,11 @@ a.bufferUsage = a.bufferUsage + 1;
         buffer(memoryIdx).r_cur = a.curRwd;
         
         % other info 
-        buffer(memoryIdx).taskDone = w.done;    % if done: no future reward
+        buffer(memoryIdx).taskDone = w.done;    % if done: no future reward        
+
+        % for prioritized experience replay
+        buffer(memoryIdx).TDErr = ...
+            computeExpectedReward(w.vS.visInput, a.curRwd, w.done) - a.act(a.choice);
         
     end
 

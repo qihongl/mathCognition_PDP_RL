@@ -82,9 +82,11 @@ p.saveWtsInterval = 100;
 
 %% experience replay 
 p.experienceReply = true;
+allReplayMode = {'uniform', 'softmax'};
+p.replaySamplingMode = allReplayMode{2};
 p.bufferSize = 500;
 if ~isfield(p,'replay_batchSize')
-    p.replay_batchSize = 10; 
+    p.replay_batchSize = 2; 
 end
 
 buffer = struct(...
@@ -93,8 +95,10 @@ buffer = struct(...
     'a_act',    repmat({nan}, p.bufferSize, 1), ...
     's_next',   repmat({nan}, p.bufferSize, 1), ... 
     'r_cur',    repmat({nan}, p.bufferSize, 1), ...
+    'TDErr',    repmat({nan}, p.bufferSize, 1), ...
     'taskDone', repmat({nan}, p.bufferSize, 1));
 a.bufferUsage = 0; 
+a.usage_startReplay = 500; 
 
 end
 
