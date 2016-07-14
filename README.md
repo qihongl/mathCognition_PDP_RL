@@ -17,7 +17,4 @@ There is an RL driven model for a couting sub-task. Given a sequence of objects 
  
  <img src="https://github.com/QihongL/mathCognition_PDP_RL/blob/master/%5Bplots%5D/demo_git/replay/compareReplay500.jpg" width="700">
  
- Finally, we can further improved the model by selectively replaying the experience with larger temporal difference error (w.r.t softmax distribution). Here're some simulation results (figure below), where the number of training epochs and sample batch size were controlled. The only difference is the sampling regime. Also notice that "too many replay" is detrimental. I am working on ways of estimating how many is "too many" right now... 
- 
- <img src="https://github.com/QihongL/mathCognition_PDP_RL/blob/master/%5Bplots%5D/demo_git/replay/compareReplay5000_st500.jpg" width="700">
- 
+
