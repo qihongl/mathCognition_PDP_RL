@@ -5,7 +5,7 @@ clear all;
 path = '/Users/Qihong/Dropbox/github/mathCognition/';
 dataDirName = 'groupData';
 simName = 'sim21.0_replay';
-subSimName = 'epoch5000_start500_softmax';
+subSimName = 'ep2000_mean_largeBF';
 path = fullfile(path,simName,dataDirName,subSimName);
 
 filename = 'groupScores.mat';
