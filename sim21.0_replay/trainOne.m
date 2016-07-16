@@ -1,9 +1,9 @@
 % just testing, a short cut for running the model
 function record = trainOne(epoch, seed)
+clear global 
 if nargin == 0
-    epoch = 5000;
+    epoch = 2000;
     seed = randi(99);
-    seed = 66 
 end
 
 %% run the simulation
