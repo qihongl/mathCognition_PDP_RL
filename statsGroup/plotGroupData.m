@@ -7,7 +7,7 @@ filename = 'groupScores.mat';
 
 % set parameters corrospondingly
 simName = 'sim21.0_replay';
-subSimName = 'epoch5000_start500_softmax';
+subSimName = 'ep2000_mean_largeBF';
 saveFileName = 'replay00';
 
 % used as legend later
@@ -15,9 +15,9 @@ saveFileName = 'replay00';
 condition.labels = {...
     'ep 5000, bs 2, softmax replay',...
     'ep 5000, bs 2, uniform replay',...
-%     'ep 500, bs 30',...
-%     'ep 5000, replay OFF',...
-%     'ep 10000, replay OFF',...
+        'ep 500, bs 30',...
+    %     'ep 5000, replay OFF',...
+    %     'ep 10000, replay OFF',...
     };
 
 condition.mask = [];
@@ -48,7 +48,7 @@ end
 %% plot: by card
 p.FS = 14;
 p.LW = 2;
-
+alpha = .975;
 
 
 
@@ -62,22 +62,25 @@ for i = 1 : length(col.labels.byCard)
     lab = col.labels.byCard{i};
     tempIdx = startIdx + (1 + (i-1) * numItems : (i * numItems));
     
-    
+    % dynamically size the subplot panel to 2 X N
+    subplot(2,ceil((length(col.labels.byCard)-length(criterionMask))/2), i-sum(i > criterionMask))
     % loop over all simulation conditions
-    subplot(2,round((length(col.labels.byCard) - length(criterionMask))/2),i-sum(i > criterionMask))
     hold on
     for n = 1: length(dataByCond)
         % mask out some conditions
         if ismember(n,condition.mask)
             continue;
         end
-        % plot the data
+        % compute summary statistics
         dataHolder = dataByCond{n};
         meanScore = mean(dataHolder(:,tempIdx));
         seScore = std(dataHolder(:,tempIdx)) / sqrt(numSubj);
-        errorbar(1:numItems,meanScore,seScore * tinv(.975, numSubj-1), 'linewidth', p.LW)
-        %         plot(meanScore, 'linewidth', p.LW)
-        xlim([1,7])
+        
+        % plot the data
+        errorbar(1:numItems,meanScore,seScore * tinv(alpha, numSubj-1), 'linewidth', p.LW)
+        
+        % add text
+        xlim([1,numItems])
         ylabel(lab,'fontsize',p.FS)
         xlabel('Number of objects presented','fontsize',p.FS)
     end
@@ -89,3 +92,7 @@ condition.labels(condition.mask) = [];
 legend(condition.labels,'fontsize',p.FS)
 suptitle_text = sprintf('Intermediate reward + teacher demonstration \n varying training epochs and replay batch size');
 suptitle(suptitle_text)
+
+
+figure(gcf);
+set(gcf,'renderer','opengl');
