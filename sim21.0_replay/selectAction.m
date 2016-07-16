@@ -3,9 +3,9 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-a.act = a.wts * w.vS.visInput';
+a.act = a.wts * w.vS.visInput' + a.bias;
 % inject bias to action 0 (don't move)
-a.act(p.mvRad + 1) = a.act(p.mvRad + 1) + a.bias;
+% a.act(p.mvRad + 1) = a.act(p.mvRad + 1) ;
 
 %% choose among the activation
 if w.teacherForcing
