@@ -19,6 +19,12 @@ end
 % keep track of how many slots in the buffer are used
 a.bufferUsage = a.bufferUsage + 1;
 
+% 
+if a.bufferUsage == a.usage_startReplay
+    fprintf('[start Replay]');
+end
+
+
 
 %% helper function 
 % save the current experience to the memory buffer with a specified 

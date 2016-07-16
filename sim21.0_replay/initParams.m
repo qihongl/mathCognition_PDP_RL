@@ -9,6 +9,9 @@ global p a buffer
 % value for all models ... 
 if ~isfield(p,'teachingStyle')
     p.teachingStyle = 4;
+    fprintf('Use the default teaching mode: %d. \n', p.teachingStyle);
+else 
+    fprintf('Use the input teaching mode: %d. \n', p.teachingStyle);
 end
 
 % 1 = final reward only
@@ -86,7 +89,10 @@ allReplayMode = {'uniform', 'softmax'};
 p.replaySamplingMode = allReplayMode{2};
 p.bufferSize = 500;
 if ~isfield(p,'replay_batchSize')
-    p.replay_batchSize = 2; 
+    p.replay_batchSize = 5; 
+    fprintf('Use the default replay batch size of %d. \n', p.replay_batchSize);
+else
+    fprintf('Use the input replay batch size of %d. \n', p.replay_batchSize);
 end
 
 buffer = struct(...
@@ -98,7 +104,7 @@ buffer = struct(...
     'TDErr',    repmat({nan}, p.bufferSize, 1), ...
     'taskDone', repmat({nan}, p.bufferSize, 1));
 a.bufferUsage = 0; 
-a.usage_startReplay = 500; 
+a.usage_startReplay = p.bufferSize; 
 
 end
 
