@@ -13,10 +13,10 @@ a.curRwd = computeRwd();
 if p.experienceReply
     % save the current transition to the buffer
     updateBuffer();
-    
+    % start replay when the buffer is filled
     if a.bufferUsage > a.usage_startReplay
+        % take a batch of experience from the buffer 
         for i = 1 : p.replay_batchSize
-            
             % sample from the memory buffer, uniformly w/ replacement
             memoryIdx = sampleFromBuffer();
             
@@ -41,7 +41,7 @@ end
 end
 
 
-%% HELPER FUNCTIONS 
+%% HELPER FUNCTIONS
 
 % take a transition from the memory buffer
 function [memoryIdx] = sampleFromBuffer()
@@ -60,6 +60,10 @@ end
 % compute the softmax distribution of the TD error
     function [distribution_TDErr] = softmaxDistribution_TDErr()
         global buffer
+        
+        %% TODO check if the buffer is filled!
+        %% TODO take absolute value!
+        %% TODO add the gain factor
         TDErrs = nan(p.bufferSize,1);
         for i = 1 : length(buffer)
             TDErrs(i) = buffer(i).TDErr;
