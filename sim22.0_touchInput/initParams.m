@@ -4,13 +4,13 @@ function [] = initParams(epoch)
 % model. This should be executed before the simulations.
 global p a buffer
 
-%% teaching strategy 
-% if teaching style is specified here, then trainGroup will use this 
-% value for all models ... 
+%% teaching strategy
+% if teaching style is specified here, then trainGroup will use this
+% value for all models ...
 if ~isfield(p,'teachingStyle')
     p.teachingStyle = 4;
     fprintf('Use the default teaching mode: %d. \n', p.teachingStyle);
-else 
+else
     fprintf('Use the input teaching mode: %d. \n', p.teachingStyle);
 end
 
@@ -79,32 +79,36 @@ end
 %% network specific
 % initialize with small small random values
 a.wts = zeros(p.mvRange+1, p.eyeRange);
-a.bias = 1e-8;     % bias toward not moving (action 0)
-p.saveWtsInterval = 100; 
+a.bias = zeros(p.mvRange+1,1);
+a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
 
 
-%% experience replay 
+p.saveWtsInterval = 100;
+
+
+%% experience replay
 p.experienceReply = true;
-allReplayMode = {'uniform', 'softmax'};
-p.replaySamplingMode = allReplayMode{2};
-p.bufferSize = 500;
-if ~isfield(p,'replay_batchSize')
-    p.replay_batchSize = 5; 
-    fprintf('Use the default replay batch size of %d. \n', p.replay_batchSize);
-else
-    fprintf('Use the input replay batch size of %d. \n', p.replay_batchSize);
+if p.experienceReply
+    allReplayMode = {'uniform', 'softmax'};
+    p.replaySamplingMode = allReplayMode{2};
+    p.bufferSize = 500;
+    if ~isfield(p,'replay_batchSize')
+        p.replay_batchSize = 5;
+        fprintf('Use the default replay batch size of %d. \n', p.replay_batchSize);
+    else
+        fprintf('Use the input replay batch size of %d. \n', p.replay_batchSize);
+    end
+    
+    buffer = struct(...
+        's_cur',    repmat({nan}, p.bufferSize, 1), ...
+        'a_cur',    repmat({nan}, p.bufferSize, 1), ...
+        'a_act',    repmat({nan}, p.bufferSize, 1), ...
+        's_next',   repmat({nan}, p.bufferSize, 1), ...
+        'r_cur',    repmat({nan}, p.bufferSize, 1), ...
+        'TDErr',    repmat({nan}, p.bufferSize, 1), ...
+        'taskDone', repmat({nan}, p.bufferSize, 1));
+    a.bufferUsage = 0;
+    a.usage_startReplay = p.bufferSize;
 end
-
-buffer = struct(...
-    's_cur',    repmat({nan}, p.bufferSize, 1), ...
-    'a_cur',    repmat({nan}, p.bufferSize, 1), ...
-    'a_act',    repmat({nan}, p.bufferSize, 1), ...
-    's_next',   repmat({nan}, p.bufferSize, 1), ... 
-    'r_cur',    repmat({nan}, p.bufferSize, 1), ...
-    'TDErr',    repmat({nan}, p.bufferSize, 1), ...
-    'taskDone', repmat({nan}, p.bufferSize, 1));
-a.bufferUsage = 0; 
-a.usage_startReplay = p.bufferSize; 
-
 end
 
