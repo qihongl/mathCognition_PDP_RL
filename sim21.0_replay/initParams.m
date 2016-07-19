@@ -82,7 +82,6 @@ a.wts = zeros(p.mvRange+1, p.eyeRange);
 a.bias = zeros(p.mvRange+1,1);
 a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
 
-
 p.saveWtsInterval = 100;
 
 
@@ -90,14 +89,12 @@ p.saveWtsInterval = 100;
 p.experienceReply = true;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
-    p.replaySamplingMode = allReplayMode{2};
-    p.bufferSize = 500;
-    if ~isfield(p,'replay_batchSize')
-        p.replay_batchSize = 5;
-        fprintf('Use the default replay batch size of %d. \n', p.replay_batchSize);
-    else
-        fprintf('Use the input replay batch size of %d. \n', p.replay_batchSize);
-    end
+    p.replaySamplingMode = allReplayMode{1};
+    p.bufferSize = 500; 
+    p.default_replay_batchSize = 2; 
+    
+    a.bufferUsage = 0;
+    a.usage_startReplay = p.bufferSize;
     
     buffer = struct(...
         's_cur',    repmat({nan}, p.bufferSize, 1), ...
@@ -107,8 +104,16 @@ if p.experienceReply
         'r_cur',    repmat({nan}, p.bufferSize, 1), ...
         'TDErr',    repmat({nan}, p.bufferSize, 1), ...
         'taskDone', repmat({nan}, p.bufferSize, 1));
-    a.bufferUsage = 0;
-    a.usage_startReplay = p.bufferSize;
+    
+    % print the parameter choices to console
+    if ~isfield(p,'replay_batchSize')
+        p.replay_batchSize = p.default_replay_batchSize;
+        fprintf('Use [%s] replay, default batch size of %d. \n', ...
+            p.replaySamplingMode, p.replay_batchSize);
+    else
+        fprintf('Use [%s] replay, input batch size of %d. \n', ...
+            p.replaySamplingMode, p.replay_batchSize);
+    end
 end
 end
 

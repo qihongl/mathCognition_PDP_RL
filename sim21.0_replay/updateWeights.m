@@ -57,19 +57,18 @@ else
     error('ERROR: unrecognizable sampling mode for experience replay!')
 end
 
+
+
 % compute the softmax distribution of the TD error
     function [distribution_TDErr] = softmaxDistribution_TDErr()
         global buffer
-        
         %% TODO check if the buffer is filled!
-        %% TODO take absolute value!
-        %% TODO add the gain factor
+        
         TDErrs = nan(p.bufferSize,1);
         for i = 1 : length(buffer)
             TDErrs(i) = buffer(i).TDErr;
         end
+        TDErrs = abs(TDErrs);
         distribution_TDErr = exp(TDErrs) / sum(exp(TDErrs));
-        % plot(TDErrs)
-        % plot(distribution_TDErr)
     end
 end
