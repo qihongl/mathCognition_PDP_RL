@@ -26,6 +26,16 @@ if targetRemain()
     else            % CORRECT: touching left most untouched obj
         Rwd = p.r.midPos;
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
+        
+        % update touched locations 
+%         w.rS.touchedLocs_old = w.rS.touchedLocs_cur; 
+%         w.rS.touchedLocs_cur = false(1, p.eyeRange);
+%         observableTrags = abs(w.vS.targPos) < p.eyeRad;
+%         w.rS.touchedLocs_cur(w.vS.targPos(observableTrags) + p.eyeRad) = ~w.rS.targRemain(observableTrags);
+%         % update the input 
+%         w.input_old = horzcat(w.vS.oldInput, w.rS.touchedLocs_old); 
+%         w.input_cur = horzcat(w.vS.visInput, w.rS.touchedLocs_cur); 
+%         temp = 0; 
     end
 else    % if all targets were touched
     if a.choice == p.mvRange +1
