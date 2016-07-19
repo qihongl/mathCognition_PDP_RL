@@ -5,7 +5,8 @@ global a w h p mode;
 %% initialize the state
 initState();
 updateState();
-computeAnswer();    % compute the true 'answers'
+% compute the true answers, for teacher demonstration 
+computeAnswer();    
 
 %% train the model once
 t = 0;

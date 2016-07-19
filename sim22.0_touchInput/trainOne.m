@@ -7,7 +7,9 @@ if nargin == 0
 %     seed = 66 
 end
 
+
 %% run the simulation
+global p 
 record = trainAgent(epoch, seed);
 
 % save the simulation results
@@ -23,10 +25,10 @@ print([pwd '/' saveDirName '/' 'learningCurve'],'-dpng')
 % write a parameter file
 filename = fullfile(saveDirName,'paramRecord.txt');
 fileID = fopen(filename,'w');
-writeParam(fileID, param)
+writeParam(fileID, p)
 fclose(fileID);
 
 % make sure the current values do not influence the next simulation
-clear gobal; 
+clear global; 
 beep % notice me that the program was terminated!
 end
