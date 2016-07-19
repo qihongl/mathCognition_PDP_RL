@@ -7,7 +7,7 @@ datadir = 'groupData';
 sfname = 'groupScores.mat';
 % set parameters corrospondingly
 simName = 'sim21.0_replay';
-subSimName = 'ep2000_mean_largeBF';
+subSimName = 'epoch5000_bufSize200';
 path = fullfile(projPath, simName, datadir,subSimName);
 
 % 

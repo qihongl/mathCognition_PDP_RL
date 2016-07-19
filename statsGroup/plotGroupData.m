@@ -7,15 +7,15 @@ filename = 'groupScores.mat';
 
 % set parameters corrospondingly
 simName = 'sim21.0_replay';
-subSimName = 'ep2000_mean_largeBF';
+subSimName = 'epoch5000_start500';
 saveFileName = 'replay00';
 
 % used as legend later
 % TODO, read the label automatically
 condition.labels = {...
-    'ep 5000, bs 2, softmax replay',...
-    'ep 5000, bs 2, uniform replay',...
-        'ep 500, bs 30',...
+    'ep 5000, bs 2',...
+    'ep 5000, bs 16',...
+        'ep 5000, bs 32',...
     %     'ep 5000, replay OFF',...
     %     'ep 10000, replay OFF',...
     };
@@ -29,6 +29,10 @@ load(fullfile(path, saveFileName))
 % check the number of conditions used
 condition.num = length(unique(data.matrix(:,1)));
 [col, numSubj, numItems, dataMatrix] = procInput(condition, data);
+
+% index for the rates 
+rateLabels = col.labels.byCard([2 3 4 5 7]);
+
 clear data;
 %% read data
 
@@ -49,7 +53,6 @@ end
 p.FS = 14;
 p.LW = 2;
 alpha = .975;
-
 
 
 startIdx = 1 + col.num.overall;
@@ -83,6 +86,10 @@ for i = 1 : length(col.labels.byCard)
         xlim([1,numItems])
         ylabel(lab,'fontsize',p.FS)
         xlabel('Number of objects presented','fontsize',p.FS)
+        
+        if ismember(col.labels.byCard{i},rateLabels )
+            ylim([0 1])
+        end
     end
     hold off
     
