@@ -80,14 +80,15 @@ else
 end
 
 %% network specific
-nHiddenUnits = round(mean([p.mvRange+1, p.eyeRange])); 
-% nHiddenUnits = p.eyeRange;
-% initialize with small small random values
-% a.wts = zeros(p.mvRange+1, p.eyeRange);
+nHiddenUnits = 30; 
 % % input to hidden 
 a.wts_ih = randsmall(nHiddenUnits, p.eyeRange);
 % % hidden to move 
 a.wts_ho = randsmall(p.mvRange+1, nHiddenUnits);
+
+% a.wts_ih = zeros(nHiddenUnits, p.eyeRange);
+% % % hidden to move 
+% a.wts_ho = zeros(p.mvRange+1, nHiddenUnits);
 
 a.bias = zeros(p.mvRange+1,1);
 a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
@@ -101,7 +102,7 @@ if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};
     p.bufferSize = 500; 
-    p.default_replay_batchSize = 5; 
+    p.default_replay_batchSize = 10; 
     
     a.bufferUsage = 0;
     a.usage_startReplay = p.bufferSize;

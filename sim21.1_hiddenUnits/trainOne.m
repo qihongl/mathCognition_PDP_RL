@@ -2,9 +2,9 @@
 function record = trainOne(epoch, seed)
 clear global 
 if nargin == 0
-    epoch = 100000;
+    epoch = 10000;
     seed = randi(99);
-    seed = 66 
+%     seed = 66 
 end
 
 

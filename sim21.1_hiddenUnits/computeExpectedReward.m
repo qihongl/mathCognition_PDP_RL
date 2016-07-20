@@ -10,8 +10,9 @@ function [dfRwd, hact] = computeExpectedReward(s_cur, r_cur, taskDone)
 
 global a p
 % predict the action value
-hact = tanh(a.wts_ih* s_cur');
-act_next = hact' * a.wts_ho' + a.bias';
+% hact = sigmoid(a.wts_ih * s_cur');
+hact = tanh(a.wts_ih * s_cur');
+act_next = a.wts_ho * hact + a.bias;
 
 if ~ taskDone
     % combine current reward with the expected reward

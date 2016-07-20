@@ -30,7 +30,7 @@ if p.experienceReply
             delta_ih = delta_ho .* a.wts_ho(buffer(memoryIdx).a_cur,:)' .* (1-(hact.^2));
 
             % adjust the weights 
-            a.wts_ho(buffer(memoryIdx).a_cur,:) = a.wts_ho(buffer(memoryIdx).a_cur,:) - p.lrate * delta_ho;
+            a.wts_ho(buffer(memoryIdx).a_cur,:) = a.wts_ho(buffer(memoryIdx).a_cur,:) - p.lrate * (delta_ho * hact)';
             a.wts_ih = a.wts_ih - p.lrate * delta_ih * buffer(memoryIdx).s_cur; 
                         
             
@@ -40,19 +40,20 @@ else
     %% experience replay OFF - update wts w/ current info
     % compute the expected rewrad
     [a.dfRwd, hact] = computeExpectedReward(w.vS.visInput, a.curRwd, w.done);
+%     [a.dfRwd, hact] = computeExpectedReward(w.vS.oldInput, a.curRwd, w.done);
         
     % compute delta
     TD_Err = a.act(a.choice) - a.dfRwd;
     delta_ho = TD_Err;
-    delta_ih = delta_ho .* a.wts_ho(a.choice,:)' .* (1-(hact.^2));
+%     delta_ih = delta_ho * a.wts_ho(a.choice,:)' .* hact .* (1-hact);
+    delta_ih = delta_ho * a.wts_ho(a.choice,:)' .* (1-(hact.^2));
         
     % adjust the weights 
-    a.wts_ho(a.choice,:) = a.wts_ho(a.choice,:) - p.lrate * delta_ho;
+    a.wts_ho(a.choice,:) = a.wts_ho(a.choice,:) - p.lrate * (delta_ho * hact)';
     a.wts_ih = a.wts_ih - p.lrate * delta_ih * w.vS.oldInput;     
 end
 
 end
-
 
 %% HELPER FUNCTIONS
 
@@ -69,8 +70,6 @@ elseif strcmp(p.replaySamplingMode, 'softmax')
 else
     error('ERROR: unrecognizable sampling mode for experience replay!')
 end
-
-
 
 % compute the softmax distribution of the TD error
     function [distribution_TDErr] = softmaxDistribution_TDErr()
