@@ -3,10 +3,10 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-% forward prop 
+% forward prop
+% hact = sigmoid(a.wts_ih * w.vS.visInput');
 hact = tanh(a.wts_ih * w.vS.visInput');
-a.act = hact' * a.wts_ho' + a.bias';
-
+a.act = a.wts_ho * hact + a.bias;
 
 %% choose among the activation
 if w.teacherForcing
@@ -17,7 +17,12 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else
-    a.choice = choose(a.act.^a.smgain);
+    if a.smgain <= p.smi_upperLim * 2 %added this if statement to eliminate choice variability during testing -- jlm
+        a.choice = choose(a.act.^a.smgain);
+    else
+        fprintf('*');
+        [ ~,a.choice] = max(a.act);
+    end
 end
 
 %% check if the model is completing the task

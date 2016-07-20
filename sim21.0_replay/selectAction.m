@@ -14,10 +14,11 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else
-    %     if a.smgain < p.smi_upperLim %added this if statement to eliminate choice variability during testing -- jlm
-    a.choice = choose(a.act.^a.smgain);
-    %     else
-    %         [ ~,a.choice] = max(a.act);
+    if a.smgain <= p.smi_upperLim * 2  %added this if statement to eliminate choice variability during testing -- jlm
+        a.choice = choose(a.act.^a.smgain);
+    else
+        [ ~,a.choice] = max(a.act);
+    end
     %     end %end of edit
 end
 
