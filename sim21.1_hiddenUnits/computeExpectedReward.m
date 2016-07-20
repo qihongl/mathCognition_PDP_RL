@@ -10,7 +10,7 @@ function [dfRwd, hact] = computeExpectedReward(s_cur, r_cur, taskDone)
 
 global a p
 % predict the action value
-hact = tanh(s_cur * a.wts_ih')';
+hact = tanh(a.wts_ih* s_cur');
 act_next = hact' * a.wts_ho' + a.bias';
 
 if ~ taskDone

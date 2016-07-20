@@ -27,7 +27,7 @@ p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .1;             % noise magnitude
 p.sf = .1;              % spread factor -- separating this from noise -- jlm
 
-p.lrate = .0003;        % learning rate
+p.lrate = .0005;        % learning rate
 p.gamma = .9;           % discount factor
 
 %% changes over time
@@ -80,18 +80,14 @@ else
 end
 
 %% network specific
-% nHiddenUnits = round(mean([p.mvRange+1, p.eyeRange])); 
-nHiddenUnits = p.eyeRange;
+nHiddenUnits = round(mean([p.mvRange+1, p.eyeRange])); 
+% nHiddenUnits = p.eyeRange;
 % initialize with small small random values
 % a.wts = zeros(p.mvRange+1, p.eyeRange);
 % % input to hidden 
-% a.wts_ih = randsmall(nHiddenUnits, p.eyeRange);
+a.wts_ih = randsmall(nHiddenUnits, p.eyeRange);
 % % hidden to move 
-% a.wts_ho = randsmall(p.mvRange+1, nHiddenUnits);
-
-a.wts_ih = eye(31);
-a.wts_ho = zeros(p.mvRange+1, nHiddenUnits);
-
+a.wts_ho = randsmall(p.mvRange+1, nHiddenUnits);
 
 a.bias = zeros(p.mvRange+1,1);
 a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
@@ -100,12 +96,12 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = true;
+p.experienceReply = false;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};
     p.bufferSize = 500; 
-    p.default_replay_batchSize = 10; 
+    p.default_replay_batchSize = 5; 
     
     a.bufferUsage = 0;
     a.usage_startReplay = p.bufferSize;

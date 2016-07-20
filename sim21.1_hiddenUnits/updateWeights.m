@@ -31,7 +31,6 @@ if p.experienceReply
 
             % adjust the weights 
             a.wts_ho(buffer(memoryIdx).a_cur,:) = a.wts_ho(buffer(memoryIdx).a_cur,:) - p.lrate * delta_ho;
-            
             a.wts_ih = a.wts_ih - p.lrate * delta_ih * buffer(memoryIdx).s_cur; 
                         
             
@@ -42,19 +41,14 @@ else
     % compute the expected rewrad
     [a.dfRwd, hact] = computeExpectedReward(w.vS.visInput, a.curRwd, w.done);
         
-    % compute delta 
+    % compute delta
     TD_Err = a.act(a.choice) - a.dfRwd;
     delta_ho = TD_Err;
     delta_ih = delta_ho .* a.wts_ho(a.choice,:)' .* (1-(hact.^2));
         
     % adjust the weights 
-    a.wts_hm(a.choice,:) = a.wts_ho(a.choice,:) - p.lrate * delta_ho;
+    a.wts_ho(a.choice,:) = a.wts_ho(a.choice,:) - p.lrate * delta_ho;
     a.wts_ih = a.wts_ih - p.lrate * delta_ih * w.vS.oldInput;     
-
-%     a.wts_ho(a.choice,:) = a.wts_ho(a.choice,:) - p.lrate * delta_ho * w.vS.oldInput;
-%     if p.curEpoch == 2
-%         temp = 0; 
-%     end
 end
 
 end

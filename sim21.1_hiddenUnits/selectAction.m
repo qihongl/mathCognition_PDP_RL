@@ -4,7 +4,7 @@ global w a p;
 
 %% compute the output activation
 % forward prop 
-hact = tanh(w.vS.visInput * a.wts_ih')';
+hact = tanh(a.wts_ih * w.vS.visInput');
 a.act = hact' * a.wts_ho' + a.bias';
 
 
