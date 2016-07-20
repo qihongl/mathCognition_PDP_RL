@@ -6,7 +6,7 @@ X = [1 1; 1 0; 0 1; 0 0];
 Y = [1; 0; 0; 1];
 
 % model parameters
-hidden_neurons = 3;
+hidden_neurons = 4;
 epochs = 5000;
 
 % read num patterns
@@ -19,7 +19,7 @@ X = [X bias];
 n = size(X,2);
 
 %set initial random weights
-wts_ih = randsmall(n,hidden_neurons);
+wts_ih = randsmall(hidden_neurons,n);
 wts_ho = randsmall(1,hidden_neurons);
 
 lr = .1;
@@ -32,7 +32,7 @@ record.wts_ho = nan(epochs,1);
 record.wts_ih = nan(epochs,1);
 
 for iter = 1:epochs    
-    temp.change_wts_oh = zeros(m,1);
+    temp.change_wts_ho = zeros(m,1);
     temp.change_wts_ih = zeros(m,1);
     
     % loop through all patterns
@@ -43,15 +43,15 @@ for iter = 1:epochs
         target = Y(patnum,1);
         
         % forward prop
-        hval = (tanh(x * wts_ih))';
+        hval = (tanh(wts_ih * x'));
         pred = hval' * wts_ho';
         
         % compute delta
         delta_ho = (pred - target);
-        delta_ih = delta_ho.* wts_ho'.*(1-(hval.^2))*x;
+        delta_ih = delta_ho.* wts_ho'.*(1-(hval.^2));
         % adjust the weights
         wts_ho = wts_ho - delta_ho' * lr;
-        wts_ih = wts_ih - delta_ih' * lr;
+        wts_ih = wts_ih - delta_ih * x * lr;
         
         % record change
         temp.change_wts_ho(j) = mean(abs(delta_ho * lr));
@@ -65,7 +65,7 @@ for iter = 1:epochs
     record.wts_ho(iter) = mean(abs(wts_ho(:)));
     record.wts_ih(iter) = mean(abs(wts_ih(:)));
     % compute current error 
-    pred = wts_ho*tanh(X*wts_ih)';
+    pred = wts_ho*tanh(wts_ih*X');
     error = pred' - Y;
     err(iter) =  (sum(error.^2))^0.5;
     
