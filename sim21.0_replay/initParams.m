@@ -86,7 +86,7 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = true;
+p.experienceReply = false;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};

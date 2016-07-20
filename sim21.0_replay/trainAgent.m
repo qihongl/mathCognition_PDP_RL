@@ -19,6 +19,7 @@ s.numItemsShowed = zeros(1,epoch);
 fprintf('%s\n', pwd);
 fprintf('Start training for %d epochs\n', epoch);
 for i = 1:p.runs
+    p.curEpoch = i; 
     if mod(i,100) == 0 
         fprintf('%d\n', i )
     end

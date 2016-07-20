@@ -15,7 +15,7 @@ if p.experienceReply
     updateBuffer();
     % start replay when the buffer is filled
     if a.bufferUsage > a.usage_startReplay
-        % take a batch of experience from the buffer 
+        % take a batch of experience from the buffer
         for i = 1 : p.replay_batchSize
             % sample from the memory buffer, uniformly w/ replacement
             memoryIdx = sampleFromBuffer();
@@ -36,6 +36,9 @@ else
     % change in weights equals input times reward prediction error
     TD_Err = a.dfRwd - a.act(a.choice);
     a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.vS.oldInput;
+    if p.curEpoch == 2
+        temp = 0;
+    end
 end
 
 end
