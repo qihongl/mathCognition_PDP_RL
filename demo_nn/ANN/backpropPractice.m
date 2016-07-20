@@ -33,7 +33,7 @@ while true;
     for i = order;
         % forward prop
         act.hidden = sigmoid(wts.ih * X(:,i));
-        act.out = sigmoid(wts.ho * [act.hidden; 1]);
+        act.out = wts.ho * [act.hidden; 1];
         % back prop
         delta.out = (act.out-TARGET(i)) * act.out * (1-act.out);
         delta.hidden = delta.out * wts.ho(1:nHiddenUnits)' .* (act.hidden .* (1-act.hidden));
