@@ -1,0 +1,14 @@
+OVERALL GOAL: 
+- copy <- sim21.0 
+- implement hidden units 
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
