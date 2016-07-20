@@ -33,6 +33,7 @@ else
     %% experience replay OFF - update wts w/ current info
     % compute the expected rewrad
     a.dfRwd = computeExpectedReward(w.vS.visInput, a.curRwd, w.done);
+%     a.dfRwd = computeExpectedReward(w.vS.oldInput, a.curRwd, w.done);
     % change in weights equals input times reward prediction error
     TD_Err = a.dfRwd - a.act(a.choice);
     a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.vS.oldInput;
@@ -56,6 +57,8 @@ if strcmp(p.replaySamplingMode, 'uniform')
 elseif strcmp(p.replaySamplingMode, 'softmax')
     % sample using softmax distribution, w.r.t the TD error
     memoryIdx = choose(softmaxDistribution_TDErr());
+elseif strcmp(p.replaySamplingMode, 'newest')   % FOR DEBUGGING PURPOSE
+    memoryIdx = min(p.bufferSize,a.bufferUsage);
 else
     error('ERROR: unrecognizable sampling mode for experience replay!')
 end
