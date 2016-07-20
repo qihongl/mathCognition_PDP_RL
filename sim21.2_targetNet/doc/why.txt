@@ -1,0 +1,14 @@
+OVERALL GOAL: 
+- copy <- sim21.0 
+- implement the double Q network (target network)
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
