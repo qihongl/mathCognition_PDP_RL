@@ -10,7 +10,9 @@ function dfRwd = computeExpectedReward(s_cur, r_cur, taskDone)
 global a p
 if ~ taskDone
     % predict the action value 
-    act_next = a.wts * s_cur' + a.bias; % bias for the "dont move" unit
+%     act_next = a.wts * s_cur' + a.bias; % bias for the "dont move" unit
+    %% use Q_Targ to evalute the value!  
+    act_next = a.wts_targ * s_cur' + a.bias; % bias for the "dont move" unit
 
     % combine current reward with the expected reward
     dfRwd = r_cur + p.gamma * max(act_next);

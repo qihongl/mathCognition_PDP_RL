@@ -22,6 +22,10 @@ end
 %% modeling parameters
 p.runs = epoch;         % training upper lim
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
+p.curEpoch = 0; 
+p.totalSteps = 0; 
+
+
 p.wf = .1;             % noise magnitude
 p.sf = .1;              % spread factor -- separating this from noise -- jlm
 p.lrate = .0005;        % learning rate
@@ -86,7 +90,7 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = false;
+p.experienceReply = true;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};
@@ -115,5 +119,10 @@ if p.experienceReply
             p.replaySamplingMode, p.replay_batchSize);
     end
 end
+
+%% double Q network 
+p.targNetUpdateFreq = 500; 
+a.wts_targ = a.wts; 
+
 end
 
