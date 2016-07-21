@@ -6,7 +6,7 @@ X = [1 1; 1 0; 0 1; 0 0];
 Y = [1; 0; 0; 1];
 
 % model parameters
-hidden_neurons = 4;
+hidden_neurons = 2;
 epochs = 5000;
 
 % read num patterns
@@ -22,7 +22,7 @@ n = size(X,2);
 wts_ih = randsmall(hidden_neurons,n);
 wts_ho = randsmall(1,hidden_neurons);
 
-lr = .1;
+lr = .2;
 
 %% learning
 
@@ -43,14 +43,14 @@ for iter = 1:epochs
         target = Y(patnum,1);
         
         % forward prop
-        hval = (tanh(wts_ih * x'));
-        pred = hval' * wts_ho';
+        hact = tanh(wts_ih * x');
+        pred = wts_ho * hact;
         
         % compute delta
-        delta_ho = (pred - target);
-        delta_ih = delta_ho.* wts_ho'.*(1-(hval.^2));
+        delta_ho = pred - target;
+        delta_ih = delta_ho.* wts_ho'.*(1-(hact.^2));
         % adjust the weights
-        wts_ho = wts_ho - delta_ho' * lr;
+        wts_ho = wts_ho - (delta_ho .* hact)' * lr;
         wts_ih = wts_ih - delta_ih * x * lr;
         
         % record change
@@ -67,7 +67,7 @@ for iter = 1:epochs
     % compute current error 
     pred = wts_ho*tanh(wts_ih*X');
     error = pred' - Y;
-    err(iter) =  (sum(error.^2))^0.5;
+    err(iter) = sum(error.^2);
     
     %stop if error is small
     if err(iter) < 0.001
@@ -119,7 +119,6 @@ legend({'hidden to output','input to hidden'}, 'fontsize', p.FS, 'location', 'SE
 
 
 %% display actual,predicted & error
-
-a = Y;
-b = pred';
-act_pred_err = [a b b-a]
+target_prediction_difference = [Y pred' Y-pred']
+wts_ih
+wts_ho
