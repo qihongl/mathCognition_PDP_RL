@@ -20,7 +20,6 @@ else
     if a.smgain <= p.smi_upperLim * 2 %added this if statement to eliminate choice variability during testing -- jlm
         a.choice = choose(a.act.^a.smgain);
     else
-        fprintf('*');
         [ ~,a.choice] = max(a.act);
     end
 end

@@ -27,7 +27,7 @@ p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.wf = .1;             % noise magnitude
 p.sf = .1;              % spread factor -- separating this from noise -- jlm
 
-p.lrate = .0005;        % learning rate
+p.lrate = .001;        % learning rate
 p.gamma = .9;           % discount factor
 
 %% changes over time
@@ -80,7 +80,7 @@ else
 end
 
 %% network specific
-nHiddenUnits = 30; 
+nHiddenUnits = 25; 
 % % input to hidden 
 a.wts_ih = randsmall(nHiddenUnits, p.eyeRange);
 % % hidden to move 

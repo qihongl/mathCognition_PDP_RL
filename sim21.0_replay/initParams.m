@@ -90,8 +90,8 @@ p.experienceReply = true;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax', 'newest'};
     p.replaySamplingMode = allReplayMode{1};
-    p.bufferSize = 500; 
-    p.default_replay_batchSize = 10; 
+    p.bufferSize = 250; 
+    p.default_replay_batchSize = -1; 
     
     a.bufferUsage = 0;
     a.usage_startReplay = p.bufferSize;

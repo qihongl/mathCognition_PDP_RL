@@ -6,16 +6,17 @@ dataDirName = 'groupData';
 filename = 'groupScores.mat';
 
 % set parameters corrospondingly
-simName = 'sim21.0_replay';
-subSimName = 'epoch5000_start500';
-saveFileName = 'replay00';
+simName = 'sim21.1_hiddenUnits';
+subSimName = 'ep20000';
+saveFileName = 'hidden00';
 
 % used as legend later
 % TODO, read the label automatically
 condition.labels = {...
-    'ep 5000, bs 2',...
-    'ep 5000, bs 16',...
-        'ep 5000, bs 32',...
+    'ep20000'
+%     'ep 5000, bs 2',...
+%     'ep 5000, bs 16',...
+%     'ep 5000, bs 32',...
     %     'ep 5000, replay OFF',...
     %     'ep 10000, replay OFF',...
     };
@@ -30,7 +31,7 @@ load(fullfile(path, saveFileName))
 condition.num = length(unique(data.matrix(:,1)));
 [col, numSubj, numItems, dataMatrix] = procInput(condition, data);
 
-% index for the rates 
+% index for the rates
 rateLabels = col.labels.byCard([2 3 4 5 7]);
 
 clear data;
@@ -97,7 +98,8 @@ end
 % mask our the legend;
 condition.labels(condition.mask) = [];
 legend(condition.labels,'fontsize',p.FS)
-suptitle_text = sprintf('Intermediate reward + teacher demonstration \n varying training epochs and replay batch size');
+% suptitle_text = sprintf('simulationName: %s  Intermediate reward + teacher demonstration \n varying training epochs and replay batch size', subSimName);
+suptitle_text = sprintf('simulationName: %s  Intermediate reward + teacher demonstration\n with hidden units', subSimName);
 suptitle(suptitle_text)
 
 

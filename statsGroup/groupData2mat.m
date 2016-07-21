@@ -4,12 +4,12 @@ clear all;
 % set parameters corrospondingly
 path = '/Users/Qihong/Dropbox/github/mathCognition/';
 dataDirName = 'groupData';
-simName = 'sim21.0_replay';
-subSimName = 'epoch5000_bufSize200';
+simName = 'sim21.1_hiddenUnits';
+subSimName = 'ep20000';
 path = fullfile(path,simName,dataDirName,subSimName);
 
 filename = 'groupScores.mat';
-saveFileName = 'replay00';
+saveFileName = 'hidden00';
 
 numItems = 7; 
 numSub = 20;
