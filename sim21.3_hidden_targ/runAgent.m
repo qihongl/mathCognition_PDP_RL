@@ -18,6 +18,13 @@ while ~(w.done) && t < p.maxIter
     updateWeights();
     indices(t + 1) = recordAction();     % record the "touch-index"
     t = t+1;
+    
+    %% target network weight update
+    p.totalSteps = p.totalSteps+1;
+    if mod(p.totalSteps,p.targNetUpdateFreq) == 0
+        a.wts_ih_targ = a.wts_ih;
+        a.wts_ho_targ = a.wts_ho;
+    end
 end
 
 updateTeachingConditions();

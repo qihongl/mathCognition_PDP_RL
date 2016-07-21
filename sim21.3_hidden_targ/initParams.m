@@ -23,11 +23,13 @@ end
 p.runs = epoch;         % training upper lim
 p.curEpoch = 0; 
 p.maxIter = 100;        % terminate if cannot finish in 100 iter
+p.curEpoch = 0; 
+p.totalSteps = 0; 
 
 p.wf = .1;             % noise magnitude
 p.sf = .1;              % spread factor -- separating this from noise -- jlm
 
-p.lrate = .001;        % learning rate
+p.lrate = .0005;        % learning rate
 p.gamma = .9;           % discount factor
 
 %% changes over time
@@ -126,5 +128,12 @@ if p.experienceReply
             p.replaySamplingMode, p.replay_batchSize);
     end
 end
+
+
+%% the target network 
+p.targNetUpdateFreq = 3000; 
+a.wts_ih_targ = a.wts_ih; 
+a.wts_ho_targ = a.wts_ho;
+
 end
 
