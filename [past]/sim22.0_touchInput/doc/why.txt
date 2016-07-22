@@ -1,0 +1,14 @@
+OVERALL GOAL: 
+- copy <- sim21.0 
+- adding touch locations as input, so that the Markov property holds 
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
