@@ -3,7 +3,7 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-a.act = a.wts * w.input_cur' + a.bias;    % inject bias to action 0 (don't move)
+a.act = a.wts * w.vS.visInput' + a.bias;    % inject bias to action 0 (don't move)
 
 %% choose among the activation
 if w.teacherForcing
@@ -14,11 +14,11 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else
-    %     if a.smgain < p.smi_upperLim %added this if statement to eliminate choice variability during testing -- jlm
-    a.choice = choose(a.act.^a.smgain);
-    %     else
-    %         [ ~,a.choice] = max(a.act);
-    %     end %end of edit
+    if a.smgain < p.smi_upperLim * 2  %added this if statement to eliminate choice variability during testing -- jlm
+        a.choice = choose(a.act.^a.smgain);
+    else
+        [ ~,a.choice] = max(a.act);
+    end %end of edit
 end
 
 %% check if the model is completing the task

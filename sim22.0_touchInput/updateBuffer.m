@@ -26,17 +26,17 @@ end
 
 
 
+
+
 %% helper function 
 % save the current experience to the memory buffer with a specified 
 % memory index
     function [] = saveCurrentExperience (memoryIdx)
         % required info 
-%         buffer(memoryIdx).s_cur = w.vS.oldInput;
-        buffer(memoryIdx).s_cur = w.input_old;
+        buffer(memoryIdx).s_cur = w.vS.oldInput;
         buffer(memoryIdx).a_cur = a.choice;
         buffer(memoryIdx).a_act = a.act;
-%         buffer(memoryIdx).s_next = w.vS.visInput;
-        buffer(memoryIdx).s_next = w.input_cur;
+        buffer(memoryIdx).s_next = w.vS.visInput;
         buffer(memoryIdx).r_cur = a.curRwd;
         
         % other info 

@@ -41,20 +41,11 @@ w.done = false;
 w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
 w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
 
-w.rS.touchedLocs_old = false(1, p.eyeRange);
-w.rS.touchedLocs_cur = false(1, p.eyeRange);
-
 %% view state or the perceived state
 w.vS.oldInput = zeros(1, p.eyeRange);
 w.vS.visInput = zeros(1, p.eyeRange);
 w.out.handStep = 0;
 w.out.eyeStep = 0;
-
-% 
-w.input_old = horzcat(w.vS.oldInput, w.rS.touchedLocs_old);
-w.input_cur = horzcat(w.vS.visInput, w.rS.touchedLocs_cur);
-
-
 
 %% teaching specific
 mode.teach = true; 

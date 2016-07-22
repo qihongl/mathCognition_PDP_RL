@@ -5,8 +5,7 @@ global a w h p mode;
 %% initialize the state
 initState();
 updateState();
-% compute the true answers, for teacher demonstration 
-computeAnswer();    
+computeAnswer();    % compute the true 'answers'
 
 %% train the model once
 t = 0;
@@ -19,6 +18,11 @@ while ~(w.done) && t < p.maxIter
     updateWeights();
     indices(t + 1) = recordAction();     % record the "touch-index"
     t = t+1;
+    %% target network weight update
+    p.totalSteps = p.totalSteps+1; 
+    if mod(p.totalSteps,p.targNetUpdateFreq) == 0
+        a.wts_targ = a.wts; 
+    end 
 end
 
 updateTeachingConditions();

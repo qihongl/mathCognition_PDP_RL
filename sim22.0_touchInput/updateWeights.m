@@ -15,7 +15,7 @@ if p.experienceReply
     updateBuffer();
     % start replay when the buffer is filled
     if a.bufferUsage > a.usage_startReplay
-        % take a batch of experience from the buffer 
+        % take a batch of experience from the buffer
         for i = 1 : p.replay_batchSize
             % sample from the memory buffer, uniformly w/ replacement
             memoryIdx = sampleFromBuffer();
@@ -32,10 +32,13 @@ if p.experienceReply
 else
     %% experience replay OFF - update wts w/ current info
     % compute the expected rewrad
-    a.dfRwd = computeExpectedReward(w.input_cur, a.curRwd, w.done);
+    a.dfRwd = computeExpectedReward(w.vS.visInput, a.curRwd, w.done);
     % change in weights equals input times reward prediction error
     TD_Err = a.dfRwd - a.act(a.choice);
-    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.input_old;
+    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.vS.oldInput;
+    if p.curEpoch == 2
+        temp = 0;
+    end
 end
 
 end
@@ -57,19 +60,18 @@ else
     error('ERROR: unrecognizable sampling mode for experience replay!')
 end
 
+
+
 % compute the softmax distribution of the TD error
     function [distribution_TDErr] = softmaxDistribution_TDErr()
         global buffer
-        
         %% TODO check if the buffer is filled!
-        %% TODO take absolute value!
-        %% TODO add the gain factor
+        
         TDErrs = nan(p.bufferSize,1);
         for i = 1 : length(buffer)
             TDErrs(i) = buffer(i).TDErr;
         end
+        TDErrs = abs(TDErrs);
         distribution_TDErr = exp(TDErrs) / sum(exp(TDErrs));
-        % plot(TDErrs)
-        % plot(distribution_TDErr)
     end
 end

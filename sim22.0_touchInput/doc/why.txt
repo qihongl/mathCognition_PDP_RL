@@ -1,6 +1,6 @@
 OVERALL GOAL: 
-- copy <- sim21.0 
-- adding touch locations as input, so that the Markov property holds 
+- copy <- sim21.2 
+- augment the sensory input to make the process markov 
 
 
 WHAT I DID: 

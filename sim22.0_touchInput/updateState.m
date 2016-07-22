@@ -24,7 +24,6 @@ w.vS.sd(w.vS.sd < p.wf) = p.sf; %using spread factor -- jlm
 %% Gaussian representation of visual input
 w.vS.oldInput = w.vS.visInput;
 w.vS.visInput = getVisualInput();
-
 % plot(w.vS.visInput)
 
 % save the history
