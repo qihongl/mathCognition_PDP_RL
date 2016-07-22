@@ -47,15 +47,15 @@ for iter = 1:epochs
         pred = wts_ho * hact;
         
         % compute delta
-        delta_ho = pred - target;
-        delta_ih = delta_ho.* wts_ho'.*(1-(hact.^2));
+        delta_o = pred - target;
+        delta_h = delta_o.* wts_ho'.*(1-(hact.^2));
         % adjust the weights
-        wts_ho = wts_ho - (delta_ho .* hact)' * lr;
-        wts_ih = wts_ih - delta_ih * x * lr;
+        wts_ho = wts_ho - (delta_o .* hact)' * lr;
+        wts_ih = wts_ih - delta_h * x * lr;
         
         % record change
-        temp.change_wts_ho(j) = mean(abs(delta_ho * lr));
-        temp.change_wts_ih(j) = mean(mean(abs(delta_ih * lr)));
+        temp.change_wts_ho(j) = mean(abs(delta_o * lr));
+        temp.change_wts_ih(j) = mean(mean(abs(delta_h * lr)));
         
     end
     
@@ -119,6 +119,7 @@ legend({'hidden to output','input to hidden'}, 'fontsize', p.FS, 'location', 'SE
 
 
 %% display actual,predicted & error
-target_prediction_difference = [Y pred' Y-pred']
 wts_ih
 wts_ho
+target_prediction_difference = [Y pred' Y-pred']
+
