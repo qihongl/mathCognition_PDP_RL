@@ -17,7 +17,8 @@ while ~(w.done) && t < p.maxIter
     updateState();
     computeRwd();
     updateWeights();
-    indices(t+1) = recordAction();     % record the "touch-index"
+    
+    indices(t + 1) = recordAction();     % record the "touch-index"
     t = t+1;
     %% target network weight update
     p.totalSteps = p.totalSteps+1; 

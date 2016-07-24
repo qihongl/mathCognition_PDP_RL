@@ -25,6 +25,7 @@ p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.curEpoch = 0; 
 p.totalSteps = 0; 
 
+
 p.wf = .1;             % noise magnitude
 p.sf = .1;              % spread factor -- separating this from noise -- jlm
 p.lrate = .0005;        % learning rate
@@ -89,12 +90,12 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = false;
+p.experienceReply = true;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};
     p.bufferSize = 500; 
-    p.default_replay_batchSize = 2; 
+    p.default_replay_batchSize = 10; 
     
     a.bufferUsage = 0;
     a.usage_startReplay = p.bufferSize;

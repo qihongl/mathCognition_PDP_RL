@@ -6,9 +6,8 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global p a w buffer;
 
-updateInput();
-testInput(w.vS.visInput_cur, w.input_cur(1:p.eyeRange));
-testInput(w.vS.visInput_old, w.input_old(1:p.eyeRange));
+updateInput
+
 
 %% experience replay ON - update wts w/ a random sample from the buffer
 if p.experienceReply
@@ -33,10 +32,10 @@ if p.experienceReply
 else
     %% experience replay OFF - update wts w/ current info
     % compute the expected rewrad
-    a.dfRwd = computeExpectedReward(w.input_cur(1:p.eyeRange), a.curRwd, w.done);
+    a.dfRwd = computeExpectedReward(w.vS.visInput_cur, a.curRwd, w.done);
     % change in weights equals input times reward prediction error
     TD_Err = a.dfRwd - a.act(a.choice);
-    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.input_old(1:p.eyeRange);
+    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.vS.visInput_old;
 end
 
 end
@@ -57,6 +56,7 @@ elseif strcmp(p.replaySamplingMode, 'softmax')
 else
     error('ERROR: unrecognizable sampling mode for experience replay!')
 end
+
 
 
 % compute the softmax distribution of the TD error

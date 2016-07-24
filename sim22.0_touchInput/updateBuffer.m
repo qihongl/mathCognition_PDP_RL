@@ -31,10 +31,10 @@ end
 % memory index
     function [] = saveCurrentExperience (memoryIdx)
         % required info 
-        buffer(memoryIdx).s_cur = w.vS.visInput_old;
+        buffer(memoryIdx).s_cur = w.input_old(1:p.eyeRange);
         buffer(memoryIdx).a_cur = a.choice;
         buffer(memoryIdx).a_act = a.act;
-        buffer(memoryIdx).s_next = w.vS.visInput_cur;
+        buffer(memoryIdx).s_next = w.input_cur(1:p.eyeRange);
         buffer(memoryIdx).r_cur = a.curRwd;
         
         % other info 
@@ -42,7 +42,7 @@ end
 
         % for prioritized experience replay
         buffer(memoryIdx).TDErr = ...
-            computeExpectedReward(w.vS.visInput_cur, a.curRwd, w.done) - a.act(a.choice);
+            computeExpectedReward(w.input_cur(1:p.eyeRange), a.curRwd, w.done) - a.act(a.choice);
         
     end
 
