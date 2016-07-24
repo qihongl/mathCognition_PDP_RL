@@ -4,12 +4,12 @@ clear global;
 global p;
 dataSaveDirName = 'groupData';
 projDir = fullfile(pwd, dataSaveDirName);
-simName = 'ep20000';
+simName = 'ep100000';
 param.saveDir = fullfile(projDir, simName);
 
 %% set the parameter that you want to vary
 if nargin == 0
-    epoch = 20000;
+    epoch = 100000;
     nSubj = 20;
 end
 

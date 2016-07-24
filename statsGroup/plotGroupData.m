@@ -6,17 +6,20 @@ dataDirName = 'groupData';
 filename = 'groupScores.mat';
 
 % set parameters corrospondingly
-simName = 'sim21.1_hiddenUnits';
-subSimName = 'ep20000';
-saveFileName = 'hidden00';
+% simName = 'sim21.1_hiddenUnits';
+% subSimName = 'ep20000';
+% saveFileName = 'hidden00';
+simName = 'sim21.2_targetNet';
+subSimName = 'ep2000_freq2000';
+saveFileName = 'targ00';
 
 % used as legend later
 % TODO, read the label automatically
 condition.labels = {...
-    'ep20000'
-%     'ep 5000, bs 2',...
-%     'ep 5000, bs 16',...
-%     'ep 5000, bs 32',...
+%     'ep100,000'
+    'ep 2000, bs 5',...
+    'ep 2000, bs 10',...
+    'ep 2000, bs 30',...
     %     'ep 5000, replay OFF',...
     %     'ep 10000, replay OFF',...
     };
@@ -99,7 +102,7 @@ end
 condition.labels(condition.mask) = [];
 legend(condition.labels,'fontsize',p.FS)
 % suptitle_text = sprintf('simulationName: %s  Intermediate reward + teacher demonstration \n varying training epochs and replay batch size', subSimName);
-suptitle_text = sprintf('simulationName: %s  Intermediate reward + teacher demonstration\n with hidden units', subSimName);
+suptitle_text = sprintf('simulationName: %s  Intermediate reward + teacher demonstration\n with target network update frequency: 2000 transitions', subSimName);
 suptitle(suptitle_text)
 
 
