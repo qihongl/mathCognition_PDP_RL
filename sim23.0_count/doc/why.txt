@@ -1,0 +1,14 @@
+OVERALL GOAL: 
+- copy <- sim21.2 
+- augment the sensory input to make the process markov 
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
