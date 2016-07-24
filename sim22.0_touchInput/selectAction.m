@@ -6,7 +6,7 @@ global w a p;
 updateInput()
 testInput(w.vS.visInput_cur, w.input_cur(1:p.eyeRange));
 
-a.act = a.wts * w.input_cur(1:p.eyeRange)' + a.bias;    % inject bias to action 0 (don't move)
+a.act = a.wts * w.input_cur' + a.bias;    % inject bias to action 0 (don't move)
 
 
 %% choose among the activation

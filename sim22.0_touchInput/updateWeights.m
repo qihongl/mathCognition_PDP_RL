@@ -33,10 +33,10 @@ if p.experienceReply
 else
     %% experience replay OFF - update wts w/ current info
     % compute the expected rewrad
-    a.dfRwd = computeExpectedReward(w.input_cur(1:p.eyeRange), a.curRwd, w.done);
+    a.dfRwd = computeExpectedReward(w.input_cur, a.curRwd, w.done);
     % change in weights equals input times reward prediction error
     TD_Err = a.dfRwd - a.act(a.choice);
-    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.input_old(1:p.eyeRange);
+    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.input_old;
 end
 
 end

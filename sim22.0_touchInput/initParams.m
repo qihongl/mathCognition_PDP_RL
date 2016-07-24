@@ -82,7 +82,8 @@ end
 
 %% network specific
 % initialize with small small random values
-a.wts = zeros(p.mvRange+1, p.eyeRange);
+% a.wts = zeros(p.mvRange+1, p.eyeRange);
+a.wts = zeros(p.mvRange+1, p.eyeRange*2);
 a.bias = zeros(p.mvRange+1,1);
 a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
 
@@ -90,7 +91,7 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = true;
+p.experienceReply = false;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};
