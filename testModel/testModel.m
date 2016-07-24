@@ -30,6 +30,7 @@ while ~(w.done) && i < p.maxIter
     selectAction();
     move();
     updateState();
+    computeRwd();
     updateWeights();
     if showPlot
         showState();
