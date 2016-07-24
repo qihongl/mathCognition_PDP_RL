@@ -3,7 +3,10 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-a.act = a.wts * w.vS.visInput' + a.bias;    % inject bias to action 0 (don't move)
+updateInput()
+% a.act = a.wts * w.input_cur(1:p.eyeRange)' + a.bias;    % inject bias to action 0 (don't move)
+a.act = a.wts * w.vS.visInput_cur' + a.bias;    % inject bias to action 0 (don't move)
+testInput()
 
 %% choose among the activation
 if w.teacherForcing

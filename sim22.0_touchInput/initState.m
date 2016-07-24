@@ -42,8 +42,12 @@ w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);
 w.rS.handPos = min(w.rS.targPos) - randi(p.maxSpacing);
 
 %% view state or the perceived state
-w.vS.oldInput = zeros(1, p.eyeRange);
-w.vS.visInput = zeros(1, p.eyeRange);
+w.vS.visInput_old = zeros(1, p.eyeRange);
+w.vS.visInput_cur = zeros(1, p.eyeRange);
+w.rS.touchLocs_old = zeros(1, p.eyeRange);
+w.rS.touchLocs_cur = zeros(1, p.eyeRange);
+updateInput()
+
 w.out.handStep = 0;
 w.out.eyeStep = 0;
 

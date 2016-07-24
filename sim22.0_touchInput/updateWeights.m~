@@ -9,6 +9,7 @@ global p a w buffer;
 % compute the true reward at this time step
 a.curRwd = computeRwd();
 
+
 updateInput();
 
 %% experience replay ON - update wts w/ a random sample from the buffer
@@ -39,7 +40,7 @@ else
     % change in weights equals input times reward prediction error
     TD_Err = a.dfRwd - a.act(a.choice);
 %     a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.input_old(1:p.eyeRange);
-    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.vS.visInput_old;
+    a.wts(a.choice,:) = a.wts(a.choice,:) + p.lrate * TD_Err * w.rS;
 end
 
 end
