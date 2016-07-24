@@ -6,7 +6,7 @@
 %           taskDone    if the task is terminated
 % return:   dfRwd       discounted future reward
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [dfRwd, hact] = computeExpectedReward(s_cur, r_cur, taskDone)
+function [dfRwd, hact] = computeFutureReward(s_cur, r_cur, taskDone)
 
 global a p
 % predict the action value
