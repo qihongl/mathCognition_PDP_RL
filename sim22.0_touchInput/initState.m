@@ -24,7 +24,7 @@ w.errors = 0;
 w.numSkips = 0;
 w.numDoubleTouch = 0;
 
-%% preallocate the network untis
+%% preallocate the predicted action values (or neural activation)
 a.act = zeros(p.mvRange+1,1);
 
 %% generate items in space
@@ -46,7 +46,9 @@ w.vS.visInput_old = zeros(1, p.eyeRange);
 w.vS.visInput_cur = zeros(1, p.eyeRange);
 w.rS.touchLocs_old = zeros(1, p.eyeRange);
 w.rS.touchLocs_cur = zeros(1, p.eyeRange);
-updateInput()
+
+w.input_old = horzcat(w.vS.visInput_old, w.rS.touchLocs_old);
+w.input_cur = horzcat(w.vS.visInput_cur, w.rS.touchLocs_cur);
 
 w.out.handStep = 0;
 w.out.eyeStep = 0;

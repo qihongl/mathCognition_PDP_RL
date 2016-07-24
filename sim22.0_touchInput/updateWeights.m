@@ -6,9 +6,9 @@ function [ ] = updateWeights()
 % 3. activate the "teaching"
 global p a w buffer;
 
-updateInput();
-testInput(w.vS.visInput_cur, w.input_cur(1:p.eyeRange));
-testInput(w.vS.visInput_old, w.input_old(1:p.eyeRange));
+% updateInput();
+% testInput(w.vS.visInput_cur, w.input_cur(1:p.eyeRange));
+% testInput(w.vS.visInput_old, w.input_old(1:p.eyeRange));
 
 %% experience replay ON - update wts w/ a random sample from the buffer
 if p.experienceReply

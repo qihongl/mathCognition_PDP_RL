@@ -25,6 +25,7 @@ p.maxIter = 100;        % terminate if cannot finish in 100 iter
 p.curEpoch = 0; 
 p.totalSteps = 0; 
 
+p.sensoryInput = true; 
 
 p.wf = .1;             % noise magnitude
 p.sf = .1;              % spread factor -- separating this from noise -- jlm
@@ -84,6 +85,7 @@ end
 % initialize with small small random values
 % a.wts = zeros(p.mvRange+1, p.eyeRange);
 a.wts = zeros(p.mvRange+1, p.eyeRange*2);
+% a.wts = randsmall(p.mvRange+1, p.eyeRange*2);
 a.bias = zeros(p.mvRange+1,1);
 a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
 
@@ -91,7 +93,7 @@ p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = false;
+p.experienceReply = true;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};

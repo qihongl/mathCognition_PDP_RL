@@ -3,9 +3,8 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-updateInput()
-testInput(w.vS.visInput_cur, w.input_cur(1:p.eyeRange));
-
+% updateInput()
+% testInput(w.vS.visInput_cur, w.input_cur(1:p.eyeRange));
 a.act = a.wts * w.input_cur' + a.bias;    % inject bias to action 0 (don't move)
 
 

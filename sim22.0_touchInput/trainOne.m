@@ -8,7 +8,6 @@ if nargin == 0
 end
 
 
-
 %% run the simulation
 global p
 record = trainAgent(epoch, seed);

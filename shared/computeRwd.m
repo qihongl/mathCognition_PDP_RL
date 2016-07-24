@@ -27,17 +27,12 @@ if targetRemain()
         Rwd = p.r.midPos;
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
         
-%         if isfield(p,'sensoryInput') && p.sensoryInput
-%             % update touched locations
-%             w.rS.touchLocs_old = w.rS.touchLocs_cur;
-%             w.rS.touchLocs_cur = false(1, p.eyeRange);
-%             observableTrags = abs(w.vS.targPos) < p.eyeRad;
-%             w.rS.touchLocs_cur(w.vS.targPos(observableTrags) + p.eyeRad) = ~w.rS.targRemain(observableTrags);
-%             % update the input
-%             w.input_old = horzcat(w.vS.oldInput, w.rS.touchLocs_old);
-%             w.input_cur = horzcat(w.vS.visInput, w.rS.touchLocs_cur);
-%             
-%         end
+        if isfield(p,'sensoryInput') && p.sensoryInput
+            updateTouchLocs();
+        end
+        % update the input
+        w.input_old = horzcat(w.vS.visInput_old, w.rS.touchLocs_old);
+        w.input_cur = horzcat(w.vS.visInput_cur, w.rS.touchLocs_cur);
     end
 else    % if all targets were touched
     if a.choice == p.mvRange +1
@@ -50,7 +45,7 @@ else    % if all targets were touched
 end
 
 
-a.curRwd = Rwd; 
+a.curRwd = Rwd;
 end % end of the function
 
 
