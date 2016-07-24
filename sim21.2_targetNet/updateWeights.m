@@ -7,7 +7,7 @@ function [ ] = updateWeights()
 global p a w buffer;
 %% compute the reward values according to the reward policy
 % compute the true reward at this time step
-a.curRwd = computeRwd();
+
 
 %% experience replay ON - update wts w/ a random sample from the buffer
 if p.experienceReply
