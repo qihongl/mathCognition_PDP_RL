@@ -27,9 +27,8 @@ if targetRemain()
         Rwd = p.r.midPos;
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
         
-        if isfield(p,'sensoryInput') && p.sensoryInput
-            updateTouchLocs();
-        end
+        updateTouchLocs();
+        
         % update the input
         w.input_old = horzcat(w.vS.visInput_old, w.rS.touchLocs_old);
         w.input_cur = horzcat(w.vS.visInput_cur, w.rS.touchLocs_cur);

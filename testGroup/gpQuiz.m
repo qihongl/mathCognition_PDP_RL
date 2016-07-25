@@ -6,8 +6,8 @@ projPath = '/Users/Qihong/Dropbox/github/mathCognition/';
 datadir = 'groupData';
 sfname = 'groupScores.mat';
 % set parameters corrospondingly
-simName = 'sim21.2_targetNet';
-subSimName = 'ep2000_freq500';
+simName = 'sim22.0_touchInput';
+subSimName = 'teachMode_noReplay';
 path = fullfile(projPath, simName, datadir,subSimName);
 
 % 

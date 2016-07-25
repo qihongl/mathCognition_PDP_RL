@@ -15,7 +15,7 @@ obs_touched = (observableTrags & touchedObj');
 w.rS.touchLocs_cur(w.vS.targPos(obs_touched) + p.eyeRad + 1) = 1; 
 
 
-% % update the input 
+% % % update the input 
 % w.input_old = horzcat(w.vS.visInput_old, w.rS.touchLocs_old);
 % w.input_cur = horzcat(w.vS.visInput_cur, w.rS.touchLocs_cur);
 

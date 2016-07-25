@@ -32,6 +32,7 @@ while ~(w.done) && i < p.maxIter
     updateState();
     computeRwd();
     updateWeights();
+    
     if showPlot
         showState();
     end
