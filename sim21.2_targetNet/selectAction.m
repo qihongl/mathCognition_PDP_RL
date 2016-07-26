@@ -3,7 +3,7 @@ function [] = selectAction( )
 global w a p;
 
 %% compute the output activation
-a.act = a.wts * w.vS.visInput' + a.bias;    % inject bias to action 0 (don't move)
+a.act = a.wts_targ * w.vS.visInput' + a.bias;    % inject bias to action 0 (don't move)
 
 %% choose among the activation
 if w.teacherForcing
@@ -15,7 +15,8 @@ if w.teacherForcing
     end
 else
     if a.smgain < p.smi_upperLim * 2  %added this if statement to eliminate choice variability during testing -- jlm
-        a.choice = choose(a.act.^a.smgain);
+%         a.choice = choose(a.act.^a.smgain);
+        a.choice = softmaxChoose(a.act, a.smgain);
     else
         [ ~,a.choice] = max(a.act);
     end %end of edit
