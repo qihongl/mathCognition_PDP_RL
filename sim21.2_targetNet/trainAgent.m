@@ -33,7 +33,7 @@ for i = 1:p.runs
     %% run the model
     result = runAgent();
     % increment the softmax scaling factor
-    updateSmiPf();
+    updateTemperature();
     
     %% save performance
     s.numErrors(i) = result.numErrors;
@@ -62,13 +62,18 @@ elseif mod(curEpoch,p.saveWtsInterval) == 0
 end
 end
 
-function [] = updateSmiPf()
+function [] = updateTemperature()
 
 global a p ;
 % update softmax rate
 if a.smgain < p.smi_upperLim
     a.smgain = a.smgain + p.smirate;
 end
+
+if a.epsilon > p.minEpsilon
+    a.epsilon = a.epsilon - p.epsilonDecRate;
+end
+    
 
 % update punish factor
 if a.punishFactor > p.PF_lowerLim

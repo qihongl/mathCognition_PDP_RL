@@ -14,9 +14,15 @@ if w.teacherForcing
         a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
     end
 else
-    if a.smgain < p.smi_upperLim * 2  %added this if statement to eliminate choice variability during testing -- jlm
-%         a.choice = choose(a.act.^a.smgain);
+    if a.smgain < p.smi_upperLim * 2
         a.choice = softmaxChoose(a.act, a.smgain);
+        % e-greedy
+%         if rand > a.epsilon
+%             [~, a.choice] = max(a.act);
+%         else
+%             a.choice = randsample(length(a.act),1);
+%         end
+        
     else
         [ ~,a.choice] = max(a.act);
     end %end of edit

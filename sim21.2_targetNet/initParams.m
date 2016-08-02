@@ -39,6 +39,11 @@ a.punishFactor = 0.8;   % initial punish factor
 p.PFd = .001;           % punish factor decrement rate
 p.PF_lowerLim = 0.2;    % lower bound
 
+a.epsilon = .8; 
+p.minEpsilon = .1; 
+p.epsilonDecRate = (a.epsilon - p.minEpsilon) / epoch; 
+
+
 %% teaching mode
 if p.teachingStyle == 3 || p.teachingStyle == 4
     % flag for the teacher forcing mode
