@@ -2,11 +2,10 @@
 function record = trainOne(epoch, seed)
 clear global 
 if nargin == 0
-    epoch = 2000;
+    epoch = 1000;
     seed = randi(99);
     seed = 66 
 end
-
 
 
 %% run the simulation

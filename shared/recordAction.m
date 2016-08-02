@@ -14,7 +14,7 @@ if any(w.rS.targRemain ~= prevState)
     % assume that only one item can be differ  
     index = find(prevState ~= w.rS.targRemain);
 % if the model choose the stop, asssign a number to it
-elseif a.choice == p.mvRange +1 
+elseif a.act == p.mvRange +1 
     index = p.maxItems +1;     
 end
 

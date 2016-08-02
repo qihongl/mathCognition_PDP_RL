@@ -4,11 +4,11 @@ global w p h a;
 w.actionCorrect = true;
 % if there is remaining items
 if targetRemain()
-    if a.choice == p.mvRange +1     % saying "done"
+    if a.action == p.mvRange +1     % saying "done"
         Rwd = p.r.smallNeg;
         w.errors = w.errors + 1;
         w.done = true;
-    elseif a.choice == p.mvRad +1     % not moving
+    elseif a.action == p.mvRad +1     % not moving
         Rwd = p.r.smallNeg;
     elseif ~isTouchingObj       % touching empty spot
         Rwd = p.r.smallNeg;
@@ -27,14 +27,13 @@ if targetRemain()
         Rwd = p.r.midPos;
         w.rS.targRemain(w.rS.handPos == w.rS.targPos) = false;
         
-        updateTouchLocs();
-        
         % update the input
+        updateTouchLocs();
         w.input_old = horzcat(w.vS.visInput_old, w.rS.touchLocs_old);
         w.input_cur = horzcat(w.vS.visInput_cur, w.rS.touchLocs_cur);
     end
 else    % if all targets were touched
-    if a.choice == p.mvRange +1
+    if a.action == p.mvRange +1
         Rwd = p.r.bigPos * a.punishFactor ^ w.errors;
         w.done = true;
     else
@@ -42,7 +41,6 @@ else    % if all targets were touched
     end
     
 end
-
 
 a.curRwd = Rwd;
 end % end of the function

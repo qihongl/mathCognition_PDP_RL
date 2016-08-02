@@ -6,12 +6,13 @@ path = '/Users/Qihong/Dropbox/github/mathCognition/';
 dataDirName = 'groupData';
 filename = 'groupScores.mat';
 
-% simName = 'sim21.1_hiddenUnits';
-% subSimName = 'ep20000';
-simName = 'sim21.2_targetNet';
-subSimName = 'ep2000_freq500';
-saveFileName = 'targ00';
+% simName = 'sim20.1_simplify';
+% subSimName = 'ep10000';
+% saveFileName = 'compareTeachMode';
 
+simName = 'sim21.2_targetNet';
+subSimName = 'ep5000_compTeachModes';
+saveFileName = subSimName;
 
 path = fullfile(path,simName,dataDirName,subSimName);
 numItems = 7; 

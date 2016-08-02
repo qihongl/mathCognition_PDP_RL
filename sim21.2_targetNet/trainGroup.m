@@ -3,24 +3,24 @@ clear global;
 % Run N models, to establish sample size
 dataSaveDirName = 'groupData';
 projDir = fullfile(pwd, dataSaveDirName);
-simName = 'ep2000_freq2000';
+simName = 'ep5000_compTeachModes';
 param.saveDir = fullfile(projDir, simName);
 
 %% set the parameter that you want to vary
 if nargin == 0
-    epoch = 2000;
+    epoch = 5000;
     nSubj = 20;
 end
 
 param.runningCondition = 'NA';
-% param.val = [1 2 3 4];
-param.val = [5 10 30];
+param.val = [1 2 3 4];
+% param.val = [5 10 30];
 % param.val = 0
 for i = 1 : length(param.val)
     
     global p;
-    %     p.teachingStyle = param.val(i); % varying parameter
-    p.replay_batchSize = param.val(i);
+        p.teachingStyle = param.val(i); % varying parameter
+%     p.replay_batchSize = param.val(i);
     
     %% create a new directory to save the results
     dirName = createDir(param.saveDir, dataSaveDirName);
@@ -42,7 +42,6 @@ for i = 1 : length(param.val)
     end
     clear global 
 end
-
 
 % write a parameter file
 filename = fullfile(param.saveDir,'paramRecord.txt');
