@@ -23,7 +23,9 @@ while ~(w.done) && t < p.maxIter
     %% target network weight update
     p.totalSteps = p.totalSteps+1; 
     if mod(p.totalSteps,p.targNetUpdateFreq) == 0
-        a.wts_targ = a.wts; 
+        a.wts_m_targ = a.wts_m; 
+        a.wts_c_targ = a.wts_c; 
+        
     end 
 end
 

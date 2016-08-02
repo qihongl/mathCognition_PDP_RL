@@ -1,0 +1,43 @@
+function [] = selectAction( )
+% It computes the output activation, and choose the action probabilistically.
+global w a p;
+
+%% compute the output activation
+a.act = a.wts_targ * w.vS.visInput' + a.bias;    % inject bias to action 0 (don't move)
+
+%% choose among the activation
+if w.teacherForcing
+    % if it is done unit, don't need to transform to real state
+    if w.answer.eye(w.stateNum + 1) == p.mvRange+1
+        a.choice = w.answer.eye(w.stateNum + 1);
+    else
+        a.choice = w.answer.eye(w.stateNum + 1) + p.mvRad + 1;
+    end
+else
+    if a.smgain < p.smi_upperLim * 2
+        a.choice = softmaxChoose(a.act, a.smgain);
+        % e-greedy
+%         if rand > a.epsilon
+%             [~, a.choice] = max(a.act);
+%         else
+%             a.choice = randsample(length(a.act),1);
+%         end
+        
+    else
+        [ ~,a.choice] = max(a.act);
+    end %end of edit
+end
+
+%% check if the model is completing the task
+if a.choice == length(a.act)
+    w.out.targGuess = 0;
+    w.out.handStep = 0;
+    w.out.eyeStep = 0;
+else
+    w.out.targGuess = a.choice - p.mvRad - 1; % get vS action
+    %% compute the "moving vector" for eye and hand (in vS)
+    w.out.handStep = w.out.targGuess - w.vS.handPos;
+    w.out.eyeStep = w.out.targGuess; % already in eye-centered coordinates
+end
+
+end

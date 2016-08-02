@@ -55,10 +55,12 @@ function [record] = saveWts(curEpoch, record)
 global a p;
 if curEpoch == 1   
     % save the initial wts
-    record.wts{1} = a.wts;
+    record.wts_m{1} = a.wts_m;
+    record.wts_c{1} = a.wts_c;
 elseif mod(curEpoch,p.saveWtsInterval) == 0 
     % save wts periodically
-    record.wts{1+curEpoch/p.saveWtsInterval} = a.wts;
+    record.wts_m{1+curEpoch/p.saveWtsInterval} = a.wts_m;
+    record.wts_c{1+curEpoch/p.saveWtsInterval} = a.wts_c;
 end
 end
 

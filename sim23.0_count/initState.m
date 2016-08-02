@@ -25,7 +25,10 @@ w.numSkips = 0;
 w.numDoubleTouch = 0;
 
 %% preallocate the predicted action values (or neural activation)
-a.act = zeros(p.mvRange+1,1);
+% -7, -6, ..., 0, 1, 2, ..., 7, "done"
+a.actVal = zeros(p.mvRange + 1, 1);
+% 1, 2, ..., 7, "silent"
+a.countVal = zeros(p.maxCount + 1, 1);
 
 %% generate items in space
 if isfield(mode, 'fixNumItems') && mode.fixNumItems
@@ -33,9 +36,15 @@ if isfield(mode, 'fixNumItems') && mode.fixNumItems
 else
     w.nItems = generateNum(p.maxItems);     % sample the number from prob 
 end
+
+w.nItems = 3; 
+
 w.rS.targPos = itemGen(w.nItems);       % generate items
 w.rS.targRemain = true(w.nItems, 1);    % set up flag 
 w.done = false;
+
+
+
 
 %% initialize the location of hand and eye
 w.rS.eyePos  = min(w.rS.targPos) - randi(p.maxSpacing);

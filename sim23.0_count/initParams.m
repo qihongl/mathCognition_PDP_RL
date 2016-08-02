@@ -40,13 +40,10 @@ a.punishFactor = 0.8;   % initial punish factor
 p.PFd = .001;           % punish factor decrement rate
 p.PF_lowerLim = 0.2;    % lower bound
 
-%% teaching mode
-if p.teachingStyle == 3 || p.teachingStyle == 4
-    % flag for the teacher forcing mode
-    p.teacherForcingOn = 1;
-else
-    p.teacherForcingOn = 0;
-end
+a.epsilon = .8; 
+p.minEpsilon = .1; 
+p.epsilonDecRate = (a.epsilon - p.minEpsilon) / epoch; 
+
 
 %% counting specific
 % size of the state space and percetual span
@@ -63,7 +60,36 @@ p.maxItems = 7;         % max number of items
 p.maxSpacing = 5;       % max spacing between neighbouring items
 p.minSpacing = 0;       % min spacing between neighbouring items
 
-%% reward values
+% counting actions 
+p.maxCount = 7; 
+
+
+%% network specific
+% initialize with small small random values
+BIAS_VAL = 1e-3; 
+
+a.wts_m = zeros(p.mvRange+1, p.eyeRange*2);
+% a.wts = randsmall(p.mvRange+1, p.eyeRange*2);
+a.bias_m = zeros(p.mvRange+1,1);
+a.bias_m(p.mvRad+1) = BIAS_VAL;        % bias toward not moving (action 0)
+
+a.wts_c = zeros(p.maxCount+1, p.eyeRange*2);
+% a.wts_c = randsmall(p.maxCount+1, p.eyeRange*2);
+a.bias_c = zeros(p.maxCount+1,1);
+a.bias_c(p.maxCount+1) = BIAS_VAL;     % bias toward not saying anything 
+
+p.saveWtsInterval = 100;
+
+
+%% reward values w.r.t teaching mode
+
+if p.teachingStyle == 3 || p.teachingStyle == 4
+    % flag for the teacher forcing mode
+    p.teacherForcingOn = 1;
+else
+    p.teacherForcingOn = 0;
+end
+
 if p.teachingStyle == 1 || p.teachingStyle == 3
     % less feed back mode
     p.r.smallNeg = 0;
@@ -81,19 +107,10 @@ else
     error('Unrecognized teaching mode')
 end
 
-%% network specific
-% initialize with small small random values
-% a.wts = zeros(p.mvRange+1, p.eyeRange);
-a.wts = zeros(p.mvRange+1, p.eyeRange*2);
-% a.wts = randsmall(p.mvRange+1, p.eyeRange*2);
-a.bias = zeros(p.mvRange+1,1);
-a.bias(p.mvRad+1) = 1e-8;           % bias toward not moving (action 0)
-
-p.saveWtsInterval = 100;
 
 
 %% experience replay
-p.experienceReply = true;
+p.experienceReply = false;
 if p.experienceReply
     allReplayMode = {'uniform', 'softmax'};
     p.replaySamplingMode = allReplayMode{1};
@@ -125,7 +142,8 @@ end
 
 %% double Q network 
 p.targNetUpdateFreq = 500; 
-a.wts_targ = a.wts; 
+a.wts_m_targ = a.wts_m; 
+a.wts_c_targ = a.wts_c; 
 
 end
 
