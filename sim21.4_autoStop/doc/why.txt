@@ -1,0 +1,14 @@
+OVERALL GOAL: 
+- copy <- sim21.2 
+- stop the model if (currentLoc > the last object) for 3 time steps
+
+
+WHAT I DID: 
+
+
+SOME OBSERVATIONS:
+
+
+PROBLEM: 
+
+TRY: 
